@@ -2,21 +2,39 @@
 #columns should all be numeric
 #define row names
 
-comm2<-read.csv("2012_abundancematrix.csv")
+comm<-read.csv("2012_abundancematrix.csv")
+comm$mtype <-factor(comm$mtype)
 
 #use this one to give the site names
-rownames(comm2) <- c("B1GA", "B1GB", "BIUA", "B1UB", "B2GA", "B2GB", "B2UA", "B2UB", "I1GA", "I1GB", "I1UA", "I1UB", "I2GA", "I2GB", "I2UA", "I2UB", "K1GA", "K1GB", "K1UA", "K1UB", "K2GA", "K2GB", "K2UA", "K2UB")
+rownames(comm) <- c("B1GA", "B1GB", "BIUA", "B1UB", "B2GA", "B2GB", "B2UA", "B2UB", "I1GA", "I1GB", "I1UA", "I1UB", "I2GA", "I2GB", "I2UA", "I2UB", "K1GA", "K1GB", "K1UA", "K1UB", "K2GA", "K2GB", "K2UA", "K2UB")
 
 #or use this one to give the bank heights
-rownames(comm2) <- c("77", "17", "177", "117", "82", "19", "182", "119", "65", "30", "165", "130", "99", "13", "199", "113", "196", "29", "296", "129", "126", "34", "226", "134")
+rownames(comm) <- c("77", "17", "177", "117", "82", "19", "182", "119", "65", "30", "165", "130", "99", "13", "199", "113", "196", "29", "296", "129", "126", "34", "226", "134")
 
 
-#run the NMDS
+#run the NMDS - Bray Curtis distances, 20 attempts, track final stress values
 library(vegan)
-ord <- metaMDS(comm2)
+ord <- metaMDS(comm, distance = "bray", trymax=20 ,trace=1)
 
 #plot the ordination without species showing, and with sites shown in text
 #vegan interprets rows and columns as sites and species automatically, so you can just type "sites" or "species" for what you want to plot - you don't have to define those
 #cex varies the text size
 plot(ord, type="n")
 text(ord, display ="sites", cex =0.7)
+
+#make a better ordination plot
+library(ggplot2)
+pts<-as.data.frame(ord$points)
+ord2<-cbind(comm,pts)
+write.csv(ord2, file="NMDS_GL_US.csv")
+#add columns for bank type and river in excel, then reimport
+ord3<-read.csv("NMDS_GL_US.csv")
+ord3$BankType<-factor(ord3$Bank.Type, levels=c("greenline", "upslope"), labels=c("greenline", "upslope"))
+ord3$River<-factor(ord3$River, levels=c("Ballston", "Indian", "Kayaderosseras"), labels=c("Ballston", "Indian", "Kayaderosseras"))
+plot<-qplot(MDS1, MDS2, data=ord3)
+
+
+#these aren't working, they're plotting the points twice and not stratifying the shapes and fill as I need
+plot + geom_point(aes(shape=River), size=4) + geom_point(aes(fill=BankType), size=4) + scale_shape_manual(values=c(1, 2, 5)) + scale_fill_manual(values=c("white", "black")) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))  + xlab("NMDS1") + ylab("NMDS2")
+
+plot + geom_point(aes(shape=River, fill=BankType), size=4) + scale_shape_manual(values=c(1, 2, 5)) + scale_fill_manual(values=c("white", "black")) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))  + xlab("NMDS1") + ylab("NMDS2") 
