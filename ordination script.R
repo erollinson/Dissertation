@@ -1,4 +1,4 @@
-#import dataset, without an initial row of row names; call it DATA
+#import dataset, without an initial row of row names; call it COMM
 #columns should all be numeric
 #define row names
 
@@ -21,6 +21,27 @@ ord <- metaMDS(comm, distance = "bray", trymax=20 ,trace=1)
 #cex varies the text size
 plot(ord, type="n")
 text(ord, display ="sites", cex =0.7)
+
+#plot to look at the sites with the species names superimposed
+plot(ord)
+text(ord, display="species", cex=0.7)
+
+#clean up the plot - give plotting priority to species that are the most abundant (draw the more common ones on top when labels must overlap.  invsimpson is Hill's N2, the inverse of the Simpson diversity measure.  for MARGIN, 1 = rows and 2 = columns, so we use 2 here to indicate priority for species labels)
+priSPP<-diversity(comm, index = "invsimpson", MARGIN = 2)
+plot(ord)
+scl <- 3
+ordilabel(ord, display = "sites", font = 3, fill = "goldenrod1", col = "black", scaling = scl)
+ordilabel (ord, display = "species", font = 2, priority = priSPP, scaling = scl)
+
+#to plot side by side instead
+priSPP<-diversity(comm, index = "invsimpson", MARGIN = 2)
+layout(matrix(1:2, ncol=2))
+scl <- 3
+plot(ord, type = "n", scaling = scl)
+ordilabel(ord, display = "sites", font = 3, fill = "goldenrod1", col = "black", scaling = scl)
+plot(ord, type = "n", scaling = scl)
+ordilabel(ord, display = "species", font = 2, priority = priSpp, scaling = scl)
+layout(1)
 
 #make a better ordination plot
 library(ggplot2)
