@@ -29,9 +29,8 @@ text(ord, display="species", cex=0.7)
 #clean up the plot - give plotting priority to species that are the most abundant (draw the more common ones on top when labels must overlap.  invsimpson is Hill's N2, the inverse of the Simpson diversity measure.  for MARGIN, 1 = rows and 2 = columns, so we use 2 here to indicate priority for species labels)
 priSPP<-diversity(comm, index = "invsimpson", MARGIN = 2)
 plot(ord)
-scl <- 3
-ordilabel(ord, display = "sites", font = 3, fill = "goldenrod1", col = "black", scaling = scl)
-ordilabel (ord, display = "species", font = 2, priority = priSPP, scaling = scl)
+ordilabel(ord, display = "sites", font = 3, fill = "goldenrod1", col = "black")
+ordilabel (ord, display = "species", font = 2, priority = priSPP)
 
 #to plot side by side instead
 priSPP<-diversity(comm, index = "invsimpson", MARGIN = 2)
