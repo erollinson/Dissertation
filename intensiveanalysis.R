@@ -221,3 +221,8 @@ countnatsppermplot + theme_bw() + theme (panel.grid.major=element_line(color = N
 
 countinvindpermplot <- qplot(data=data, y=CountInvIndPerM, x=River, geom="boxplot")
 countinvindpermplot + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))  + xlab("River") + ylab("Number of Introduced Individuals per m^2")
+
+#plotting two figures next to each other
+par(mfrow = c(1,2))
+#then add the two plots
+
