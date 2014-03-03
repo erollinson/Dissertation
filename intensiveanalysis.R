@@ -2,14 +2,14 @@
 
 require(RCurl)
 options(RCurlOptions = list(cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")))
-raw <- getURL("https://raw.github.com/erollinson/Dissertation/master/2012%20Data%20Summary%20for%20R.csv") #insert the  raw URL for the data file on github here
+raw <- getURL("https://raw.github.com/erollinson/Dissertation/master/2012%20Data%20Summary%20with%20Averages%203_3_14%20for%20R.csv") #insert the  raw URL for the data file on github here
 data <- read.csv(text = raw) #read in the github file
 
 #importing the second data sheet with species origin as a condition (for figures to share axes)
 
 require(RCurl)
 options(RCurlOptions = list(cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")))
-raw <- getURL("https://raw.github.com/erollinson/Dissertation/master/2012%20Data%20Summary%20for%20R%20by%20origin%20for%20figure%20merge.csv") #insert the  raw URL for the data file on github here
+raw <- getURL("https://raw.github.com/erollinson/Dissertation/master/2012%20Data%20Summary%20with%20Averages%203_3_14%20for%20R%20by%20origin%20for%20figure%20merge.csv") #insert the  raw URL for the data file on github here
 databyor <- read.csv(text = raw) #read in the github file
 
 
@@ -34,7 +34,7 @@ ggplot(data, aes(sample=CountNatIndPerM)) + stat_qq()
 ggplot(data, aes(sample=InvHerbCov)) + stat_qq()
 ggplot(data, aes(sample=NatHerbCov)) + stat_qq()
 
-#to test for normality
+#to test for normality (P>0.05 = normal)
 
 shapiro.test(data$CountSp)
 shapiro.test(data$CountSpPerM)
@@ -80,11 +80,11 @@ names(data)[names(data)=="asin(data$InvHerbCov)"] <- "ASINInvHerbCov"
 data <-cbind(data, asin(data$NatHerbCov))
 names(data)[names(data)=="asin(data$NatHerbCov)"] <- "ASINNatHerbCov"
 
-data <-cbind(data, sqrt(data$ASINInvHerbCov))
-names(data)[names(data)=="asin(data$ASINInvHerbCov)"] <- "SQRTASINInvHerbCov"
+data <-cbind(data, sqrt(data$ASINInvHerbCov)) 
+names(data)[names(data)=="sqrt(data$ASINInvHerbCov)"] <- "SQRTASINInvHerbCov" #don't need this one, S-W on arcsin was okay
 
 data <-cbind(data, sqrt(data$ASINNatHerbCov))
-names(data)[names(data)=="asin(data$ASINNatHerbCov)"] <- "SQRTASINNatHerbCov"
+names(data)[names(data)=="sqrt(data$ASINNatHerbCov)"] <- "SQRTASINNatHerbCov"
 
 #test transformed data for normality
 
@@ -98,14 +98,17 @@ shapiro.test(data$SQRTCountNatIndPerM)
 shapiro.test(data$ASINInvHerbCov)
 shapiro.test(data$ASINNatHerbCov)
 
-#everything is okay except the cover variables; change those to square-root-arcsin transform
+#everything is okay except InvCover; change that to square-root-arcsin transform (replace NaN with 0)
+
+data[is.na(data)] <-0 #to replace NaN with 0
+
 
 shapiro.test(data$SQRTASINInvHerbCov)
 shapiro.test(data$SQRTASINNatHerbCov)
 
 #analyze - working linear models
 
-richnessperm<-lm(CountSpPerM ~ (River/Site) + (Site/Bank), data)
+richnessperm<-lmer(CountSpPerM ~ (River/Site) + (Site/Bank), data)
 anova(richnessperm)
 
 indivsperm<-lm(CountIndPerM ~ (River/Site) + (Site/Bank), data)
