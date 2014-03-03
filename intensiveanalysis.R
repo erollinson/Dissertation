@@ -2,8 +2,16 @@
 
 require(RCurl)
 options(RCurlOptions = list(cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")))
-raw <- getURL("https://raw.github.com/PermuteSeminar/PermuteSeminar-2014/master/Week-5/Dolphin+data.csv") #insert the  raw URL for the data file on github here
-dolphindata <- read.csv(text = raw) #read in the github file
+raw <- getURL("https://raw.github.com/erollinson/Dissertation/master/2012%20Data%20Summary%20for%20R.csv") #insert the  raw URL for the data file on github here
+data <- read.csv(text = raw) #read in the github file
+
+#importing the second data sheet with species origin as a condition (for figures to share axes)
+
+require(RCurl)
+options(RCurlOptions = list(cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")))
+raw <- getURL("https://raw.github.com/erollinson/Dissertation/master/2012%20Data%20Summary%20for%20R.csv") #insert the  raw URL for the data file on github here
+data <- read.csv(text = raw) #read in the github file
+
 
 #load libraries
 library(lme4)
@@ -125,10 +133,23 @@ natherbcov<-lm(SQRTASINNatHerbCov ~ (River/Site) + (Site/Bank), data)
 anova(natherbcov)
 
 
+#additional plotting formats (color for PPT) requires ggplot2
+bankpalette <- c("#0868AC", "#A8DDB5") #define color palette in hex; can then use fill=$var and scale_fill_manual(values=YOURPALETTE) to add colors.
+
+sitepalette <- c()
+
+richnessplot <- qplot(data=data, y=CountSp, x=Bank, geom=("boxplot"), fill=Bank)
+richnessplot + xlab("Bank Type") + ylab("Species Richness") + scale_fill_manual(values=bankpalette) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA)) 
+
+
+
 #plotting results for greenline versus upslope (requires ggplot2)
 
-richnessplot <- qplot(data=data, y=CountSp, x=Bank, geom="boxplot")
+richnessplot <- qplot(data=data, y=CountSp, x=Bank, geom=c("boxplot"))
 richnessplot + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))  + xlab("Bank Type") + ylab("Species Richness")
+
+qplot (data=data, y=CountSp, x=Bank, geom="boxplot")
+
 
 indivplot <- qplot(data=data, y=CountInd, x=Bank, geom="boxplot")
 indivplot + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))  + xlab("Bank Type") + ylab("Number of Individual Plants")
