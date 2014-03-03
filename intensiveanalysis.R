@@ -9,8 +9,8 @@ data <- read.csv(text = raw) #read in the github file
 
 require(RCurl)
 options(RCurlOptions = list(cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")))
-raw <- getURL("https://raw.github.com/erollinson/Dissertation/master/2012%20Data%20Summary%20for%20R.csv") #insert the  raw URL for the data file on github here
-data <- read.csv(text = raw) #read in the github file
+raw <- getURL("https://raw.github.com/erollinson/Dissertation/master/2012%20Data%20Summary%20for%20R%20by%20origin%20for%20figure%20merge.csv") #insert the  raw URL for the data file on github here
+databyor <- read.csv(text = raw) #read in the github file
 
 
 #load libraries
@@ -133,20 +133,44 @@ natherbcov<-lm(SQRTASINNatHerbCov ~ (River/Site) + (Site/Bank), data)
 anova(natherbcov)
 
 
-#additional plotting formats (color for PPT) requires ggplot2
-bankpalette <- c("#0868AC", "#A8DDB5") #define color palette in hex; can then use fill=$var and scale_fill_manual(values=YOURPALETTE) to add colors.
+#plotting results (color for PPT)
 
-sitepalette <- c()
+require(ggplot2)
+
+bankpalette <- c("#0868AC", "#62C27A") #define color palette in hex; can then use fill=$var and scale_fill_manual(values=YOURPALETTE) to add colors.
+
+sitepalette <- c("#0868AC", "#43A2CA", "#62C27A")
+
+bankbyorpalette <-c("#0868AC", "#42ABF6","#62C27A", "#CBEBD3")
+
+sitebyorpalette <-c("#0868AC", "#42ABF6","#43A2CA","#B4DAEA" "#62C27A", "#CBEBD3")
 
 richnessplot <- qplot(data=data, y=CountSp, x=Bank, geom=("boxplot"), fill=Bank)
-richnessplot + xlab("Bank Type") + ylab("Species Richness") + scale_fill_manual(values=bankpalette) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA)) 
+richnessplot + xlab("Bank Type") + ylab("Species Richness") + scale_fill_manual(values=bankpalette) + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=25), axis.title.y=element_text(vjust=0.2)) +guides(fill=FALSE)
+
+#guides(fill=FALSE) removes the legend
+#under theme(), text = element_text(size=##) sets point size; axis.title.y=element_text(vjust=##) affects the spacing between the y axis title and the numbers
+
+#plotting results (color for PPT) - shared axis for figures Jessica requested formatted as such; requires use dataframe "databyor" and not "data".  Plots that require this method are: native/introduced sp richness; native/introduced sp per area; native/introduced individuals, native/introduced cover.  both by bank type and by river.   
 
 
 
-#plotting results for greenline versus upslope (requires ggplot2)
+
+
+
+
+
+
+
+
+
+
+#plotting results for greenline versus upslope, formatted for publication (b&W) 
+
+require(ggplot2)
 
 richnessplot <- qplot(data=data, y=CountSp, x=Bank, geom=c("boxplot"))
-richnessplot + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))  + xlab("Bank Type") + ylab("Species Richness")
+richnessplot + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=25))  + xlab("Bank Type") + ylab("Species Richness")
 
 qplot (data=data, y=CountSp, x=Bank, geom="boxplot")
 
@@ -176,7 +200,7 @@ natcovplot <- qplot(data=data, y=NatCov, x=Bank, geom="boxplot")
 natcovplot + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))  + xlab("Bank Type") + ylab("Percent Cover of Native Herbs/Forbs")
 
 
-richnesspermplot <- qplot(data=data, y=CountSpPerM, x=Bank, geom="boxplot")
+richnesspermplot <- qp lot(data=data, y=CountSpPerM, x=Bank, geom="boxplot")
 richnesspermplot + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))  + xlab("Bank Type") + ylab("Number of Species per m^2")
 
 countindpermplot <- qplot(data=data, y=CountIndPerM, x=Bank, geom="boxplot")
@@ -197,7 +221,9 @@ countnatsppermplot + theme_bw() + theme (panel.grid.major=element_line(color = N
 countinvindpermplot <- qplot(data=data, y=CountInvIndPerM, x=Bank, geom="boxplot")
 countinvindpermplot + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))  + xlab("Bank Type") + ylab("Number of Introduced Individuals per m^2")
 
-#plotting results among rivers (requires ggplot2)
+#plotting results among rivers formatted for publication (b&w)
+
+require(ggplot2)
 
 richnessplot <- qplot(data=data, y=CountSp, x=River, geom="boxplot")
 richnessplot + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))  + xlab("River") + ylab("Species Richness")
