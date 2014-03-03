@@ -1,5 +1,10 @@
 #import datasheet as "data"
 
+require(RCurl)
+options(RCurlOptions = list(cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")))
+raw <- getURL("https://raw.github.com/PermuteSeminar/PermuteSeminar-2014/master/Week-5/Dolphin+data.csv") #insert the  raw URL for the data file on github here
+dolphindata <- read.csv(text = raw) #read in the github file
+
 #load libraries
 library(lme4)
 library(ggplot2)
