@@ -16,6 +16,8 @@ databyor <- read.csv(text = raw) #read in the github file
 #load libraries
 library(lme4)
 library(ggplot2)
+library(nlme)
+library(extrafontdb)
 
 #to look at qq plots
 ggplot(data, aes(sample=CountSp)) + stat_qq()
@@ -106,9 +108,9 @@ data[is.na(data)] <-0 #to replace NaN with 0
 shapiro.test(data$SQRTASINInvHerbCov)
 shapiro.test(data$SQRTASINNatHerbCov)
 
-#analyze - working linear models
+#analyze - working linear models  (note that the SS and MS are correct, but it does not default to using the correct denominator for the F test of a nested model - that is easily fixed by hand, but is an open problem with the code for now)
 
-richnessperm<-lmer(CountSpPerM ~ (River/Site) + (Site/Bank), data)
+richnessperm<-lm(CountSpPerM ~ (River/Site) + (Site/Bank), data)
 anova(richnessperm)
 
 indivsperm<-lm(CountIndPerM ~ (River/Site) + (Site/Bank), data)
@@ -132,7 +134,7 @@ anova(ctnatindperm)
 invherbcov<-lm(SQRTASINInvHerbCov ~ (River/Site) + (Site/Bank), data)
 anova(invherbcov)
 
-natherbcov<-lm(SQRTASINNatHerbCov ~ (River/Site) + (Site/Bank), data)
+natherbcov<-lm(ASINNatHerbCov ~ (River/Site) + (Site/Bank), data)
 anova(natherbcov)
 
 
@@ -146,7 +148,7 @@ sitepalette <- c("#0868AC", "#43A2CA", "#62C27A")
 
 bankbyorpalette <-c("#0868AC", "#42ABF6","#62C27A", "#CBEBD3")
 
-sitebyorpalette <-c("#0868AC", "#42ABF6","#43A2CA","#B4DAEA" "#62C27A", "#CBEBD3")
+sitebyorpalette <-c("#0868AC", "#42ABF6","#43A2CA","#B4DAEA" ,"#62C27A", "#CBEBD3")
 
 richnessplot <- qplot(data=data, y=CountSp, x=Bank, geom=("boxplot"), fill=Bank)
 richnessplot + xlab("Bank Type") + ylab("Species Richness") + scale_fill_manual(values=bankpalette) + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=25), axis.title.y=element_text(vjust=0.2)) +guides(fill=FALSE)
@@ -154,11 +156,10 @@ richnessplot + xlab("Bank Type") + ylab("Species Richness") + scale_fill_manual(
 #guides(fill=FALSE) removes the legend
 #under theme(), text = element_text(size=##) sets point size; axis.title.y=element_text(vjust=##) affects the spacing between the y axis title and the numbers
 
-#plotting results (color for PPT) - shared axis for figures Jessica requested formatted as such; requires use dataframe "databyor" and not "data".  Plots that require this method are: native/introduced sp richness; native/introduced sp per area; native/introduced individuals, native/introduced cover.  both by bank type and by river.   
+#plotting results (color for PPT) - shared axis for figures Jessica requested formatted as such; requires use of dataframe "databyor" and not "data".  Plots that require this method are: native/introduced sp richness; native/introduced sp per area; native/introduced individuals, native/introduced cover.  both by bank type and by river. 
 
-
-
-
+#####Number of Individual Herbs
+ggplot(databyor, aes(x=Bank, y=HerbInd)) + geom_boxplot(aes(fill=Origin), position=position_dodge(1)) + xlab("Bank Type") + ylab("Species Richness") + scale_fill_manual(values=bankbyorpalette) + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=20), axis.title.y=element_text(vjust=0.2)) +guides(fill=FALSE)
 
 
 
