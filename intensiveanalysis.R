@@ -17,7 +17,6 @@ databyor <- read.csv(text = raw) #read in the github file
 library(lme4)
 library(ggplot2)
 library(nlme)
-library(extrafontdb)
 
 #to look at qq plots
 ggplot(data, aes(sample=CountSp)) + stat_qq()
@@ -142,13 +141,12 @@ anova(natherbcov)
 
 require(ggplot2)
 
-bankpalette <- c("#0868AC", "#62C27A") #define color palette in hex; can then use fill=$var and scale_fill_manual(values=YOURPALETTE) to add colors.
+#18 128 214; 132 24 199; 255 52 17; 255 185 0; 96 199 23 colors for ppt theme
 
-sitepalette <- c("#0868AC", "#43A2CA", "#62C27A")
-
-bankbyorpalette <-c("#0868AC", "#42ABF6","#62C27A", "#CBEBD3")
-
-sitebyorpalette <-c("#0868AC", "#42ABF6","#43A2CA","#B4DAEA" ,"#62C27A", "#CBEBD3")
+palette1 <- c("#0868AC", "#62C27A") #define color palette in hex; can then use fill=$var and scale_fill_manual(values=YOURPALETTE) to add colors.
+palette2 <- c("#0868AC", "#43A2CA", "#62C27A")
+palette3 <-c("#0868AC", "#42ABF6","#62C27A", "#CBEBD3")
+palette4 <-c("#0868AC", "#42ABF6","#43A2CA","#B4DAEA" ,"#62C27A", "#CBEBD3")
 
 richnessplot <- qplot(data=data, y=CountSp, x=Bank, geom=("boxplot"), fill=Bank)
 richnessplot + xlab("Bank Type") + ylab("Species Richness") + scale_fill_manual(values=bankpalette) + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=25), axis.title.y=element_text(vjust=0.2)) +guides(fill=FALSE)
@@ -156,10 +154,64 @@ richnessplot + xlab("Bank Type") + ylab("Species Richness") + scale_fill_manual(
 #guides(fill=FALSE) removes the legend
 #under theme(), text = element_text(size=##) sets point size; axis.title.y=element_text(vjust=##) affects the spacing between the y axis title and the numbers
 
-#plotting results (color for PPT) - shared axis for figures Jessica requested formatted as such; requires use of dataframe "databyor" and not "data".  Plots that require this method are: native/introduced sp richness; native/introduced sp per area; native/introduced individuals, native/introduced cover.  both by bank type and by river. 
+#plotting results - shared axis for figures Jessica requested formatted as such; requires use of dataframe "databyor" and not "data".  Plots that require this method are: native/introduced sp richness; native/introduced sp per area; native/introduced individuals, native/introduced cover.  both by bank type and by river. 
 
-#####Number of Individual Herbs
-ggplot(databyor, aes(x=Bank, y=HerbInd)) + geom_boxplot(aes(fill=Origin), position=position_dodge(1)) + xlab("Bank Type") + ylab("Species Richness") + scale_fill_manual(values=bankbyorpalette) + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=20), axis.title.y=element_text(vjust=0.2)) +guides(fill=FALSE)
+bwpalette<-c("white", "white")
+bwpalette2<-c("white", "white", "white")
+
+#####Number of Individual Plants Per Meter
+#######By Bank
+ggplot(databyor, aes(x=Bank, y=IndPerM)) + geom_boxplot(aes(fill=Origin), position=position_dodge(0.8)) + xlab("Bank Type") + ylab(expression(paste("Number of Individual Plants Per  ", m^{2}))) + scale_fill_manual(values=bwpalette) + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=20), axis.title.y=element_text(vjust=0.2)) +guides(fill=FALSE)
+
+#######By River
+ggplot(databyor, aes(x=River, y=IndPerM)) + geom_boxplot(aes(fill=Origin), position=position_dodge(0.8)) + xlab("River") + ylab(expression(paste("Number of Individual Plants Per  ", m^{2}))) + scale_fill_manual(values=bwpalette2) + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=20), axis.title.y=element_text(vjust=0.2)) +guides(fill=FALSE)
+
+#####Number of Species
+#######By Bank
+
+ggplot(databyor, aes(x=Bank, y=SpRich)) + geom_boxplot(aes(fill=Origin), position=position_dodge(0.8)) + xlab("Bank Type") + ylab(expression(paste("Species Richness"))) + scale_fill_manual(values=bwpalette) + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=20), axis.title.y=element_text(vjust=0.2)) +guides(fill=FALSE)
+
+######By River
+
+ggplot(databyor, aes(x=River, y=SpRich)) + geom_boxplot(aes(fill=Origin), position=position_dodge(0.8)) + xlab("River") + ylab(expression(paste("Species Richness"))) + scale_fill_manual(values=bwpalette2) + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=20), axis.title.y=element_text(vjust=0.2)) +guides(fill=FALSE)
+
+
+#####Number of Species per Meter
+#######By Bank
+ggplot(databyor, aes(x=Bank, y=SpPerM)) + geom_boxplot(aes(fill=Origin), position=position_dodge(0.8)) + xlab("Bank Type") + ylab(expression(paste("Number of Species Per  ", m^{2}))) + scale_fill_manual(values=bwpalette) + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=20), axis.title.y=element_text(vjust=0.2)) +guides(fill=FALSE)
+
+#######By River
+ggplot(databyor, aes(x=River, y=SpPerM)) + geom_boxplot(aes(fill=Origin), position=position_dodge(0.8)) + xlab("River") + ylab(expression(paste("Number of Species Per  ", m^{2}))) + scale_fill_manual(values=bwpalette2) + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=20), axis.title.y=element_text(vjust=0.2)) +guides(fill=FALSE)
+
+
+##### Cover
+#######By Bank
+ggplot(databyor, aes(x=Bank, y=Cover)) + geom_boxplot(aes(fill=Origin), position=position_dodge(0.8)) + xlab("Bank Type") + ylab("Proportion of Cover") + scale_fill_manual(values=bwpalette) + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=20), axis.title.y=element_text(vjust=0.2)) +guides(fill=FALSE)
+
+#######By River
+ggplot(databyor, aes(x=River, y=Cover)) + geom_boxplot(aes(fill=Origin), position=position_dodge(0.8)) + xlab("River") + ylab("Proportion of Cover") + scale_fill_manual(values=bwpalette2) + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=20), axis.title.y=element_text(vjust=0.2)) +guides(fill=FALSE)
+
+
+#plotting results that don't need to be by origin (overall species richness, overall number of individuals, shannon diversity)
+
+
+#####species richness
+########by bank
+qplot(data=data, y=CountSp, x=Bank, geom=c("boxplot")) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=25), axis.title.y=element_text(vjust=0.2))  + xlab("Bank Type") + ylab("Species Richness")
+########by river
+qplot(data=data, y=CountSp, x=River, geom=c("boxplot")) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=25), axis.title.y=element_text(vjust=0.2))  + xlab("River") + ylab("Species Richness")
+
+####number of individuals per meter
+########by bank
+qplot(data=data, y=CountIndPerM, x=Bank, geom=c("boxplot")) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=25), axis.title.y=element_text(vjust=0.2))  + xlab("Bank Type") + ylab(expression(paste("Number of Individual Plants Per  ", m^{2})))
+########by river
+qplot(data=data, y=CountIndPerM, x=River, geom=c("boxplot")) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=25), axis.title.y=element_text(vjust=0.2))  + xlab("River") + ylab(expression(paste("Number of Individual Plants Per  ", m^{2})))
+
+####shannon diversity
+########by bank
+qplot(data=data, y=ShanDiv, x=Bank, geom=c("boxplot")) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=25), axis.title.y=element_text(vjust=0.2))  + xlab("Bank Type") + ylab("Shannon Diversity")
+########by river
+qplot(data=data, y=ShanDiv, x=River, geom=c("boxplot")) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=25), axis.title.y=element_text(vjust=0.2))  + xlab("River") + ylab("Shannon Diversity")
 
 
 
@@ -168,8 +220,7 @@ ggplot(databyor, aes(x=Bank, y=HerbInd)) + geom_boxplot(aes(fill=Origin), positi
 
 
 
-
-#plotting results for greenline versus upslope, formatted for publication (b&W) 
+#older plots (black and white, used in original manuscript draft - the plots above are probably better)
 
 require(ggplot2)
 
