@@ -136,6 +136,42 @@ anova(invherbcov)
 natherbcov<-lm(ASINNatHerbCov ~ (River/Site) + (Site/Bank), data)
 anova(natherbcov)
 
+#attempting to get MANOVA to work - this works fine but it does not include the nested structure of the data
+
+fixed = cbind(data$CountSpPerM, data$CountIndPerM, data$SQRTShanDiv, data$CountInvSpPerM, data$CountNatSpPerM, data$SQRTCountInvIndPerM, data$SQRTCountNatIndPerM, data$SQRTASINInvHerbCov, data$ASINNatHerbCov) ~ data$Bank
+fit <- manova(Y ~ data$River) #or data$Site
+summary(fit)
+summary.aov(fit)
+
+#another approach that seems to be working better.
+
+model <- lm(cbind(CountSpPerM, CountIndPerM, SQRTShanDiv, CountInvSpPerM, CountNatSpPerM, SQRTCountInvIndPerM, SQRTCountNatIndPerM, SQRTASINInvHerbCov, SQRTASINNatHerbCov) ~ (River/Site) + (Site/Bank), data=data)
+anova(model, test="Wilks")
+
+#using MCMCglmm package for a multivariate generalized linear mixed model instead
+
+require(MCMCglmm)
+
+fixed<-cbind(CountSpPerM, CountIndPerM, ShanDiv, CountInvSpPerM, CountNatSpPerM, CountInvIndPerM, CountNatIndPerM, InvHerbCov, NatHerbCov) ~ Bank
+family<-("gaussian","gaussian","gaussian","gaussian","gaussian","gaussian","gaussian","gaussian","gaussian")
+random = ~Bank:Site + Site:River
+
+MCMCglmm(fixed, random, family = family, data=data)
+
+#testing MCMCglmm sample code
+require(MCMCglmm)
+data("BTdata")
+data("BTped")
+
+m1<- MCMCglmm(
+  fixed=cbind(tarsus, back) ~ trait:sex + trait:hatchdate ~ 1,
+  random = ~us(trait):animal + us(trait):fosternest,
+  rcov = ~us(trait):units,
+  family = c("gaussian", "caussian"), nitt = 60000, burnin = 10000,
+  thin = 25, data = BTdata)
+
+# i have yet to find a satisfactory approach that both elegantly handles multiple responses and accomodates the nestedness of the linear model
+
 
 #plotting results (color for PPT)
 
