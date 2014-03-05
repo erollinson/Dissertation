@@ -217,11 +217,11 @@ ggplot(databyor, aes(x=River, y=IndPerM)) + geom_boxplot(aes(fill=Origin), posit
 #####Number of Species
 #######By Bank
 
-ggplot(databyor, aes(x=Bank, y=SpRich)) + geom_boxplot(aes(fill=Origin), position=position_dodge(0.8)) + xlab("Bank Type") + ylab(expression(paste("Species Richness"))) + scale_fill_manual(values=bwpalette) + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=20), axis.title.y=element_text(vjust=0.2)) +guides(fill=FALSE)
+ggplot(databyor, aes(x=Bank, y=SpRich)) + geom_boxplot(aes(fill=Origin), position=position_dodge(0.8)) + xlab("Bank Type") + ylab(expression(paste("Species Richness"))) + scale_fill_manual(values=bwpalette) + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=20), axis.title.y=element_text(vjust=0.2)) +guides(fill=FALSE)+ scale_y_continuous(limits=c(0,50))
 
 ######By River
 
-ggplot(databyor, aes(x=River, y=SpRich)) + geom_boxplot(aes(fill=Origin), position=position_dodge(0.8)) + xlab("River") + ylab(expression(paste("Species Richness"))) + scale_fill_manual(values=bwpalette2) + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=20), axis.title.y=element_text(vjust=0.2)) +guides(fill=FALSE)
+ggplot(databyor, aes(x=River, y=SpRich)) + geom_boxplot(aes(fill=Origin), position=position_dodge(0.8)) + xlab("River") + ylab(expression(paste("Species Richness"))) + scale_fill_manual(values=bwpalette2) + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=20), axis.title.y=element_text(vjust=0.2)) +guides(fill=FALSE)+ scale_y_continuous(limits=c(0,50))
 
 
 #####Number of Species per Meter
@@ -234,10 +234,10 @@ ggplot(databyor, aes(x=River, y=SpPerM)) + geom_boxplot(aes(fill=Origin), positi
 
 ##### Cover
 #######By Bank
-ggplot(databyor, aes(x=Bank, y=Cover)) + geom_boxplot(aes(fill=Origin), position=position_dodge(0.8)) + xlab("Bank Type") + ylab("Proportion of Cover") + scale_fill_manual(values=bwpalette) + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=20), axis.title.y=element_text(vjust=0.2)) +guides(fill=FALSE)
+ggplot(databyor, aes(x=Bank, y=Cover)) + geom_boxplot(aes(fill=Origin), position=position_dodge(0.8)) + xlab("Bank Type") + ylab("Proportion of Cover") + scale_fill_manual(values=bwpalette) + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=20), axis.title.y=element_text(vjust=0.2)) +guides(fill=FALSE)+ scale_y_continuous(limits=c(0, 1.25), breaks=c(0,0.25,0.5,0.75,1,1.25), labels=c("0", "25", "50", "75", "100", "125"))
 
 #######By River
-ggplot(databyor, aes(x=River, y=Cover)) + geom_boxplot(aes(fill=Origin), position=position_dodge(0.8)) + xlab("River") + ylab("Proportion of Cover") + scale_fill_manual(values=bwpalette2) + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=20), axis.title.y=element_text(vjust=0.2)) +guides(fill=FALSE)
+ggplot(databyor, aes(x=River, y=Cover)) + geom_boxplot(aes(fill=Origin), position=position_dodge(0.8)) + xlab("River") + ylab("Proportion of Cover") + scale_fill_manual(values=bwpalette2) + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=20), axis.title.y=element_text(vjust=0.2)) +guides(fill=FALSE) + scale_y_continuous(limits=c(0,1.25), breaks=c(0,0.25,0.5,0.75,1,1.25), labels=c("0", "25", "50", "75", "100", "125"))
 
 
 #plotting results that don't need to be by origin (overall species richness, overall number of individuals, shannon diversity)
@@ -245,15 +245,15 @@ ggplot(databyor, aes(x=River, y=Cover)) + geom_boxplot(aes(fill=Origin), positio
 
 #####species richness
 ########by bank
-qplot(data=data, y=CountSp, x=Bank, geom=c("boxplot")) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=25), axis.title.y=element_text(vjust=0.2))  + xlab("Bank Type") + ylab("Species Richness")
+qplot(data=data, y=CountSp, x=Bank, geom=c("boxplot")) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=25), axis.title.y=element_text(vjust=0.2))  + xlab("Bank Type") + ylab("Species Richness") 
 ########by river
 qplot(data=data, y=CountSp, x=River, geom=c("boxplot")) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=25), axis.title.y=element_text(vjust=0.2))  + xlab("River") + ylab("Species Richness")
 
 ####number of individuals per meter
 ########by bank
-qplot(data=data, y=CountIndPerM, x=Bank, geom=c("boxplot")) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=25), axis.title.y=element_text(vjust=0.2))  + xlab("Bank Type") + ylab(expression(paste("Number of Individual Plants Per  ", m^{2})))
+qplot(data=data, y=CountIndPerM, x=Bank, geom=c("boxplot")) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=25), axis.title.y=element_text(vjust=0.2))  + xlab("Bank Type") + ylab(expression(paste("Number of Individual Plants Per  ", m^{2})))+ scale_y_continuous(limits=c(0,60))
 ########by river
-qplot(data=data, y=CountIndPerM, x=River, geom=c("boxplot")) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=25), axis.title.y=element_text(vjust=0.2))  + xlab("River") + ylab(expression(paste("Number of Individual Plants Per  ", m^{2})))
+qplot(data=data, y=CountIndPerM, x=River, geom=c("boxplot")) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=25), axis.title.y=element_text(vjust=0.2))  + xlab("River") + ylab(expression(paste("Number of Individual Plants Per  ", m^{2})))+ scale_y_continuous(limits=c(0,60))
 
 ####shannon diversity
 ########by bank
@@ -398,7 +398,6 @@ names(data)[names(data)=="summed"] <- "HerbCov"
 ##### Cover
 #######By Bank
 require(ggplot2)
-ggplot(data, aes(x=Bank, y=HerbCov)) + geom_boxplot(position=position_dodge(0.8)) + xlab("Bank Type") + ylab("Proportion of Cover") + scale_fill_manual(values=bwpalette) + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=20), axis.title.y=element_text(vjust=0.2)) +guides(fill=FALSE)
-
+ggplot(data, aes(x=Bank, y=HerbCov)) + geom_boxplot(position=position_dodge(0.8)) + xlab("Bank Type") + ylab("Proportion of Cover") + scale_fill_manual(values=bwpalette) + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=20), axis.title.y=element_text(vjust=0.2)) + guides(fill=FALSE) + scale_y_continuous(breaks=c(0,0.25,0.5,0.75,1,1.25), labels=c("0", "25", "50", "75", "100", "125"))
 #######By River
-ggplot(data, aes(x=River, y=HerbCov)) + geom_boxplot(position=position_dodge(0.8)) + xlab("River") + ylab("Proportion of Cover") + scale_fill_manual(values=bwpalette2) + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=20), axis.title.y=element_text(vjust=0.2)) +guides(fill=FALSE)
+ggplot(data, aes(x=River, y=HerbCov)) + geom_boxplot(position=position_dodge(0.8)) + xlab("River") + ylab("Proportion of Cover") + scale_fill_manual(values=bwpalette2) + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=20), axis.title.y=element_text(vjust=0.2)) +guides(fill=FALSE)+ scale_y_continuous(breaks=c(0,0.25,0.5,0.75,1,1.25), labels=c("0", "25", "50", "75", "100", "125"))
