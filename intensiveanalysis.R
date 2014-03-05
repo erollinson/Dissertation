@@ -216,8 +216,12 @@ qplot(data=data, y=ShanDiv, x=River, geom=c("boxplot")) + theme_bw() + theme (pa
 
 
 
+#tufte boxplot test
 
+ggplot(data=data, y=ShanDiv, x=River) + geom_tufteboxplot()
 
+q<-ggplot(data, aes(factor(River), ShanDiv))
+q+geom_tufteboxplot() + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=25), axis.title.y=element_text(vjust=0.2))  + xlab("River") + ylab("Shannon Diversity")
 
 
 #older plots (black and white, used in original manuscript draft - the plots above are probably better)
