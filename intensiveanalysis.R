@@ -144,9 +144,21 @@ summary(fit)
 summary.aov(fit)
 
 #another approach that seems to be working better.
+###also adding a second Site2 column that repeats the 1 & 2 labels for each nested site instead of K1 K2 B1 B2 etc
 
-model <- lm(cbind(CountSpPerM, CountIndPerM, SQRTShanDiv, CountInvSpPerM, CountNatSpPerM, SQRTCountInvIndPerM, SQRTCountNatIndPerM, SQRTASINInvHerbCov, SQRTASINNatHerbCov) ~ (River/Site) + (Site/Bank), data=data)
+site2<-c(1,1,2,2,1,1,2,2,1,1,2,2,1,1,2,2,1,1,2,2,1,1,2,2)
+data$site2<-cbind(site2)
+
+model <- lm(cbind(CountSpPerM, CountIndPerM, SQRTShanDiv, CountInvSpPerM, CountNatSpPerM, SQRTCountInvIndPerM, SQRTCountNatIndPerM, SQRTASINInvHerbCov, SQRTASINNatHerbCov) ~ River + Site + Bank, data=data)
 anova(model, test="Wilks")
+
+#an approach using the Biodiversity R package which might be able to interpret nestedness
+require(vegan)
+require(BiodiversityR)
+
+factors=cbind(data$CountSpPerM, data$CountIndPerM, data$SQRTShanDiv, data$CountInvSpPerM, data$CountNatSpPerM, data$SQRTCountInvIndPerM, data$SQRTCountNatIndPerM, data$SQRTASINInvHerbCov, data$ASINNatHerbCov)
+
+nested.npmanova(factors~River+Site, data=data, method="euclidean", permutations=1000)
 
 #using MCMCglmm package for a multivariate generalized linear mixed model instead
 
@@ -373,3 +385,20 @@ countinvindpermplot + theme_bw() + theme (panel.grid.major=element_line(color = 
 par(mfrow = c(1,2))
 #then add the two plots
 
+
+
+
+
+#adding overall cover plots
+
+summed<-rowSums(data[,c(28,29)])
+data <-cbind(data, summed)
+names(data)[names(data)=="summed"] <- "HerbCov"
+
+##### Cover
+#######By Bank
+require(ggplot2)
+ggplot(data, aes(x=Bank, y=HerbCov)) + geom_boxplot(position=position_dodge(0.8)) + xlab("Bank Type") + ylab("Proportion of Cover") + scale_fill_manual(values=bwpalette) + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=20), axis.title.y=element_text(vjust=0.2)) +guides(fill=FALSE)
+
+#######By River
+ggplot(data, aes(x=River, y=HerbCov)) + geom_boxplot(position=position_dodge(0.8)) + xlab("River") + ylab("Proportion of Cover") + scale_fill_manual(values=bwpalette2) + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=20), axis.title.y=element_text(vjust=0.2)) +guides(fill=FALSE)
