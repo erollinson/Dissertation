@@ -35,12 +35,10 @@ ordilabel (ord, display = "species", font = 2, priority = priSPP)
 #to plot side by side instead
 priSPP<-diversity(comm, index = "invsimpson", MARGIN = 2)
 layout(matrix(1:2, ncol=2))
-scl <- 3
-plot(ord, type = "n", scaling = scl)
+plot(ord, type = "n")
 ordilabel(ord, display = "sites", font = 3, fill = "goldenrod1", col = "black", scaling = scl)
-plot(ord, type = "n", scaling = scl)
-ordilabel(ord, display = "species", font = 2, priority = priSpp, scaling = scl)
-layout(1)
+plot(ord, type = "n")
+ordilabel(ord, display = "species", font = 2, priority = priSPP)
 
 #make a better ordination plot
 library(ggplot2)

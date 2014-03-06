@@ -245,9 +245,9 @@ ggplot(databyor, aes(x=River, y=Cover)) + geom_boxplot(aes(fill=Origin), positio
 
 #####species richness
 ########by bank
-qplot(data=data, y=CountSp, x=Bank, geom=c("boxplot")) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=25), axis.title.y=element_text(vjust=0.2))  + xlab("Bank Type") + ylab("Species Richness") 
+qplot(data=data, y=CountSp, x=Bank, geom=c("boxplot")) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=25), axis.title.y=element_text(vjust=0.2))  + xlab("Bank Type") + ylab("Species Richness") + scale_y_continuous(limits=c(0,50), breaks=c(0,10,20,30,40,50))
 ########by river
-qplot(data=data, y=CountSp, x=River, geom=c("boxplot")) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=25), axis.title.y=element_text(vjust=0.2))  + xlab("River") + ylab("Species Richness")
+qplot(data=data, y=CountSp, x=River, geom=c("boxplot")) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=25), axis.title.y=element_text(vjust=0.2))  + xlab("River") + ylab("Species Richness")  + scale_y_continuous(limits=c(0,50), breaks=c(0,10,20,30,40,50))
 
 ####number of individuals per meter
 ########by bank
