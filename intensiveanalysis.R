@@ -87,6 +87,9 @@ names(data)[names(data)=="sqrt(data$ASINInvHerbCov)"] <- "SQRTASINInvHerbCov" #d
 data <-cbind(data, sqrt(data$ASINNatHerbCov))
 names(data)[names(data)=="sqrt(data$ASINNatHerbCov)"] <- "SQRTASINNatHerbCov"
 
+data<-cbind(data,sqrt(asin(data$HerbCov)))
+names(data)[names(data)=="sqrt(asin(data$HerbCov))"] <- "SQRTASINHerbCov"
+
 #test transformed data for normality
 
 
@@ -135,6 +138,9 @@ anova(invherbcov)
 
 natherbcov<-lm(ASINNatHerbCov ~ (River/Site) + (Site/Bank), data)
 anova(natherbcov)
+
+herbcov <- lm(SQRTASINHerbCov ~ (River/Site) + (Site/Bank), data)
+anova(herbcov)
 
 #attempting to get MANOVA to work - this works fine but it does not include the nested structure of the data
 
