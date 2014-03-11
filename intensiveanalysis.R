@@ -313,7 +313,7 @@ natcovplot <- qplot(data=data, y=NatCov, x=Bank, geom="boxplot")
 natcovplot + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))  + xlab("Bank Type") + ylab("Percent Cover of Native Herbs/Forbs")
 
 
-richnesspermplot <- qp lot(data=data, y=CountSpPerM, x=Bank, geom="boxplot")
+richnesspermplot <- qplot(data=data, y=CountSpPerM, x=Bank, geom="boxplot")
 richnesspermplot + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))  + xlab("Bank Type") + ylab("Number of Species per m^2")
 
 countindpermplot <- qplot(data=data, y=CountIndPerM, x=Bank, geom="boxplot")
