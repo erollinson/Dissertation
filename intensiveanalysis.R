@@ -18,6 +18,12 @@ library(lme4)
 library(ggplot2)
 library(nlme)
 
+#add overall cover (inv + nat) to data
+
+summed<-rowSums(data[,c(28,29)])
+data <-cbind(data, summed)
+names(data)[names(data)=="summed"] <- "HerbCov"
+
 #to look at qq plots
 ggplot(data, aes(sample=CountSp)) + stat_qq()
 ggplot(data, aes(sample=CountSpPerM)) + stat_qq()
@@ -395,11 +401,7 @@ par(mfrow = c(1,2))
 
 
 
-#adding overall cover plots
 
-summed<-rowSums(data[,c(28,29)])
-data <-cbind(data, summed)
-names(data)[names(data)=="summed"] <- "HerbCov"
 
 ##### Cover
 #######By Bank
