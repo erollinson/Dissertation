@@ -3,7 +3,6 @@
 #define row names
 
 comm<-read.csv("2012_abundancematrix.csv")
-comm$mtype <-factor(comm$mtype)
 
 #use this one to give the site names
 rownames(comm) <- c("B1GA", "B1GB", "BIUA", "B1UB", "B2GA", "B2GB", "B2UA", "B2UB", "I1GA", "I1GB", "I1UA", "I1UB", "I2GA", "I2GB", "I2UA", "I2UB", "K1GA", "K1GB", "K1UA", "K1UB", "K2GA", "K2GB", "K2UA", "K2UB")
@@ -15,6 +14,27 @@ rownames(comm) <- c("77", "17", "177", "117", "82", "19", "182", "119", "65", "3
 #run the NMDS - Bray Curtis distances, 20 attempts, track final stress values
 library(vegan)
 ord <- metaMDS(comm, distance = "bray", trymax=20 ,trace=1)
+
+#running the NMDS in 3D - Bray Curtis distances, 50 attempts, track final stress values
+library(vegan)
+library(scatterplot3d)
+library(rgl)
+ord3D <- metaMDS(comm, distance = "bray", k = 3, trymax=50 ,trace=1)
+newplot <- ordiplot3d(ord3D, display = "sites", choices = 1:3)
+
+text(newplot, "points", col="blue", pos=3)
+
+#using a different package to make a dynamic 3d plot
+ordirgl(ord3D, display = "sites", choices = 1:3, type="t")
+
+
+#running an anosim
+require(vegan)
+comm.grp<-read.csv("2012_abundancematrix_groupings.csv")
+anosim(comm, comm.grp$river, permutations=999, distance="bray")
+anosim(comm, comm.grp$elev, permutations=999, distance="bray")
+
+
 
 #plot the ordination without species showing, and with sites shown in text
 #vegan interprets rows and columns as sites and species automatically, so you can just type "sites" or "species" for what you want to plot - you don't have to define those
