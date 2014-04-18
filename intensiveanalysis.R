@@ -18,6 +18,12 @@ library(lme4)
 library(ggplot2)
 library(nlme)
 
+#add overall cover (inv + nat) to data
+
+summed<-rowSums(data[,c(28,29)])
+data <-cbind(data, summed)
+names(data)[names(data)=="summed"] <- "HerbCov"
+
 #to look at qq plots
 ggplot(data, aes(sample=CountSp)) + stat_qq()
 ggplot(data, aes(sample=CountSpPerM)) + stat_qq()
@@ -87,6 +93,9 @@ names(data)[names(data)=="sqrt(data$ASINInvHerbCov)"] <- "SQRTASINInvHerbCov" #d
 data <-cbind(data, sqrt(data$ASINNatHerbCov))
 names(data)[names(data)=="sqrt(data$ASINNatHerbCov)"] <- "SQRTASINNatHerbCov"
 
+data<-cbind(data,sqrt(asin(data$HerbCov)))
+names(data)[names(data)=="sqrt(asin(data$HerbCov))"] <- "SQRTASINHerbCov"
+
 #test transformed data for normality
 
 
@@ -135,6 +144,9 @@ anova(invherbcov)
 
 natherbcov<-lm(ASINNatHerbCov ~ (River/Site) + (Site/Bank), data)
 anova(natherbcov)
+
+herbcov <- lm(SQRTASINHerbCov ~ (River/Site) + (Site/Bank), data)
+anova(herbcov)
 
 #attempting to get MANOVA to work - this works fine but it does not include the nested structure of the data
 
@@ -307,7 +319,7 @@ natcovplot <- qplot(data=data, y=NatCov, x=Bank, geom="boxplot")
 natcovplot + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))  + xlab("Bank Type") + ylab("Percent Cover of Native Herbs/Forbs")
 
 
-richnesspermplot <- qp lot(data=data, y=CountSpPerM, x=Bank, geom="boxplot")
+richnesspermplot <- qplot(data=data, y=CountSpPerM, x=Bank, geom="boxplot")
 richnesspermplot + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))  + xlab("Bank Type") + ylab("Number of Species per m^2")
 
 countindpermplot <- qplot(data=data, y=CountIndPerM, x=Bank, geom="boxplot")
@@ -389,11 +401,7 @@ par(mfrow = c(1,2))
 
 
 
-#adding overall cover plots
 
-summed<-rowSums(data[,c(28,29)])
-data <-cbind(data, summed)
-names(data)[names(data)=="summed"] <- "HerbCov"
 
 ##### Cover
 #######By Bank
