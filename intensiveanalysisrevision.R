@@ -1,7 +1,10 @@
 #load libraries
 require(RCurl)
 require(lme4)
+<<<<<<< HEAD
 require(MDM)
+=======
+>>>>>>> 9d6ba76ac3013b5cf94d28b92f99d3f169c685a3
 
 #import data sheet
 options(RCurlOptions = list(cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")))
@@ -55,10 +58,16 @@ fit3 <-mdm(y2p(spider6[,1:6])~Site, data=spider6, alpha=TRUE)
 anova(fit0,fit1,fit2,fit3)
 
 #trying it with my matrix
+<<<<<<< HEAD
 require(MDM)
 fit0<-mdm(y2p(matrix[,4:246])~1, data=matrix)
 fit1<-mdm(y2p(matrix[,4:246])~1 + Stream, data=matrix)
 fit2<-mdm(y2p(matrix[,4:246])~1 + Site, data=matrix)
 fit3<-mdm(y2p(matrix[,4:246])~1 + Elev, data=matrix)
 anova(fit0, fit1, fit2, fit3)
+=======
+
+
+
+>>>>>>> 9d6ba76ac3013b5cf94d28b92f99d3f169c685a3
 
