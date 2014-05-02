@@ -19,7 +19,7 @@ ord <- metaMDS(comm, distance = "bray", trymax=20 ,trace=1)
 library(vegan)
 library(scatterplot3d)
 library(rgl)
-ord3D <- metaMDS(comm, distance = "bray", k = 3, trymax=50 ,trace=1)
+ord3D <- metaMDS(comm, distance = "bray", k = 2, trymax=50 ,trace=1)
 newplot <- ordiplot3d(ord3D, display = "sites", choices = 1:3)
 
 text(newplot, "points", col="blue", pos=3)
