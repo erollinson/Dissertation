@@ -1,10 +1,10 @@
 #load libraries
 require(RCurl)
 require(lme4)
-<<<<<<< HEAD
 require(MDM)
-=======
->>>>>>> 9d6ba76ac3013b5cf94d28b92f99d3f169c685a3
+
+
+==========================
 
 #import data sheet
 options(RCurlOptions = list(cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")))
@@ -23,13 +23,11 @@ options(RCurlOptions = list(cainfo = system.file("CurlSSL", "cacert.pem", packag
 raw <- getURL("https://raw.githubusercontent.com/erollinson/Dissertation/master/2012_abundancematrix_modified.csv") #insert the  raw URL for the data file on github here
 matrix <- read.csv(text = raw) #read in the github file
 
-
+=========================
 
 ##note that in RStudio, view only displays a certain number of columns.  For a large dataset if you need to view the entire data frame, you can use the command below to open it in a separate window.
 #utils::View(data)
 utils::View(matrix)
-
-
 
 
 #Poisson regression for: species richness (#int; #nat), # indivs (#int; #nat) - unless they are seriously over/under dispersed or have a lot of zeroes
@@ -67,7 +65,4 @@ fit3<-mdm(y2p(matrix[,4:246])~1 + Elev, data=matrix)
 anova(fit0, fit1, fit2, fit3)
 =======
 
-
-
->>>>>>> 9d6ba76ac3013b5cf94d28b92f99d3f169c685a3
 

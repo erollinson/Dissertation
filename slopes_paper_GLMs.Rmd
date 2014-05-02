@@ -1,0 +1,124 @@
+Analyses for slopes manuscript "Diversity and composition of riparian and upslope plant communities of small woodland streams"
+==============================================================================================================================
+
+Load required libraries
+```{r}
+require(lme4) #for GLMs
+require(MDM) #for modeling an analogue to Shannon diversity
+require(vegan) #for species accumulation curves and ordination
+```
+
+
+Import required data sheets
+
+```{r}
+data<-read.csv("2012 Data Summary with Averages 3_3_14 for R.csv") # rows are sites, columns are vegetation summaries and background data on each site; this data frame is used for GLMs
+groups<-read.csv("2012 Data Summary with Averages 3_3_14 for R by origin for figure merge.csv") #this table is not needed for analysis, but facilitates making figures that display introduced and native species separately
+matrix<-read.csv("2012_abundancematrix_modified.csv") #rows are sites, columns are species abundances; this data frame is used for ordinations, species accumulations, and ANOSIM
+```
+
+Some notes on useful code tidbits
+-------------------------------------------------------
+
+Note that in RStudio, the data fram view only displays a certain number of columns.  For a large dataset, if you need to view the entire data frame, you can use the command below to open it in a separate window.
+
+utils::View(data)
+
+```{r}
+utils::View(matrix)
+```
+
+Fixing the data frames a bit
+-------------------------------------------------------
+Adding total herbaceous cover
+
+```{r}
+summed<-rowSums(data[,c(28,29)])
+data <-cbind(data, summed)
+names(data)[names(data)=="summed"] <- "HerbCov"
+data$HerbCov[data$HerbCov > 1] <- 1
+```
+
+GLMs
+-------------------------------------------------------
+
+Poisson regression is required for the following variables:
+species richness (overall; introduced; native)
+number of individuals (overall; introduced; native)
+
+Check if these are very over/underdispersed or have a lot of zeroes; if so, a different model is required.
+Potential problem: All of these data are corrected per area sampled, which does not work with the straightforward Poisson model (which requires integers).  An alternate method for performing Poisson regression on non-integers is provided at http://www.r-bloggers.com/poisson-regression-on-non-integers/, although I don't completely follow it.
+
+It throws a warning for the model that the values are non-integer but fits the model and allows an anova to be run, and stackexchange suggests that it is apporpriate to use the Poisson distribution even for non-integers that are still best approximated by Poisson (http://stats.stackexchange.com/questions/70054/how-is-it-possible-that-poisson-glm-accepts-non-integer-numbers).  Using family quasipoisson instead of poisson suppresses these warnings.
+
+
+
+```{r}
+
+rich<-glm(CountSpPerM ~ River + (River/Site) + (Site/Bank), family="quasipoisson", data=data)
+summary(rich) #I have no idea how to interpret this output
+
+
+rich<-glm(CountSpPerM ~ River + Site + Bank, family="quasipoisson", data=data)
+summary(rich)
+```
+
+
+Logistic regression for: %cover (%int; %nat)
+
+```{r}
+cover<-glm(HerbCov ~ River + (River/Site) + (Site/Bank), family="quasibinomial", data=data) #quasibinomial runs binomial and suppresses the stupid error messages
+summary(cover)
+
+```
+
+
+
+
+Multinomial diversity model MDM for Shannon diversity (see De'ath 2012 Ecology 93:2286-2296)
+This needs to start with a site by species abundance matrix, create a class MDM out of it
+
+```{r}
+fit0<-mdm(y2p(matrix[,4:246])~1, data=matrix)
+fit1<-mdm(y2p(matrix[,4:246])~1 + Stream, data=matrix)
+fit2<-mdm(y2p(matrix[,4:246])~1 + Site, data=matrix)
+fit3<-mdm(y2p(matrix[,4:246])~1 + Elev, data=matrix)
+anova(fit0, fit1, fit2, fit3)
+#No idea how to interpret this
+```
+
+
+
+
+Species accumulation curves
+----------------------------------------------
+Resort the matrix so it is sorted by the Elev column
+
+```{r}
+require(data.table)
+matsort<-data.table(matrix, key="Elev")
+```
+
+Run species accumulation function for greenlines and upslopes separately
+```{r}
+#greenlines
+gl<-specaccum(matrix[1:12, 4:246], method="exact", permutations = 999, conditioned = TRUE)
+#upslope
+up<-specaccum(matrix[13:24, 4:246], method="exact", permutations = 999, conditioned = TRUE)
+plot(gl, ci.type="line", ci.col="blue")
+plot(up, add=TRUE, ci.type="line", ci.col="red")
+```
+
+
+This code works, but I should implement it at a finer scale than over 12 sites.  Quadrat level would work; need a solution for how to integrate woody species?  Maybe just as a "woody" quadrat.  Can test this code at for herbaceous plants only using the dataset used in the Permutation seminar. Note this is *herbaceous plants only*, and is missing morphospecies that could not be identified to species or species that do not have a definite native/introduced origin status. 
+
+```{r}
+herbs<-read.csv("herbs_quadratlevel.csv")
+
+#greenlines
+gl<-specaccum(herbs[1:240, 3:165], method="random", permutations = 999, conditioned = TRUE)
+#upslope
+up<-specaccum(herbs[241:480, 3:165], method="random", permutations = 999, conditioned = TRUE)
+plot(gl, ci.type="line", ci.col="blue")
+plot(up, add=TRUE, ci.type="line", ci.col="red")
+```
