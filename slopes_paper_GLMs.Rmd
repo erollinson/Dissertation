@@ -92,6 +92,7 @@ anova(fit0, fit1, fit2, fit3)
 
 Species accumulation curves
 ----------------------------------------------
+
 Resort the matrix so it is sorted by the Elev column
 
 ```{r}
@@ -119,6 +120,43 @@ herbs<-read.csv("herbs_quadratlevel.csv")
 gl<-specaccum(herbs[1:240, 3:165], method="random", permutations = 999, conditioned = TRUE)
 #upslope
 up<-specaccum(herbs[241:480, 3:165], method="random", permutations = 999, conditioned = TRUE)
+plot(gl, ci.type="line", ci.col="blue")
+plot(up, add=TRUE, ci.type="line", ci.col="red")
+```
+
+
+Trying all this again for the full 2012 data set... "quadrats" for woody species have been mimicked by dividing the woody transect into 1 m sequential plots.
+
+Creating a site by species matrix at the quadrat scale, starting with a list of species presences (or abundances).  This dataset just contains presences - I don't think that it depends on including abundances, but doublecheck that.  I think it's fine when using sampled sites instead of sampled individuals.
+
+```{r}
+splist<-read.csv("species accumulations for 2012 obs 5_8_2014 b.csv")
+require(reshape)
+quadmat<- cast(splist,  Code + NewQuad ~ Species, value='Present', fun=mean) #mean is a placeholder here since this is just a presence list, mean of a bunch of 1s is 1
+
+quadmat <- as.data.frame(quadmat) #fixes the recast as a data frame
+quadmat[is.na(quadmat)] <- 0 #refills the empty cells with 0
+```
+
+Export quadmat to Excel to add the missing (empty) quadrats
+```{r}
+write.table(quadmat, file="quadmat2012.csv", sep=",", row.names=F)
+```
+
+Reimport the matrix and sort by elevation
+```{r}
+matrix<-read.csv("quadmat2012allrows.csv")
+require(data.table)
+matsort<-data.table(matrix, key="Elev")
+```
+
+Run species accumulations
+
+```{r}
+#greenlines
+gl<-specaccum(matrix[1:12, 4:246], method="exact", permutations = 999, conditioned = TRUE)
+#upslope
+up<-specaccum(matrix[13:24, 4:246], method="exact", permutations = 999, conditioned = TRUE)
 plot(gl, ci.type="line", ci.col="blue")
 plot(up, add=TRUE, ci.type="line", ci.col="red")
 ```
