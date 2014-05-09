@@ -145,18 +145,21 @@ write.table(quadmat, file="quadmat2012.csv", sep=",", row.names=F)
 Reimport the matrix and sort by elevation
 ```{r}
 matrix<-read.csv("quadmat2012allrows.csv")
-require(data.table)
-matsort<-data.table(matrix, key="Elev")
-matsort<-as.data.table(matsort)
+
+#require(data.table)
+#matsort<-data.table(matrix, key="Elev")
+#matsort<-as.data.table(matsort)
+#commented out this code - the current form of that csv file is already sorted
 ```
 
 Run species accumulations
-This isn't working even though it is identical to the code that is working above...
+This works if I don't run the matrix through the sorting process - something about data.table() breaks the data frame, apparently.  No idea.  But this code works now.
+
 ```{r}
 #greenlines
-gl<-specaccum(matsort[1:761, 3:247], method="random", permutations = 999, conditioned = TRUE)
+gl<-specaccum(matrix[1:761, 3:247], method="random", permutations = 999, conditioned = TRUE)
 #upslope
-up<-specaccum(matsort[762:1542, 3:247], method="random", permutations = 999, conditioned = TRUE)
-plot(gl, ci.type="line", ci.col="blue")
+up<-specaccum(matrix[762:1542, 3:247], method="random", permutations = 999, conditioned = TRUE)
+plot(gl, ci.type="line", ci.col="blue", xlab = "Quadrats", ylab = "Accumulated Species")
 plot(up, add=TRUE, ci.type="line", ci.col="red")
 ```
