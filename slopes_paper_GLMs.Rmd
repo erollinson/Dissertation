@@ -51,23 +51,92 @@ Potential problem: All of these data are corrected per area sampled, which does 
 
 It throws a warning for the model that the values are non-integer but fits the model and allows an anova to be run, and stackexchange suggests that it is apporpriate to use the Poisson distribution even for non-integers that are still best approximated by Poisson (http://stats.stackexchange.com/questions/70054/how-is-it-possible-that-poisson-glm-accepts-non-integer-numbers).  Using family quasipoisson instead of poisson suppresses these warnings.
 
-```{r}
-
-rich<-glm(CountSpPerM ~ River + (River/Site) + (Site/Bank), family="quasipoisson", data=data)
-summary(rich) #I have no idea how to interpret this output
 
 
-rich<-glm(CountSpPerM ~ River + Site + Bank, family="quasipoisson", data=data)
-summary(rich)
-```
-
-Logistic regression for: %cover (%int; %nat)
+Testing the contribution of bank type (Poisson response variables)
+--------------------------------------------------------
 
 ```{r}
-cover<-glm(HerbCov ~ River + (River/Site) + (Site/Bank), family="quasibinomial", data=data) #quasibinomial runs binomial and suppresses the stupid error messages
-summary(cover)
+#analytical approach: model with and without the Bank factor, compared by chisq.  see http://www.ats.ucla.edu/stat/r/dae/poissonreg.htm
+
+#Number of species per meter
+rich1<-glm(CountSpPerM ~ River + (River/Site) + (Site/Bank), family="quasipoisson", data=data)
+rich2<-glm(CountSpPerM ~ River + (River/Site), family="quasipoisson", data=data)
+anova(rich2, rich1, test = "Chisq")
+
+#Number of native species per meter
+nrich1<-glm(CountNatSpPerM ~ River + (River/Site) + (Site/Bank), family="quasipoisson", data=data)
+nrich2<-glm(CountNatSpPerM ~ River + (River/Site), family="quasipoisson", data=data)
+anova(nrich2, nrich1, test = "Chisq")
+
+#Number of introduced species per meter
+irich1<-glm(CountInvSpPerM ~ River + (River/Site) + (Site/Bank), family="quasipoisson", data=data)
+irich2<-glm(CountInvSpPerM ~ River + (River/Site), family="quasipoisson", data=data)
+anova(irich2, irich1, test = "Chisq")
+
+
+#Number of individuals per meter
+ct1<-glm(CountIndPerM ~ River + (River/Site) + (Site/Bank), family="quasipoisson", data=data)
+ct2<-glm(CountIndPerM ~ River + (River/Site), family="quasipoisson", data=data)
+anova(ct2, ct1, test = "Chisq")
+
+#Number of native individuals per meter
+nct1<-glm(CountNatIndPerM ~ River + (River/Site) + (Site/Bank), family="quasipoisson", data=data)
+nct2<-glm(CountNatIndPerM ~ River + (River/Site), family="quasipoisson", data=data)
+anova(nct2, nct1, test = "Chisq")
+
+#Number of introduced individuals per meter
+ict1<-glm(CountInvIndPerM ~ River + (River/Site) + (Site/Bank), family="quasipoisson", data=data)
+ict2<-glm(CountInvIndPerM ~ River + (River/Site), family="quasipoisson", data=data)
+anova(rich2, rich1, test = "Chisq")
+
+
+#Report summaries for the full Poisson models
+summary(rich1)
+summary(nrich1)
+summary(irich1)
+summary(ct1)
+summary(nct1)
+summary(ict1)
+
+
 
 ```
+
+Testing the effect of bank time for the logistic regression response variables: (%cover (%int; %nat))
+
+```{r}
+#quasibinomial runs binomial and suppresses the stupid error messages
+#Need to set any >100% cover equal to 1 for these models to work:
+data$HerbCov[data$HerbCov > 1] <- 1
+data$NatHerbCov[data$NatHerbCov > 1] <- 1
+data$InvHerbCov[data$InvHerbCov > 1] <- 1
+
+#Percent vegetative cover  LOOKHEREBETTER
+cov1<-glm(HerbCov ~ River + (River/Site) + (Site/Bank), family="quasibinomial", data=data)
+cov2<-glm(HerbCov ~ River + (River/Site), family="quasibinomial", data=data)
+anova(cov2, cov1, test = "Chisq")
+
+#Percent native cover
+ncov1<-glm(NatHerbCov ~ River + (River/Site) + (Site/Bank), family="quasibinomial", data=data)
+ncov2<-glm(NatHerbCov ~ River + (River/Site), family="quasibinomial", data=data)
+anova(ncov2, ncov1, test = "Chisq")
+
+#Percent introduced cover
+icov1<-glm(InvHerbCov ~ River + (River/Site) + (Site/Bank), family="quasibinomial", data=data)
+icov2<-glm(InvHerbCov ~ River + (River/Site), family="quasibinomial", data=data)
+anova(icov2, icov1)
+
+
+#Report summaries for the full logistic models
+summary(cov1)
+summary(ncov1)
+summary(icov1)
+
+
+```
+
+
 
 Multinomial diversity model MDM for Shannon diversity (see De'ath 2012 Ecology 93:2286-2296)
 This needs to start with a site by species abundance matrix, create a class MDM out of it
@@ -180,4 +249,30 @@ require(ggplot2)
 ggplot(data=plottable, aes(x=sites, y=richness, shape=type)) +geom_ribbon(aes(ymax=richness+1.96*sd, ymin=richness-1.96*sd), fill= NA, linetype = 3, color = "black") + geom_line(aes(linetype=type), size=1) +theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA)) + xlab("Plots") + ylab("Species Richness")
 
 
+```
+
+
+Testing online demos for comparison:
+
+From http://www.ats.ucla.edu/stat/r/dae/poissonreg.htm
+
+```{r}
+p<-read.csv("http://www.ats.ucla.edu/stat/data/poisson_sim.csv")
+p <- within(p, {
+    prog <- factor(prog, levels = 1:3, labels = c("General", "Academic", "Vocational"))
+    id <- factor(id)
+})
+summary(p)
+#This puts labels on the imported data sheet and then gives summary stats for each column
+
+m1 <- glm(num_awards ~ prog + math, family = "poisson", data = p)
+summary(m1)
+
+#this gives a full model
+#we can test a model removing prog and then compare the two using a chi-sq test
+
+## update m1 model dropping prog
+m2 <- update(m1, . ~ . - prog)
+## test model differences with chi square test
+anova(m2, m1, test = "Chisq")
 ```

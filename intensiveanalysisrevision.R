@@ -3,23 +3,22 @@ require(RCurl)
 require(lme4)
 require(MDM)
 
-
 ==========================
+#RCurl settings
+  options(RCurlOptions = list(cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")))
 
 #import data sheet
-options(RCurlOptions = list(cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")))
-raw <- getURL("https://raw.github.com/erollinson/Dissertation/master/2012%20Data%20Summary%20with%20Averages%203_3_14%20for%20R.csv") #insert the  raw URL for the data file on github here
+
+raw <- getURL("https://raw.githubusercontent.com/erollinson/Dissertation/master/2012%20Data%20Summary%20with%20Averages%203_3_14%20for%20R.csv") #insert the  raw URL for the data file on github here
 data <- read.csv(text = raw) #read in the github file
 
 #importing the second data sheet with species origin as a condition (for figures to share axes)
 
-options(RCurlOptions = list(cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")))
-raw <- getURL("https://raw.github.com/erollinson/Dissertation/master/2012%20Data%20Summary%20with%20Averages%203_3_14%20for%20R%20by%20origin%20for%20figure%20merge.csv") #insert the  raw URL for the data file on github here
+raw <- getURL("https://raw.githubusercontent.com/erollinson/Dissertation/master/2012%20Data%20Summary%20with%20Averages%203_3_14%20for%20R%20by%20origin%20for%20figure%20merge.csv") #insert the  raw URL for the data file on github here
 databyor <- read.csv(text = raw) #read in the github file
 
 #importing the site by species matrix
 
-options(RCurlOptions = list(cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")))
 raw <- getURL("https://raw.githubusercontent.com/erollinson/Dissertation/master/2012_abundancematrix_modified.csv") #insert the  raw URL for the data file on github here
 matrix <- read.csv(text = raw) #read in the github file
 
@@ -35,7 +34,6 @@ rich<-glmer(CountSpPerM ~ 1 + (1|River) + (1|Site) + Bank, family="poisson", dat
 
 
 #http://www.r-bloggers.com/poisson-regression-on-non-integers/
-
 #problem with the above - count data is non-integer because it is counts per meter
 
 
