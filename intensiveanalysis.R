@@ -2,14 +2,14 @@
 
 require(RCurl)
 options(RCurlOptions = list(cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")))
-raw <- getURL("https://raw.github.com/erollinson/Dissertation/master/2012%20Data%20Summary%20with%20Averages%203_3_14%20for%20R.csv") #insert the  raw URL for the data file on github here
+raw <- getURL("https://raw.githubusercontent.com/erollinson/Dissertation/master/2012%20Data%20Summary%20with%20Averages%203_3_14%20for%20R.csv") #insert the  raw URL for the data file on github here
 data <- read.csv(text = raw) #read in the github file
 
 #importing the second data sheet with species origin as a condition (for figures to share axes)
 
 require(RCurl)
 options(RCurlOptions = list(cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")))
-raw <- getURL("https://raw.github.com/erollinson/Dissertation/master/2012%20Data%20Summary%20with%20Averages%203_3_14%20for%20R%20by%20origin%20for%20figure%20merge.csv") #insert the  raw URL for the data file on github here
+raw <- getURL("https://raw.githubusercontent.com/erollinson/Dissertation/master/2012%20Data%20Summary%20with%20Averages%203_3_14%20for%20R%20by%20origin%20for%20figure%20merge.csv") #insert the  raw URL for the data file on github here
 databyor <- read.csv(text = raw) #read in the github file
 
 
@@ -400,12 +400,15 @@ par(mfrow = c(1,2))
 
 
 
-
-
-
 ##### Cover
 #######By Bank
 require(ggplot2)
 ggplot(data, aes(x=Bank, y=HerbCov)) + geom_boxplot(position=position_dodge(0.8)) + xlab("Bank Type") + ylab("Proportion of Cover") + scale_fill_manual(values=bwpalette) + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=20), axis.title.y=element_text(vjust=0.2)) + guides(fill=FALSE) + scale_y_continuous(breaks=c(0,0.25,0.5,0.75,1,1.25), labels=c("0", "25", "50", "75", "100", "125"))
 #######By River
 ggplot(data, aes(x=River, y=HerbCov)) + geom_boxplot(position=position_dodge(0.8)) + xlab("River") + ylab("Proportion of Cover") + scale_fill_manual(values=bwpalette2) + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=20), axis.title.y=element_text(vjust=0.2)) +guides(fill=FALSE)+ scale_y_continuous(breaks=c(0,0.25,0.5,0.75,1,1.25), labels=c("0", "25", "50", "75", "100", "125"))
+
+
+
+
+
+### August making some new figures for ESA PPT
