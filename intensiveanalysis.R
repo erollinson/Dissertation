@@ -173,7 +173,7 @@ anova(model, test="Roy")
 site2<-c(1,1,2,2,1,1,2,2,1,1,2,2,1,1,2,2,1,1,2,2,1,1,2,2)
 data$site2<-cbind(site2)
 
-model_2 <- lm(cbind(CountSpPerM, CountIndPerM, SQRTShanDiv, SQRTASINHerbCov) ~ (River/site2) + (site2/Bank), data=data)
+model_2 <- lm(cbind(CountSpPerM, CountIndPerM, SQRTShanDiv, SQRTASINHerbCov) ~ (River/Site) + (Site/Bank) + River*Bank, data=data)
 anova(model_2, test="Pillai")
 anova(model_2, test="Wilks")
 anova(model_2, test="Hotelling")
@@ -243,6 +243,40 @@ m1<- MCMCglmm(
   thin = 25, data = BTdata)
 
 # i have yet to find a satisfactory approach that both elegantly handles multiple responses and accomodates the nestedness of the linear model
+
+
+
+
+
+#do a separate manova using the databyor sheet for comparing richness, counts and cover for invasive species
+
+
+databyor<-cbind(databyor, sqrt(databyor$IndPerM))
+names(databyor)[names(databyor)=="sqrt(databyor$IndPerM)"] <- "SQRTIndPerM"
+
+databyor<-cbind(databyor, sqrt(databyor$SpPerM))
+names(databyor)[names(databyor)=="sqrt(databyor$SpPerM)"] <- "SQRTSpPerM"
+
+databyor<-cbind(databyor, sqrt(asin(databyor$Cover)))
+names(databyor)[names(databyor)=="sqrt(asin(databyor$Cover))"] <- "SQRTASINCover"
+
+databyor[is.na(databyor)] <-0 #to replace NaN with 0
+
+model_origin<-lm(cbind(SQRTIndPerM, SQRTSpPerM, SQRTASINCover) ~ Origin + Origin*Bank + Origin*River, data=databyor)
+anova(model_origin, test="Pillai")
+anova(model_origin, test="Wilks")
+anova(model_origin, test="Hotelling")
+anova(model_origin, test="Roy")
+
+
+summary(model_origin)
+
+#anova to get post-hoc p value for interaction between origin and river, sub in whichever value
+anova(lm(SQRTASINCover ~ Origin*River, data=databyor))
+
+
+
+
 
 
 #plotting results (color for PPT)

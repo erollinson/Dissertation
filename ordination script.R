@@ -1,10 +1,10 @@
-#import dataset, without an initial row of row names; call it COMM
+#import dataset, without an initial row of row names
 #columns should all be numeric
-#define row names
+
 
 comm<-read.csv("2012_abundancematrix.csv")
 
-#use this one to give the site names
+#use this one to define the site names for plotting
 rownames(comm) <- c("B1GA", "B1GB", "BIUA", "B1UB", "B2GA", "B2GB", "B2UA", "B2UB", "I1GA", "I1GB", "I1UA", "I1UB", "I2GA", "I2GB", "I2UA", "I2UB", "K1GA", "K1GB", "K1UA", "K1UB", "K2GA", "K2GB", "K2UA", "K2UB")
 
 #or use this one to give the bank heights
