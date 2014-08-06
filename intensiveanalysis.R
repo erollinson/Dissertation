@@ -150,8 +150,8 @@ anova(herbcov)
 
 #attempting to get MANOVA to work - this works fine but it does not include the nested structure of the data
 
-fixed = cbind(data$CountSpPerM, data$CountIndPerM, data$SQRTShanDiv, data$CountInvSpPerM, data$CountNatSpPerM, data$SQRTCountInvIndPerM, data$SQRTCountNatIndPerM, data$SQRTASINInvHerbCov, data$ASINNatHerbCov) ~ data$Bank
-fit <- manova(Y ~ data$River) #or data$Site
+fixed <- cbind(data$CountSpPerM, data$CountIndPerM, data$SQRTShanDiv, data$CountInvSpPerM, data$CountNatSpPerM, data$SQRTCountInvIndPerM, data$SQRTCountNatIndPerM, data$SQRTASINInvHerbCov, data$ASINNatHerbCov)
+fit <- manova(fixed ~ (data$River/data$Site) + (data$Site/data$Bank)) #or data$Site
 summary(fit)
 summary.aov(fit)
 
@@ -161,8 +161,56 @@ summary.aov(fit)
 site2<-c(1,1,2,2,1,1,2,2,1,1,2,2,1,1,2,2,1,1,2,2,1,1,2,2)
 data$site2<-cbind(site2)
 
-model <- lm(cbind(CountSpPerM, CountIndPerM, SQRTShanDiv, CountInvSpPerM, CountNatSpPerM, SQRTCountInvIndPerM, SQRTCountNatIndPerM, SQRTASINInvHerbCov, SQRTASINNatHerbCov) ~ River + Site + Bank, data=data)
+model <- lm(cbind(CountSpPerM, CountIndPerM, SQRTShanDiv, CountInvSpPerM, CountNatSpPerM, SQRTCountInvIndPerM, SQRTCountNatIndPerM, SQRTASINInvHerbCov, SQRTASINNatHerbCov, SQRTASINHerbCov) ~ (River/site2) + (site2/Bank), data=data)
+anova(model, test="Pillai")
 anova(model, test="Wilks")
+anova(model, test="Hotelling")
+anova(model, test="Roy")
+
+
+#run it again without the origin partitions
+
+site2<-c(1,1,2,2,1,1,2,2,1,1,2,2,1,1,2,2,1,1,2,2,1,1,2,2)
+data$site2<-cbind(site2)
+
+model_2 <- lm(cbind(CountSpPerM, CountIndPerM, SQRTShanDiv, SQRTASINHerbCov) ~ (River/site2) + (site2/Bank), data=data)
+anova(model_2, test="Pillai")
+anova(model_2, test="Wilks")
+anova(model_2, test="Hotelling")
+anova(model_2, test="Roy")
+
+
+
+#what if i nest site but not bank - because i think bank matters...
+#So I think I should be treating this as a nested factorial design where sites are nested but banks are a "treatment" - each bank type exists in each site and within each 
+
+
+site2<-c(1,1,2,2,1,1,2,2,1,1,2,2,1,1,2,2,1,1,2,2,1,1,2,2)
+data$site2<-cbind(site2)
+
+model_3 <- lm(cbind(CountSpPerM, CountIndPerM, SQRTShanDiv, SQRTASINHerbCov) ~ (1|River) + (River/Site) + Bank, data=data)
+anova(model_3, test="Pillai")
+anova(model_3, test="Wilks")
+anova(model_3, test="Hotelling")
+anova(model_3, test="Roy")
+
+summary(model_3)
+
+#lme?
+
+model_lme <-lme(cbind(CountSp))
+
+
+#a model with just bank to make me feel better
+
+model_4 <- lm(cbind(CountSpPerM, CountIndPerM, SQRTShanDiv, SQRTASINHerbCov) ~ Bank, data=data)
+anova(model_4, test="Pillai")
+anova(model_4, test="Wilks")
+anova(model_4, test="Hotelling")
+anova(model_4, test="Roy")
+
+summary(model_3)
+
 
 #an approach using the Biodiversity R package which might be able to interpret nestedness
 require(vegan)
@@ -170,7 +218,7 @@ require(BiodiversityR)
 
 factors=cbind(data$CountSpPerM, data$CountIndPerM, data$SQRTShanDiv, data$CountInvSpPerM, data$CountNatSpPerM, data$SQRTCountInvIndPerM, data$SQRTCountNatIndPerM, data$SQRTASINInvHerbCov, data$ASINNatHerbCov)
 
-nested.npmanova(factors~River+Site, data=data, method="euclidean", permutations=1000)
+nested.npmanova(factors~(River+Site), data=data, method="euclidean", permutations=1000)
 
 #using MCMCglmm package for a multivariate generalized linear mixed model instead
 
@@ -615,3 +663,4 @@ ggplot(orbcov, aes(x=Bank, y=Cover, group=Origin)) +
   theme_bw() + 
   theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), 
         legend.justification=c(1,0), legend.position=c(1,0))
+
