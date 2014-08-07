@@ -173,7 +173,7 @@ anova(model, test="Roy")
 site2<-c(1,1,2,2,1,1,2,2,1,1,2,2,1,1,2,2,1,1,2,2,1,1,2,2)
 data$site2<-cbind(site2)
 
-model_2 <- lm(cbind(CountSpPerM, CountIndPerM, SQRTShanDiv, SQRTASINHerbCov) ~ (River/Site) + (Site/Bank) + River*Bank, data=data)
+model_2 <- lm(cbind(CountSpPerM, CountIndPerM, SQRTShanDiv, SQRTASINHerbCov) ~ (River/Site) + (Site/Bank) , data=data)
 anova(model_2, test="Pillai")
 anova(model_2, test="Wilks")
 anova(model_2, test="Hotelling")
@@ -209,7 +209,12 @@ anova(model_4, test="Wilks")
 anova(model_4, test="Hotelling")
 anova(model_4, test="Roy")
 
-summary(model_3)
+summary(model_4)
+
+#just one variable?
+
+model_5 <-lm(CountSpPerM ~ Bank, data=data)
+anova(model_5)
 
 
 #an approach using the Biodiversity R package which might be able to interpret nestedness
@@ -339,7 +344,7 @@ ggplot(databyor, aes(x=River, y=Cover)) + geom_boxplot(aes(fill=Origin), positio
 
 #####species richness
 ########by bank
-qplot(data=data, y=CountSp, x=Bank, geom=c("boxplot")) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=25), axis.title.y=element_text(vjust=0.2))  + xlab("Bank Type") + ylab("Species Richness") + scale_y_continuous(limits=c(0,50), breaks=c(0,10,20,30,40,50))
+qplot(data=data, y=CountSp, x=Bank, geom=c("point")) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=25), axis.title.y=element_text(vjust=0.2))  + xlab("Bank Type") + ylab("Species Richness") + scale_y_continuous(limits=c(0,50), breaks=c(0,10,20,30,40,50))
 ########by river
 qplot(data=data, y=CountSp, x=River, geom=c("boxplot")) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=25), axis.title.y=element_text(vjust=0.2))  + xlab("River") + ylab("Species Richness")  + scale_y_continuous(limits=c(0,50), breaks=c(0,10,20,30,40,50))
 
@@ -489,7 +494,7 @@ ggplot(data, aes(x=Bank, y=HerbCov)) + geom_boxplot(position=position_dodge(0.8)
 #######By River
 ggplot(data, aes(x=River, y=HerbCov)) + geom_boxplot(position=position_dodge(0.8)) + xlab("River") + ylab("Proportion of Cover") + scale_fill_manual(values=bwpalette2) + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text = element_text(size=20), axis.title.y=element_text(vjust=0.2)) +guides(fill=FALSE)+ scale_y_continuous(breaks=c(0,0.25,0.5,0.75,1,1.25), labels=c("0", "25", "50", "75", "100", "125"))
 
-
+#------------------------------------------------------------------------------------------------------------------------------------
 
 
 ### August making some new figures for ESA PPT
@@ -515,49 +520,54 @@ pd <- position_dodge(.1)  #call on this to shift points so as not to overlap whe
 
 #rivrich
 ggplot(rivrich, aes(x=River, y=CountSp)) + 
-  geom_errorbar(aes(ymin=CountSp-se, ymax=CountSp+se), colour="black", width=.1) +
+  geom_errorbar(aes(ymin=CountSp-ci, ymax=CountSp+ci), colour="black", width=.1) +
   geom_line() +
-  geom_point(size=5, shape=21, fill="white") +
+  geom_point(size=5, shape=21, fill="black") +
   xlab("Stream") +
   ylab("Species Richness") +
   theme_bw() + 
   theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), 
                      legend.justification=c(1,0), legend.position=c(1,0))
+  + scale_y_continuous(limits=c(0,50), breaks=c(0,10,20,30,40,50), labels=c("0", "10", "20", "30", "40", "50"))
 
 #rivindm
 
 ggplot(rivindm, aes(x=River, y=CountIndPerM)) + 
-  geom_errorbar(aes(ymin=CountIndPerM-se, ymax=CountIndPerM+se), colour="black", width=.1) +
+  geom_errorbar(aes(ymin=CountIndPerM-ci, ymax=CountIndPerM+ci), colour="black", width=.1) +
   geom_line() +
-  geom_point(size=5, shape=21, fill="white") +
+  geom_point(size=5, shape=21, fill="black") +
   xlab("Stream") +
   ylab("Number of Individual Plants per m2") +
   theme_bw() + 
   theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), 
         legend.justification=c(1,0), legend.position=c(1,0))
++ scale_y_continuous(limits=c(0,50), breaks=c(0,10,20,30,40,50), labels=c("0", "10", "20", "30", "40", "50"))
 
 #rivshan
 ggplot(rivshan, aes(x=River, y=ShanDiv)) + 
-  geom_errorbar(aes(ymin=ShanDiv-se, ymax=ShanDiv+se), colour="black", width=.1) +
+  geom_errorbar(aes(ymin=ShanDiv-ci, ymax=ShanDiv+ci), colour="black", width=.1) +
   geom_line() +
-  geom_point(size=5, shape=21, fill="white") +
+  geom_point(size=5, shape=21, fill="black") +
   xlab("Stream") +
   ylab("Shannon Diversity") +
   theme_bw() + 
   theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), 
-        legend.justification=c(1,0), legend.position=c(1,0))
+        legend.justification=c(1,0), legend.position=c(1,0)) +
+scale_y_continuous(limits=c(0,4), breaks=c(0,1,2,3,4), labels=c("0", "1", "2", "3", "4"))
 
 #rivcov
 
 ggplot(rivcov, aes(x=River, y=HerbCov)) + 
-  geom_errorbar(aes(ymin=HerbCov-se, ymax=HerbCov+se), colour="black", width=.1) +
+  geom_errorbar(aes(ymin=HerbCov-ci, ymax=HerbCov+ci), colour="black", width=.1) +
   geom_line() +
-  geom_point(size=5, shape=21, fill="white") +
+  geom_point(size=5, shape=21, fill="black") +
   xlab("Stream") +
   ylab("Herbaceous Cover (%)") +
   theme_bw() + 
   theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), 
-        legend.justification=c(1,0), legend.position=c(1,0))
+        legend.justification=c(1,0), legend.position=c(1,0)) +
+scale_y_continuous(limits=c(0,1), breaks=c(0,0.2,0.4,0.6,0.8,1), labels=c("0", "20", "40", "60", "80", "100"))
+
 
 #by bank
 
@@ -568,49 +578,51 @@ bcov<-summarySE(data, measurevar="HerbCov", groupvars=c("Bank"))
 
 #brich
 ggplot(brich, aes(x=Bank, y=CountSp)) + 
-  geom_errorbar(aes(ymin=CountSp-se, ymax=CountSp+se), colour="black", width=.1) +
+  geom_errorbar(aes(ymin=CountSp-ci, ymax=CountSp+ci), colour="black", width=.1) +
   geom_line() +
-  geom_point(size=5, shape=21, fill="white") +
+  geom_point(size=5, shape=21, fill="black") +
   xlab("Bank") +
   ylab("Species Richness") +
   theme_bw() + 
   theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), 
-        legend.justification=c(1,0), legend.position=c(1,0))
+        legend.justification=c(1,0), legend.position=c(1,0)) + 
+  scale_y_continuous(limits=c(0,41), breaks=c(0,10,20,30,40), labels=c("0", "10", "20", "30", "40"))
 
 #bind
 ggplot(bind, aes(x=Bank, y=CountIndPerM)) + 
-  geom_errorbar(aes(ymin=CountIndPerM-se, ymax=CountIndPerM+se), colour="black", width=.1) +
+  geom_errorbar(aes(ymin=CountIndPerM-ci, ymax=CountIndPerM+ci), colour="black", width=.1) +
   geom_line() +
-  geom_point(size=5, shape=21, fill="white") +
+  geom_point(size=5, shape=21, fill="black") +
   xlab("Bank") +
   ylab("Number of Individuals per m2") +
   theme_bw() + 
   theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), 
-        legend.justification=c(1,0), legend.position=c(1,0))
+        legend.justification=c(1,0), legend.position=c(1,0)) +
+  scale_y_continuous(limits=c(0,50), breaks=c(0,10,20,30,40,50), labels=c("0", "10", "20", "30", "40", "50"))
 
 #bshan
 ggplot(bshan, aes(x=Bank, y=ShanDiv)) + 
-  geom_errorbar(aes(ymin=ShanDiv-se, ymax=ShanDiv+se), colour="black", width=.1) +
+  geom_errorbar(aes(ymin=ShanDiv-ci, ymax=ShanDiv+ci), colour="black", width=.1) +
   geom_line() +
-  geom_point(size=5, shape=21, fill="white") +
+  geom_point(size=5, shape=21, fill="black") +
   xlab("Bank") +
   ylab("Shannon Diversity") +
   theme_bw() + 
   theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), 
-        legend.justification=c(1,0), legend.position=c(1,0))
+        legend.justification=c(1,0), legend.position=c(1,0)) +
+  scale_y_continuous(limits=c(0,3.2), breaks=c(0,1,2,3), labels=c("0", "1", "2", "3"))
 
 #bcov
 ggplot(bcov, aes(x=Bank, y=HerbCov)) + 
-  geom_errorbar(aes(ymin=HerbCov-se, ymax=HerbCov+se), colour="black", width=.1) +
+  geom_errorbar(aes(ymin=HerbCov-ci, ymax=HerbCov+ci), colour="black", width=.1) +
   geom_line() +
-  geom_point(size=5, shape=21, fill="white") +
+  geom_point(size=5, shape=21, fill="black") +
   xlab("Bank") +
   ylab("Herbaceous Cover (%)") +
   theme_bw() + 
   theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), 
-        legend.justification=c(1,0), legend.position=c(1,0))
-
-
+        legend.justification=c(1,0), legend.position=c(1,0)) +
+  scale_y_continuous(limits=c(0,0.7), breaks=c(0,.1,.2,.3, .4,.5,.6,.7), labels=c("0", "10", "20", "30", "40", "50", "60", "70"))
 
 
 #by river, origin split
@@ -625,37 +637,38 @@ pd <- position_dodge(.1)  #call on this to shift points so as not to overlap whe
 
 #orrivrich
 ggplot(orrivrich, aes(x=River, y=SpRich, group=Origin)) + 
-  geom_errorbar(aes(ymin=SpRich-se, ymax=SpRich+se), colour="black", width=.1, position=pd) +
+  geom_errorbar(aes(ymin=SpRich-ci, ymax=SpRich+ci), colour="black", width=.1, position=pd) +
   geom_line(position=pd) +
-  geom_point(size=5, shape=21, fill="white", position=pd) +
+  geom_point(size=5, shape=21, fill="black", position=pd) +
   xlab("Stream") +
   ylab("Species Richness") +
   theme_bw() + 
   theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), 
-        legend.justification=c(1,0), legend.position=c(1,0))
+        legend.justification=c(1,0), legend.position=c(1,0)) +
+  scale_y_continuous(limits=c(0,40), breaks=c(0,10,20,30, 40), labels=c("0", "10", "20", "30","40"))
 
 #orrivind
 ggplot(orrivind, aes(x=River, y=IndPerM, group=Origin)) + 
-  geom_errorbar(aes(ymin=IndPerM-se, ymax=IndPerM+se), colour="black", width=.1, position=pd) +
+  geom_errorbar(aes(ymin=IndPerM-ci, ymax=IndPerM+ci), colour="black", width=.1, position=pd) +
   geom_line(position=pd) +
-  geom_point(size=5, shape=21, fill="white", position=pd) +
+  geom_point(size=5, shape=21, fill="black", position=pd) +
   xlab("Stream") +
   ylab("Number of Individual Plants per m2") +
   theme_bw() + 
-  theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), 
-        legend.justification=c(1,0), legend.position=c(1,0))
+  theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA)) +
+  scale_y_continuous(limits=c(-5,40), breaks=c(0,10,20,30,40), labels=c("0", "10", "20", "30", "40"))
 
 #orrivcov
 
 ggplot(orrivcov, aes(x=River, y=Cover, group=Origin)) + 
-  geom_errorbar(aes(ymin=Cover-se, ymax=Cover+se), colour="black", width=.1, position=pd) +
+  geom_errorbar(aes(ymin=Cover-ci, ymax=Cover+ci), colour="black", width=.1, position=pd) +
   geom_line(position=pd) +
-  geom_point(size=5, shape=21, fill="white", position=pd) +
+  geom_point(size=5, shape=21, fill="black", position=pd) +
   xlab("Stream") +
   ylab("Herbaceous Cover (%)") +
   theme_bw() + 
-  theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), 
-        legend.justification=c(1,0), legend.position=c(1,0))
+  theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA)) +
+  scale_y_continuous(limits=c(-0.03,0.7), breaks=c(0,.1,.2,.3, .4, .5, .6, .7), labels=c("0", "10", "20", "30", "40", "50", "60", "70"))
 
 #by bank, origin split
 
@@ -666,35 +679,36 @@ orbcov<-summarySE(databyor, measurevar="Cover", groupvars=c("Bank", "Origin"))
 
 #orbrich
 ggplot(orbrich, aes(x=Bank, y=SpRich, group=Origin)) + 
-  geom_errorbar(aes(ymin=SpRich-se, ymax=SpRich+se), colour="black", width=.1, position=pd) +
+  geom_errorbar(aes(ymin=SpRich-ci, ymax=SpRich+ci), colour="black", width=.1, position=pd) +
   geom_line(position=pd) +
-  geom_point(size=5, shape=21, fill="white", position=pd) +
+  geom_point(size=5, shape=21, fill="black", position=pd) +
   xlab("Bank") +
   ylab("Species Richness") +
   theme_bw() + 
-  theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), 
-        legend.justification=c(1,0), legend.position=c(1,0))
+  theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA)) +
+  scale_y_continuous(limits=c(-1,33), breaks=c(0,10,20,30), labels=c("0", "10", "20", "30"))
 
 #orbind
 ggplot(orbind, aes(x=Bank, y=IndPerM, group=Origin)) + 
-  geom_errorbar(aes(ymin=IndPerM-se, ymax=IndPerM+se), colour="black", width=.1, position=pd) +
+  geom_errorbar(aes(ymin=IndPerM-ci, ymax=IndPerM+ci), colour="black", width=.1, position=pd) +
   geom_line(position=pd) +
-  geom_point(size=5, shape=21, fill="white", position=pd) +
+  geom_point(size=5, shape=21, fill="black", position=pd) +
   xlab("Bank") +
   ylab("Number of Individual Plants per m2") +
   theme_bw() + 
-  theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), 
-        legend.justification=c(1,0), legend.position=c(1,0))
+  theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA)) +
+  scale_y_continuous(limits=c(0,40), breaks=c(0,10,20,30,40), labels=c("0", "10", "20", "30", "40"))
 
 #orbcov
 
 ggplot(orbcov, aes(x=Bank, y=Cover, group=Origin)) + 
-  geom_errorbar(aes(ymin=Cover-se, ymax=Cover+se), colour="black", width=.1, position=pd) +
+  geom_errorbar(aes(ymin=Cover-ci, ymax=Cover+ci), colour="black", width=.1, position=pd) +
   geom_line(position=pd) +
-  geom_point(size=5, shape=21, fill="white", position=pd) +
+  geom_point(size=5, shape=21, fill="black", position=pd) +
   xlab("Bank") +
   ylab("Herbaceous Cover (%)") +
   theme_bw() + 
   theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), 
-        legend.justification=c(1,0), legend.position=c(1,0))
+        legend.justification=c(1,0), legend.position=c(1,0)) +
+  scale_y_continuous(limits=c(0,.6), breaks=c(0,.1,.2,.3,.4,.5,.6), labels=c("0", "10", "20", "30", "40", "50", "60"))
 
