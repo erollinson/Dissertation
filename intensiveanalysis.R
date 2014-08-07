@@ -526,9 +526,8 @@ ggplot(rivrich, aes(x=River, y=CountSp)) +
   xlab("Stream") +
   ylab("Species Richness") +
   theme_bw() + 
-  theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), 
-                     legend.justification=c(1,0), legend.position=c(1,0))
-  + scale_y_continuous(limits=c(0,50), breaks=c(0,10,20,30,40,50), labels=c("0", "10", "20", "30", "40", "50"))
+  theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA)) +
+  scale_y_continuous(limits=c(0,46), breaks=c(0,5,10,15,20,25,30,35,40,45), labels=c("0", "5","10","15","20","25", "30","35","40","45"))
 
 #rivindm
 
@@ -539,9 +538,8 @@ ggplot(rivindm, aes(x=River, y=CountIndPerM)) +
   xlab("Stream") +
   ylab("Number of Individual Plants per m2") +
   theme_bw() + 
-  theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), 
-        legend.justification=c(1,0), legend.position=c(1,0))
-+ scale_y_continuous(limits=c(0,50), breaks=c(0,10,20,30,40,50), labels=c("0", "10", "20", "30", "40", "50"))
+  theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA)) +
+  scale_y_continuous(limits=c(0,50), breaks=c(0,10,20,30,40,50), labels=c("0", "10", "20", "30", "40", "50"))
 
 #rivshan
 ggplot(rivshan, aes(x=River, y=ShanDiv)) + 
