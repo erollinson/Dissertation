@@ -4,17 +4,23 @@ Analyses for slopes manuscript "Diversity and composition of riparian and upslop
 Load required libraries
 ```{r}
 require(lme4) #for GLMs
-require(MDM) #for modeling an analogue to Shannon diversity
+require(MDM) #for modeling an analogue to Shannon diversity (I will likely not end up using this)
 require(vegan) #for species accumulation curves and ordination
+require(data.table) #for some of the (now defunct) species accumulation curve data frame reshaping
 ```
 
 
-Import required data sheets
-
+Import required data sheets and fix the data frames a bit
 ```{r}
 data<-read.csv("2012 Data Summary with Averages 3_3_14 for R.csv") # rows are sites, columns are vegetation summaries and background data on each site; this data frame is used for GLMs
 groups<-read.csv("2012 Data Summary with Averages 3_3_14 for R by origin for figure merge.csv") #this table is not needed for analysis, but facilitates making figures that display introduced and native species separately
 matrix<-read.csv("2012_abundancematrix_modified.csv") #rows are sites, columns are species abundances; this data frame is used for ordinations, species accumulations, and ANOSIM ##5/9/2014 this matrix is no longer the matrix used for specaccum, just for MDM/ordinations
+
+#adding total herbaceous cover column to "data"
+summed<-rowSums(data[,c(28,29)])
+data <-cbind(data, summed)
+names(data)[names(data)=="summed"] <- "HerbCov"
+data$HerbCov[data$HerbCov > 1] <- 1
 ```
 
 Some notes on useful code tidbits
@@ -28,17 +34,6 @@ utils::View(data)
 utils::View(matrix)
 ```
 
-Fixing the data frames a bit
--------------------------------------------------------
-Adding total herbaceous cover
-
-```{r}
-summed<-rowSums(data[,c(28,29)])
-data <-cbind(data, summed)
-names(data)[names(data)=="summed"] <- "HerbCov"
-data$HerbCov[data$HerbCov > 1] <- 1
-```
-
 GLMs
 -------------------------------------------------------
 
@@ -49,15 +44,15 @@ number of individuals (overall; introduced; native)
 Check if these are very over/underdispersed or have a lot of zeroes; if so, a different model is required.
 Potential problem: All of these data are corrected per area sampled, which does not work with the straightforward Poisson model (which requires integers).  An alternate method for performing Poisson regression on non-integers is provided at http://www.r-bloggers.com/poisson-regression-on-non-integers/, although I don't completely follow it.
 
-It throws a warning for the model that the values are non-integer but fits the model and allows an anova to be run, and stackexchange suggests that it is apporpriate to use the Poisson distribution even for non-integers that are still best approximated by Poisson (http://stats.stackexchange.com/questions/70054/how-is-it-possible-that-poisson-glm-accepts-non-integer-numbers).  Using family quasipoisson instead of poisson suppresses these warnings.
-
+It throws a warning for the model that the values are non-integer but fits the model and allows an anova to be run, and stackexchange suggests that it is appropriate to use the Poisson distribution even for non-integers that are still best approximated by Poisson (http://stats.stackexchange.com/questions/70054/how-is-it-possible-that-poisson-glm-accepts-non-integer-numbers).  Using family quasipoisson instead of poisson suppresses these warnings.
 
 
 Testing the contribution of bank type (Poisson response variables)
 --------------------------------------------------------
+Analytical approach: model with and without the Bank factor, compared by chisq.  see http://www.ats.ucla.edu/stat/r/dae/poissonreg.htm
+Questions: is this model comparison (with and without bank) the correct approach?  Is chisq the correct comparison for the two models?  How do I address multiple comparisons with this approach?  With this approach, how do I test the river effect (it seems wrong to remove the top-level factor in the nested data)?  
 
 ```{r}
-#analytical approach: model with and without the Bank factor, compared by chisq.  see http://www.ats.ucla.edu/stat/r/dae/poissonreg.htm
 
 #Number of species per meter
 rich1<-glm(CountSpPerM ~ River + (River/Site) + (Site/Bank), family="quasipoisson", data=data)
@@ -74,7 +69,6 @@ irich1<-glm(CountInvSpPerM ~ River + (River/Site) + (Site/Bank), family="quasipo
 irich2<-glm(CountInvSpPerM ~ River + (River/Site), family="quasipoisson", data=data)
 anova(irich2, irich1, test = "Chisq")
 
-
 #Number of individuals per meter
 ct1<-glm(CountIndPerM ~ River + (River/Site) + (Site/Bank), family="quasipoisson", data=data)
 ct2<-glm(CountIndPerM ~ River + (River/Site), family="quasipoisson", data=data)
@@ -90,29 +84,39 @@ ict1<-glm(CountInvIndPerM ~ River + (River/Site) + (Site/Bank), family="quasipoi
 ict2<-glm(CountInvIndPerM ~ River + (River/Site), family="quasipoisson", data=data)
 anova(rich2, rich1, test = "Chisq")
 
+```
 
-#Report summaries for the full Poisson models
+Full summaries for the Poisson models
+---------------------------------------
+
+*Most importantly*: I'm not sure how to tell if this is parsing the nested nature of the data correctly - it's easy enough to tell in an ANOVA model by looking at the df and MS, but I don't know how I would make sure that this model is nesting correctly.  I'm concerned about this because many of the ANOVA approaches I initially used in R did not handle two levels of nesting well - it tested everything over the residual MS regardless of how I structured the linear model.
+
+Other thoughts:
+
+I am not sure how to correctly interpret the output of these.  I understand that, e.g., "RiverIndian"" and "RiverKayaderosseras"" are each making comparisons to Ballston (these are the three rivers in the study), but I'm not sure how to (or if one can) translate this into an overall statement about differences among rivers in the same way that one might in an ANOVA approach.  Is it perhaps appropriate to only make statements about the bank effect using the analyses above, and leave statements about rivers to the full model outputs below?  I'm also not sure how best to handle multiple comparisons here.
+
+```{r}
 summary(rich1)
 summary(nrich1)
 summary(irich1)
 summary(ct1)
 summary(nct1)
 summary(ict1)
-
-
-
 ```
 
-Testing the effect of bank time for the logistic regression response variables: (%cover (%int; %nat))
+
+Testing the contribution of bank type (Binomial response variables): (%cover (%int; %nat))
+------------------------------------------------------------------------------------------------------
+(Same questions as above for the Poisson models)
 
 ```{r}
-#quasibinomial runs binomial and suppresses the stupid error messages
+#quasibinomial runs binomial and suppresses the error messages
 #Need to set any >100% cover equal to 1 for these models to work:
 data$HerbCov[data$HerbCov > 1] <- 1
 data$NatHerbCov[data$NatHerbCov > 1] <- 1
 data$InvHerbCov[data$InvHerbCov > 1] <- 1
 
-#Percent vegetative cover  LOOKHEREBETTER
+#Percent vegetative cover
 cov1<-glm(HerbCov ~ River + (River/Site) + (Site/Bank), family="quasibinomial", data=data)
 cov2<-glm(HerbCov ~ River + (River/Site), family="quasibinomial", data=data)
 anova(cov2, cov1, test = "Chisq")
@@ -126,38 +130,45 @@ anova(ncov2, ncov1, test = "Chisq")
 icov1<-glm(InvHerbCov ~ River + (River/Site) + (Site/Bank), family="quasibinomial", data=data)
 icov2<-glm(InvHerbCov ~ River + (River/Site), family="quasibinomial", data=data)
 anova(icov2, icov1)
-
-
-#Report summaries for the full logistic models
-summary(cov1)
-summary(ncov1)
-summary(icov1)
-
-
 ```
 
 
+Full summaries for the binomial models
+---------------------------------------
+
+```{r}
+summary(cov1)
+summary(ncov1)
+summary(icov1)
+```
+
 
 Multinomial diversity model MDM for Shannon diversity (see De'ath 2012 Ecology 93:2286-2296)
-This needs to start with a site by species abundance matrix, create a class MDM out of it
+--------------------------------------------------------------------------------------------
 
+*No questions on this part.*
+
+Jessica and I have decided it is probably best to just leave Shannon diversity out of the final manuscript, since it doesn't seem to be showing anything interesting/useful anyway.
+
+This needs to start with a site by species abundance matrix, create a class MDM out of it.
 ```{r}
 fit0<-mdm(y2p(matrix[,4:246])~1, data=matrix)
 fit1<-mdm(y2p(matrix[,4:246])~1 + Stream, data=matrix)
 fit2<-mdm(y2p(matrix[,4:246])~1 + Site, data=matrix)
 fit3<-mdm(y2p(matrix[,4:246])~1 + Elev, data=matrix)
 anova(fit0, fit1, fit2, fit3)
-#No idea how to interpret this
+#No idea how to interpret this???
 ```
-
-
-
 
 Species accumulation curves
 ----------------------------------------------
 
-Resort the matrix so it is sorted by the Elev column
+*No questions on this part.*
 
+Various approaches to this problem are preserved here for posterity; I've marked the section that produces the correct species accumulation curves for the manuscript.
+
+Resort the matrix so it is sorted by the Elev column
+Note in future that package "dplyr" is probably brilliant for this kind of sorting (see below that something about "data.table" output breaks the specaccum function, so I had to use an alternate approach for the final analysis)
 ```{r}
 require(data.table)
 matsort<-data.table(matrix, key="Elev")
@@ -187,7 +198,7 @@ plot(gl, ci.type="line", ci.col="blue")
 plot(up, add=TRUE, ci.type="line", ci.col="red")
 ```
 
-Trying all this again for the full 2012 data set... "quadrats" for woody species have been mimicked by dividing the woody transect into 1 m sequential plots.
+Trying all this again for the full 2012 data set... quadrat equivalents for woody species have been established by dividing the woody transect into 1 m sequential plots.
 
 Creating a site by species matrix at the quadrat scale, starting with a list of species presences (or abundances).  This dataset just contains presences - I don't think that it depends on including abundances, but doublecheck that.  I think it's fine when using sampled sites instead of sampled individuals.
 
@@ -215,7 +226,7 @@ quadmatrix<-read.csv("quadmat2012allrows.csv")
 #commented out this code - the current form of that csv file is already sorted
 ```
 
-Run species accumulations
+Run species accumulations - this is the code that works for the manuscript
 This works if I don't run the matrix through the sorting process - something about data.table() breaks the data frame, apparently.  No idea.  But this code works now.
 
 ```{r}
@@ -228,7 +239,6 @@ plot(up, add=TRUE, ci.type="line", ci.col="red")
 ```
 
 Plotting the species accumulation curve in ggplot2 for better visualizations for print
-
 ```{r}
 #turn the specaccum output into a dataframe, add a column to label the site type (greenline or upslope)
 upt<-as.data.frame(up[2:5])

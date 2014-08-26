@@ -1,0 +1,129 @@
+Analyses for slopes manuscript "Diversity and composition of riparian and upslope plant communities of small woodland streams"
+==============================================================================================================================
+
+Load required libraries
+```{r}
+require(lme4) #for GLMs
+```
+
+
+Import required data sheets and fix the data frames a bit
+```{r}
+data<-read.csv("2012 Data Summary with Averages 3_3_14 for R.csv") # rows are sites, columns are vegetation summaries and background data on each site; this data frame is used for GLMs
+groups<-read.csv("2012 Data Summary with Averages 3_3_14 for R by origin for figure merge.csv") #this table is not needed for analysis, but facilitates making figures that display introduced and native species separately
+matrix<-read.csv("2012_abundancematrix_modified.csv") #rows are sites, columns are species abundances; this data frame is used for ordinations, species accumulations, and ANOSIM ##5/9/2014 this matrix is no longer the matrix used for specaccum, just for MDM/ordinations
+
+#adding total herbaceous cover column to "data"
+summed<-rowSums(data[,c(28,29)])
+data <-cbind(data, summed)
+names(data)[names(data)=="summed"] <- "HerbCov"
+data$HerbCov[data$HerbCov > 1] <- 1
+```
+
+Models
+-------------------------------------------------------
+
+Poisson regression is required for the following variables:
+species richness (overall; introduced; native)
+number of individuals (overall; introduced; native)
+
+Check if these are very over/underdispersed or have a lot of zeroes; if so, a different model is required.
+Potential problem: All of these data are corrected per area sampled, which does not work with the straightforward Poisson model (which requires integers).  An alternate method for performing Poisson regression on non-integers is provided at http://www.r-bloggers.com/poisson-regression-on-non-integers/, although I don't completely follow it.
+
+It throws a warning for the model that the values are non-integer but fits the model and allows an anova to be run, and stackexchange suggests that it is appropriate to use the Poisson distribution even for non-integers that are still best approximated by Poisson (http://stats.stackexchange.com/questions/70054/how-is-it-possible-that-poisson-glm-accepts-non-integer-numbers).  Using family quasipoisson instead of poisson suppresses these warnings.
+
+
+Testing the contribution of bank type (Poisson response variables)
+--------------------------------------------------------
+Analytical approach: model with and without the Bank factor, compared by chisq.  see http://www.ats.ucla.edu/stat/r/dae/poissonreg.htm
+Questions: is this model comparison (with and without bank) the correct approach?  Is chisq the correct comparison for the two models?  How do I address multiple comparisons with this approach?  With this approach, how do I test the river effect (it seems wrong to remove the top-level factor in the nested data)?  
+
+```{r}
+
+#Number of species per meter
+rich1<-glm(CountSpPerM ~ River + (River/Site) + (Site/Bank), family="quasipoisson", data=data)
+rich2<-glm(CountSpPerM ~ River + (River/Site), family="quasipoisson", data=data)
+anova(rich2, rich1, test = "Chisq")
+
+#Number of native species per meter
+nrich1<-glm(CountNatSpPerM ~ River + (River/Site) + (Site/Bank), family="quasipoisson", data=data)
+nrich2<-glm(CountNatSpPerM ~ River + (River/Site), family="quasipoisson", data=data)
+anova(nrich2, nrich1, test = "Chisq")
+
+#Number of introduced species per meter
+irich1<-glm(CountInvSpPerM ~ River + (River/Site) + (Site/Bank), family="quasipoisson", data=data)
+irich2<-glm(CountInvSpPerM ~ River + (River/Site), family="quasipoisson", data=data)
+anova(irich2, irich1, test = "Chisq")
+
+#Number of individuals per meter
+ct1<-glm(CountIndPerM ~ River + (River/Site) + (Site/Bank), family="quasipoisson", data=data)
+ct2<-glm(CountIndPerM ~ River + (River/Site), family="quasipoisson", data=data)
+anova(ct2, ct1, test = "Chisq")
+
+#Number of native individuals per meter
+nct1<-glm(CountNatIndPerM ~ River + (River/Site) + (Site/Bank), family="quasipoisson", data=data)
+nct2<-glm(CountNatIndPerM ~ River + (River/Site), family="quasipoisson", data=data)
+anova(nct2, nct1, test = "Chisq")
+
+#Number of introduced individuals per meter
+ict1<-glm(CountInvIndPerM ~ River + (River/Site) + (Site/Bank), family="quasipoisson", data=data)
+ict2<-glm(CountInvIndPerM ~ River + (River/Site), family="quasipoisson", data=data)
+anova(rich2, rich1, test = "Chisq")
+
+```
+
+Full summaries for the Poisson models
+---------------------------------------
+
+*Most importantly*: I'm not sure how to tell if this is parsing the nested nature of the data correctly - it's easy enough to tell in an ANOVA model by looking at the df and MS, but I don't know how I would make sure that this model is nesting correctly.  I'm concerned about this because many of the ANOVA approaches I initially used in R did not handle two levels of nesting well - it tested everything over the residual MS regardless of how I structured the linear model. I had various problems using lme and lmer with this structure.
+
+Other thoughts:
+
+I am not sure how to correctly interpret the output of these.  I understand that, e.g., "RiverIndian"" and "RiverKayaderosseras"" are each making comparisons to Ballston (these are the three rivers in the study), but I'm not sure how to (or if one can) translate this into an overall statement about differences among rivers in the same way that one might in an ANOVA approach.  Is it perhaps appropriate to only make statements about the bank effect using the analyses above, and leave statements about rivers to the full model outputs below?  I'm also not sure how best to handle multiple comparisons here.
+
+```{r}
+summary(rich1)
+summary(nrich1)
+summary(irich1)
+summary(ct1)
+summary(nct1)
+summary(ict1)
+```
+
+
+Testing the contribution of bank type (Binomial response variables): (%cover (%int; %nat))
+------------------------------------------------------------------------------------------------------
+(Same questions as above for the Poisson models)
+
+```{r}
+#quasibinomial runs binomial and suppresses the error messages
+#Need to set any >100% cover equal to 1 for these models to work:
+data$HerbCov[data$HerbCov > 1] <- 1
+data$NatHerbCov[data$NatHerbCov > 1] <- 1
+data$InvHerbCov[data$InvHerbCov > 1] <- 1
+
+#Percent vegetative cover
+cov1<-glm(HerbCov ~ River + (River/Site) + (Site/Bank), family="quasibinomial", data=data)
+cov2<-glm(HerbCov ~ River + (River/Site), family="quasibinomial", data=data)
+anova(cov2, cov1, test = "Chisq")
+
+#Percent native cover
+ncov1<-glm(NatHerbCov ~ River + (River/Site) + (Site/Bank), family="quasibinomial", data=data)
+ncov2<-glm(NatHerbCov ~ River + (River/Site), family="quasibinomial", data=data)
+anova(ncov2, ncov1, test = "Chisq")
+
+#Percent introduced cover
+icov1<-glm(InvHerbCov ~ River + (River/Site) + (Site/Bank), family="quasibinomial", data=data)
+icov2<-glm(InvHerbCov ~ River + (River/Site), family="quasibinomial", data=data)
+anova(icov2, icov1)
+```
+
+
+Full summaries for the binomial models
+---------------------------------------
+
+```{r}
+summary(cov1)
+summary(ncov1)
+summary(icov1)
+```

@@ -116,7 +116,7 @@ data[is.na(data)] <-0 #to replace NaN with 0
 shapiro.test(data$SQRTASINInvHerbCov)
 shapiro.test(data$SQRTASINNatHerbCov)
 
-#analyze - working linear models  (note that the SS and MS are correct, but it does not default to using the correct denominator for the F test of a nested model - that is easily fixed by hand, but is an open problem with the code for now)
+#analyze - working linear models  (note that the SS and MS are correct, but it does not default to using the correct denominator for the F test of a nested model - that is easily fixed by hand, but is an open problem with the code for now) These are the models that are used in the original draft of the manuscript
 
 richnessperm<-lm(CountSpPerM ~ (River/Site) + (Site/Bank), data)
 anova(richnessperm)
@@ -148,12 +148,9 @@ anova(natherbcov)
 herbcov <- lm(SQRTASINHerbCov ~ (River/Site) + (Site/Bank), data)
 anova(herbcov)
 
-#attempting to get MANOVA to work - this works fine but it does not include the nested structure of the data
 
-fixed <- cbind(data$CountSpPerM, data$CountIndPerM, data$SQRTShanDiv, data$CountInvSpPerM, data$CountNatSpPerM, data$SQRTCountInvIndPerM, data$SQRTCountNatIndPerM, data$SQRTASINInvHerbCov, data$ASINNatHerbCov)
-fit <- manova(fixed ~ (data$River/data$Site) + (data$Site/data$Bank)) #or data$Site
-summary(fit)
-summary.aov(fit)
+#----------------------------------------------------------------
+#SOME MANOVA APPROACHES - GENERALLY NOT HANDLING NESTING WELL
 
 #another approach that seems to be working better.
 ###also adding a second Site2 column that repeats the 1 & 2 labels for each nested site instead of K1 K2 B1 B2 etc
@@ -180,81 +177,7 @@ anova(model_2, test="Hotelling")
 anova(model_2, test="Roy")
 
 
-
-#what if i nest site but not bank - because i think bank matters...
-#So I think I should be treating this as a nested factorial design where sites are nested but banks are a "treatment" - each bank type exists in each site and within each 
-
-
-site2<-c(1,1,2,2,1,1,2,2,1,1,2,2,1,1,2,2,1,1,2,2,1,1,2,2)
-data$site2<-cbind(site2)
-
-model_3 <- lm(cbind(CountSpPerM, CountIndPerM, SQRTShanDiv, SQRTASINHerbCov) ~ (1|River) + (River/Site) + Bank, data=data)
-anova(model_3, test="Pillai")
-anova(model_3, test="Wilks")
-anova(model_3, test="Hotelling")
-anova(model_3, test="Roy")
-
-summary(model_3)
-
-#lme?
-
-model_lme <-lme(cbind(CountSp))
-
-
-#a model with just bank to make me feel better
-
-model_4 <- lm(cbind(CountSpPerM, CountIndPerM, SQRTShanDiv, SQRTASINHerbCov) ~ Bank, data=data)
-anova(model_4, test="Pillai")
-anova(model_4, test="Wilks")
-anova(model_4, test="Hotelling")
-anova(model_4, test="Roy")
-
-summary(model_4)
-
-#just one variable?
-
-model_5 <-lm(CountSpPerM ~ Bank, data=data)
-anova(model_5)
-
-
-#an approach using the Biodiversity R package which might be able to interpret nestedness
-require(vegan)
-require(BiodiversityR)
-
-factors=cbind(data$CountSpPerM, data$CountIndPerM, data$SQRTShanDiv, data$CountInvSpPerM, data$CountNatSpPerM, data$SQRTCountInvIndPerM, data$SQRTCountNatIndPerM, data$SQRTASINInvHerbCov, data$ASINNatHerbCov)
-
-nested.npmanova(factors~(River+Site), data=data, method="euclidean", permutations=1000)
-
-#using MCMCglmm package for a multivariate generalized linear mixed model instead
-
-require(MCMCglmm)
-
-fixed<-cbind(CountSpPerM, CountIndPerM, ShanDiv, CountInvSpPerM, CountNatSpPerM, CountInvIndPerM, CountNatIndPerM, InvHerbCov, NatHerbCov) ~ Bank
-family<-("gaussian","gaussian","gaussian","gaussian","gaussian","gaussian","gaussian","gaussian","gaussian")
-random = ~Bank:Site + Site:River
-
-MCMCglmm(fixed, random, family = family, data=data)
-
-#testing MCMCglmm sample code
-require(MCMCglmm)
-data("BTdata")
-data("BTped")
-
-m1<- MCMCglmm(
-  fixed=cbind(tarsus, back) ~ trait:sex + trait:hatchdate ~ 1,
-  random = ~us(trait):animal + us(trait):fosternest,
-  rcov = ~us(trait):units,
-  family = c("gaussian", "caussian"), nitt = 60000, burnin = 10000,
-  thin = 25, data = BTdata)
-
-# i have yet to find a satisfactory approach that both elegantly handles multiple responses and accomodates the nestedness of the linear model
-
-
-
-
-
-#do a separate manova using the databyor sheet for comparing richness, counts and cover for invasive species
-
+#Secondary MANOVA that uses the "databyor" sheet for comparing richness, counts and cover for invasive species
 
 databyor<-cbind(databyor, sqrt(databyor$IndPerM))
 names(databyor)[names(databyor)=="sqrt(databyor$IndPerM)"] <- "SQRTIndPerM"
@@ -276,12 +199,86 @@ anova(model_origin, test="Roy")
 
 summary(model_origin)
 
-#anova to get post-hoc p value for interaction between origin and river, sub in whichever value
+#anova to get post-hoc p value for interaction between origin and river, substitute in whichever response variable is of interest where it currently says "SQRTASINCover"
 anova(lm(SQRTASINCover ~ Origin*River, data=databyor))
 
 
+#-----------------------------------------------------------------------------------------------------------------------------------
+#A NUMBER OF ANOVA/MANOVA MODELS THAT EXPLICITY DO NOT ADDRESS MY DATA CORRECTLY, BUT I USED TO TEST THAT OUTPUT WORKED AS I WAS EXPECTING
+
+#what if i nest site but not bank - because i think bank matters...
+#So I think I should be treating this as a nested factorial design where sites are nested but banks are a "treatment" - each bank type exists in each site and within each 
+
+site2<-c(1,1,2,2,1,1,2,2,1,1,2,2,1,1,2,2,1,1,2,2,1,1,2,2)
+data$site2<-cbind(site2)
+
+model_3 <- lm(cbind(CountSpPerM, CountIndPerM, SQRTShanDiv, SQRTASINHerbCov) ~ (1|River) + (River/Site) + Bank, data=data)
+anova(model_3, test="Pillai")
+anova(model_3, test="Wilks")
+anova(model_3, test="Hotelling")
+anova(model_3, test="Roy")
+
+summary(model_3)
+
+#a model with just bank to make me feel better
+
+model_4 <- lm(cbind(CountSpPerM, CountIndPerM, SQRTShanDiv, SQRTASINHerbCov) ~ Bank, data=data)
+anova(model_4, test="Pillai")
+anova(model_4, test="Wilks")
+anova(model_4, test="Hotelling")
+anova(model_4, test="Roy")
+
+summary(model_4)
+
+#just one variable?
+
+model_5 <-lm(CountSpPerM ~ Bank, data=data)
+anova(model_5)
+
+#--------------------------------------------------------------------------------------------------------
+#MISCELLANEOUS ALTERNATE APPROACHES TO THIS ANALYSIS USING VARIOUS LIBRARIES...none of which seem to help
+# i have yet to find a satisfactory approach that both elegantly handles multiple responses and accomodates the nestedness of the linear model
+#this test code is commented out for the time being
+
+#An approach using the Biodiversity R package which might be able to interpret nestedness - it appears to only be able to interpret one level of nestedness, and I have two.
+##require(vegan)
+##require(BiodiversityR)
+
+##factors=cbind(data$CountSpPerM, data$CountIndPerM, data$SQRTShanDiv, data$CountInvSpPerM, data$CountNatSpPerM, data$SQRTCountInvIndPerM, data$SQRTCountNatIndPerM, data$SQRTASINInvHerbCov, data$ASINNatHerbCov)
+
+##nested.npmanova(factors~(River+Site), data=data, method="euclidean", permutations=1000)
 
 
+#--------------------
+#using MCMCglmm package for a multivariate generalized linear mixed model instead
+
+##require(MCMCglmm)
+
+##fixed<-cbind(CountSpPerM, CountIndPerM, ShanDiv, CountInvSpPerM, CountNatSpPerM, CountInvIndPerM, CountNatIndPerM, InvHerbCov, NatHerbCov) ~ Bank
+##family<-("gaussian","gaussian","gaussian","gaussian","gaussian","gaussian","gaussian","gaussian","gaussian")
+##random = ~Bank:Site + Site:River
+
+##MCMCglmm(fixed, random, family = family, data=data)
+
+#--------------------
+#testing MCMCglmm sample code
+##require(MCMCglmm)
+##data("BTdata")
+##data("BTped")
+
+##m1<- MCMCglmm(
+  ##fixed=cbind(tarsus, back) ~ trait:sex + trait:hatchdate ~ 1,
+  ##random = ~us(trait):animal + us(trait):fosternest,
+  ##rcov = ~us(trait):units,
+  ##family = c("gaussian", "caussian"), nitt = 60000, burnin = 10000,
+  ##thin = 25, data = BTdata)
+
+
+
+
+
+#-------------------------------------------------------------------------------------
+#EVERYTHING BELOW THIS POINT IS CODE FOR PLOTTING VARIOUS FIGURES - NO FURTHER ANALYSIS
 
 
 #plotting results (color for PPT)
