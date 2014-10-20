@@ -8,6 +8,7 @@ require(arm) #for some things I was trying based on Gelman and Hill code - the f
 require(MDM) #for modeling an analogue to Shannon diversity (I will likely not end up using this)
 require(vegan) #for species accumulation curves and ordination
 require(data.table) #for some of the (now defunct) species accumulation curve data frame reshaping
+require(ggplot2)
 ```
 
 
@@ -74,13 +75,13 @@ Note from Gelman and Hill  page 117 - adjust inferences for overdispersion by mu
 #rich2<-glm(CountSpPerM ~ River + (River/Site), family="quasipoisson", data=data)
 #anova(rich2, rich1, test = "Chisq")
 
-rich0<-glm(CountSp ~ 1, family="poisson", offset=log(Area), data=data)
-rich1<-glm(CountSp ~ River/Site, family="poisson", offset=log(Area), data=data)
-rich2<-glm(CountSp ~ River/Site/Bank, family="poisson", offset=log(Area), data=data)
-display(rich0)
-display(rich1)
-display(rich2)
-anova(rich1, rich2, test="Chisq")
+#rich0<-glm(CountSp ~ 1, family="poisson", offset=log(Area), data=data)
+#rich1<-glm(CountSp ~ River/Site, family="poisson", offset=log(Area), data=data)
+#rich2<-glm(CountSp ~ River/Site/Bank, family="poisson", offset=log(Area), data=data)
+#display(rich0)
+#display(rich1)
+#display(rich2)
+#anova(rich1, rich2, test="Chisq")
 
 #run everything quasi, subtract out the intercept, report p-values from the summary as such
 
@@ -92,8 +93,9 @@ display(rich0)
 display(rich1)
 display(rich2)
 anova(rich1, rich2, test="Chisq") 
-model.matrix()
 summary(rich2)
+display(rich1)
+model.matrix(rich2) #use this on the model of interest (rich1, rich2, etc - to look at all the comparisons in the model matrix and confirm what contrasts go with which somewhat-obscure name in the summary)
 
 
 #these are the changes from heather - "-1" to take the intercept out and then return to "summary" to get the p values.  look into how to interpret estimates after log-correction.
@@ -110,13 +112,23 @@ qplot(data=data, y=CountSp, x=Bank, geom("point"))
 #nrich2<-glm(CountNatSpPerM ~ River + (River/Site), family="quasipoisson", data=data)
 #anova(nrich2, nrich1, test = "Chisq")
 
-nrich0<-glm(CountNatSp ~ 1, family="poisson", offset=log(Area), data=data)
-nrich1<-glm(CountNatSp ~ River/Site, family="poisson", offset=log(Area), data=data)
-nrich2<-glm(CountNatSp ~ River/Site/Bank, family="poisson", offset=log(Area), data=data)
+#nrich0<-glm(CountNatSp ~ 1, family="poisson", offset=log(Area), data=data)
+#nrich1<-glm(CountNatSp ~ River/Site, family="poisson", offset=log(Area), data=data)
+#nrich2<-glm(CountNatSp ~ River/Site/Bank, family="poisson", offset=log(Area), data=data)
+#display(nrich0)
+#display(nrich1)
+#display(nrich2)
+#anova(nrich1,nrich2, test="Chisq")
+
+nrich0<-glm(CountNatSp ~ 0, family="quasipoisson", offset=log(Area), data=data)
+nrich1<-glm(CountNatSp ~ -1 + River/Site, family="quasipoisson", offset=log(Area), data=data)
+nrich2<-glm(CountNatSp ~ -1 + River/Site/Bank, family="quasipoisson", offset=log(Area), data=data)
 display(nrich0)
 display(nrich1)
 display(nrich2)
 anova(nrich1,nrich2, test="Chisq")
+summary(nrich2)
+
 
 #Number of introduced species per meter
 #-------------------------------------
@@ -124,12 +136,21 @@ anova(nrich1,nrich2, test="Chisq")
 #irich2<-glm(CountInvSpPerM ~ River + (River/Site), family="quasipoisson", data=data)
 #anova(irich2, irich1, test = "Chisq")
 
-irich0<-glm(CountInvSp ~ 1, family="poisson", offset=log(Area), data=data)
-irich1<-glm(CountInvSp ~ River/Site, family="poisson", offset=log(Area), data=data)
-irich2<-glm(CountInvSp ~ River/Site/Bank, family="poisson", offset=log(Area), data=data)
+#irich0<-glm(CountInvSp ~ 1, family="poisson", offset=log(Area), data=data)
+#irich1<-glm(CountInvSp ~ River/Site, family="poisson", offset=log(Area), data=data)
+#irich2<-glm(CountInvSp ~ River/Site/Bank, family="poisson", offset=log(Area), data=data)
+#display(irich0)
+#display(irich1)
+#display(irich2)
+#anova(irich1,irich2,test="Chisq")
+
+irich0<-glm(CountInvSp ~ 0, family="quasipoisson", offset=log(Area), data=data)
+irich1<-glm(CountInvSp ~ -1 + River/Site, family="quasipoisson", offset=log(Area), data=data)
+irich2<-glm(CountInvSp ~ -1 + River/Site/Bank, family="quasipoisson", offset=log(Area), data=data)
 display(irich0)
 display(irich1)
 display(irich2)
+summary (irich2)
 anova(irich1,irich2,test="Chisq")
 
 #Number of individuals per meter
@@ -138,12 +159,21 @@ anova(irich1,irich2,test="Chisq")
 #ct2<-glm(CountIndPerM ~ River + (River/Site), family="quasipoisson", data=data)
 #anova(ct2, ct1, test = "Chisq")
 
-ct0<-glm(CountInd ~ 1, family="poisson", offset=log(Area), data=data)
-ct1<-glm(CountInd ~ River/Site, family="poisson", offset=log(Area), data=data)
-ct2<-glm(CountInd ~ River/Site/Bank, family="poisson", offset=log(Area), data=data)
+#ct0<-glm(CountInd ~ 1, family="poisson", offset=log(Area), data=data)
+#ct1<-glm(CountInd ~ River/Site, family="poisson", offset=log(Area), data=data)
+#ct2<-glm(CountInd ~ River/Site/Bank, family="poisson", offset=log(Area), data=data)
+#display(ct0)
+#display(ct1)
+#display(ct2)
+#anova(ct1,ct2,test="Chisq")
+
+ct0<-glm(CountInd ~ 0, family="quasipoisson", offset=log(Area), data=data)
+ct1<-glm(CountInd ~ -1 + River/Site, family="quasipoisson", offset=log(Area), data=data)
+ct2<-glm(CountInd ~ -1 + River/Site/Bank, family="quasipoisson", offset=log(Area), data=data)
 display(ct0)
 display(ct1)
 display(ct2)
+summary(ct2)
 anova(ct1,ct2,test="Chisq")
 
 #Number of native individuals per meter
@@ -152,22 +182,22 @@ anova(ct1,ct2,test="Chisq")
 #nct2<-glm(CountNatIndPerM ~ River + (River/Site), family="quasipoisson", data=data)
 #anova(nct2, nct1, test = "Chisq")
 
-nct0<-glm(CountNatInd ~ 1, family="poisson", offset=log(Area), data=data)
-nct1<-glm(CountNatInd ~ River/Site, family="poisson", offset=log(Area), data=data)
-nct2<-glm(CountNatInd ~ River/Site/Bank, family="poisson", offset=log(Area), data=data)
-display(nct0)
-display(nct1)
-display(nct2)
-anova(nct1, nct2, test="Chisq")
+#nct0<-glm(CountNatInd ~ 1, family="poisson", offset=log(Area), data=data)
+#nct1<-glm(CountNatInd ~ River/Site, family="poisson", offset=log(Area), data=data)
+#nct2<-glm(CountNatInd ~ River/Site/Bank, family="poisson", offset=log(Area), data=data)
+#display(nct0)
+#display(nct1)
+#display(nct2)
+#anova(nct1, nct2, test="Chisq")
 
-#Demo - using quasipoisson instead of poisson...
-nct0<-glm(CountNatInd ~ 1, family="quasipoisson", offset=log(Area), data=data)
-nct1<-glm(CountNatInd ~ River/Site, family="quasipoisson", offset=log(Area), data=data)
-nct2<-glm(CountNatInd ~ River/Site/Bank, family="quasipoisson", offset=log(Area), data=data)
+nct0<-glm(CountNatInd ~ 0, family="quasipoisson", offset=log(Area), data=data)
+nct1<-glm(CountNatInd ~ -1 + River/Site, family="quasipoisson", offset=log(Area), data=data)
+nct2<-glm(CountNatInd ~ -1 + River/Site/Bank, family="quasipoisson", offset=log(Area), data=data)
 display(nct0)
 display(nct1)
 display(nct2)
 anova(nct1, nct2, test="Chisq")
+summary(nct2)
 
 
 #Number of introduced individuals per meter
@@ -176,10 +206,19 @@ anova(nct1, nct2, test="Chisq")
 #ict2<-glm(CountInvIndPerM ~ River + (River/Site), family="quasipoisson", data=data)
 #anova(rich2, rich1, test = "Chisq")
 
-ict0<-glm(CountInvInd ~ 1, family="poisson", offset=log(Area), data=data)
-ict1<-glm(CountInvInd ~ River/Site, family="poisson", offset=log(Area), data=data)
-ict3<-glm(CountInvInd ~ River, family = "poisson", offset=log(Area), data=data)
-ict2<-glm(CountInvInd ~ River/Site/Bank, family="poisson", offset=log(Area), data=data)
+#ict0<-glm(CountInvInd ~ 1, family="poisson", offset=log(Area), data=data)
+#ict1<-glm(CountInvInd ~ River/Site, family="poisson", offset=log(Area), data=data)
+#ict3<-glm(CountInvInd ~ River, family = "poisson", offset=log(Area), data=data)
+#ict2<-glm(CountInvInd ~ River/Site/Bank, family="poisson", offset=log(Area), data=data)
+#display(ict0)
+#display(ict1)
+#display(ict2)
+#summary(ict2)
+#anova(ict1, ict2, test="Chisq")
+
+ict0<-glm(CountInvInd ~ 0, family="quasipoisson", offset=log(Area), data=data)
+ict1<-glm(CountInvInd ~ -1 + River/Site, family="quasipoisson", offset=log(Area), data=data)
+ict2<-glm(CountInvInd ~ -1 + River/Site/Bank, family="quasipoisson", offset=log(Area), data=data)
 display(ict0)
 display(ict1)
 display(ict2)
@@ -223,13 +262,23 @@ data$InvHerbCov[data$InvHerbCov > 1] <- 1
 #cov1<-glm(HerbCov ~ River + (River/Site) + (Site/Bank), family="quasibinomial", data=data)
 #cov2<-glm(HerbCov ~ River + (River/Site), family="quasibinomial", data=data)
 #anova(cov2, cov1, test = "Chisq")
-cov0<-glm(HerbCov ~ 1, family="binomial", data=data)
-cov1<-glm(HerbCov ~ River/Site, family="binomial", data=data)
-cov2<-glm(HerbCov ~ River/Site/Bank, family="binomial", data=data)
+
+#cov0<-glm(HerbCov ~ 1, family="binomial", data=data)
+#cov1<-glm(HerbCov ~ River/Site, family="binomial", data=data)
+#cov2<-glm(HerbCov ~ River/Site/Bank, family="binomial", data=data)
+#display(cov0)
+#display(cov1)
+#display(cov2)
+#anova(cov1, cov2, test="Chisq")
+
+cov0<-glm(HerbCov ~ 0, family="quasibinomial", data=data)
+cov1<-glm(HerbCov ~ -1 + River/Site, family="quasibinomial", data=data)
+cov2<-glm(HerbCov ~ -1 + River/Site/Bank, family="quasibinomial", data=data)
 display(cov0)
 display(cov1)
 display(cov2)
 anova(cov1, cov2, test="Chisq")
+summary(cov2)
 
 #Percent native cover
 #-------------------------------------
@@ -237,13 +286,22 @@ anova(cov1, cov2, test="Chisq")
 #ncov2<-glm(NatHerbCov ~ River + (River/Site), family="quasibinomial", data=data)
 #anova(ncov2, ncov1, test = "Chisq")
 
-ncov0<-glm(NatHerbCov ~ 1, family="binomial", data=data)
-ncov1<-glm(NatHerbCov ~ River/Site, family="binomial", data=data)
-ncov2<-glm(NatHerbCov ~ River/Site/Bank, family="binomial", data=data)
+# ncov0<-glm(NatHerbCov ~ 1, family="binomial", data=data)
+# ncov1<-glm(NatHerbCov ~ River/Site, family="binomial", data=data)
+# ncov2<-glm(NatHerbCov ~ River/Site/Bank, family="binomial", data=data)
+# display(ncov0)
+# display(ncov1)
+# display(ncov2)
+# anova(ncov1, ncov2, test="Chisq")
+
+ncov0<-glm(NatHerbCov ~ 0, family="quasibinomial", data=data)
+ncov1<-glm(NatHerbCov ~ -1 + River/Site, family="quasibinomial", data=data)
+ncov2<-glm(NatHerbCov ~ -1 + River/Site/Bank, family="quasibinomial", data=data)
 display(ncov0)
 display(ncov1)
 display(ncov2)
 anova(ncov1, ncov2, test="Chisq")
+summary(ncov2)
 
 #Percent introduced cover
 #-------------------------------------
@@ -251,13 +309,22 @@ anova(ncov1, ncov2, test="Chisq")
 #icov2<-glm(InvHerbCov ~ River + (River/Site), family="quasibinomial", data=data)
 #anova(icov2, icov1)
 
-icov0<-glm(InvHerbCov ~ 1, family="binomial", data=data)
-icov1<-glm(InvHerbCov ~ River/Site, family="binomial", data=data)
-icov2<-glm(InvHerbCov ~ River/Site/Bank, family="binomial", data=data)
+# icov0<-glm(InvHerbCov ~ 1, family="binomial", data=data)
+# icov1<-glm(InvHerbCov ~ River/Site, family="binomial", data=data)
+# icov2<-glm(InvHerbCov ~ River/Site/Bank, family="binomial", data=data)
+# display(icov0)
+# display(icov1)
+# display(icov2)
+# anova(icov1, icov2, test="Chisq")
+
+icov0<-glm(InvHerbCov ~ 0, family="quasibinomial", data=data)
+icov1<-glm(InvHerbCov ~ -1 + River/Site, family="quasibinomial", data=data)
+icov2<-glm(InvHerbCov ~ -1 + River/Site/Bank, family="quasibinomial", data=data)
 display(icov0)
 display(icov1)
 display(icov2)
 anova(icov1, icov2, test="Chisq")
+summary(icov2)
 
 ```
 
@@ -415,3 +482,8 @@ m2 <- update(m1, . ~ . - prog)
 ## test model differences with chi square test
 anova(m2, m1, test = "Chisq")
 ```
+
+
+
+Figures with the new standard errors from the GLM
+
