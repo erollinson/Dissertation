@@ -64,9 +64,23 @@ Questions: is this model comparison (with and without bank) the correct approach
 
 Note from Gelman and Hill  page 117 - adjust inferences for overdispersion by multiplying the standard errors of all the coefficient estimates by the quare root of the estimated overdispersion.
 
+For all of the models below, the former code based on the models I wrote for ANOVA is commented out, and new code (cleaner models and correcting for area within the model) is written below each.
 
 ```{r}
-#For all of the models below, the former code based on the models I wrote for ANOVA is commented out, and new code (cleaner models and correcting for area within the model) is written below each.
+#quick plot of the species counts to have handy while comparing poisson and quasipoisson (poisson p=0.048, quasipoisson p=0.837).
+qplot(data=data, y=CountSp, x=Bank, geom("point"))
+```
+
+these are the changes from heather - "-1" to take the intercept out and then return to "summary" to get the p values.  look into how to interpret estimates after log-correction.
+
+this produces very different values than the original approach; poisson vs. quasipoisson also produce very different results (anova completely identical except for radically different p values).  
+
+n.b. running "poisson" does not provide an overdispersion parameter while "quasipoisson" does; although in the sample results shown in Gelman and Hill both show an overdispersion parameter. Quasipoisson is automatically applying the overdispersion parameter to the se, which i assume is then carried over into the chi-sq test?  But the anova table is 100% identical except for the p-value, so I'm not exactly sure what's happening here.
+
+
+```{r}
+#run everything quasi, subtract out the intercept, report p-values from the summary as such  
+#why am I removing the intercept?  Added back in for now for more interpretable model comparisons. (To my eye, anyway.)
 
 
 #Number of species per meter
@@ -83,10 +97,7 @@ Note from Gelman and Hill  page 117 - adjust inferences for overdispersion by mu
 #display(rich2)
 #anova(rich1, rich2, test="Chisq")
 
-#run everything quasi, subtract out the intercept, report p-values from the summary as such  
-#why am I removing the intercept?
 
-#demo with quasipoisson
 rich0<-glm(CountSp ~ 1, family="quasipoisson", offset=log(Area), data=data)
 rich1<-glm(CountSp ~ River, family ="quasipoisson", offset=log(Area), data=data)
 rich2<-glm(CountSp ~ River/Site, family="quasipoisson", offset=log(Area), data=data)
@@ -97,16 +108,8 @@ display(rich2)
 display(rich3)
 anova(rich0,rich1,rich2,rich3, test="Chisq")
 summary(rich3)
+
 model.matrix(rich3) #use this on the model of interest (rich1, rich2, etc - to look at all the comparisons in the model matrix and confirm what contrasts go with which somewhat-obscure name in the summary)
-
-
-#these are the changes from heather - "-1" to take the intercept out and then return to "summary" to get the p values.  look into how to interpret estimates after log-correction.
-#this produces very different values than the original approach; poisson vs. quasipoisson also produce very different results (anova completely identical except for radically different p values).  
-#n.b. running "poisson" does not provide an overdispersion parameter while "quasipoisson" does; although in the sample results shown in Gelman and Hill both show an overdispersion parameter. Quasipoisson is automatically applying the overdispersion parameter to the se, which i assume is then carried over into the chi-sq test?  But the anova table is 100% identical except for the p-value, so I'm not exactly sure what's happening here.
-
-#quick plot of the species counts to have handy while comparing poisson and quasipoisson (poisson p=0.048, quasipoisson p=0.837).
-qplot(data=data, y=CountSp, x=Bank, geom("point"))
-
 
 #Number of native species per meter
 #-------------------------------------
@@ -155,7 +158,7 @@ irich3<-glm(CountInvSp ~ River/Site/Bank, family="quasipoisson", offset=log(Area
 display(irich0)
 display(irich1)
 display(irich2)
-summary (irich2)
+summary (irich3)
 anova(irich0, irich1,irich2, irich3, test="Chisq")
 
 
@@ -236,7 +239,7 @@ ict3<-glm(CountInvInd ~ River/Site/Bank, family="quasipoisson", offset=log(Area)
 display(ict0)
 display(ict1)
 display(ict2)
-summary(ict2)
+summary(ict3)
 anova(ict0, ict1, ict2, ict3, test="Chisq")
 ```
 
@@ -293,7 +296,7 @@ display(cov0)
 display(cov1)
 display(cov2)
 anova(cov0, cov1, cov2, cov3, test="Chisq")
-summary(cov2)
+summary(cov3)
 
 #Percent native cover
 #-------------------------------------
@@ -454,6 +457,14 @@ up<-specaccum(quadmatrix[762:1542, 3:247], method="random", permutations = 999, 
 plot(gl, ci.type="line", ci.col="blue", xlab = "Quadrats", ylab = "Accumulated Species")
 plot(up, add=TRUE, ci.type="line", ci.col="red")
 ```
+
+Testing significance?  Mao and Li (Biometrics 2009) suggest an eigenvalue adjusted chi-squared test, but the method is super confusing.  Here's code for a chi-squared test but no guarantees of accuracy.
+
+```{r}
+lines<-c(gl$richness, up$richness)
+> chisq.test(lines)
+```
+
 
 Plotting the species accumulation curve in ggplot2 for better visualizations for print
 ```{r}

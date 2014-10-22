@@ -59,6 +59,56 @@ shapiro.test(data$CountNatIndPerM)
 shapiro.test(data$InvHerbCov)
 shapiro.test(data$NatHerbCov)
 
+#to test for homogeneity of variances (P>0.05 = homogeneous)
+bartlett.test(data$CountSp, data$River)
+bartlett.test(data$CountSpPerM, data$River)
+bartlett.test(data$CountInd, data$River)
+bartlett.test(data$CountIndPerM, data$River)
+bartlett.test(data$ShanDiv, data$River)
+bartlett.test(data$CountInvSp, data$River)
+bartlett.test(data$CountInvSpPerM, data$River)
+bartlett.test(data$CountNatSp, data$River)
+bartlett.test(data$CountNatSpPerM, data$River)
+bartlett.test(data$CountInvInd, data$River)
+bartlett.test(data$CountInvIndPerM, data$River)
+bartlett.test(data$CountNatInd, data$River)
+bartlett.test(data$CountNatIndPerM, data$River)  ### non-homogeneous
+bartlett.test(data$InvHerbCov, data$River)  ### non-homogeneous
+bartlett.test(data$NatHerbCov, data$River)
+
+bartlett.test(data$CountSp, data$Site)
+bartlett.test(data$CountSpPerM, data$Site)
+bartlett.test(data$CountInd, data$Site) ### non-homogeneous
+bartlett.test(data$CountIndPerM, data$Site)
+bartlett.test(data$ShanDiv, data$Site)
+bartlett.test(data$CountInvSp, data$Site)
+bartlett.test(data$CountInvSpPerM, data$Site)
+bartlett.test(data$CountNatSp, data$Site)
+bartlett.test(data$CountNatSpPerM, data$Site)
+bartlett.test(data$CountInvInd, data$Site)
+bartlett.test(data$CountInvIndPerM, data$Site)
+bartlett.test(data$CountNatInd, data$Site)
+bartlett.test(data$CountNatIndPerM, data$Site) ### non-homogeneous
+bartlett.test(data$InvHerbCov, data$Site)
+bartlett.test(data$NatHerbCov, data$Site)
+
+bartlett.test(data$CountSp, data$Bank)
+bartlett.test(data$CountSpPerM, data$Bank)
+bartlett.test(data$CountInd, data$Bank)
+bartlett.test(data$CountIndPerM, data$Bank)
+bartlett.test(data$ShanDiv, data$Bank)
+bartlett.test(data$CountInvSp, data$Bank)
+bartlett.test(data$CountInvSpPerM, data$Bank)
+bartlett.test(data$CountNatSp, data$Bank)
+bartlett.test(data$CountNatSpPerM, data$Bank)
+bartlett.test(data$CountInvInd, data$Bank)
+bartlett.test(data$CountInvIndPerM, data$Bank)
+bartlett.test(data$CountNatInd, data$Bank)
+bartlett.test(data$CountNatIndPerM, data$Bank) ### non-homogeneous
+bartlett.test(data$InvHerbCov, data$Bank)
+bartlett.test(data$NatHerbCov, data$Bank)
+
+
 #response variables that are non-normal are: CountInd, ShanDiv, CountInvInd, CountInvIndPerM, CountNatInd, CountNatIndPerM, InvHerbCov, NatHerbCov
 #transform counts and ShanDiv as square root; transform cover data as arcsin
 
@@ -147,6 +197,14 @@ anova(natherbcov)
 
 herbcov <- lm(SQRTASINHerbCov ~ (River/Site) + (Site/Bank), data)
 anova(herbcov)
+
+
+#Post-transformation for those marked as non-homogeneous - all are OK now
+bartlett.test(data$SQRTCountNatIndPerM, data$River)
+bartlett.test(data$SQRTASINInvHerbCov, data$River)  
+bartlett.test(data$SQRTCountInd, data$Site) ### 
+bartlett.test(data$SQRTCountNatIndPerM, data$Site) 
+bartlett.test(data$SQRTCountNatIndPerM, data$Bank) 
 
 
 #----------------------------------------------------------------
