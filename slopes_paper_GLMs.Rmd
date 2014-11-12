@@ -36,7 +36,7 @@ utils::View(matrix)
 The most basic possible plot to look at all the points for greenline versus upslope, for whichever variable in "data" is desired:
 ```{r}
 require(ggplot2)
-qplot(data=data, y=CountSp, x=Bank, geom("point"))
+qplot(data=data, y=CountSp, x=River, geom("point"))
 ```
 
 GLMs
@@ -68,7 +68,7 @@ For all of the models below, the former code based on the models I wrote for ANO
 
 ```{r}
 #quick plot of the species counts to have handy while comparing poisson and quasipoisson (poisson p=0.048, quasipoisson p=0.837).
-qplot(data=data, y=CountSp, x=Bank, geom("point"))
+qplot(data=data, y=CountSpPerM, x=River, geom("point"))
 ```
 
 these are the changes from heather - "-1" to take the intercept out and then return to "summary" to get the p values.  look into how to interpret estimates after log-correction.

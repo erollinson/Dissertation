@@ -535,6 +535,14 @@ countnatsppermplot + theme_bw() + theme (panel.grid.major=element_line(color = N
 countinvindpermplot <- qplot(data=data, y=CountInvIndPerM, x=River, geom="boxplot")
 countinvindpermplot + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))  + xlab("River") + ylab("Number of Introduced Individuals per m^2")
 
+
+#testingboxplot formats for mary!
+
+testplot<-ggplot(data, aes(x=River, y=CountSp)) + geom_boxplot() + stat_summary(fun.y = "mean", geom = "text", label="-----------", size= 10, color= "red")
+testplot
+testplot2<-ggplot(data, aes(x=River, y=CountSp)) + geom_boxplot() + stat_summary(fun.y = "mean", geom = "text", label="____________", size= 10, color= "red", vjust=-0.16)
+testplot2
+
 #plotting two figures next to each other
 par(mfrow = c(1,2))
 #then add the two plots
