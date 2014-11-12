@@ -1,0 +1,38 @@
+---
+title: "Analysis of Extensive Watershed Plant Community Sampling (Chapter 3 pt 1)"
+author: "Emily J. Rollinson"
+date: "Wednesday, November 12, 2014"
+output: html_document
+---
+
+Import the species list
+```{r}
+require(RCurl)
+options(RCurlOptions = list(cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")))
+raw <- getURL("https://raw.githubusercontent.com/erollinson/Dissertation/master/2013_species_presence_list.csv") #insert the  raw URL for the data file on github here
+list <- read.csv(text = raw) #read in the github file
+```
+
+Cast the list into a site by species matrix, and convert the output (default of class 'cast') to a dataframe.
+
+```{r}
+require(reshape)
+matrix<-cast(list, River ~ Species, value='Presence')
+matrix<-as.data.frame(matrix)
+```
+
+Import the environment matrix
+```{r}
+require(RCurl)
+options(RCurlOptions = list(cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")))
+raw <- getURL("https://raw.githubusercontent.com/erollinson/Dissertation/master/2013_environment_matrix.csv") #insert the  raw URL for the data file on github here
+env<- read.csv(text = raw) #read in the github file
+```
+
+Run a CCA
+n.b. dummycoding for river flow direction is 1 through 8 for N, NE, E, SE, S, SW, W, NW respectively
+
+```{r}
+require(vegan)
+cca.env<-(cca(matrix, env))
+```
