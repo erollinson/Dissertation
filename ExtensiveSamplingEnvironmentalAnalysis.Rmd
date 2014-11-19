@@ -18,7 +18,7 @@ Cast the list into a site by species matrix, and convert the output (default of 
 ```{r}
 require(reshape)
 matrix<-cast(list, River ~ Species, value='Presence')
-matrix<-as.data.frame(matrix)
+comm<-as.data.frame(matrix)
 ```
 
 Import the environment matrix
@@ -29,10 +29,50 @@ raw <- getURL("https://raw.githubusercontent.com/erollinson/Dissertation/master/
 env<- read.csv(text = raw) #read in the github file
 ```
 
+Reframe the matrices so that the river names are row names and not a column
+```{r}
+rownames(comm)<-comm$River
+comm<-comm[,2:288]
+rownames(env)<-env$River
+env<-env[,2:33]
+```
+
+Reframe the matrices so all the columns are numeric
+```{r}
+comm[,1:287]<-sapply(comm[,1:287], as.numeric)
+env[,1:32]<-sapply(env[,1:32], as.numeric)
+```
+
 Run a CCA
 n.b. dummycoding for river flow direction is 1 through 8 for N, NE, E, SE, S, SW, W, NW respectively
+n.b. gave keyser kill 0 LOI - had no sample because it was entirely too rocky to sample, that seems a reasonable placeholder
+Is there a way to do spatial control instead including lat/long as variables?
+
 
 ```{r}
 require(vegan)
-cca.env<-(cca(matrix, env))
+cca.env<-(cca(comm, env))
+cca.env
 ```
+
+
+plot the CCA - by default, this shows species as red crosses and rivers as open circles. See http://ecology.msu.montana.edu/labdsv/R/labs/lab12/lab12.html for additional plotting information.
+
+```{r}
+plot(cca.env)
+```
+
+
+put some numbers onto the cca
+
+```{r}
+require(vegan)
+anova.cca(cca.env, alpha=0.05, beta=0.01, step=100, perm.max=0000)
+```
+
+
+best subset of environmental variables with maximum (rank) correlation with community dissimilarities
+
+```{r}
+require(vegan)
+bioenv(comm, env, upto=4)
