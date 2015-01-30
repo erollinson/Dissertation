@@ -1,0 +1,5 @@
+Demos of graphics
+
+```{r}
+head(iris)
+require(ggplot2)
