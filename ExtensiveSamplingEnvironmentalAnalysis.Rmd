@@ -99,4 +99,25 @@ require(vegan)
 bioenv(comm, env100m, upto=4)
 ```
 
-subset the 100m environmental data to those that are most likely of interest (remove isothermality, etc)
+subset the 100m environmental data to those that are most likely of interest (remove isothermality, etc) and sum the land cover to broader categories
+
+```{r}
+envsub<-env100m[,c(1:2,6:7,16:38)]
+envsub$developed<-rowSums(envsub[,24:27])
+envsub$forest<-rowSums(envsub[,19:21])
+envsub$cultivated<-rowSums(envsub[,15:16])
+envsub$wetlands<-rowSums(envsub[,13:14])
+envsub2<-envsub[,c(1:12,28:31)]
+```
+
+CCA for the subset
+
+```{r}
+cca.envsub2<-(cca(comm, envsub2))
+plot(cca.envsub2)
+anovasub2<-anova.cca(cca.envsub2, alpha=0.05, beta=0.01, step=100, perm.max=999)
+anovasub2
+bioenv(comm, envsub2, upto=16)
+```
+
+
