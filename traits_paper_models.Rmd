@@ -8,10 +8,18 @@ output: html_document
 Import the dataset, without the initial column of row names
 All columns need to be numeric
 Then add row names for plotting
+Reframe the matrices so that the site names are row names and not a column
+
 ```{r}
-comm<-read.csv("2012_abundancematrix.csv")
-rownames(comm) <- c("B1GA", "B1GB", "BIUA", "B1UB", "B2GA", "B2GB", "B2UA", "B2UB", "I1GA", "I1GB", "I1UA", "I1UB", "I2GA", "I2GB", "I2UA", "I2UB", "K1GA", "K1GB", "K1UA", "K1UB", "K2GA", "K2GB", "K2UA", "K2UB")
+require(RCurl)
+options(RCurlOptions = list(cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")))
+raw <- getURL("https://raw.githubusercontent.com/erollinson/Dissertation/master/2012_abundancematrix_modified.csv") #insert the  raw URL for the data file on github here
+comm<- read.csv(text = raw) #read in the github file
+
 ```
+
+
+
 
 Need to create a matrix with trait abundance values (site by trait, derived from site by species).  Potentially follow method in Ackerly and Cornwell 2007?
 

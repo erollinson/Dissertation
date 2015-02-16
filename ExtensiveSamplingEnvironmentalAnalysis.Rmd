@@ -121,3 +121,22 @@ bioenv(comm, envsub2, upto=16)
 ```
 
 
+add elevation remove longitude
+distance to a highway
+distance to a major population center
+human population in a zip code?
+add phylogenetic diversity
+check my LOI against the % organic in complexes with multiple series (figure out which soil series i was likely in)
+test pH, measure %sand?
+soil depth in the series?  (before hitting bedrock) organic matter?   - take from the ucdavis series profiles
+
+multi-scale niche?  
+
+email to jessica: http://casoilresource.lawr.ucdavis.edu/gmap/
+
+
+prisma diagram for lab meeting
+
+ask susan about indonesia species
+ageratina adenophera
+chromolina spp. (2)
