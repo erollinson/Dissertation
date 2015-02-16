@@ -5,19 +5,39 @@ date: "Friday, January 30, 2015"
 output: html_document
 ---
 
-Import the dataset, without the initial column of row names
-All columns need to be numeric
-Then add row names for plotting
-Reframe the matrices so that the site names are row names and not a column
-
+Import the community dataset  (should I be making a new one by cover and using that instead?)
 ```{r}
 require(RCurl)
 options(RCurlOptions = list(cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")))
 raw <- getURL("https://raw.githubusercontent.com/erollinson/Dissertation/master/2012_abundancematrix_modified.csv") #insert the  raw URL for the data file on github here
-comm<- read.csv(text = raw) #read in the github file
+commtemp<- read.csv(text = raw) #read in the github file
 
 ```
 
+Make a copy of the imported dataset and reframe so that the site names are row names and not a column
+```{r}
+comm<-commtemp
+rownames(comm)<-comm$Site
+comm<-comm[,4:246]
+```
+
+Import the list of quantitative traits and make sure all values are numeric
+n.b. apparently if numeric values read in as factors, you have to go through converting to as.character and then to as.numeric to avoid R changing the values of the numbers in that column (which it was doing when I only used as.numeric)
+
+```{r}
+require(RCurl)
+options(RCurlOptions = list(cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")))
+raw <- getURL("https://raw.githubusercontent.com/erollinson/Dissertation/master/TRY_quant_traits.csv") #insert the  raw URL for the data file on github here
+traitstemp<- read.csv(text = raw,) #read in the github file
+traitstemp$Value<-sapply(traitstemp$Value, as.character)
+traitstemp$Value<-sapply(traitstemp$Value, as.numeric)
+```
+
+Turn the traits list into a matrix, put  n/a for species/trait cells that do not have data
+```{r}
+require(reshape)
+traitmatrix2<-cast(traitstemp, Trait ~ Species, value='Value', fun.aggregate=mean)
+```
 
 
 

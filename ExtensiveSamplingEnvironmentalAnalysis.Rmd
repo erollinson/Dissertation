@@ -31,7 +31,7 @@ env<- read.csv(text = raw) #read in the github file
 
 Reframe the matrices so that the river names are row names and not a column
 ```{r}
-rownames(comm)<-comm$River
+rownames(comm)<-comm$Site
 comm<-comm[,2:288]
 rownames(env)<-env$River
 env<-env[,3:70]
