@@ -52,7 +52,7 @@ there are a number of "x" values in the cover list, which were presences with su
 require(RCurl)
 options(RCurlOptions = list(cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")))
 raw <- getURL("https://raw.githubusercontent.com/erollinson/Dissertation/master/TRY_quant_traits.csv") #insert the  raw URL for the data file on github here
-traitstemp<- read.csv(text = raw,) #read in the github file
+traitstemp<- read.csv(text = raw) #read in the github file
 traitstemp$Value<-sapply(traitstemp$Value, as.character)
 traitstemp$Value<-sapply(traitstemp$Value, as.numeric)
 ```
@@ -68,7 +68,8 @@ to view the full dataset
 utils::View(comm)
 ```
 
-export the traits list to Excel, since it has some mismatch issues with the community list
+export the traits list and community cover lists to Excel, since they have some mismatches in species content
+
 oh - probably because it contains all species and the community list just contains herbaceous species at the moment because that is the only group of plants with cover estimates - so we're exporting to make a list with just herbaceous species.  Additionally the full traits list requested all species observed in 2012 intensive sampling and 2013 extensive sampling; not all 2013 species were observed in 2012, and those are removed from the truncated list as well
 n.b. acer saccharum is still in both lists, seedlings had cover estimates
 
@@ -80,14 +81,128 @@ fix typo in comm, Hyperium mutilum to Hypericum mutilum
 
 ```{r}
 write.table(traitmatrix, file="TRY_traitsmatrix.csv", sep=",", row.names=F)
+write.table(comm_cover, file="2012_comm_cover.csv", sep=",", row.names=F)
 ```
 
-playing with the FD functional diversity package
+
+reimport the data edited as above
+```{r}
+#community
+comm2012<-read.csv("2012_comm_cover_herbs.csv")
+rownames(comm2012)<-comm2012$Site
+comm2012<-comm2012[,2:166]
+
+#traits
+traits2012<-read.csv("2012_TRY_traitsmatrix_herbs.csv")
+rownames(traits2012)<-traits2012$Trait
+traits2012<-traits2012[,2:166]
+
+```
+
+
+playing with the FD functional diversity package - species have to be columns in the community dataset and rows in the traits dataset
+
 ```{r}
 require(FD)
-dbFD(traitmatrix, comm_cover)
+#transpose the traits matrix
+traits2012trans<-t(traits2012)
+traits2012trans<-as.data.frame(traits2012trans)
+
+#this was exporting some tables to test additional mismatch problems
+#write.table(traits2012trans, file="traits2012_transposed.csv", sep=",", row.names=T)
+#write.table(comm2012, file="comm2012matchtest.csv", sep=",", row.names=T)
+
+#fixing capitalization mismatches?
+comm2012<-rename(comm2012, c("galium.boreale"="Galium.boreale"))
+
+#nope that doesn't work either
+
+dbFD(traits2012trans2, comm2012)
+
+#throws an error for 100% absent species; remove from files and try again.  Method - for species listing an NA rather than 0, that is a result of a cover that was too low to be estimable (<1% in a quadrat).  Assign all of these to be 1% cover in the site as a whole.
+
+#then it throws a new error about NAs in the distance matrix - need to remove traits for which no species has a value in this subset of the data.
+traits2012trans2<-read.csv("traits2012_transposed_noNAs.csv")
+rownames(traits2012trans2)<-traits2012trans2$Species
+traits2012trans2<-traits2012trans2[,2:74]
+
+#still throwing an error for NAs in the distance matrix... 
 
 ```
+
+I'll want to do all this again with number of individuals so i can include the woody species since that is an important component
+
+
+Make a trait dissimilarity matrix for the species
+```{r}
+require(cluster)
+traitdiss<-daisy(traits2012trans2, metric = "euclidean")
+traitdissim<-as.matrix(traitdiss)
+
+#try FD again with trait dissim? - no, it won't allow NAs with that
+#do I want gower or a different dissimilarity?
+
+I think I can work with this dissimilarity matrix or another one and make decisions about interpolating NAs or deleting certain species or traits
+
+write.table(traitdissim, file="2012_trait_dissimilarity.csv", sep=",", row.names=T)
+
+
+```
+
+
+editing the dissimilarity matrix in excel: if a species has 5 or fewer missing distances, interpolate.  more than 5, remove species from analysis.
+
+removed species (n=34):
+
+Carex bullata
+Didiplis.diandra
+Dryopteris.camyloptera
+Dryopteris.marginalis
+Echinochloa.muricata
+Eurybia.divaricata  
+Eutrochium.purpureum
+Halenia.deflexa
+Hydrocotyle.americana
+Hylotelephium.telephium
+Lactuca.canadensis
+Muhlenbergia.sobolifera
+Oxalis.grandis
+Paspalum.setaceum
+Polygonum.arifolium
+Polygonum.cespitosum
+Polystichum.acrostichoides  
+Potentilla.simplex
+Rubus.pubescens
+Rumex.triangulivalvis 
+Sanicula.odorata
+Scirpus.polyphyllus
+Sinapis.arvensis
+Smilax.glauca
+Solanum.ptycanthum
+Stellaria.pubera
+Symphyotrichum.dumosum
+Symphyotrichum.lateriflorum
+Teucrium.canadense
+Thalictrum.thalictroides
+Trifolium.arvense 
+Trifolium.campestre
+Viola.fimbriatula
+Viola.pubescens
+
+```{r}
+trim_trait_dis<-read.csv("2012_trait_dissimilarity_trim_averaged_NAs.csv")
+rownames(trim_trait_dis)<-trim_trait_dis$X
+trim_trait_dis<-trim_trait_dis[,2:132]
+trim_trait_dis<-as.matrix(trim_trait_dis)
+fit<-isoMDS(trim_trait_dis, k=2)
+fit
+x<-fit$points[,1]
+y<-fit$points[,2]
+plot(x,y)
+```
+
+rownames(traits2012)<-traits2012$Trait
+traits2012<-traits2012[,2:132]
 
 
 
@@ -96,3 +211,7 @@ Need to create a matrix with trait abundance values (site by trait, derived from
 fill a new matrix - for each community, make columns for each trait, average trait values for each species in the community
 
 would a species by trait matrix help?
+
+
+
+Trying a new method RLQ following https://climateecology.wordpress.com/2013/09/03/r-for-ecologists-rlq-analysis-semi-explained/ (this will be great to transfer into the extensive sampling analysis as well, if it works with presence/absence; in the meantime just borrowing some info).  ok maybe not so helpful here
