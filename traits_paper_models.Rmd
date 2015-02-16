@@ -5,24 +5,48 @@ date: "Friday, January 30, 2015"
 output: html_document
 ---
 
-Import the community dataset  (should I be making a new one by cover and using that instead?)
+Import the community species abundance dataset  (should I be making a new one by cover and using that instead?)
 ```{r}
 require(RCurl)
 options(RCurlOptions = list(cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")))
 raw <- getURL("https://raw.githubusercontent.com/erollinson/Dissertation/master/2012_abundancematrix_modified.csv") #insert the  raw URL for the data file on github here
-commtemp<- read.csv(text = raw) #read in the github file
-
+comm_abundance_temp<- read.csv(text = raw) #read in the github file
 ```
 
 Make a copy of the imported dataset and reframe so that the site names are row names and not a column
 ```{r}
-comm<-commtemp
-rownames(comm)<-comm$Site
-comm<-comm[,4:246]
+comm_abundance<-comm_abundance_temp
+rownames(comm_abundance)<-comm_abundance$Site
+comm_abundance<-comm_abundance[,4:246]
 ```
+
+Import a new community dataset with cover values
+```{r}
+require(RCurl)
+options(RCurlOptions = list(cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")))
+raw <- getURL("https://raw.githubusercontent.com/erollinson/Dissertation/master/2012_specieslist_herbcover.csv") #insert the  raw URL for the data file on github here
+comm_cover_temp<- read.csv(text = raw) #read in the github file
+```
+
+Trim cover dataset to needed columns and read cover as numeric
+```{r}
+comm_cover_temp<-comm_cover_temp[,c(5:7,9)]
+comm_cover_list<-rename(comm_cover_temp, c("Site.1"="Site", "Cover.."="Cover"))
+comm_cover_list$Cover<-sapply(comm_cover_list$Cover, as.character)
+comm_cover_list$Cover<-sapply(comm_cover_list$Cover, as.numeric)
+```
+
+Make a species cover matrix
+```{r}
+require(reshape)
+comm_cover<-cast(comm_cover_list, Site ~ Species, value="Cover", fun.aggregate=sum)
+comm_cover_quad<-as.data.frame(comm_cover_quad)
+```
+
 
 Import the list of quantitative traits and make sure all values are numeric
 n.b. apparently if numeric values read in as factors, you have to go through converting to as.character and then to as.numeric to avoid R changing the values of the numbers in that column (which it was doing when I only used as.numeric)
+there are a number of "x" values in the cover list, which were presences with such a minimal cover as to essentially be zero.  these are at the moment tranformed into NAs in this code and therefore absences
 
 ```{r}
 require(RCurl)
@@ -36,7 +60,33 @@ traitstemp$Value<-sapply(traitstemp$Value, as.numeric)
 Turn the traits list into a matrix, put  n/a for species/trait cells that do not have data
 ```{r}
 require(reshape)
-traitmatrix2<-cast(traitstemp, Trait ~ Species, value='Value', fun.aggregate=mean)
+traitmatrix<-cast(traitstemp, Trait ~ Species, value='Value', fun.aggregate=mean)
+```
+
+to view the full dataset
+```{r}
+utils::View(comm)
+```
+
+export the traits list to Excel, since it has some mismatch issues with the community list
+oh - probably because it contains all species and the community list just contains herbaceous species at the moment because that is the only group of plants with cover estimates - so we're exporting to make a list with just herbaceous species.  Additionally the full traits list requested all species observed in 2012 intensive sampling and 2013 extensive sampling; not all 2013 species were observed in 2012, and those are removed from the truncated list as well
+n.b. acer saccharum is still in both lists, seedlings had cover estimates
+
+will need to rename Athyrium filix-femina var. angustum in comm data to Athyrium filix-femina to match trait data
+same for Circaea lutetiana ssp. canadensis -> Circaea lutetiana
+Maianthemum racemosum ssp. racemosum -> Maianthemum racemosum
+also need to remove anything Genus sp. from comm list, and all the SP##
+fix typo in comm, Hyperium mutilum to Hypericum mutilum
+
+```{r}
+write.table(traitmatrix, file="TRY_traitsmatrix.csv", sep=",", row.names=F)
+```
+
+playing with the FD functional diversity package
+```{r}
+require(FD)
+dbFD(traitmatrix, comm_cover)
+
 ```
 
 
