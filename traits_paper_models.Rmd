@@ -206,6 +206,13 @@ traits2012<-traits2012[,2:132]
 
 
 
+
+It might be best to try the method as outlined in the proposal first using just a handful of traits, by hand, and then extend to the larger dataset at a later date.  Check - which traits show the most variation?  plot histograms
+
+The partitioning of variation in trait states will work better with the qualitative traits, stick with those for the stuff by hand.  
+
+
+
 Need to create a matrix with trait abundance values (site by trait, derived from site by species).  Potentially follow method in Ackerly and Cornwell 2007?
 
 fill a new matrix - for each community, make columns for each trait, average trait values for each species in the community
