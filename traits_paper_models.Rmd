@@ -25,7 +25,7 @@ Make a copy of the cover matrix and reframe so that the site names are row names
 ```{r}
 cover<-tempcover
 rownames(cover)<-cover$Code
-cover<-cover[,2:183]
+cover<-cover[,2:182]
 ```
 
 
@@ -35,32 +35,20 @@ Import the traits matrix and make sure all values are numeric
 require(RCurl)
 options(RCurlOptions = list(cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")))
 raw <- getURL("https://raw.githubusercontent.com/erollinson/Dissertation/master/TRY_traitsmatrix_quant_only2012sp.csv") #insert the  raw URL for the data file on github here
-traits<- read.csv(text = raw) #read in the github file
+traits<- read.csv(text = raw, check.names = FALSE) #read in the github file
 rownames(traits)<-traits$Trait
 traits<-traits[,2:182]
 ```
-
-
-
 
 playing with the FD functional diversity package - species have to be columns in the community dataset and rows in the traits dataset
 
 ```{r}
 require(FD)
 #transpose the traits matrix
-traits2012trans<-t(traits2012)
-traits2012trans<-as.data.frame(traits2012trans)
+traits_tp<-t(traits)
+traits_tp<-as.data.frame(traits_tp)
 
-#this was exporting some tables to test additional mismatch problems
-#write.table(traits2012trans, file="traits2012_transposed.csv", sep=",", row.names=T)
-#write.table(comm2012, file="comm2012matchtest.csv", sep=",", row.names=T)
-
-#fixing capitalization mismatches?
-comm2012<-rename(comm2012, c("galium.boreale"="Galium.boreale"))
-
-#nope that doesn't work either
-
-dbFD(traits2012trans2, comm2012)
+dbFD(traits_tp, cover)
 
 #throws an error for 100% absent species; remove from files and try again.  Method - for species listing an NA rather than 0, that is a result of a cover that was too low to be estimable (<1% in a quadrat).  Assign all of these to be 1% cover in the site as a whole.
 
@@ -73,45 +61,18 @@ traits2012trans2<-traits2012trans2[,2:74]
 
 ```
 
-I'll want to do all this again with number of individuals so i can include the woody species since that is an important component
 
 
-Make a trait dissimilarity matrix for the species
+Trying a different package
+
 ```{r}
+require(StatMatch)
+test<-gower.dist(cover, traits)
+
 require(cluster)
-traitdiss<-daisy(traits2012trans2, metric = "euclidean")
-traitdissim<-as.matrix(traitdiss)
-
-#try FD again with trait dissim? - no, it won't allow NAs with that
-#do I want gower or a different dissimilarity?
-
-I think I can work with this dissimilarity matrix or another one and make decisions about interpolating NAs or deleting certain species or traits
-
-write.table(traitdissim, file="2012_trait_dissimilarity.csv", sep=",", row.names=T)
-
+daisy()
 
 ```
-
-
-
-It might be best to try the method as outlined in the proposal first using just a handful of traits, by hand, and then extend to the larger dataset at a later date.  Check - which traits show the most variation?  plot histograms
-
-The partitioning of variation in trait states will work better with the qualitative traits, stick with those for the stuff by hand.  
-
-
-
-Need to create a matrix with trait abundance values (site by trait, derived from site by species).  Potentially follow method in Ackerly and Cornwell 2007?
-
-fill a new matrix - for each community, make columns for each trait, average trait values for each species in the community
-
-would a species by trait matrix help?
-
-
-
-Trying a new method RLQ following https://climateecology.wordpress.com/2013/09/03/r-for-ecologists-rlq-analysis-semi-explained/ (this will be great to transfer into the extensive sampling analysis as well, if it works with presence/absence; in the meantime just borrowing some info).  ok maybe not so helpful here
-
-
-
 
 
 
@@ -264,6 +225,36 @@ rownames(traits2012)<-traits2012$Trait
 traits2012<-traits2012[,2:132]
 
 
+Make a trait dissimilarity matrix for the species
+```{r}
+require(cluster)
+traitdiss<-daisy(traits2012trans2, metric = "euclidean")
+traitdissim<-as.matrix(traitdiss)
+
+#try FD again with trait dissim? - no, it won't allow NAs with that
+#do I want gower or a different dissimilarity?
+
+I think I can work with this dissimilarity matrix or another one and make decisions about interpolating NAs or deleting certain species or traits
+
+write.table(traitdissim, file="2012_trait_dissimilarity.csv", sep=",", row.names=T)
+
+
+```
+
+
+It might be best to try the method as outlined in the proposal first using just a handful of traits, by hand, and then extend to the larger dataset at a later date.  Check - which traits show the most variation?  plot histograms
+
+The partitioning of variation in trait states will work better with the qualitative traits, stick with those for the stuff by hand.  
+
+
+Need to create a matrix with trait abundance values (site by trait, derived from site by species).  Potentially follow method in Ackerly and Cornwell 2007?
+
+fill a new matrix - for each community, make columns for each trait, average trait values for each species in the community
+
+would a species by trait matrix help?
+
+
+Trying a new method RLQ following https://climateecology.wordpress.com/2013/09/03/r-for-ecologists-rlq-analysis-semi-explained/ (this will be great to transfer into the extensive sampling analysis as well, if it works with presence/absence; in the meantime just borrowing some info).  ok maybe not so helpful here
 
 
 
