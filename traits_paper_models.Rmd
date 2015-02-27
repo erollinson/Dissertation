@@ -43,6 +43,34 @@ comm_cover<-cast(comm_cover_list, Site ~ Species, value="Cover", fun.aggregate=s
 comm_cover_quad<-as.data.frame(comm_cover_quad)
 ```
 
+Import the list of traits and make sure all values are numeric
+
+```{r}
+require(RCurl)
+options(RCurlOptions = list(cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")))
+raw <- getURL("https://raw.githubusercontent.com/erollinson/Dissertation/master/TRY_quant_traits_cleaned.csv") #insert the  raw URL for the data file on github here
+traitstemp<- read.csv(text = raw) #read in the github file
+traitstemp$Value<-sapply(traitstemp$Value, as.character)
+traitstemp$Value<-sapply(traitstemp$Value, as.numeric)
+```
+
+Turn the traits list into a matrix, put  n/a for species/trait cells that do not have data
+```{r}
+require(reshape)
+traitmatrix<-cast(traitstemp, Trait ~ Species, value='Value', fun.aggregate=mean)
+```
+
+To make the NANs something else
+
+quadmat[is.na(quadmat)] <- 00 #refills the empty cells with 0
+
+to view the full dataset
+```{r}
+utils::View(comm)
+```
+
+
+///All below are practice - now deprecated code for a set of the traits data that had not been cleaned for units consistency, etc///
 
 Import the list of quantitative traits and make sure all values are numeric
 n.b. apparently if numeric values read in as factors, you have to go through converting to as.character and then to as.numeric to avoid R changing the values of the numbers in that column (which it was doing when I only used as.numeric)
