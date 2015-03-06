@@ -1,0 +1,19 @@
+A vague attempt at RLQ analysis
+========================================================
+
+Read in the data
+```{r}
+traits<-read.csv("site_by_trait_matrix_interp.csv") #this would be better if I make a new traits matrix with all 2013 species, then a presence/absence matrix for all 2013 species
+
+
+```
+
+```{r}
+require(ade4)
+```
+
+
+coa1<- dudi.coa(on a site x species abundance matrix with species in rows)
+dudimil<- dudi.hillsmith(on a site x environment matrix with environment in rows)
+duditrait<- dudi.hillsmith(on a species x trait matrix with traits in rows)
+rlq1 <-rlq (dudimil, coa1, duditrait)
