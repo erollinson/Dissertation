@@ -1,1619 +1,1399 @@
-River,Species,Presence,,,,TRAITS,,,2013OBS
-Mill Creek,Abies balsamea,1,,,,Abies balsamea,,,Abies balsamea
-New Pond Brook,Abies balsamea,1,,,,Acer negundo,,,Acer negundo
-Sherriff Lake Outlet,Abies balsamea,1,,,,Acer pensylvanicum,,,Acer pensylvanicum
-Kennyetto Creek,Acer negundo,1,,,,Acer rubrum,,,Acer rubrum
-Landsman Kill,Acer negundo,1,,,,Acer saccharinum,,,Acer saccharinum
-Minots Corner Road,Acer negundo,1,,,,Acer saccharum,,,Acer saccharum
-Snook Kill,Acer negundo,1,,,,Acer spicatum,,,Acer spicatum
-Stewart Creek,Acer pensylvanicum,1,,,,Achillea millefolium,,,Achillea millefolium
-Bullhead Pond Brook,Acer rubrum,1,,,,Ageratina altissima,,,Ageratina altissima
-Cadman Creek,Acer rubrum,1,,,,Agrimonia gryposepala,,,Agrimonia gryposepala
-Evas Kill,Acer rubrum,1,,,,Agrostis perennans,,,Agrostis perennans
-Fawn Lake,Acer rubrum,1,,,,Alliaria petiolata,,,Alliaria petiolata
-Hudson River,Acer rubrum,1,,,,Alnus incana,,,Alnus incana
-Indian Kill,Acer rubrum,1,,,,Ambrosia artemisiifolia,,,Ambrosia artemisiifolia
-Kayaderosseras Creek,Acer rubrum,1,,,,Ambrosia trifida,,,Ambrosia trifida
-Mill Creek,Acer rubrum,1,,,,Amphicarpaea bracteata,,,Amphicarpaea bracteata
-New Pond Brook,Acer rubrum,1,,,,Anemone virginiana,,#REF!,Anemone virginiana
-North Branch West Stony Creek,Acer rubrum,1,,,,Apios americana,,!!!!,Apocynum cannabinum
-Quacken Kill,Acer rubrum,1,,,,Apocynum cannabinum,,!!!!,Arctium lappa
-Trout Brook,Acer rubrum,1,,,,Arctium lappa,,!!!!,Arisaema triphyllum
-Fishkill Creek,Acer saccharinum,1,,,,Arisaema triphyllum,,!!!!,Artemisia vulgaris
-Kayaderosseras Creek,Acer saccharinum,1,,,,Artemisia vulgaris,,!!!!,Asclepias syriaca
-Roeliff Jansen Kill,Acer saccharinum,1,,,,Asarum canadense,,!!!!,Athyrium filix-femina
-Sprout Creek,Acer saccharinum,1,,,,Asclepias syriaca,,!!!!,Barbarea vulgaris
-Steele Creek,Acer saccharinum,1,,,,Athyrium filix-femina,,!!!!,Berberis thunbergii
-Alplaus Kill,Acer saccharum,1,,,,Barbarea vulgaris,,!!!!,Betula alleghaniensis
-Ballston Creek,Acer saccharum,1,,,,Berberis thunbergii,,!!!!,Betula papyrifera
-Beaver Kill,Acer saccharum,1,,,,Betula alleghaniensis,,!!!!,Bidens connata
-Bullhead Pond Brook,Acer saccharum,1,,,,Betula lenta,,!!!!,Bidens frondosa
-Cadman Creek,Acer saccharum,1,,,,Betula papyrifera,,!!!!,Blephilia hirsuta
-Daly Creek,Acer saccharum,1,,,,Betula populifolia,,!!!!,Boehmeria cylindrica
-Evas Kill,Acer saccharum,1,,,,Bidens connata,,!!!!,Brachyelytrum aristosum
-Fawn Lake,Acer saccharum,1,,,,Bidens frondosa,,!!!!,Brassica nigra
-Hans Creek,Acer saccharum,1,,,,Blephilia hirsuta,,!!!!,Bromus ciliatus
-Indian Brook,Acer saccharum,1,,,,Boehmeria cylindrica,,!!!!,Bromus inermis
-Keyser Kill,Acer saccharum,1,,,,Brassica nigra,,!!!!,Bromus pubescens
-Kinderhook Creek,Acer saccharum,1,,,,Bromus ciliatus,,!!!!,Calystegia sepium
-Lansing Kill,Acer saccharum,1,,,,Bromus inermis,,!!!!,Carex crinita
-Plotter Kill,Acer saccharum,1,,,,Bromus pubescens,,!!!!,Carex scoparia
-Potic Creek,Acer saccharum,1,,,,Calystegia sepium,,!!!!,Carpinus caroliniana
-Quacken Kill,Acer saccharum,1,,,,Carex buekii,,!!!!,Carya cordiformis
-Saw Kill,Acer saccharum,1,,,,Carex crinita,,!!!!,Carya ovata
-Stewart Creek,Acer saccharum,1,,,,Carex scoparia,,!!!!,Centaurea jacea
-Stony Creek,Acer saccharum,1,,,,Carpinus caroliniana,,!!!!,Centaurea nigrescens
-Trout Brook,Acer saccharum,1,,,,Carya cordiformis,,!!!!,Centaurea stoebe
-Valatie Kill,Acer saccharum,1,,,,Carya ovata,,!!!!,Cephalanthus occidentalis
-Wharton Hollow Creek,Acer saccharum,1,,,,Catalpa speciosa,,!!!!,Chelidonium majus
-Stewart Creek,Acer spicatum,1,,,,Caulophyllum thalictroides,,!!!!,Chelone glabra
-Cedar River,Achillea millefolium,1,,,,Centaurea jacea,,!!!!,Cicuta maculata
-Four Mile Brook,Achillea millefolium,1,,,,Centaurea nigrescens,,!!!!,Cinna arundinacea
-New Pond Brook,Achillea millefolium,1,,,,Centaurea stoebe,,!!!!,Circaea lutetiana
-Paragon Brook,Achillea millefolium,1,,,,Cephalanthus occidentalis,,!!!!,Clematis virginiana
-Timmerman Creek,Achillea millefolium,1,,,,Chamaesyce maculata,,!!!!,Clinopodium vulgare
-Big Brook,Ageratina altissima,1,,,,Chelidonium majus,,!!!!,Collinsonia canadensis
-Evas Kill,Ageratina altissima,1,,,,Chelone glabra,,!!!!,Commelina communis
-Green River,Ageratina altissima,1,,,,Cicuta maculata,,!!!!,Cornus amomum
-Indian Kill,Ageratina altissima,1,,,,Cinna arundinacea,,!!!!,Cornus canadensis
-Kinderhook Creek,Ageratina altissima,1,,,,Circaea lutetiana,,!!!!,Cornus obliqua
-Plotter Kill,Ageratina altissima,1,,,,Clematis virginiana,,!!!!,Cornus rugosa
-Quacken Kill,Ageratina altissima,1,,,,Clinopodium vulgare,,!!!!,Cornus sericea
-Alplaus Kill,Agrimonia gryposepala,1,,,,Collinsonia canadensis,,!!!!,Corylus cornuta
-Kinderhook Creek,Agrimonia gryposepala,1,,,,Commelina communis,,!!!!,Cryptotaenia canadensis
-Mill Brook,Agrimonia gryposepala,1,,,,Cornus amomum,,!!!!,Cynanchum louiseae
-Alplaus Kill,Agrostis perennans,1,,,,Cornus canadensis,,!!!!,Cyperaceae_a
-Cadman Creek,Agrostis perennans,1,,,,Cornus rugosa,,!!!!,Cyperaceae_b
-Chester Creek,Agrostis perennans,1,,,,Cornus sericea,,!!!!,Cyperus strigosus
-Daly Creek,Agrostis perennans,1,,,,Corylus cornuta,,!!!!,Dactylis glomerata
-Hans Creek,Agrostis perennans,1,,,,Cryptotaenia canadensis,,!!!!,Daucus carota
-Indian Kill,Agrostis perennans,1,,,,Cynodon dactylon,,!!!!,Dianthus armeria
-Keyser Kill,Agrostis perennans,1,,,,Cyperus compressus,,!!!!,Dichanthelium clandestinum
-Mill Brook,Agrostis perennans,1,,,,Cyperus strigosus,,!!!!,Digitaria sanguinalis
-Mill Creek,Agrostis perennans,1,,,,Dactylis glomerata,,!!!!,Dioscorea villosa
-New Pond Brook,Agrostis perennans,1,,,,Daucus carota,,!!!!,Doellingeria umbellata
-North Branch West Stony Creek,Agrostis perennans,1,,,,Decodon verticillatus,,!!!!,Dryopteris carthusiana
-Robbs Creek,Agrostis perennans,1,,,,Dianthus armeria,,!!!!,Dryopteris cristata
-Robbs Creek,Agrostis perennans,1,,,,Dichanthelium clandestinum,,!!!!,Echinocystis lobata
-Sherriff Lake Outlet,Agrostis perennans,1,,,,Digitaria cognata,,!!!!,Elymus canadensis
-Stewart Creek,Agrostis perennans,1,,,,Digitaria sanguinalis,,!!!!,Elymus hystrix
-Trout Brook,Agrostis perennans,1,,,,Dioscorea villosa,,!!!!,Elymus repens
-Fishkill Creek,Alliaria petiolata,1,,,,Dodonaea viscosacuneata,,!!!!,Elymus trachycaulus
-Indian Brook,Alliaria petiolata,1,,,,Dryopteris carthusiana,,!!!!,Elymus virginicus
-Indian Kill,Alliaria petiolata,1,,,,Dryopteris cristata,,!!!!,Epilobium ciliatum
-Lansing Kill,Alliaria petiolata,1,,,,Dryopteris marginalis,,!!!!,Epipactis helleborine
-Mohawk River,Alliaria petiolata,1,,,,Echinochloa muricata,,!!!!,Equisetum fluviatile
-Plotter Kill,Alliaria petiolata,1,,,,Echinocystis lobata,,!!!!,Equisetum hyemale
-Potic Creek,Alliaria petiolata,1,,,,Eleocharis intermedia,,!!!!,Equisetum palustre
-Roeliff Jansen Kill,Alliaria petiolata,1,,,,Elymus canadensis,,!!!!,Equisetum pratense
-Saw Kill,Alliaria petiolata,1,,,,Elymus hystrix,,!!!!,Erigeron annuus
-Stony Creek,Alliaria petiolata,1,,,,Elymus repens,,!!!!,Euonymus alatus
-Wappinger Creek,Alliaria petiolata,1,,,,Elymus trachycaulus,,!!!!,Eupatorium perfoliatum
-Boreas River,Alnus incana,1,,,,Elymus virginicus,,!!!!,Euphorbia maculata
-Cadman Creek,Alnus incana,1,,,,Epilobium ciliatum,,!!!!,Eurybia divaricata
-Chester Creek,Alnus incana,1,,,,Epilobium hirsutum,,!!!!,Euthamia caroliniana
-Daly Creek,Alnus incana,1,,,,Epipactis helleborine,,!!!!,Euthamia graminifolia
-Four Mile Brook,Alnus incana,1,,,,Equisetum fluviatile,,!!!!,Eutrochium maculatum
-Hans Creek,Alnus incana,1,,,,Equisetum hyemale,,!!!!,Eutrochium purpureum
-Hudson River,Alnus incana,1,,,,Equisetum palustre,,!!!!,Fagus grandifolia
-Jassup River,Alnus incana,1,,,,Equisetum pratense,,!!!!,Fragaria vesca
-Kennyetto Creek,Alnus incana,1,,,,Erigeron annuus,,!!!!,Fraxinus americana
-Mill Brook,Alnus incana,1,,,,Euonymus alatus,,!!!!,Fraxinus nigra
-Mill Creek,Alnus incana,1,,,,Eupatorium perfoliatum,,!!!!,Fraxinus pennsylvanica
-Minots Corner Road,Alnus incana,1,,,,Eupatorium purpureum,,!!!!,Galium aparine
-Mohawk River,Alnus incana,1,,,,Euphorbia maculata,,!!!!,Galium asprellum
-New Pond Brook,Alnus incana,1,,,,Euryale ferox,,!!!!,Galium boreale
-North Branch West Stony Creek,Alnus incana,1,,,,Euterpe sp,,!!!!,Galium mollugo
-Paragon Brook,Alnus incana,1,,,,Euthamia graminifolia,,!!!!,Galium palustre
-Robbs Creek,Alnus incana,1,,,,Euthemis minor,,!!!!,Galium triflorum
-Sherriff Lake Outlet,Alnus incana,1,,,,Fagus grandifolia,,!!!!,Gentiana linearis
-Snook Kill,Alnus incana,1,,,,Fallopia japonica,,!!!!,Geum canadense
-Timmerman Creek,Alnus incana,1,,,,Fragaria vesca,,!!!!,Glechoma hederacea
-Trout Brook,Alnus incana,1,,,,Fraxinus americana,,!!!!,Glyceria striata
-Wharton Hollow Creek,Alnus incana,1,,,,Fraxinus nigra,,!!!!,Hamamelis virginiana
-Quacken Kill,Ambrosia artemisiifolia,1,,,,Fraxinus pennsylvanica,,!!!!,Helianthus divaricatus
-Ballston Creek,Ambrosia trifida,1,,,,Galium aparine,,!!!!,Helianthus strumosus
-Indian Brook,Ambrosia trifida,1,,,,Galium asprellum,,!!!!,Helianthus tuberosus
-Indian Kill,Ambrosia trifida,1,,,,Galium boreale,,!!!!,Hemerocallis fulva
-Kayaderosseras Creek,Ambrosia trifida,1,,,,Galium mollugo,,!!!!,Heuchera villosa
-Keyser Kill,Ambrosia trifida,1,,,,Galium palustre,,!!!!,Hypericum mutilum
-Landsman Kill,Ambrosia trifida,1,,,,Galium triflorum,,!!!!,Hypericum perforatum
-Ballston Creek,Amphicarpaea bracteata,1,,,,Gentiana leucomelaena,,!!!!,Hypericum punctatum
-Battenkill,Amphicarpaea bracteata,1,,,,Geranium maculatum,,!!!!,Impatiens capensis
-Evas Kill,Amphicarpaea bracteata,1,,,,Geum canadense,,!!!!,Impatiens pallida
-Hans Creek,Amphicarpaea bracteata,1,,,,Geum laciniatum,,!!!!,Juglans cinerea
-Indian Kill,Amphicarpaea bracteata,1,,,,Glechoma hederacea,,!!!!,Juglans nigra
-Mohawk River,Amphicarpaea bracteata,1,,,,Glyceria borealis,,!!!!,Juncaceae_a
-Paragon Brook,Amphicarpaea bracteata,1,,,,Glyceria striata,,!!!!,Juncus articulatus
-Plotter Kill,Amphicarpaea bracteata,1,,,,Halenia corniculata,,!!!!,Juncus filiformis
-Potic Creek,Amphicarpaea bracteata,1,,,,Hamamelis virginiana,,!!!!,Laportea canadensis
-Snook Kill,Amphicarpaea bracteata,1,,,,Helianthus giganteus,,!!!!,Leonurus cardiaca
-Sterling Creek,Anemone virginiana,1,,,,Helianthus strumosus,,!!!!,Leucanthemum vulgare
-Alplaus Kill,Apocynum cannabinum,1,,,,Helianthus tuberosus,,!!!!,Linaria vulgaris
-Cobleskill Creek,Apocynum cannabinum,1,,,,Heliopsis helianthoides,,!!!!,Lindera benzoin
-Daly Creek,Apocynum cannabinum,1,,,,Hemerocallis fulva,,!!!!,Liparis loeselii
-Fawn Lake,Apocynum cannabinum,1,,,,Heuchera sanguinea,,!!!!,Lithospermum officinale
-Plotter Kill,Apocynum cannabinum,1,,,,Hieracium paniculatum,,!!!!,Lobelia cardinalis
-Saw Kill,Apocynum cannabinum,1,,,,Hypericum mutilum,,!!!!,Lobelia inflata
-Wappinger Creek,Apocynum cannabinum,1,,,,Hypericum perforatum,,!!!!,Lobelia siphilitica
-Big Brook,Arctium lappa,1,,,,Hypericum punctatum,,!!!!,Lonicera japonica
-Evas Kill,Arctium lappa,1,,,,Impatiens capensis,,!!!!,Lonicera morrowii
-Bullhead Pond Brook,Arisaema triphyllum,1,,,,Impatiens pallida,,!!!!,Lotus corniculatus
-Cadman Creek,Arisaema triphyllum,1,,,,Juglans cinerea,,!!!!,Ludwigia palustris
-Daly Creek,Arisaema triphyllum,1,,,,Juglans nigra,,!!!!,Lycopus americanus
-Mill Brook,Arisaema triphyllum,1,,,,Juncus articulatus,,!!!!,Lycopus rubellus
-Potic Creek,Arisaema triphyllum,1,,,,Juncus filiformis,,!!!!,Lysimachia ciliata
-Plotter Kill,Artemisia vulgaris,1,,,,Laportea canadensis,,!!!!,Lysimachia nummularia
-Alplaus Kill,Asclepias syriaca,1,,,,Leersia oryzoides,,!!!!,Lysimachia quadrifolia
-Kayaderosseras Creek,Asclepias syriaca,1,,,,Leonurus cardiaca,,!!!!,Lysimachia terrestris
-Paragon Brook,Asclepias syriaca,1,,,,Leucanthemum vulgare,,!!!!,Lythrum salicaria
-Alplaus Kill,Athyrium filix-femina,1,,,,Linaria vulgaris,,!!!!,Maianthemum racemosum
-Cadman Creek,Athyrium filix-femina,1,,,,Lindera benzoin,,!!!!,Malus pumila
-Daly Creek,Athyrium filix-femina,1,,,,Liparis loeselii,,!!!!,Matteuccia struthiopteris
-Kinderhook Creek,Athyrium filix-femina,1,,,,Lithospermum officinale,,!!!!,Melilotus officinalis
-Mill Creek,Athyrium filix-femina,1,,,,Lobelia cardinalis,,!!!!,Mimulus ringens
-Mohawk River,Athyrium filix-femina,1,,,,Lobelia inflata,,!!!!,Mitchella repens
-Robbs Creek,Athyrium filix-femina,1,,,,Lobelia siphilitica,,!!!!,Monotropa uniflora
-Roeliff Jansen Kill,Athyrium filix-femina,1,,,,Lonicera japonica,,!!!!,Muhlenbergia mexicana
-Sherriff Lake Outlet,Athyrium filix-femina,1,,,,Lonicera morrowii,,!!!!,Myosotis laxa
-Valatie Kill,Athyrium filix-femina,1,,,,Lotus corniculatus,,!!!!,Myosotis scorpioides
-Big Brook,Barbarea vulgaris,1,,,,Ludwigia palustris,,!!!!,Myrica gale
-Battenkill,Berberis thunbergii,1,,,,Lycopus americanus,,!!!!,Oclemena acuminata
-Beaver Kill,Berberis thunbergii,1,,,,Lycopus rubellus,,!!!!,Oenethera biennis
-Fishkill Creek,Berberis thunbergii,1,,,,Lycopus uniflorus,,!!!!,Onoclea sensibilis
-Indian Brook,Berberis thunbergii,1,,,,Lysimachia ciliata,,!!!!,Osmunda cinnamomea
-Mill Brook,Berberis thunbergii,1,,,,Lysimachia nummularia,,!!!!,Osmunda regalis
-Valatie Kill,Berberis thunbergii,1,,,,Lysimachia quadrifolia,,!!!!,Ostrya virginiana
-Fawn Lake,Betula alleghaniensis,1,,,,Lysimachia terrestris,,!!!!,Oxalis stricta
-Hans Creek,Betula alleghaniensis,1,,,,Lysimachia vulgaris,,!!!!,Panicum dichotomiflorum
-Mohawk River,Betula alleghaniensis,1,,,,Lythrum salicaria,,!!!!,Parthenocissus quinquefolia
-Saw Kill,Betula alleghaniensis,1,,,,Maianthemum canadense,,!!!!,Peltandra virginica
-Stewart Creek,Betula alleghaniensis,1,,,,Maianthemum racemosum,,!!!!,Phalaris arundinacea
-Cadman Creek,Betula papyrifera,1,,,,Malus pumila,,!!!!,Phegopteris connectilis
-Lansing Kill,Betula papyrifera,1,,,,Marrubium vulgare,,!!!!,Phegopteris hexagonoptera
-Fawn Lake,Bidens connata,1,,,,Matteuccia struthiopteris,,!!!!,Phleum pratense
-Alplaus Kill,Bidens frondosa,1,,,,Melilotus officinalis,,!!!!,Pilea pumila
-Ballston Creek,Bidens frondosa,1,,,,Menispermum canadense,,!!!!,Pinus strobus
-Big Brook,Bidens frondosa,1,,,,Mimulus ringens,,!!!!,Plantago lanceolata
-Cobleskill Creek,Bidens frondosa,1,,,,Mitchella repens,,!!!!,Plantago major
-Evas Kill,Bidens frondosa,1,,,,Mollugo verticillata,,!!!!,Platanus occidentalis
-Indian Kill,Bidens frondosa,1,,,,Monotropa uniflora,,!!!!,poaceae_a
-Kayaderosseras Creek,Bidens frondosa,1,,,,Muhlenbergia mexicana,,!!!!,poaceae_b
-Landsman Kill,Bidens frondosa,1,,,,Muhlenbergia schreberi,,!!!!,poaceae_c
-Potic Creek,Bidens frondosa,1,,,,Muhlenbergia sinuosa,,!!!!,Polygonum amphibium
-Quacken Kill,Bidens frondosa,1,,,,Myosotis laxa,,!!!!,Polygonum arifolium
-Snook Kill,Bidens frondosa,1,,,,Myosotis scorpioides,,!!!!,Polygonum cilinode
-Stony Creek,Bidens frondosa,1,,,,Myosoton aquaticum,,!!!!,Polygonum cuspidatum
-Sterling Creek,Blephilia hirsuta,1,,,,Myrica gale,,!!!!,Polygonum hydropiper
-Cadman Creek,Boehmeria cylindrica,1,,,,Oenanthe silaifolia,,!!!!,Polygonum hydropiperoides
-Indian Brook,Boehmeria cylindrica,1,,,,Oenothera biennis,,!!!!,Polygonum persicaria
-Kinderhook Creek,Boehmeria cylindrica,1,,,,Onoclea sensibilis,,!!!!,Polygonum punctatum
-Landsman Kill,Boehmeria cylindrica,1,,,,Osmunda cinnamomea,,!!!!,Polygonum sagittatum
-Mill Brook,Boehmeria cylindrica,1,,,,Osmunda regalis,,!!!!,Polygonum virginianum
-Potic Creek,Boehmeria cylindrica,1,,,,Ostrya virginiana,,!!!!,Polystichum acrostichoides
-Trout Brook,Boehmeria cylindrica,1,,,,Oxalis gigantea,,!!!!,Populus deltoides
-Alplaus Kill,Brachyelytrum aristosum,1,,,,Oxalis stricta,,!!!!,Potentilla recta
-Bullhead Pond Brook,Brachyelytrum aristosum,1,,,,Panicum capillare,,!!!!,Potentilla simplex
-Cadman Creek,Brachyelytrum aristosum,1,,,,Panicum dichotomiflorum,,!!!!,Prenanthes alba
-Daly Creek,Brachyelytrum aristosum,1,,,,Parthenocissus quinquefolia,,!!!!,Prenanthes altissima
-Hans Creek,Brachyelytrum aristosum,1,,,,Paspalum scrobiculatum,,!!!!,Prenanthes trifoliolata
-Indian Brook,Brachyelytrum aristosum,1,,,,Pastinaca sativa,,!!!!,Prunella vulgaris
-Indian Kill,Brachyelytrum aristosum,1,,,,Peltandra virginica,,!!!!,Prunus americana
-Landsman Kill,Brachyelytrum aristosum,1,,,,Penthorum sedoides,,!!!!,Prunus serotina
-Mill Creek,Brachyelytrum aristosum,1,,,,Petasites frigidus,,!!!!,Prunus virginiana
-North Branch West Stony Creek,Brachyelytrum aristosum,1,,,,Phalaris arundinacea,,!!!!,Pteridium aquilinum
-Potic Creek,Brachyelytrum aristosum,1,,,,Phegopteris connectilis,,!!!!,Quercus alba
-Quacken Kill,Brachyelytrum aristosum,1,,,,Phegopteris hexagonoptera,,!!!!,Quercus prinoides
-Robbs Creek,Brachyelytrum aristosum,1,,,,Phleum pratense,,!!!!,Quercus velutina
-Saw Kill,Brachyelytrum aristosum,1,,,,Phytolacca americana,,!!!!,Ranunculus pensylvanicus
-Sherriff Lake Outlet,Brachyelytrum aristosum,1,,,,Pilea pumila,,!!!!,Ranunculus recurvatus
-Stewart Creek,Brachyelytrum aristosum,1,,,,Pinus strobus,,!!!!,Rhamnus alnifolia
-Stony Creek,Brachyelytrum aristosum,1,,,,Plantago lanceolata,,!!!!,Rhamnus cathartica
-Trout Brook,Brachyelytrum aristosum,1,,,,Plantago major,,!!!!,Rhus typhina
-Cobleskill Creek,Brassica nigra,1,,,,Platanus occidentalis,,!!!!,Robinia pseudoacacia
-Robbs Creek,Bromus ciliatus,1,,,,Polygonum amphibium,,!!!!,Rosa multiflora
-Wharton Hollow Creek,Bromus inermis,1,,,,Polygonum argyrocoleon,,!!!!,Rosa palustris
-Mill Creek,Bromus pubescens,1,,,,Polygonum capitatum,,!!!!,Rubus allegheniensis
-Alplaus Kill,Calystegia sepium,1,,,,Polygonum cuspidatum,,!!!!,Rubus hispidus
-Kayaderosseras Creek,Calystegia sepium,1,,,,Polygonum hydropiper,,!!!!,Rubus idaeus
-Landsman Kill,Calystegia sepium,1,,,,Polygonum hydropiperoides,,!!!!,Rubus occidentalis
-Plotter Kill,Calystegia sepium,1,,,,Polygonum lapathifolium,,!!!!,Rubus odoratus
-Robbs Creek,Calystegia sepium,1,,,,Polygonum persicaria,,!!!!,Rubus phoenicolasius
-Sprout Creek,Calystegia sepium,1,,,,Polygonum punctatum,,!!!!,Rubus pubescens
-Ballston Creek,Carex crinita,1,,,,Polygonum sagittatum,,!!!!,Rudbeckia hirta
-Beaver Kill,Carex crinita,1,,,,Polygonum virginianum,,!!!!,Rudbeckia laciniata
-Cadman Creek,Carex crinita,1,,,,Polystichum acrostichoides,,!!!!,Rumex crispus
-Daly Creek,Carex crinita,1,,,,Populus deltoides,,!!!!,Rumex obtusifolius
-Four Mile Brook,Carex crinita,1,,,,Populus tremuloides,,!!!!,Sagittaria latifolia
-Hans Creek,Carex crinita,1,,,,Potentilla recta,,!!!!,Salix alba
-Kayaderosseras Creek,Carex crinita,1,,,,Potentilla simplex,,!!!!,Salix nigra
-Kayaderosseras Creek,Carex crinita,1,,,,Prenanthes alba,,!!!!,Salix pentandra
-Keyser Kill,Carex crinita,1,,,,Prenanthes purpurea,,!!!!,Sambucus nigra
-Potic Creek,Carex crinita,1,,,,Prunella vulgaris,,!!!!,Saponaria officinalis
-Sherriff Lake Outlet,Carex crinita,1,,,,Prunus americana,,!!!!,Schoenoplectus pungens
-Keyser Kill,Carex scoparia,1,,,,Prunus serotina,,!!!!,Scirpus atrocinctus
-Ballston Creek,Carpinus caroliniana,1,,,,Prunus virginiana,,!!!!,Scirpus microcarpus
-Battenkill,Carpinus caroliniana,1,,,,Pteridium aquilinum,,!!!!,Scutellaria lateriflora
-Indian Kill,Carpinus caroliniana,1,,,,Quercus alba,,!!!!,Securigera varia
-Kinderhook Creek,Carpinus caroliniana,1,,,,Quercus macrocarpa,,!!!!,Silene vulgaris
-Lansing Kill,Carpinus caroliniana,1,,,,Quercus rubra,,!!!!,Smilax tamnoides
-Mohawk River,Carpinus caroliniana,1,,,,Quercus velutina,,!!!!,Solanum dulcamara
-Potic Creek,Carpinus caroliniana,1,,,,Ranunculus pensylvanicus,,!!!!,Solidago altissima
-Sterling Creek,Carpinus caroliniana,1,,,,Ranunculus recurvatus,,!!!!,Solidago canadensis
-Stony Creek,Carpinus caroliniana,1,,,,Rhamnus alnifolia,,!!!!,Solidago flexicaulis
-Wharton Hollow Creek,Carpinus caroliniana,1,,,,Rhamnus cathartica,,!!!!,Solidago gigantea
-Ballston Creek,Carya cordiformis,1,,,,Rhus typhina,,!!!!,Solidago latissimifolia
-Hans Creek,Carya cordiformis,1,,,,Ribes americanum,,!!!!,Sonchus oleraceus
-Alplaus Kill,Carya ovata,1,,,,Ribes rubrum,,!!!!,Spiraea alba
-Big Brook,Centaurea jacea,1,,,,Robinia pseudoacacia,,!!!!,Stellaria pubera
-Sterling Creek,Centaurea jacea,1,,,,Rosa multiflora,,!!!!,Symphyotrichum dumosum
-Cobleskill Creek,Centaurea nigrescens,1,,,,Rosa palustris,,!!!!,Symphyotrichum lanceolatum
-Boreas River,Centaurea stoebe,1,,,,Rubus allegheniensis,,!!!!,Symphyotrichum novae-angliae
-Keyser Kill,Centaurea stoebe,1,,,,Rubus hispidus,,!!!!,Symphyotrichum prenanthoides
-Landsman Kill,Centaurea stoebe,1,,,,Rubus idaeus,,!!!!,Symplocarpus foetidus
-Stony Creek,Cephalanthus occidentalis,1,,,,Rubus occidentalis,,!!!!,Tanacetum vulgare
-Mohawk River,Chelidonium majus,1,,,,Rubus odoratus,,!!!!,Taraxacum officinale
-Quacken Kill,Chelidonium majus,1,,,,Rubus phoenicolasius,,!!!!,Thalictrum dioicum
-Roeliff Jansen Kill,Chelidonium majus,1,,,,Rubus pubescens,,!!!!,Thalictrum pubescens
-Saw Kill,Chelidonium majus,1,,,,Rudbeckia hirta,,!!!!,Thalictrum thalictroides
-Cadman Creek,Chelone glabra,1,,,,Rudbeckia laciniata,,!!!!,Thelypteris noveboracensis
-Cedar River,Chelone glabra,1,,,,Rumex crispus,,!!!!,Thelypteris palustris
-Four Mile Brook,Chelone glabra,1,,,,Rumex obtusifolius,,!!!!,Thuja occidentalis
-Mill Creek,Chelone glabra,1,,,,Sagittaria latifolia,,!!!!,Tilia americana
-New Pond Brook,Chelone glabra,1,,,,Salix alba,,!!!!,Toxicodendron radicans
-North Branch West Stony Creek,Chelone glabra,1,,,,Salix nigra,,!!!!,Triadenum virginicum
-Robbs Creek,Chelone glabra,1,,,,Salix pentandra,,!!!!,Trifolium aureum
-Sherriff Lake Outlet,Chelone glabra,1,,,,Sambucus nigra,,!!!!,Trifolium pratense
-Trout Brook,Chelone glabra,1,,,,Saponaria officinalis,,!!!!,Trifolium repens
-Ballston Creek,Cicuta maculata,1,,,,Schoenoplectus pungens,,!!!!,Trillium erectum
-Big Brook,Cicuta maculata,1,,,,Scirpus atrocinctus,,!!!!,Tsuga canadensis
-Cedar River,Cicuta maculata,1,,,,Scirpus microcarpus,,!!!!,Tussilago farfara
-Evas Kill,Cicuta maculata,1,,,,Scutellaria lateriflora,,!!!!,Ulmus americana
-Kinderhook Creek,Cicuta maculata,1,,,,Securigera varia,,!!!!,Ulmus rubra
-Mill Creek,Cicuta maculata,1,,,,Silene vulgaris,,!!!!,Urtica dioica
-Plotter Kill,Cicuta maculata,1,,,,Solanum dulcamara,,!!!!,Veratrum viride
-Quacken Kill,Cicuta maculata,1,,,,Solidago altissima,,!!!!,Verbascum thapsus
-Steele Creek,Cicuta maculata,1,,,,Solidago canadensis,,!!!!,Verbena hastata
-Sterling Creek,Cicuta maculata,1,,,,Solidago flexicaulis,,!!!!,Verbena urticifolia
-Stewart Creek,Cicuta maculata,1,,,,Solidago gigantea,,!!!!,Veronica americana
-Timmerman Creek,Cicuta maculata,1,,,,Solidago latifolia,,!!!!,Veronica anagallis-aquatica
-Cadman Creek,Cinna arundinacea,1,,,,Sonchus oleraceus,,!!!!,Veronica scutellata
-Evas Kill,Cinna arundinacea,1,,,,Spiraea alba,,!!!!,Viburnum acerifolium
-Quacken Kill,Cinna arundinacea,1,,,,Symphyotrichum cordifolium,,!!!!,Viburnum dentatum
-Snook Kill,Cinna arundinacea,1,,,,Symphyotrichum lanceolatum,,!!!!,Viburnum lantanoides
-Cadman Creek,Circaea lutetiana,1,,,,Symphyotrichum prenanthoides,,!!!!,Vinca minor
-Daly Creek,Circaea lutetiana,1,,,,Symplocarpus foetidus,,!!!!,Viola_a
-Evas Kill,Circaea lutetiana,1,,,,Tanacetum vulgare,,!!!!,Vitis riparia
-Indian Brook,Circaea lutetiana,1,,,,Taraxacum officinale,,!!!!,Woodsia obtusa
-Indian Kill,Circaea lutetiana,1,,,,Thalictrum dioicum,,!!!!,Xanthium strumarium
-Potic Creek,Circaea lutetiana,1,,,,Thalictrum pubescens,,!!!!,
-Robbs Creek,Circaea lutetiana,1,,,,Thelypteris noveboracensis,,!!!!,
-Stony Creek,Circaea lutetiana,1,,,,Thelypteris palustris,,!!!!,
-Wharton Hollow Creek,Circaea lutetiana,1,,,,Thuja occidentalis,,!!!!,
-Beaver Kill,Clematis virginiana,1,,,,Tilia americana,,!!!!,
-Big Brook,Clematis virginiana,1,,,,Toxicodendron radicans,,!!!!,
-Boreas River,Clematis virginiana,1,,,,Trifolium aureum,,!!!!,
-Cadman Creek,Clematis virginiana,1,,,,Trifolium pratense,,!!!!,
-Cedar River,Clematis virginiana,1,,,,Trifolium repens,,!!!!,
-Daly Creek,Clematis virginiana,1,,,,Trillium erectum,,!!!!,
-Fawn Lake,Clematis virginiana,1,,,,Tsuga canadensis,,!!!!,
-Four Mile Brook,Clematis virginiana,1,,,,Tussilago farfara,,!!!!,
-Mill Creek,Clematis virginiana,1,,,,Ulmus americana,,!!!!,
-North Branch West Stony Creek,Clematis virginiana,1,,,,Ulmus rubra,,!!!!,
-Quacken Kill,Clematis virginiana,1,,,,Urtica dioica,,!!!!,
-Robbs Creek,Clematis virginiana,1,,,,Veratrum viride,,!!!!,
-Sherriff Lake Outlet,Clematis virginiana,1,,,,Verbascum thapsus,,!!!!,
-Sprout Creek,Clematis virginiana,1,,,,Verbena hastata,,!!!!,
-Sterling Creek,Clematis virginiana,1,,,,Verbena urticifolia,,!!!!,
-Stewart Creek,Clematis virginiana,1,,,,Veronica americana,,!!!!,
-Timmerman Creek,Clematis virginiana,1,,,,Veronica anagallis-aquatica,,!!!!,
-Trout Brook,Clematis virginiana,1,,,,Veronica scutellata,,!!!!,
-Wharton Hollow Creek,Clematis virginiana,1,,,,Viburnum acerifolium,,!!!!,
-Beaver Kill,Clinopodium vulgare,1,,,,Viburnum dentatum,,!!!!,
-Evas Kill,Collinsonia canadensis,1,,,,Viburnum lantanoides,,!!!!,
-Saw Kill,Commelina communis,1,,,,Vinca minor,,!!!!,
-Fawn Lake,Cornus amomum,1,,,,Vitis riparia,,!!!!,
-Sprout Creek,Cornus amomum,1,,,,Woodsia ilvensis,,!!!!,
-Hudson River,Cornus canadensis,1,,,,Xanthium strumarium,,!!!!,
-Fishkill Creek,Cornus obliqua,1,,,,,,!!!!,
-Hudson River,Cornus obliqua,1,,,,,,!!!!,
-Lansing Kill,Cornus obliqua,1,,,,,,!!!!,
-Mohawk River,Cornus obliqua,1,,,,,,!!!!,
-Potic Creek,Cornus obliqua,1,,,,,,!!!!,
-Snook Kill,Cornus obliqua,1,,,,,,!!!!,
-Sterling Creek,Cornus obliqua,1,,,,,,!!!!,
-Boreas River,Cornus rugosa,1,,,,,,,
-Minots Corner Road,Cornus rugosa,1,,,,,,,
-Sterling Creek,Cornus rugosa,1,,,,,,,
-Timmerman Creek,Cornus rugosa,1,,,,,,,
-Ballston Creek,Cornus sericea,1,,,,,,,
-Battenkill,Cornus sericea,1,,,,,,,
-Boreas River,Cornus sericea,1,,,,,,,
-Cadman Creek,Cornus sericea,1,,,,,,,
-Chester Creek,Cornus sericea,1,,,,,,,
-Daly Creek,Cornus sericea,1,,,,,,,
-Indian Kill,Cornus sericea,1,,,,,,,
-Kennyetto Creek,Cornus sericea,1,,,,,,,
-Kinderhook Creek,Cornus sericea,1,,,,,,,
-Mill Brook,Cornus sericea,1,,,,,,,
-Paragon Brook,Cornus sericea,1,,,,,,,
-Snook Kill,Cornus sericea,1,,,,,,,
-Steele Creek,Cornus sericea,1,,,,,,,
-Trout Brook,Cornus sericea,1,,,,,,,
-Wappinger Creek,Cornus sericea,1,,,,,,,
-Lansing Kill,Corylus cornuta,1,,,,,,,
-Evas Kill,Cryptotaenia canadensis,1,,,,,,,
-Indian Brook,Cynanchum louiseae,1,,,,,,,
-Alplaus Kill,Cyperaceae_a,1,,,,,,,
-Beaver Kill,Cyperaceae_a,1,,,,,,,
-Boreas River,Cyperaceae_a,1,,,,,,,
-Bullhead Pond Brook,Cyperaceae_a,1,,,,,,,
-Cadman Creek,Cyperaceae_a,1,,,,,,,
-Cedar River,Cyperaceae_a,1,,,,,,,
-Green River,Cyperaceae_a,1,,,,,,,
-Hudson River,Cyperaceae_a,1,,,,,,,
-Indian Brook,Cyperaceae_a,1,,,,,,,
-Indian Kill,Cyperaceae_a,1,,,,,,,
-Jassup River,Cyperaceae_a,1,,,,,,,
-Kennyetto Creek,Cyperaceae_a,1,,,,,,,
-Kinderhook Creek,Cyperaceae_a,1,,,,,,,
-Mill Brook,Cyperaceae_a,1,,,,,,,
-Mohawk River,Cyperaceae_a,1,,,,,,,
-North Branch West Stony Creek,Cyperaceae_a,1,,,,,,,
-Potic Creek,Cyperaceae_a,1,,,,,,,
-Quacken Kill,Cyperaceae_a,1,,,,,,,
-Robbs Creek,Cyperaceae_a,1,,,,,,,
-Roeliff Jansen Kill,Cyperaceae_a,1,,,,,,,
-Saw Kill,Cyperaceae_a,1,,,,,,,
-Snook Kill,Cyperaceae_a,1,,,,,,,
-Sprout Creek,Cyperaceae_a,1,,,,,,,
-Sterling Creek,Cyperaceae_a,1,,,,,,,
-Stony Creek,Cyperaceae_a,1,,,,,,,
-Timmerman Creek,Cyperaceae_a,1,,,,,,,
-Valatie Kill,Cyperaceae_a,1,,,,,,,
-Wappinger Creek,Cyperaceae_a,1,,,,,,,
-Wharton Hollow Creek,Cyperaceae_a,1,,,,,,,
-Robbs Creek,Cyperaceae_b,1,,,,,,,
-Ballston Creek,Cyperus strigosus,1,,,,,,,
-Chester Creek,Cyperus strigosus,1,,,,,,,
-Kayaderosseras Creek,Cyperus strigosus,1,,,,,,,
-Landsman Kill,Dactylis glomerata,1,,,,,,,
-Battenkill,Daucus carota,1,,,,,,,
-Cobleskill Creek,Daucus carota,1,,,,,,,
-Fawn Lake,Daucus carota,1,,,,,,,
-Kennyetto Creek,Daucus carota,1,,,,,,,
-Keyser Kill,Daucus carota,1,,,,,,,
-Landsman Kill,Daucus carota,1,,,,,,,
-Plotter Kill,Daucus carota,1,,,,,,,
-Quacken Kill,Daucus carota,1,,,,,,,
-Sterling Creek,Daucus carota,1,,,,,,,
-Keyser Kill,Dianthus armeria,1,,,,,,,
-Battenkill,Dichanthelium clandestinum,1,,,,,,,
-Beaver Kill,Dichanthelium clandestinum,1,,,,,,,
-Cadman Creek,Dichanthelium clandestinum,1,,,,,,,
-Cedar River,Dichanthelium clandestinum,1,,,,,,,
-Hans Creek,Dichanthelium clandestinum,1,,,,,,,
-Indian Brook,Dichanthelium clandestinum,1,,,,,,,
-Indian Kill,Dichanthelium clandestinum,1,,,,,,,
-Kayaderosseras Creek,Dichanthelium clandestinum,1,,,,,,,
-Kennyetto Creek,Dichanthelium clandestinum,1,,,,,,,
-Kinderhook Creek,Dichanthelium clandestinum,1,,,,,,,
-Mill Brook,Dichanthelium clandestinum,1,,,,,,,
-North Branch West Stony Creek,Dichanthelium clandestinum,1,,,,,,,
-Potic Creek,Dichanthelium clandestinum,1,,,,,,,
-Quacken Kill,Dichanthelium clandestinum,1,,,,,,,
-Roeliff Jansen Kill,Dichanthelium clandestinum,1,,,,,,,
-Snook Kill,Dichanthelium clandestinum,1,,,,,,,
-Trout Brook,Dichanthelium clandestinum,1,,,,,,,
-Kayaderosseras Creek,Digitaria sanguinalis,1,,,,,,,
-Fishkill Creek,Dioscorea villosa,1,,,,,,,
-Boreas River,Doellingeria umbellata,1,,,,,,,
-Cedar River,Doellingeria umbellata,1,,,,,,,
-Daly Creek,Doellingeria umbellata,1,,,,,,,
-Four Mile Brook,Doellingeria umbellata,1,,,,,,,
-Hans Creek,Doellingeria umbellata,1,,,,,,,
-Hudson River,Doellingeria umbellata,1,,,,,,,
-Jassup River,Doellingeria umbellata,1,,,,,,,
-Lansing Kill,Doellingeria umbellata,1,,,,,,,
-Mill Brook,Doellingeria umbellata,1,,,,,,,
-Mill Creek,Doellingeria umbellata,1,,,,,,,
-Minots Corner Road,Doellingeria umbellata,1,,,,,,,
-North Branch West Stony Creek,Doellingeria umbellata,1,,,,,,,
-Robbs Creek,Doellingeria umbellata,1,,,,,,,
-Snook Kill,Doellingeria umbellata,1,,,,,,,
-Stewart Creek,Doellingeria umbellata,1,,,,,,,
-Trout Brook,Doellingeria umbellata,1,,,,,,,
-Lansing Kill,Dryopteris carthusiana,1,,,,,,,
-Stewart Creek,Dryopteris carthusiana,1,,,,,,,
-Evas Kill,Dryopteris cristata,1,,,,,,,
-Ballston Creek,Echinocystis lobata,1,,,,,,,
-Kayaderosseras Creek,Echinocystis lobata,1,,,,,,,
-Alplaus Kill,Elymus canadensis,1,,,,,,,
-Alplaus Kill,Elymus canadensis,1,,,,,,,
-Boreas River,Elymus canadensis,1,,,,,,,
-Cadman Creek,Elymus canadensis,1,,,,,,,
-Hudson River,Elymus canadensis,1,,,,,,,
-Indian Kill,Elymus canadensis,1,,,,,,,
-Jassup River,Elymus canadensis,1,,,,,,,
-Kinderhook Creek,Elymus canadensis,1,,,,,,,
-Mill Brook,Elymus canadensis,1,,,,,,,
-New Pond Brook,Elymus canadensis,1,,,,,,,
-Plotter Kill,Elymus canadensis,1,,,,,,,
-Quacken Kill,Elymus canadensis,1,,,,,,,
-Robbs Creek,Elymus canadensis,1,,,,,,,
-Snook Kill,Elymus canadensis,1,,,,,,,
-Stony Creek,Elymus hystrix,1,,,,,,,
-Fawn Lake,Elymus repens,1,,,,,,,
-Cedar River,Elymus trachycaulus,1,,,,,,,
-Beaver Kill,Elymus virginicus,1,,,,,,,
-Saw Kill,Elymus virginicus,1,,,,,,,
-Evas Kill,Epilobium ciliatum,1,,,,,,,
-Snook Kill,Epilobium ciliatum,1,,,,,,,
-Ballston Creek,Epipactis helleborine,1,,,,,,,
-Lansing Kill,Epipactis helleborine,1,,,,,,,
-Sterling Creek,Epipactis helleborine,1,,,,,,,
-Stony Creek,Epipactis helleborine,1,,,,,,,
-Valatie Kill,Epipactis helleborine,1,,,,,,,
-Battenkill,Equisetum fluviatile,1,,,,,,,
-Keyser Kill,Equisetum fluviatile,1,,,,,,,
-Timmerman Creek,Equisetum fluviatile,1,,,,,,,
-Timmerman Creek,Equisetum hyemale,1,,,,,,,
-Cedar River,Equisetum palustre,1,,,,,,,
-Alplaus Kill,Equisetum pratense,1,,,,,,,
-Boreas River,Equisetum pratense,1,,,,,,,
-Hans Creek,Equisetum pratense,1,,,,,,,
-Potic Creek,Equisetum pratense,1,,,,,,,
-Sherriff Lake Outlet,Equisetum pratense,1,,,,,,,
-Snook Kill,Equisetum pratense,1,,,,,,,
-Sterling Creek,Equisetum pratense,1,,,,,,,
-Wappinger Creek,Equisetum pratense,1,,,,,,,
-Keyser Kill,Erigeron annuus,1,,,,,,,
-Kinderhook Creek,Erigeron annuus,1,,,,,,,
-Landsman Kill,Erigeron annuus,1,,,,,,,
-Paragon Brook,Erigeron annuus,1,,,,,,,
-Potic Creek,Erigeron annuus,1,,,,,,,
-Battenkill,Euonymus alatus,1,,,,,,,
-Landsman Kill,Euonymus alatus,1,,,,,,,
-Evas Kill,Eupatorium perfoliatum,1,,,,,,,
-Fawn Lake,Eupatorium perfoliatum,1,,,,,,,
-Mill Brook,Eupatorium perfoliatum,1,,,,,,,
-Robbs Creek,Eupatorium perfoliatum,1,,,,,,,
-Wharton Hollow Creek,Eupatorium perfoliatum,1,,,,,,,
-Kayaderosseras Creek,Euphorbia maculata,1,,,,,,,
-Alplaus Kill,Eurybia divaricata,1,,,,,,,
-Ballston Creek,Eurybia divaricata,1,,,,,,,
-Battenkill,Eurybia divaricata,1,,,,,,,
-Daly Creek,Eurybia divaricata,1,,,,,,,
-Fawn Lake,Eurybia divaricata,1,,,,,,,
-Green River,Eurybia divaricata,1,,,,,,,
-Hans Creek,Eurybia divaricata,1,,,,,,,
-Indian Brook,Eurybia divaricata,1,,,,,,,
-Indian Kill,Eurybia divaricata,1,,,,,,,
-Kinderhook Creek,Eurybia divaricata,1,,,,,,,
-Lansing Kill,Eurybia divaricata,1,,,,,,,
-Potic Creek,Eurybia divaricata,1,,,,,,,
-Quacken Kill,Eurybia divaricata,1,,,,,,,
-Stony Creek,Eurybia divaricata,1,,,,,,,
-Valatie Kill,Eurybia divaricata,1,,,,,,,
-Cedar River,Euthamia caroliniana,1,,,,,,,
-Beaver Kill,Euthamia graminifolia,1,,,,,,,
-Boreas River,Euthamia graminifolia,1,,,,,,,
-Cedar River,Euthamia graminifolia,1,,,,,,,
-Chester Creek,Euthamia graminifolia,1,,,,,,,
-Four Mile Brook,Euthamia graminifolia,1,,,,,,,
-Jassup River,Euthamia graminifolia,1,,,,,,,
-Kennyetto Creek,Euthamia graminifolia,1,,,,,,,
-Landsman Kill,Euthamia graminifolia,1,,,,,,,
-North Branch West Stony Creek,Euthamia graminifolia,1,,,,,,,
-Potic Creek,Euthamia graminifolia,1,,,,,,,
-Robbs Creek,Euthamia graminifolia,1,,,,,,,
-Sterling Creek,Euthamia graminifolia,1,,,,,,,
-Alplaus Kill,Eutrochium maculatum,1,,,,,,,
-Boreas River,Eutrochium maculatum,1,,,,,,,
-Cedar River,Eutrochium maculatum,1,,,,,,,
-Cedar River,Eutrochium maculatum,1,,,,,,,
-Cobleskill Creek,Eutrochium maculatum,1,,,,,,,
-Evas Kill,Eutrochium maculatum,1,,,,,,,
-Fawn Lake,Eutrochium maculatum,1,,,,,,,
-Four Mile Brook,Eutrochium maculatum,1,,,,,,,
-Green River,Eutrochium maculatum,1,,,,,,,
-Hudson River,Eutrochium maculatum,1,,,,,,,
-Keyser Kill,Eutrochium maculatum,1,,,,,,,
-Mill Brook,Eutrochium maculatum,1,,,,,,,
-Mill Creek,Eutrochium maculatum,1,,,,,,,
-Mohawk River,Eutrochium maculatum,1,,,,,,,
-North Branch West Stony Creek,Eutrochium maculatum,1,,,,,,,
-North Branch West Stony Creek,Eutrochium maculatum,1,,,,,,,
-Paragon Brook,Eutrochium maculatum,1,,,,,,,
-Quacken Kill,Eutrochium maculatum,1,,,,,,,
-Robbs Creek,Eutrochium maculatum,1,,,,,,,
-Sherriff Lake Outlet,Eutrochium maculatum,1,,,,,,,
-Sherriff Lake Outlet,Eutrochium maculatum,1,,,,,,,
-Timmerman Creek,Eutrochium maculatum,1,,,,,,,
-Trout Brook,Eutrochium maculatum,1,,,,,,,
-Wharton Hollow Creek,Eutrochium maculatum,1,,,,,,,
-Alplaus Kill,Eutrochium purpureum,1,,,,,,,
-Cadman Creek,Eutrochium purpureum,1,,,,,,,
-Hans Creek,Eutrochium purpureum,1,,,,,,,
-Hans Creek,Eutrochium purpureum,1,,,,,,,
-Indian Kill,Eutrochium purpureum,1,,,,,,,
-Kennyetto Creek,Eutrochium purpureum,1,,,,,,,
-Kinderhook Creek,Eutrochium purpureum,1,,,,,,,
-New Pond Brook,Eutrochium purpureum,1,,,,,,,
-Quacken Kill,Eutrochium purpureum,1,,,,,,,
-Robbs Creek,Eutrochium purpureum,1,,,,,,,
-Sherriff Lake Outlet,Eutrochium purpureum,1,,,,,,,
-Snook Kill,Eutrochium purpureum,1,,,,,,,
-Alplaus Kill,Fagus grandifolia,1,,,,,,,
-Bullhead Pond Brook,Fagus grandifolia,1,,,,,,,
-Cadman Creek,Fagus grandifolia,1,,,,,,,
-Minots Corner Road,Fagus grandifolia,1,,,,,,,
-Sherriff Lake Outlet,Fagus grandifolia,1,,,,,,,
-Big Brook,Fragaria vesca,1,,,,,,,
-Cedar River,Fragaria vesca,1,,,,,,,
-Four Mile Brook,Fragaria vesca,1,,,,,,,
-Hans Creek,Fragaria vesca,1,,,,,,,
-Lansing Kill,Fragaria vesca,1,,,,,,,
-Mill Creek,Fragaria vesca,1,,,,,,,
-Minots Corner Road,Fragaria vesca,1,,,,,,,
-New Pond Brook,Fragaria vesca,1,,,,,,,
-Paragon Brook,Fragaria vesca,1,,,,,,,
-Robbs Creek,Fragaria vesca,1,,,,,,,
-Sterling Creek,Fragaria vesca,1,,,,,,,
-Stewart Creek,Fragaria vesca,1,,,,,,,
-Timmerman Creek,Fragaria vesca,1,,,,,,,
-Ballston Creek,Fraxinus americana,1,,,,,,,
-Battenkill,Fraxinus americana,1,,,,,,,
-Big Brook,Fraxinus americana,1,,,,,,,
-Bullhead Pond Brook,Fraxinus americana,1,,,,,,,
-Fawn Lake,Fraxinus americana,1,,,,,,,
-Fishkill Creek,Fraxinus americana,1,,,,,,,
-Hans Creek,Fraxinus americana,1,,,,,,,
-Indian Kill,Fraxinus americana,1,,,,,,,
-Kinderhook Creek,Fraxinus americana,1,,,,,,,
-Lansing Kill,Fraxinus americana,1,,,,,,,
-Minots Corner Road,Fraxinus americana,1,,,,,,,
-North Branch West Stony Creek,Fraxinus americana,1,,,,,,,
-Quacken Kill,Fraxinus americana,1,,,,,,,
-Saw Kill,Fraxinus americana,1,,,,,,,
-Sprout Creek,Fraxinus americana,1,,,,,,,
-Steele Creek,Fraxinus americana,1,,,,,,,
-Stony Creek,Fraxinus americana,1,,,,,,,
-Trout Brook,Fraxinus americana,1,,,,,,,
-Valatie Kill,Fraxinus americana,1,,,,,,,
-Wharton Hollow Creek,Fraxinus americana,1,,,,,,,
-Stewart Creek,Fraxinus nigra,1,,,,,,,
-Potic Creek,Fraxinus pennsylvanica,1,,,,,,,
-Big Brook,Galium aparine,1,,,,,,,
-Fawn Lake,Galium aparine,1,,,,,,,
-Four Mile Brook,Galium aparine,1,,,,,,,
-Robbs Creek,Galium aparine,1,,,,,,,
-Sterling Creek,Galium aparine,1,,,,,,,
-Cadman Creek,Galium asprellum,1,,,,,,,
-Daly Creek,Galium asprellum,1,,,,,,,
-Four Mile Brook,Galium asprellum,1,,,,,,,
-Hudson River,Galium asprellum,1,,,,,,,
-Mill Brook,Galium asprellum,1,,,,,,,
-Mill Creek,Galium asprellum,1,,,,,,,
-Paragon Brook,Galium asprellum,1,,,,,,,
-Sherriff Lake Outlet,Galium asprellum,1,,,,,,,
-Timmerman Creek,Galium asprellum,1,,,,,,,
-Beaver Kill,Galium boreale,1,,,,,,,
-Wappinger Creek,Galium boreale,1,,,,,,,
-Wharton Hollow Creek,Galium boreale,1,,,,,,,
-Cobleskill Creek,Galium mollugo,1,,,,,,,
-Fawn Lake,Galium mollugo,1,,,,,,,
-Keyser Kill,Galium mollugo,1,,,,,,,
-Wharton Hollow Creek,Galium mollugo,1,,,,,,,
-Alplaus Kill,Galium palustre,1,,,,,,,
-Ballston Creek,Galium palustre,1,,,,,,,
-Battenkill,Galium palustre,1,,,,,,,
-Beaver Kill,Galium palustre,1,,,,,,,
-Cedar River,Galium palustre,1,,,,,,,
-Chester Creek,Galium palustre,1,,,,,,,
-Jassup River,Galium palustre,1,,,,,,,
-Kennyetto Creek,Galium palustre,1,,,,,,,
-Kinderhook Creek,Galium palustre,1,,,,,,,
-Landsman Kill,Galium palustre,1,,,,,,,
-Mohawk River,Galium palustre,1,,,,,,,
-Potic Creek,Galium palustre,1,,,,,,,
-Quacken Kill,Galium palustre,1,,,,,,,
-Roeliff Jansen Kill,Galium palustre,1,,,,,,,
-Stony Creek,Galium palustre,1,,,,,,,
-Wharton Hollow Creek,Galium palustre,1,,,,,,,
-Roeliff Jansen Kill,Galium triflorum,1,,,,,,,
-Hudson River,Gentiana linearis,1,,,,,,,
-Landsman Kill,Geum canadense,1,,,,,,,
-Mohawk River,Geum canadense,1,,,,,,,
-Roeliff Jansen Kill,Geum canadense,1,,,,,,,
-Snook Kill,Geum canadense,1,,,,,,,
-Ballston Creek,Glechoma hederacea,1,,,,,,,
-Cobleskill Creek,Glechoma hederacea,1,,,,,,,
-Hans Creek,Glechoma hederacea,1,,,,,,,
-Landsman Kill,Glechoma hederacea,1,,,,,,,
-Mill Creek,Glechoma hederacea,1,,,,,,,
-Minots Corner Road,Glechoma hederacea,1,,,,,,,
-Mohawk River,Glechoma hederacea,1,,,,,,,
-North Branch West Stony Creek,Glechoma hederacea,1,,,,,,,
-Quacken Kill,Glechoma hederacea,1,,,,,,,
-Snook Kill,Glechoma hederacea,1,,,,,,,
-Steele Creek,Glechoma hederacea,1,,,,,,,
-Ballston Creek,Glyceria striata,1,,,,,,,
-Cadman Creek,Glyceria striata,1,,,,,,,
-Daly Creek,Glyceria striata,1,,,,,,,
-Four Mile Brook,Glyceria striata,1,,,,,,,
-Four Mile Brook,Glyceria striata,1,,,,,,,
-Indian Kill,Glyceria striata,1,,,,,,,
-Keyser Kill,Glyceria striata,1,,,,,,,
-Mill Brook,Glyceria striata,1,,,,,,,
-Mill Creek,Glyceria striata,1,,,,,,,
-New Pond Brook,Glyceria striata,1,,,,,,,
-New Pond Brook,Glyceria striata,1,,,,,,,
-North Branch West Stony Creek,Glyceria striata,1,,,,,,,
-Robbs Creek,Glyceria striata,1,,,,,,,
-Sherriff Lake Outlet,Glyceria striata,1,,,,,,,
-Timmerman Creek,Glyceria striata,1,,,,,,,
-Ballston Creek,Hamamelis virginiana,1,,,,,,,
-Hans Creek,Hamamelis virginiana,1,,,,,,,
-Saw Kill,Hamamelis virginiana,1,,,,,,,
-Sterling Creek,Hamamelis virginiana,1,,,,,,,
-Ballston Creek,Helianthus divaricatus,1,,,,,,,
-Kayaderosseras Creek,Helianthus divaricatus,1,,,,,,,
-Steele Creek,Helianthus divaricatus,1,,,,,,,
-Battenkill,Helianthus strumosus,1,,,,,,,
-Valatie Kill,Helianthus strumosus,1,,,,,,,
-Quacken Kill,Helianthus tuberosus,1,,,,,,,
-Paragon Brook,Hemerocallis fulva,1,,,,,,,
-Bullhead Pond Brook,Heuchera villosa,1,,,,,,,
-Cadman Creek,Heuchera villosa,1,,,,,,,
-Daly Creek,Heuchera villosa,1,,,,,,,
-Robbs Creek,Heuchera villosa,1,,,,,,,
-Stewart Creek,Heuchera villosa,1,,,,,,,
-Robbs Creek,Hypericum mutilum,1,,,,,,,
-Cedar River,Hypericum perforatum,1,,,,,,,
-Daly Creek,Hypericum perforatum,1,,,,,,,
-Four Mile Brook,Hypericum perforatum,1,,,,,,,
-Hudson River,Hypericum perforatum,1,,,,,,,
-Keyser Kill,Hypericum perforatum,1,,,,,,,
-Kinderhook Creek,Hypericum perforatum,1,,,,,,,
-Paragon Brook,Hypericum perforatum,1,,,,,,,
-Sterling Creek,Hypericum perforatum,1,,,,,,,
-Wharton Hollow Creek,Hypericum perforatum,1,,,,,,,
-Stony Creek,Hypericum punctatum,1,,,,,,,
-Ballston Creek,Impatiens capensis,1,,,,,,,
-Beaver Kill,Impatiens capensis,1,,,,,,,
-Bullhead Pond Brook,Impatiens capensis,1,,,,,,,
-Daly Creek,Impatiens capensis,1,,,,,,,
-Fawn Lake,Impatiens capensis,1,,,,,,,
-Fishkill Creek,Impatiens capensis,1,,,,,,,
-Indian Brook,Impatiens capensis,1,,,,,,,
-Indian Kill,Impatiens capensis,1,,,,,,,
-Keyser Kill,Impatiens capensis,1,,,,,,,
-Landsman Kill,Impatiens capensis,1,,,,,,,
-Lansing Kill,Impatiens capensis,1,,,,,,,
-Plotter Kill,Impatiens capensis,1,,,,,,,
-Potic Creek,Impatiens capensis,1,,,,,,,
-Quacken Kill,Impatiens capensis,1,,,,,,,
-Roeliff Jansen Kill,Impatiens capensis,1,,,,,,,
-Saw Kill,Impatiens capensis,1,,,,,,,
-Snook Kill,Impatiens capensis,1,,,,,,,
-Sprout Creek,Impatiens capensis,1,,,,,,,
-Stony Creek,Impatiens capensis,1,,,,,,,
-Ballston Creek,Impatiens pallida,1,,,,,,,
-Evas Kill,Impatiens pallida,1,,,,,,,
-Mohawk River,Impatiens pallida,1,,,,,,,
-Plotter Kill,Impatiens pallida,1,,,,,,,
-Cadman Creek,Juglans cinerea,1,,,,,,,
-Quacken Kill,Juglans cinerea,1,,,,,,,
-Hudson River,Juglans nigra,1,,,,,,,
-Landsman Kill,Juglans nigra,1,,,,,,,
-Boreas River,Juncaceae_a,1,,,,,,,
-Chester Creek,Juncaceae_a,1,,,,,,,
-Cobleskill Creek,Juncaceae_a,1,,,,,,,
-Kayaderosseras Creek,Juncaceae_a,1,,,,,,,
-Snook Kill,Juncaceae_a,1,,,,,,,
-Four Mile Brook,Juncus articulatus,1,,,,,,,
-Timmerman Creek,Juncus articulatus,1,,,,,,,
-Cedar River,Juncus filiformis,1,,,,,,,
-Four Mile Brook,Juncus filiformis,1,,,,,,,
-Alplaus Kill,Laportea canadensis,1,,,,,,,
-Ballston Creek,Laportea canadensis,1,,,,,,,
-Evas Kill,Laportea canadensis,1,,,,,,,
-Landsman Kill,Laportea canadensis,1,,,,,,,
-Snook Kill,Laportea canadensis,1,,,,,,,
-Cadman Creek,Leonurus cardiaca,1,,,,,,,
-Quacken Kill,Leonurus cardiaca,1,,,,,,,
-Roeliff Jansen Kill,Leonurus cardiaca,1,,,,,,,
-Boreas River,Leucanthemum vulgare,1,,,,,,,
-Cedar River,Leucanthemum vulgare,1,,,,,,,
-Cobleskill Creek,Leucanthemum vulgare,1,,,,,,,
-Fawn Lake,Leucanthemum vulgare,1,,,,,,,
-Four Mile Brook,Leucanthemum vulgare,1,,,,,,,
-Keyser Kill,Leucanthemum vulgare,1,,,,,,,
-Cedar River,Linaria vulgaris,1,,,,,,,
-Indian Brook,Lindera benzoin,1,,,,,,,
-Battenkill,Liparis loeselii,1,,,,,,,
-Mill Creek,Liparis loeselii,1,,,,,,,
-Stewart Creek,Liparis loeselii,1,,,,,,,
-Roeliff Jansen Kill,Lithospermum officinale,1,,,,,,,
-Ballston Creek,Lobelia cardinalis,1,,,,,,,
-Jassup River,Lobelia cardinalis,1,,,,,,,
-Mill Brook,Lobelia cardinalis,1,,,,,,,
-Mill Creek,Lobelia cardinalis,1,,,,,,,
-Paragon Brook,Lobelia cardinalis,1,,,,,,,
-Stewart Creek,Lobelia cardinalis,1,,,,,,,
-Timmerman Creek,Lobelia cardinalis,1,,,,,,,
-Trout Brook,Lobelia cardinalis,1,,,,,,,
-Kinderhook Creek,Lobelia inflata,1,,,,,,,
-Evas Kill,Lobelia siphilitica,1,,,,,,,
-Snook Kill,Lobelia siphilitica,1,,,,,,,
-Valatie Kill,Lonicera japonica,1,,,,,,,
-Alplaus Kill,Lonicera morrowii,1,,,,,,,
-Ballston Creek,Lonicera morrowii,1,,,,,,,
-Battenkill,Lonicera morrowii,1,,,,,,,
-Beaver Kill,Lonicera morrowii,1,,,,,,,
-Big Brook,Lonicera morrowii,1,,,,,,,
-Fawn Lake,Lonicera morrowii,1,,,,,,,
-Fishkill Creek,Lonicera morrowii,1,,,,,,,
-Green River,Lonicera morrowii,1,,,,,,,
-Indian Brook,Lonicera morrowii,1,,,,,,,
-Kennyetto Creek,Lonicera morrowii,1,,,,,,,
-Kinderhook Creek,Lonicera morrowii,1,,,,,,,
-Lansing Kill,Lonicera morrowii,1,,,,,,,
-Minots Corner Road,Lonicera morrowii,1,,,,,,,
-Mohawk River,Lonicera morrowii,1,,,,,,,
-Paragon Brook,Lonicera morrowii,1,,,,,,,
-Paragon Brook,Lonicera morrowii,1,,,,,,,
-Quacken Kill,Lonicera morrowii,1,,,,,,,
-Snook Kill,Lonicera morrowii,1,,,,,,,
-Steele Creek,Lonicera morrowii,1,,,,,,,
-Sterling Creek,Lonicera morrowii,1,,,,,,,
-Stony Creek,Lonicera morrowii,1,,,,,,,
-Valatie Kill,Lonicera morrowii,1,,,,,,,
-Boreas River,Lotus corniculatus,1,,,,,,,
-Cobleskill Creek,Lotus corniculatus,1,,,,,,,
-Fawn Lake,Lotus corniculatus,1,,,,,,,
-Keyser Kill,Lotus corniculatus,1,,,,,,,
-Chester Creek,Ludwigia palustris,1,,,,,,,
-Jassup River,Ludwigia palustris,1,,,,,,,
-Hudson River,Lycopus americanus,1,,,,,,,
-Boreas River,Lycopus rubellus,1,,,,,,,
-Cadman Creek,Lycopus rubellus,1,,,,,,,
-Cedar River,Lycopus rubellus,1,,,,,,,
-Chester Creek,Lycopus rubellus,1,,,,,,,
-Evas Kill,Lycopus rubellus,1,,,,,,,
-Four Mile Brook,Lycopus rubellus,1,,,,,,,
-Lansing Kill,Lycopus rubellus,1,,,,,,,
-New Pond Brook,Lycopus rubellus,1,,,,,,,
-North Branch West Stony Creek,Lycopus rubellus,1,,,,,,,
-Robbs Creek,Lycopus rubellus,1,,,,,,,
-Sherriff Lake Outlet,Lycopus rubellus,1,,,,,,,
-Snook Kill,Lycopus rubellus,1,,,,,,,
-Sterling Creek,Lycopus rubellus,1,,,,,,,
-Stewart Creek,Lycopus rubellus,1,,,,,,,
-Trout Brook,Lycopus rubellus,1,,,,,,,
-Battenkill,Lysimachia ciliata,1,,,,,,,
-Beaver Kill,Lysimachia ciliata,1,,,,,,,
-Mill Brook,Lysimachia ciliata,1,,,,,,,
-Mohawk River,Lysimachia ciliata,1,,,,,,,
-Wharton Hollow Creek,Lysimachia ciliata,1,,,,,,,
-Ballston Creek,Lysimachia nummularia,1,,,,,,,
-Battenkill,Lysimachia nummularia,1,,,,,,,
-Big Brook,Lysimachia nummularia,1,,,,,,,
-Fishkill Creek,Lysimachia nummularia,1,,,,,,,
-Indian Kill,Lysimachia nummularia,1,,,,,,,
-Minots Corner Road,Lysimachia nummularia,1,,,,,,,
-Mohawk River,Lysimachia nummularia,1,,,,,,,
-Snook Kill,Lysimachia nummularia,1,,,,,,,
-Sterling Creek,Lysimachia nummularia,1,,,,,,,
-Wappinger Creek,Lysimachia nummularia,1,,,,,,,
-Wharton Hollow Creek,Lysimachia nummularia,1,,,,,,,
-Ballston Creek,Lysimachia quadrifolia,1,,,,,,,
-Fawn Lake,Lysimachia terrestris,1,,,,,,,
-Alplaus Kill,Lythrum salicaria,1,,,,,,,
-Ballston Creek,Lythrum salicaria,1,,,,,,,
-Cobleskill Creek,Lythrum salicaria,1,,,,,,,
-Evas Kill,Lythrum salicaria,1,,,,,,,
-Fawn Lake,Lythrum salicaria,1,,,,,,,
-Indian Kill,Lythrum salicaria,1,,,,,,,
-Kayaderosseras Creek,Lythrum salicaria,1,,,,,,,
-Landsman Kill,Lythrum salicaria,1,,,,,,,
-Plotter Kill,Lythrum salicaria,1,,,,,,,
-Roeliff Jansen Kill,Lythrum salicaria,1,,,,,,,
-Snook Kill,Lythrum salicaria,1,,,,,,,
-Sprout Creek,Lythrum salicaria,1,,,,,,,
-Wappinger Creek,Lythrum salicaria,1,,,,,,,
-Bullhead Pond Brook,Maianthemum racemosum,1,,,,,,,
-Cadman Creek,Maianthemum racemosum,1,,,,,,,
-Hans Creek,Maianthemum racemosum,1,,,,,,,
-Indian Kill,Maianthemum racemosum,1,,,,,,,
-Kennyetto Creek,Maianthemum racemosum,1,,,,,,,
-Kinderhook Creek,Maianthemum racemosum,1,,,,,,,
-Lansing Kill,Maianthemum racemosum,1,,,,,,,
-Minots Corner Road,Maianthemum racemosum,1,,,,,,,
-Mohawk River,Maianthemum racemosum,1,,,,,,,
-North Branch West Stony Creek,Maianthemum racemosum,1,,,,,,,
-Robbs Creek,Maianthemum racemosum,1,,,,,,,
-Stewart Creek,Maianthemum racemosum,1,,,,,,,
-Trout Brook,Maianthemum racemosum,1,,,,,,,
-Valatie Kill,Maianthemum racemosum,1,,,,,,,
-Fishkill Creek,Malus pumila,1,,,,,,,
-Kinderhook Creek,Malus pumila,1,,,,,,,
-Alplaus Kill,Matteuccia struthiopteris,1,,,,,,,
-Ballston Creek,Matteuccia struthiopteris,1,,,,,,,
-Hans Creek,Matteuccia struthiopteris,1,,,,,,,
-Indian Kill,Matteuccia struthiopteris,1,,,,,,,
-Mill Creek,Matteuccia struthiopteris,1,,,,,,,
-Minots Corner Road,Matteuccia struthiopteris,1,,,,,,,
-Cobleskill Creek,Melilotus officinalis,1,,,,,,,
-Fawn Lake,Melilotus officinalis,1,,,,,,,
-Keyser Kill,Melilotus officinalis,1,,,,,,,
-Landsman Kill,Melilotus officinalis,1,,,,,,,
-Plotter Kill,Melilotus officinalis,1,,,,,,,
-Timmerman Creek,Melilotus officinalis,1,,,,,,,
-Wharton Hollow Creek,Melilotus officinalis,1,,,,,,,
-Jassup River,Mimulus ringens,1,,,,,,,
-Kayaderosseras Creek,Mimulus ringens,1,,,,,,,
-Snook Kill,Mimulus ringens,1,,,,,,,
-Trout Brook,Mitchella repens,1,,,,,,,
-Stony Creek,Monotropa uniflora,1,,,,,,,
-Quacken Kill,Muhlenbergia mexicana,1,,,,,,,
-Alplaus Kill,Myosotis laxa,1,,,,,,,
-Ballston Creek,Myosotis laxa,1,,,,,,,
-Evas Kill,Myosotis laxa,1,,,,,,,
-Kayaderosseras Creek,Myosotis laxa,1,,,,,,,
-Keyser Kill,Myosotis laxa,1,,,,,,,
-Cobleskill Creek,Myosotis scorpioides,1,,,,,,,
-Fawn Lake,Myosotis scorpioides,1,,,,,,,
-Wharton Hollow Creek,Myosotis scorpioides,1,,,,,,,
-Boreas River,Myrica gale,1,,,,,,,
-Chester Creek,Myrica gale,1,,,,,,,
-Paragon Brook,Myrica gale,1,,,,,,,
-Bullhead Pond Brook,Oclemena acuminata,1,,,,,,,
-Stewart Creek,Oclemena acuminata,1,,,,,,,
-Keyser Kill,Oenethera biennis,1,,,,,,,
-Snook Kill,Oenethera biennis,1,,,,,,,
-Sterling Creek,Oenethera biennis,1,,,,,,,
-Timmerman Creek,Oenethera biennis,1,,,,,,,
-Alplaus Kill,Onoclea sensibilis,1,,,,,,,
-Ballston Creek,Onoclea sensibilis,1,,,,,,,
-Battenkill,Onoclea sensibilis,1,,,,,,,
-Beaver Kill,Onoclea sensibilis,1,,,,,,,
-Boreas River,Onoclea sensibilis,1,,,,,,,
-Cadman Creek,Onoclea sensibilis,1,,,,,,,
-Cedar River,Onoclea sensibilis,1,,,,,,,
-Chester Creek,Onoclea sensibilis,1,,,,,,,
-Daly Creek,Onoclea sensibilis,1,,,,,,,
-Fawn Lake,Onoclea sensibilis,1,,,,,,,
-Four Mile Brook,Onoclea sensibilis,1,,,,,,,
-Green River,Onoclea sensibilis,1,,,,,,,
-Hans Creek,Onoclea sensibilis,1,,,,,,,
-Indian Brook,Onoclea sensibilis,1,,,,,,,
-Indian Kill,Onoclea sensibilis,1,,,,,,,
-Jassup River,Onoclea sensibilis,1,,,,,,,
-Kennyetto Creek,Onoclea sensibilis,1,,,,,,,
-Kinderhook Creek,Onoclea sensibilis,1,,,,,,,
-Mill Brook,Onoclea sensibilis,1,,,,,,,
-Mill Creek,Onoclea sensibilis,1,,,,,,,
-Minots Corner Road,Onoclea sensibilis,1,,,,,,,
-Mohawk River,Onoclea sensibilis,1,,,,,,,
-Paragon Brook,Onoclea sensibilis,1,,,,,,,
-Potic Creek,Onoclea sensibilis,1,,,,,,,
-Quacken Kill,Onoclea sensibilis,1,,,,,,,
-Robbs Creek,Onoclea sensibilis,1,,,,,,,
-Roeliff Jansen Kill,Onoclea sensibilis,1,,,,,,,
-Sherriff Lake Outlet,Onoclea sensibilis,1,,,,,,,
-Snook Kill,Onoclea sensibilis,1,,,,,,,
-Sprout Creek,Onoclea sensibilis,1,,,,,,,
-Timmerman Creek,Onoclea sensibilis,1,,,,,,,
-Trout Brook,Onoclea sensibilis,1,,,,,,,
-Wharton Hollow Creek,Onoclea sensibilis,1,,,,,,,
-Robbs Creek,Osmunda cinnamomea,1,,,,,,,
-Boreas River,Osmunda regalis,1,,,,,,,
-Chester Creek,Osmunda regalis,1,,,,,,,
-Daly Creek,Osmunda regalis,1,,,,,,,
-Trout Brook,Osmunda regalis,1,,,,,,,
-Alplaus Kill,Ostrya virginiana,1,,,,,,,
-Ballston Creek,Ostrya virginiana,1,,,,,,,
-Lansing Kill,Ostrya virginiana,1,,,,,,,
-Minots Corner Road,Ostrya virginiana,1,,,,,,,
-Sterling Creek,Ostrya virginiana,1,,,,,,,
-Timmerman Creek,Ostrya virginiana,1,,,,,,,
-Valatie Kill,Ostrya virginiana,1,,,,,,,
-Alplaus Kill,Oxalis stricta,1,,,,,,,
-Battenkill,Oxalis stricta,1,,,,,,,
-Boreas River,Oxalis stricta,1,,,,,,,
-Cedar River,Oxalis stricta,1,,,,,,,
-Fishkill Creek,Oxalis stricta,1,,,,,,,
-Hans Creek,Oxalis stricta,1,,,,,,,
-Indian Brook,Oxalis stricta,1,,,,,,,
-Kayaderosseras Creek,Oxalis stricta,1,,,,,,,
-Keyser Kill,Oxalis stricta,1,,,,,,,
-Kinderhook Creek,Oxalis stricta,1,,,,,,,
-Landsman Kill,Oxalis stricta,1,,,,,,,
-Mill Brook,Oxalis stricta,1,,,,,,,
-Minots Corner Road,Oxalis stricta,1,,,,,,,
-Potic Creek,Oxalis stricta,1,,,,,,,
-Quacken Kill,Oxalis stricta,1,,,,,,,
-Roeliff Jansen Kill,Oxalis stricta,1,,,,,,,
-Sherriff Lake Outlet,Oxalis stricta,1,,,,,,,
-Snook Kill,Oxalis stricta,1,,,,,,,
-Sterling Creek,Oxalis stricta,1,,,,,,,
-Stony Creek,Oxalis stricta,1,,,,,,,
-Beaver Kill,Panicum dichotomiflorum,1,,,,,,,
-Potic Creek,Panicum dichotomiflorum,1,,,,,,,
-Sprout Creek,Panicum dichotomiflorum,1,,,,,,,
-Wappinger Creek,Panicum dichotomiflorum,1,,,,,,,
-Alplaus Kill,Parthenocissus quinquefolia,1,,,,,,,
-Ballston Creek,Parthenocissus quinquefolia,1,,,,,,,
-Battenkill,Parthenocissus quinquefolia,1,,,,,,,
-Big Brook,Parthenocissus quinquefolia,1,,,,,,,
-Daly Creek,Parthenocissus quinquefolia,1,,,,,,,
-Evas Kill,Parthenocissus quinquefolia,1,,,,,,,
-Fishkill Creek,Parthenocissus quinquefolia,1,,,,,,,
-Four Mile Brook,Parthenocissus quinquefolia,1,,,,,,,
-Indian Kill,Parthenocissus quinquefolia,1,,,,,,,
-Kayaderosseras Creek,Parthenocissus quinquefolia,1,,,,,,,
-Kinderhook Creek,Parthenocissus quinquefolia,1,,,,,,,
-Lansing Kill,Parthenocissus quinquefolia,1,,,,,,,
-Minots Corner Road,Parthenocissus quinquefolia,1,,,,,,,
-Mohawk River,Parthenocissus quinquefolia,1,,,,,,,
-Paragon Brook,Parthenocissus quinquefolia,1,,,,,,,
-Potic Creek,Parthenocissus quinquefolia,1,,,,,,,
-Quacken Kill,Parthenocissus quinquefolia,1,,,,,,,
-Roeliff Jansen Kill,Parthenocissus quinquefolia,1,,,,,,,
-Snook Kill,Parthenocissus quinquefolia,1,,,,,,,
-Sprout Creek,Parthenocissus quinquefolia,1,,,,,,,
-Steele Creek,Parthenocissus quinquefolia,1,,,,,,,
-Sterling Creek,Parthenocissus quinquefolia,1,,,,,,,
-Wappinger Creek,Parthenocissus quinquefolia,1,,,,,,,
-Boreas River,Peltandra virginica,1,,,,,,,
-Boreas River,Phalaris arundinacea,1,,,,,,,
-Cobleskill Creek,Phalaris arundinacea,1,,,,,,,
-Fawn Lake,Phalaris arundinacea,1,,,,,,,
-Keyser Kill,Phalaris arundinacea,1,,,,,,,
-North Branch West Stony Creek,Phalaris arundinacea,1,,,,,,,
-Sprout Creek,Phalaris arundinacea,1,,,,,,,
-Bullhead Pond Brook,Phegopteris connectilis,1,,,,,,,
-Hudson River,Phegopteris connectilis,1,,,,,,,
-Four Mile Brook,Phegopteris hexagonoptera,1,,,,,,,
-New Pond Brook,Phegopteris hexagonoptera,1,,,,,,,
-Sherriff Lake Outlet,Phegopteris hexagonoptera,1,,,,,,,
-Stewart Creek,Phegopteris hexagonoptera,1,,,,,,,
-Timmerman Creek,Phegopteris hexagonoptera,1,,,,,,,
-Battenkill,Phleum pratense,1,,,,,,,
-Cedar River,Phleum pratense,1,,,,,,,
-Fawn Lake,Phleum pratense,1,,,,,,,
-Paragon Brook,Phleum pratense,1,,,,,,,
-Quacken Kill,Phleum pratense,1,,,,,,,
-Alplaus Kill,Pilea pumila,1,,,,,,,
-Ballston Creek,Pilea pumila,1,,,,,,,
-Evas Kill,Pilea pumila,1,,,,,,,
-Fishkill Creek,Pilea pumila,1,,,,,,,
-Indian Brook,Pilea pumila,1,,,,,,,
-Indian Kill,Pilea pumila,1,,,,,,,
-Kinderhook Creek,Pilea pumila,1,,,,,,,
-Landsman Kill,Pilea pumila,1,,,,,,,
-Lansing Kill,Pilea pumila,1,,,,,,,
-Minots Corner Road,Pilea pumila,1,,,,,,,
-Potic Creek,Pilea pumila,1,,,,,,,
-Quacken Kill,Pilea pumila,1,,,,,,,
-Roeliff Jansen Kill,Pilea pumila,1,,,,,,,
-Saw Kill,Pilea pumila,1,,,,,,,
-Snook Kill,Pilea pumila,1,,,,,,,
-Sprout Creek,Pilea pumila,1,,,,,,,
-Sterling Creek,Pilea pumila,1,,,,,,,
-Stony Creek,Pilea pumila,1,,,,,,,
-Wappinger Creek,Pilea pumila,1,,,,,,,
-Cadman Creek,Pinus strobus,1,,,,,,,
-Mill Creek,Pinus strobus,1,,,,,,,
-Paragon Brook,Pinus strobus,1,,,,,,,
-Battenkill,Plantago lanceolata,1,,,,,,,
-Big Brook,Plantago lanceolata,1,,,,,,,
-Alplaus Kill,Plantago major,1,,,,,,,
-Big Brook,Plantago major,1,,,,,,,
-Boreas River,Plantago major,1,,,,,,,
-Cobleskill Creek,Plantago major,1,,,,,,,
-Evas Kill,Plantago major,1,,,,,,,
-Fawn Lake,Plantago major,1,,,,,,,
-Indian Kill,Plantago major,1,,,,,,,
-Kayaderosseras Creek,Plantago major,1,,,,,,,
-Kennyetto Creek,Plantago major,1,,,,,,,
-Kinderhook Creek,Plantago major,1,,,,,,,
-Lansing Kill,Plantago major,1,,,,,,,
-Potic Creek,Plantago major,1,,,,,,,
-Quacken Kill,Plantago major,1,,,,,,,
-Snook Kill,Plantago major,1,,,,,,,
-Sprout Creek,Plantago major,1,,,,,,,
-Sterling Creek,Plantago major,1,,,,,,,
-Stony Creek,Plantago major,1,,,,,,,
-Kinderhook Creek,Platanus occidentalis,1,,,,,,,
-Landsman Kill,Platanus occidentalis,1,,,,,,,
-Sprout Creek,Platanus occidentalis,1,,,,,,,
-Alplaus Kill,poaceae_a,1,,,,,,,
-Ballston Creek,poaceae_a,1,,,,,,,
-Battenkill,poaceae_a,1,,,,,,,
-Big Brook,poaceae_a,1,,,,,,,
-Cedar River,poaceae_a,1,,,,,,,
-Chester Creek,poaceae_a,1,,,,,,,
-Evas Kill,poaceae_a,1,,,,,,,
-Fishkill Creek,poaceae_a,1,,,,,,,
-Jassup River,poaceae_a,1,,,,,,,
-Kayaderosseras Creek,poaceae_a,1,,,,,,,
-Lansing Kill,poaceae_a,1,,,,,,,
-Paragon Brook,poaceae_a,1,,,,,,,
-Roeliff Jansen Kill,poaceae_a,1,,,,,,,
-Sherriff Lake Outlet,poaceae_a,1,,,,,,,
-Snook Kill,poaceae_a,1,,,,,,,
-Sterling Creek,poaceae_a,1,,,,,,,
-Stony Creek,poaceae_a,1,,,,,,,
-Wappinger Creek,poaceae_a,1,,,,,,,
-Fishkill Creek,poaceae_b,1,,,,,,,
-Paragon Brook,poaceae_b,1,,,,,,,
-Roeliff Jansen Kill,poaceae_b,1,,,,,,,
-Stony Creek,poaceae_b,1,,,,,,,
-Wappinger Creek,poaceae_b,1,,,,,,,
-Paragon Brook,poaceae_c,1,,,,,,,
-Roeliff Jansen Kill,poaceae_c,1,,,,,,,
-Beaver Kill,Polygonum amphibium,1,,,,,,,
-Cobleskill Creek,Polygonum amphibium,1,,,,,,,
-Potic Creek,Polygonum amphibium,1,,,,,,,
-Roeliff Jansen Kill,Polygonum amphibium,1,,,,,,,
-Ballston Creek,Polygonum arifolium,1,,,,,,,
-Beaver Kill,Polygonum cilinode,1,,,,,,,
-Alplaus Kill,Polygonum cuspidatum,1,,,,,,,
-Green River,Polygonum cuspidatum,1,,,,,,,
-Kayaderosseras Creek,Polygonum cuspidatum,1,,,,,,,
-Keyser Kill,Polygonum cuspidatum,1,,,,,,,
-Steele Creek,Polygonum cuspidatum,1,,,,,,,
-Fawn Lake,Polygonum hydropiper,1,,,,,,,
-Saw Kill,Polygonum hydropiper,1,,,,,,,
-Wappinger Creek,Polygonum hydropiperoides,1,,,,,,,
-Ballston Creek,Polygonum persicaria,1,,,,,,,
-Cobleskill Creek,Polygonum persicaria,1,,,,,,,
-Evas Kill,Polygonum persicaria,1,,,,,,,
-Indian Brook,Polygonum persicaria,1,,,,,,,
-Kayaderosseras Creek,Polygonum persicaria,1,,,,,,,
-Potic Creek,Polygonum persicaria,1,,,,,,,
-Quacken Kill,Polygonum persicaria,1,,,,,,,
-Sprout Creek,Polygonum persicaria,1,,,,,,,
-Stony Creek,Polygonum persicaria,1,,,,,,,
-Evas Kill,Polygonum punctatum,1,,,,,,,
-Kennyetto Creek,Polygonum punctatum,1,,,,,,,
-Quacken Kill,Polygonum punctatum,1,,,,,,,
-Beaver Kill,Polygonum sagittatum,1,,,,,,,
-Cadman Creek,Polygonum sagittatum,1,,,,,,,
-Daly Creek,Polygonum sagittatum,1,,,,,,,
-Fawn Lake,Polygonum sagittatum,1,,,,,,,
-Indian Brook,Polygonum sagittatum,1,,,,,,,
-New Pond Brook,Polygonum sagittatum,1,,,,,,,
-North Branch West Stony Creek,Polygonum sagittatum,1,,,,,,,
-Potic Creek,Polygonum sagittatum,1,,,,,,,
-Saw Kill,Polygonum sagittatum,1,,,,,,,
-Sherriff Lake Outlet,Polygonum sagittatum,1,,,,,,,
-Alplaus Kill,Polygonum virginianum,1,,,,,,,
-Indian Kill,Polygonum virginianum,1,,,,,,,
-Kennyetto Creek,Polygonum virginianum,1,,,,,,,
-Kinderhook Creek,Polygonum virginianum,1,,,,,,,
-Lansing Kill,Polygonum virginianum,1,,,,,,,
-Snook Kill,Polygonum virginianum,1,,,,,,,
-Bullhead Pond Brook,Polystichum acrostichoides,1,,,,,,,
-Indian Kill,Polystichum acrostichoides,1,,,,,,,
-Ballston Creek,Populus deltoides,1,,,,,,,
-Cadman Creek,Populus deltoides,1,,,,,,,
-Cobleskill Creek,Populus deltoides,1,,,,,,,
-Evas Kill,Populus deltoides,1,,,,,,,
-Fishkill Creek,Populus deltoides,1,,,,,,,
-Kayaderosseras Creek,Populus deltoides,1,,,,,,,
-Keyser Kill,Populus deltoides,1,,,,,,,
-Plotter Kill,Populus deltoides,1,,,,,,,
-Quacken Kill,Populus deltoides,1,,,,,,,
-Landsman Kill,Potentilla recta,1,,,,,,,
-Big Brook,Potentilla simplex,1,,,,,,,
-Cedar River,Potentilla simplex,1,,,,,,,
-Four Mile Brook,Potentilla simplex,1,,,,,,,
-Hans Creek,Potentilla simplex,1,,,,,,,
-Keyser Kill,Potentilla simplex,1,,,,,,,
-New Pond Brook,Potentilla simplex,1,,,,,,,
-North Branch West Stony Creek,Potentilla simplex,1,,,,,,,
-Paragon Brook,Potentilla simplex,1,,,,,,,
-Roeliff Jansen Kill,Potentilla simplex,1,,,,,,,
-Stewart Creek,Potentilla simplex,1,,,,,,,
-Stony Creek,Potentilla simplex,1,,,,,,,
-Bullhead Pond Brook,Prenanthes alba,1,,,,,,,
-Cadman Creek,Prenanthes altissima,1,,,,,,,
-Daly Creek,Prenanthes altissima,1,,,,,,,
-Sherriff Lake Outlet,Prenanthes trifoliolata,1,,,,,,,
-Stewart Creek,Prenanthes trifoliolata,1,,,,,,,
-Trout Brook,Prenanthes trifoliolata,1,,,,,,,
-Big Brook,Prunella vulgaris,1,,,,,,,
-Boreas River,Prunella vulgaris,1,,,,,,,
-Cedar River,Prunella vulgaris,1,,,,,,,
-Daly Creek,Prunella vulgaris,1,,,,,,,
-Evas Kill,Prunella vulgaris,1,,,,,,,
-Four Mile Brook,Prunella vulgaris,1,,,,,,,
-Hans Creek,Prunella vulgaris,1,,,,,,,
-Hudson River,Prunella vulgaris,1,,,,,,,
-Indian Kill,Prunella vulgaris,1,,,,,,,
-Kayaderosseras Creek,Prunella vulgaris,1,,,,,,,
-Keyser Kill,Prunella vulgaris,1,,,,,,,
-Kinderhook Creek,Prunella vulgaris,1,,,,,,,
-Mill Creek,Prunella vulgaris,1,,,,,,,
-Paragon Brook,Prunella vulgaris,1,,,,,,,
-Potic Creek,Prunella vulgaris,1,,,,,,,
-Sprout Creek,Prunella vulgaris,1,,,,,,,
-Sterling Creek,Prunella vulgaris,1,,,,,,,
-Stony Creek,Prunella vulgaris,1,,,,,,,
-Timmerman Creek,Prunella vulgaris,1,,,,,,,
-Wappinger Creek,Prunella vulgaris,1,,,,,,,
-Wharton Hollow Creek,Prunella vulgaris,1,,,,,,,
-Chester Creek,Prunus americana,1,,,,,,,
-Cadman Creek,Prunus serotina,1,,,,,,,
-Lansing Kill,Prunus serotina,1,,,,,,,
-Snook Kill,Prunus serotina,1,,,,,,,
-Battenkill,Prunus virginiana,1,,,,,,,
-Big Brook,Prunus virginiana,1,,,,,,,
-Hans Creek,Prunus virginiana,1,,,,,,,
-Kennyetto Creek,Prunus virginiana,1,,,,,,,
-Mill Creek,Prunus virginiana,1,,,,,,,
-Minots Corner Road,Prunus virginiana,1,,,,,,,
-Mohawk River,Prunus virginiana,1,,,,,,,
-New Pond Brook,Prunus virginiana,1,,,,,,,
-North Branch West Stony Creek,Prunus virginiana,1,,,,,,,
-Stewart Creek,Prunus virginiana,1,,,,,,,
-Trout Brook,Prunus virginiana,1,,,,,,,
-Valatie Kill,Prunus virginiana,1,,,,,,,
-North Branch West Stony Creek,Pteridium aquilinum,1,,,,,,,
-Stony Creek,Quercus alba,1,,,,,,,
-Fishkill Creek,Quercus prinoides,1,,,,,,,
-Hans Creek,Quercus velutina,1,,,,,,,
-Fawn Lake,Ranunculus pensylvanicus,1,,,,,,,
-Indian Brook,Ranunculus pensylvanicus,1,,,,,,,
-Wharton Hollow Creek,Ranunculus pensylvanicus,1,,,,,,,
-Roeliff Jansen Kill,Ranunculus recurvatus,1,,,,,,,
-Indian Brook,Rhamnus alnifolia,1,,,,,,,
-Alplaus Kill,Rhamnus cathartica,1,,,,,,,
-Ballston Creek,Rhamnus cathartica,1,,,,,,,
-Indian Kill,Rhamnus cathartica,1,,,,,,,
-Quacken Kill,Rhamnus cathartica,1,,,,,,,
-Big Brook,Rhus typhina,1,,,,,,,
-Minots Corner Road,Rhus typhina,1,,,,,,,
-Plotter Kill,Rhus typhina,1,,,,,,,
-Steele Creek,Rhus typhina,1,,,,,,,
-Sterling Creek,Rhus typhina,1,,,,,,,
-Indian Brook,Robinia pseudoacacia,1,,,,,,,
-Roeliff Jansen Kill,Robinia pseudoacacia,1,,,,,,,
-Alplaus Kill,Rosa multiflora,1,,,,,,,
-Alplaus Kill,Rosa multiflora,1,,,,,,,
-Beaver Kill,Rosa multiflora,1,,,,,,,
-Evas Kill,Rosa multiflora,1,,,,,,,
-Fishkill Creek,Rosa multiflora,1,,,,,,,
-Green River,Rosa multiflora,1,,,,,,,
-Indian Brook,Rosa multiflora,1,,,,,,,
-Kinderhook Creek,Rosa multiflora,1,,,,,,,
-Landsman Kill,Rosa multiflora,1,,,,,,,
-Mohawk River,Rosa multiflora,1,,,,,,,
-Plotter Kill,Rosa multiflora,1,,,,,,,
-Potic Creek,Rosa multiflora,1,,,,,,,
-Quacken Kill,Rosa multiflora,1,,,,,,,
-Roeliff Jansen Kill,Rosa multiflora,1,,,,,,,
-Saw Kill,Rosa multiflora,1,,,,,,,
-Sprout Creek,Rosa multiflora,1,,,,,,,
-Steele Creek,Rosa multiflora,1,,,,,,,
-Stony Creek,Rosa multiflora,1,,,,,,,
-Valatie Kill,Rosa multiflora,1,,,,,,,
-Wappinger Creek,Rosa multiflora,1,,,,,,,
-Chester Creek,Rosa palustris,1,,,,,,,
-Cadman Creek,Rubus allegheniensis,1,,,,,,,
-Daly Creek,Rubus allegheniensis,1,,,,,,,
-Indian Kill,Rubus allegheniensis,1,,,,,,,
-Keyser Kill,Rubus allegheniensis,1,,,,,,,
-Four Mile Brook,Rubus hispidus,1,,,,,,,
-Kinderhook Creek,Rubus hispidus,1,,,,,,,
-Mill Creek,Rubus hispidus,1,,,,,,,
-North Branch West Stony Creek,Rubus hispidus,1,,,,,,,
-Potic Creek,Rubus hispidus,1,,,,,,,
-Ballston Creek,Rubus idaeus,1,,,,,,,
-Jassup River,Rubus idaeus,1,,,,,,,
-Keyser Kill,Rubus idaeus,1,,,,,,,
-Fawn Lake,Rubus occidentalis,1,,,,,,,
-Hudson River,Rubus occidentalis,1,,,,,,,
-Landsman Kill,Rubus occidentalis,1,,,,,,,
-Lansing Kill,Rubus occidentalis,1,,,,,,,
-Minots Corner Road,Rubus occidentalis,1,,,,,,,
-Quacken Kill,Rubus occidentalis,1,,,,,,,
-Roeliff Jansen Kill,Rubus occidentalis,1,,,,,,,
-Sterling Creek,Rubus occidentalis,1,,,,,,,
-Evas Kill,Rubus odoratus,1,,,,,,,
-Lansing Kill,Rubus odoratus,1,,,,,,,
-Mohawk River,Rubus odoratus,1,,,,,,,
-Steele Creek,Rubus odoratus,1,,,,,,,
-Mill Creek,Rubus phoenicolasius,1,,,,,,,
-Robbs Creek,Rubus phoenicolasius,1,,,,,,,
-Sherriff Lake Outlet,Rubus phoenicolasius,1,,,,,,,
-North Branch West Stony Creek,Rubus pubescens,1,,,,,,,
-Stewart Creek,Rubus pubescens,1,,,,,,,
-Indian Kill,Rudbeckia hirta,1,,,,,,,
-Sterling Creek,Rudbeckia hirta,1,,,,,,,
-Robbs Creek,Rudbeckia laciniata,1,,,,,,,
-Big Brook,Rumex crispus,1,,,,,,,
-Cedar River,Rumex crispus,1,,,,,,,
-Kayaderosseras Creek,Rumex crispus,1,,,,,,,
-Kinderhook Creek,Rumex crispus,1,,,,,,,
-Mill Brook,Rumex crispus,1,,,,,,,
-Plotter Kill,Rumex crispus,1,,,,,,,
-Sherriff Lake Outlet,Rumex crispus,1,,,,,,,
-Snook Kill,Rumex crispus,1,,,,,,,
-Sterling Creek,Rumex crispus,1,,,,,,,
-Trout Brook,Rumex crispus,1,,,,,,,
-Cobleskill Creek,Rumex obtusifolius,1,,,,,,,
-Keyser Kill,Rumex obtusifolius,1,,,,,,,
-Roeliff Jansen Kill,Rumex obtusifolius,1,,,,,,,
-Wharton Hollow Creek,Rumex obtusifolius,1,,,,,,,
-Ballston Creek,Sagittaria latifolia,1,,,,,,,
-Chester Creek,Sagittaria latifolia,1,,,,,,,
-Indian Kill,Sagittaria latifolia,1,,,,,,,
-Kayaderosseras Creek,Sagittaria latifolia,1,,,,,,,
-Sherriff Lake Outlet,Sagittaria latifolia,1,,,,,,,
-Cedar River,Salix alba,1,,,,,,,
-Chester Creek,Salix alba,1,,,,,,,
-Cobleskill Creek,Salix alba,1,,,,,,,
-Fawn Lake,Salix alba,1,,,,,,,
-Four Mile Brook,Salix alba,1,,,,,,,
-Hans Creek,Salix alba,1,,,,,,,
-Hans Creek,Salix alba,1,,,,,,,
-Jassup River,Salix alba,1,,,,,,,
-New Pond Brook,Salix alba,1,,,,,,,
-North Branch West Stony Creek,Salix alba,1,,,,,,,
-Robbs Creek,Salix alba,1,,,,,,,
-Sherriff Lake Outlet,Salix alba,1,,,,,,,
-Timmerman Creek,Salix alba,1,,,,,,,
-Wharton Hollow Creek,Salix alba,1,,,,,,,
-Battenkill,Salix nigra,1,,,,,,,
-Boreas River,Salix nigra,1,,,,,,,
-Four Mile Brook,Salix nigra,1,,,,,,,
-Green River,Salix nigra,1,,,,,,,
-Kayaderosseras Creek,Salix nigra,1,,,,,,,
-Kennyetto Creek,Salix nigra,1,,,,,,,
-Kinderhook Creek,Salix nigra,1,,,,,,,
-Plotter Kill,Salix nigra,1,,,,,,,
-Robbs Creek,Salix nigra,1,,,,,,,
-Sherriff Lake Outlet,Salix nigra,1,,,,,,,
-Snook Kill,Salix nigra,1,,,,,,,
-Roeliff Jansen Kill,Salix pentandra,1,,,,,,,
-Evas Kill,Sambucus nigra,1,,,,,,,
-Four Mile Brook,Sambucus nigra,1,,,,,,,
-Mill Creek,Sambucus nigra,1,,,,,,,
-Big Brook,Saponaria officinalis,1,,,,,,,
-Quacken Kill,Saponaria officinalis,1,,,,,,,
-Chester Creek,Schoenoplectus pungens,1,,,,,,,
-Beaver Kill,Scirpus atrocinctus,1,,,,,,,
-Beaver Kill,Scirpus microcarpus,1,,,,,,,
-Landsman Kill,Scutellaria lateriflora,1,,,,,,,
-Saw Kill,Scutellaria lateriflora,1,,,,,,,
-Boreas River,Securigera varia,1,,,,,,,
-Cobleskill Creek,Securigera varia,1,,,,,,,
-Kennyetto Creek,Securigera varia,1,,,,,,,
-Keyser Kill,Securigera varia,1,,,,,,,
-Mill Brook,Securigera varia,1,,,,,,,
-New Pond Brook,Securigera varia,1,,,,,,,
-Sherriff Lake Outlet,Securigera varia,1,,,,,,,
-Timmerman Creek,Silene vulgaris,1,,,,,,,
-Battenkill,Smilax tamnoides,1,,,,,,,
-Alplaus Kill,Solanum dulcamara,1,,,,,,,
-Big Brook,Solanum dulcamara,1,,,,,,,
-Evas Kill,Solanum dulcamara,1,,,,,,,
-Fawn Lake,Solanum dulcamara,1,,,,,,,
-Keyser Kill,Solanum dulcamara,1,,,,,,,
-Sterling Creek,Solanum dulcamara,1,,,,,,,
-Timmerman Creek,Solanum dulcamara,1,,,,,,,
-Wharton Hollow Creek,Solanum dulcamara,1,,,,,,,
-Big Brook,Solidago altissima,1,,,,,,,
-Daly Creek,Solidago altissima,1,,,,,,,
-Jassup River,Solidago altissima,1,,,,,,,
-Keyser Kill,Solidago altissima,1,,,,,,,
-Kinderhook Creek,Solidago altissima,1,,,,,,,
-Sterling Creek,Solidago altissima,1,,,,,,,
-Wharton Hollow Creek,Solidago altissima,1,,,,,,,
-Big Brook,Solidago canadensis,1,,,,,,,
-Cedar River,Solidago canadensis,1,,,,,,,
-Green River,Solidago canadensis,1,,,,,,,
-Indian Brook,Solidago canadensis,1,,,,,,,
-Mill Brook,Solidago canadensis,1,,,,,,,
-Mill Creek,Solidago canadensis,1,,,,,,,
-North Branch West Stony Creek,Solidago canadensis,1,,,,,,,
-Plotter Kill,Solidago canadensis,1,,,,,,,
-Robbs Creek,Solidago canadensis,1,,,,,,,
-Sherriff Lake Outlet,Solidago canadensis,1,,,,,,,
-Snook Kill,Solidago canadensis,1,,,,,,,
-Green River,Solidago flexicaulis,1,,,,,,,
-Indian Kill,Solidago flexicaulis,1,,,,,,,
-Lansing Kill,Solidago flexicaulis,1,,,,,,,
-Mohawk River,Solidago flexicaulis,1,,,,,,,
-Robbs Creek,Solidago flexicaulis,1,,,,,,,
-Steele Creek,Solidago flexicaulis,1,,,,,,,
-Alplaus Kill,Solidago gigantea,1,,,,,,,
-Battenkill,Solidago gigantea,1,,,,,,,
-Beaver Kill,Solidago gigantea,1,,,,,,,
-Cadman Creek,Solidago gigantea,1,,,,,,,
-Cobleskill Creek,Solidago gigantea,1,,,,,,,
-Fawn Lake,Solidago gigantea,1,,,,,,,
-Minots Corner Road,Solidago gigantea,1,,,,,,,
-Paragon Brook,Solidago gigantea,1,,,,,,,
-Plotter Kill,Solidago gigantea,1,,,,,,,
-Quacken Kill,Solidago gigantea,1,,,,,,,
-Roeliff Jansen Kill,Solidago gigantea,1,,,,,,,
-Snook Kill,Solidago gigantea,1,,,,,,,
-Sprout Creek,Solidago gigantea,1,,,,,,,
-Steele Creek,Solidago gigantea,1,,,,,,,
-Sterling Creek,Solidago gigantea,1,,,,,,,
-Stony Creek,Solidago gigantea,1,,,,,,,
-Hudson River,Solidago latissimifolia,1,,,,,,,
-Bullhead Pond Brook,Sonchus oleraceus,1,,,,,,,
-Kinderhook Creek,Sonchus oleraceus,1,,,,,,,
-New Pond Brook,Sonchus oleraceus,1,,,,,,,
-Quacken Kill,Sonchus oleraceus,1,,,,,,,
-Snook Kill,Sonchus oleraceus,1,,,,,,,
-Boreas River,Spiraea alba,1,,,,,,,
-Cadman Creek,Spiraea alba,1,,,,,,,
-Cedar River,Spiraea alba,1,,,,,,,
-Chester Creek,Spiraea alba,1,,,,,,,
-Four Mile Brook,Spiraea alba,1,,,,,,,
-Hans Creek,Spiraea alba,1,,,,,,,
-Hudson River,Spiraea alba,1,,,,,,,
-Jassup River,Spiraea alba,1,,,,,,,
-Mill Brook,Spiraea alba,1,,,,,,,
-Mill Creek,Spiraea alba,1,,,,,,,
-North Branch West Stony Creek,Spiraea alba,1,,,,,,,
-Sherriff Lake Outlet,Spiraea alba,1,,,,,,,
-Wharton Hollow Creek,Spiraea alba,1,,,,,,,
-Ballston Creek,Stellaria pubera,1,,,,,,,
-Beaver Kill,Stellaria pubera,1,,,,,,,
-Cedar River,Stellaria pubera,1,,,,,,,
-Hans Creek,Stellaria pubera,1,,,,,,,
-Jassup River,Stellaria pubera,1,,,,,,,
-Kayaderosseras Creek,Stellaria pubera,1,,,,,,,
-Kinderhook Creek,Stellaria pubera,1,,,,,,,
-Quacken Kill,Stellaria pubera,1,,,,,,,
-Robbs Creek,Stellaria pubera,1,,,,,,,
-Roeliff Jansen Kill,Stellaria pubera,1,,,,,,,
-Stony Creek,Stellaria pubera,1,,,,,,,
-Alplaus Kill,Symphyotrichum dumosum,1,,,,,,,
-Ballston Creek,Symphyotrichum dumosum,1,,,,,,,
-Big Brook,Symphyotrichum dumosum,1,,,,,,,
-Cadman Creek,Symphyotrichum dumosum,1,,,,,,,
-Daly Creek,Symphyotrichum dumosum,1,,,,,,,
-Evas Kill,Symphyotrichum dumosum,1,,,,,,,
-Hans Creek,Symphyotrichum dumosum,1,,,,,,,
-Indian Kill,Symphyotrichum dumosum,1,,,,,,,
-Kinderhook Creek,Symphyotrichum dumosum,1,,,,,,,
-Kinderhook Creek,Symphyotrichum dumosum,1,,,,,,,
-Landsman Kill,Symphyotrichum dumosum,1,,,,,,,
-Lansing Kill,Symphyotrichum dumosum,1,,,,,,,
-Mill Brook,Symphyotrichum dumosum,1,,,,,,,
-Mill Creek,Symphyotrichum dumosum,1,,,,,,,
-Paragon Brook,Symphyotrichum dumosum,1,,,,,,,
-Quacken Kill,Symphyotrichum dumosum,1,,,,,,,
-Snook Kill,Symphyotrichum dumosum,1,,,,,,,
-Sprout Creek,Symphyotrichum dumosum,1,,,,,,,
-Wappinger Creek,Symphyotrichum dumosum,1,,,,,,,
-Robbs Creek,Symphyotrichum lanceolatum,1,,,,,,,
-Snook Kill,Symphyotrichum lanceolatum,1,,,,,,,
-Stewart Creek,Symphyotrichum lanceolatum,1,,,,,,,
-Stewart Creek,Symphyotrichum lanceolatum,1,,,,,,,
-Boreas River,Symphyotrichum novae-angliae,1,,,,,,,
-Cadman Creek,Symphyotrichum novae-angliae,1,,,,,,,
-Cedar River,Symphyotrichum novae-angliae,1,,,,,,,
-Daly Creek,Symphyotrichum novae-angliae,1,,,,,,,
-Four Mile Brook,Symphyotrichum novae-angliae,1,,,,,,,
-Hans Creek,Symphyotrichum novae-angliae,1,,,,,,,
-Hans Creek,Symphyotrichum novae-angliae,1,,,,,,,
-Jassup River,Symphyotrichum novae-angliae,1,,,,,,,
-Kinderhook Creek,Symphyotrichum novae-angliae,1,,,,,,,
-Lansing Kill,Symphyotrichum novae-angliae,1,,,,,,,
-Mill Creek,Symphyotrichum novae-angliae,1,,,,,,,
-Minots Corner Road,Symphyotrichum novae-angliae,1,,,,,,,
-Robbs Creek,Symphyotrichum novae-angliae,1,,,,,,,
-Sherriff Lake Outlet,Symphyotrichum novae-angliae,1,,,,,,,
-Sterling Creek,Symphyotrichum novae-angliae,1,,,,,,,
-Potic Creek,Symphyotrichum prenanthoides,1,,,,,,,
-Indian Brook,Symplocarpus foetidus,1,,,,,,,
-Quacken Kill,Tanacetum vulgare,1,,,,,,,
-Battenkill,Taraxacum officinale,1,,,,,,,
-Big Brook,Taraxacum officinale,1,,,,,,,
-Cobleskill Creek,Taraxacum officinale,1,,,,,,,
-Evas Kill,Taraxacum officinale,1,,,,,,,
-Fawn Lake,Taraxacum officinale,1,,,,,,,
-Keyser Kill,Taraxacum officinale,1,,,,,,,
-Landsman Kill,Taraxacum officinale,1,,,,,,,
-Quacken Kill,Taraxacum officinale,1,,,,,,,
-Snook Kill,Taraxacum officinale,1,,,,,,,
-Steele Creek,Taraxacum officinale,1,,,,,,,
-Sterling Creek,Taraxacum officinale,1,,,,,,,
-Alplaus Kill,Thalictrum dioicum,1,,,,,,,
-Alplaus Kill,Thalictrum pubescens,1,,,,,,,
-Boreas River,Thalictrum pubescens,1,,,,,,,
-Bullhead Pond Brook,Thalictrum pubescens,1,,,,,,,
-Cadman Creek,Thalictrum pubescens,1,,,,,,,
-Cedar River,Thalictrum pubescens,1,,,,,,,
-Daly Creek,Thalictrum pubescens,1,,,,,,,
-Fawn Lake,Thalictrum pubescens,1,,,,,,,
-Four Mile Brook,Thalictrum pubescens,1,,,,,,,
-Green River,Thalictrum pubescens,1,,,,,,,
-Hans Creek,Thalictrum pubescens,1,,,,,,,
-Hudson River,Thalictrum pubescens,1,,,,,,,
-Indian Kill,Thalictrum pubescens,1,,,,,,,
-Lansing Kill,Thalictrum pubescens,1,,,,,,,
-Mill Brook,Thalictrum pubescens,1,,,,,,,
-Mill Creek,Thalictrum pubescens,1,,,,,,,
-Mohawk River,Thalictrum pubescens,1,,,,,,,
-New Pond Brook,Thalictrum pubescens,1,,,,,,,
-North Branch West Stony Creek,Thalictrum pubescens,1,,,,,,,
-Paragon Brook,Thalictrum pubescens,1,,,,,,,
-Potic Creek,Thalictrum pubescens,1,,,,,,,
-Quacken Kill,Thalictrum pubescens,1,,,,,,,
-Robbs Creek,Thalictrum pubescens,1,,,,,,,
-Roeliff Jansen Kill,Thalictrum pubescens,1,,,,,,,
-Sherriff Lake Outlet,Thalictrum pubescens,1,,,,,,,
-Stewart Creek,Thalictrum pubescens,1,,,,,,,
-Trout Brook,Thalictrum pubescens,1,,,,,,,
-Valatie Kill,Thalictrum pubescens,1,,,,,,,
-Cadman Creek,Thalictrum thalictroides,1,,,,,,,
-Cadman Creek,Thelypteris noveboracensis,1,,,,,,,
-North Branch West Stony Creek,Thelypteris palustris,1,,,,,,,
-Hudson River,Thuja occidentalis,1,,,,,,,
-New Pond Brook,Thuja occidentalis,1,,,,,,,
-Paragon Brook,Thuja occidentalis,1,,,,,,,
-Alplaus Kill,Tilia americana,1,,,,,,,
-Ballston Creek,Tilia americana,1,,,,,,,
-Battenkill,Tilia americana,1,,,,,,,
-Fishkill Creek,Tilia americana,1,,,,,,,
-Green River,Tilia americana,1,,,,,,,
-Indian Kill,Tilia americana,1,,,,,,,
-Kennyetto Creek,Tilia americana,1,,,,,,,
-Kinderhook Creek,Tilia americana,1,,,,,,,
-Minots Corner Road,Tilia americana,1,,,,,,,
-Mohawk River,Tilia americana,1,,,,,,,
-Quacken Kill,Tilia americana,1,,,,,,,
-Steele Creek,Tilia americana,1,,,,,,,
-Sterling Creek,Tilia americana,1,,,,,,,
-Alplaus Kill,Toxicodendron radicans,1,,,,,,,
-Big Brook,Toxicodendron radicans,1,,,,,,,
-Cobleskill Creek,Toxicodendron radicans,1,,,,,,,
-Fishkill Creek,Toxicodendron radicans,1,,,,,,,
-Indian Brook,Toxicodendron radicans,1,,,,,,,
-Indian Kill,Toxicodendron radicans,1,,,,,,,
-Kennyetto Creek,Toxicodendron radicans,1,,,,,,,
-Kinderhook Creek,Toxicodendron radicans,1,,,,,,,
-Landsman Kill,Toxicodendron radicans,1,,,,,,,
-Potic Creek,Toxicodendron radicans,1,,,,,,,
-Quacken Kill,Toxicodendron radicans,1,,,,,,,
-Sprout Creek,Toxicodendron radicans,1,,,,,,,
-Steele Creek,Toxicodendron radicans,1,,,,,,,
-Stony Creek,Toxicodendron radicans,1,,,,,,,
-Wappinger Creek,Toxicodendron radicans,1,,,,,,,
-Chester Creek,Triadenum virginicum,1,,,,,,,
-Mill Brook,Triadenum virginicum,1,,,,,,,
-Keyser Kill,Trifolium aureum,1,,,,,,,
-Sterling Creek,Trifolium aureum,1,,,,,,,
-Kayaderosseras Creek,Trifolium pratense,1,,,,,,,
-Kennyetto Creek,Trifolium pratense,1,,,,,,,
-Keyser Kill,Trifolium pratense,1,,,,,,,
-Kinderhook Creek,Trifolium pratense,1,,,,,,,
-Landsman Kill,Trifolium pratense,1,,,,,,,
-Mill Brook,Trifolium pratense,1,,,,,,,
-Paragon Brook,Trifolium pratense,1,,,,,,,
-Sterling Creek,Trifolium pratense,1,,,,,,,
-Stony Creek,Trifolium pratense,1,,,,,,,
-Timmerman Creek,Trifolium pratense,1,,,,,,,
-Wharton Hollow Creek,Trifolium pratense,1,,,,,,,
-Keyser Kill,Trifolium repens,1,,,,,,,
-Kinderhook Creek,Trifolium repens,1,,,,,,,
-Stewart Creek,Trillium erectum,1,,,,,,,
-Ballston Creek,Tsuga canadensis,1,,,,,,,
-Cadman Creek,Tsuga canadensis,1,,,,,,,
-Evas Kill,Tsuga canadensis,1,,,,,,,
-Hans Creek,Tsuga canadensis,1,,,,,,,
-Minots Corner Road,Tsuga canadensis,1,,,,,,,
-Mohawk River,Tsuga canadensis,1,,,,,,,
-North Branch West Stony Creek,Tsuga canadensis,1,,,,,,,
-Paragon Brook,Tsuga canadensis,1,,,,,,,
-Saw Kill,Tsuga canadensis,1,,,,,,,
-Sterling Creek,Tsuga canadensis,1,,,,,,,
-Stewart Creek,Tsuga canadensis,1,,,,,,,
-Trout Brook,Tsuga canadensis,1,,,,,,,
-Valatie Kill,Tsuga canadensis,1,,,,,,,
-Beaver Kill,Tussilago farfara,1,,,,,,,
-Cadman Creek,Tussilago farfara,1,,,,,,,
-Daly Creek,Tussilago farfara,1,,,,,,,
-Evas Kill,Tussilago farfara,1,,,,,,,
-Green River,Tussilago farfara,1,,,,,,,
-Keyser Kill,Tussilago farfara,1,,,,,,,
-Lansing Kill,Tussilago farfara,1,,,,,,,
-Plotter Kill,Tussilago farfara,1,,,,,,,
-Saw Kill,Tussilago farfara,1,,,,,,,
-Steele Creek,Tussilago farfara,1,,,,,,,
-Sterling Creek,Tussilago farfara,1,,,,,,,
-Stewart Creek,Tussilago farfara,1,,,,,,,
-Timmerman Creek,Tussilago farfara,1,,,,,,,
-Wharton Hollow Creek,Tussilago farfara,1,,,,,,,
-Plotter Kill,Ulmus americana,1,,,,,,,
-Snook Kill,Ulmus americana,1,,,,,,,
-Big Brook,Ulmus rubra,1,,,,,,,
-Evas Kill,Ulmus rubra,1,,,,,,,
-Fishkill Creek,Ulmus rubra,1,,,,,,,
-Green River,Ulmus rubra,1,,,,,,,
-Hans Creek,Ulmus rubra,1,,,,,,,
-Indian Kill,Ulmus rubra,1,,,,,,,
-Jassup River,Ulmus rubra,1,,,,,,,
-Lansing Kill,Ulmus rubra,1,,,,,,,
-Paragon Brook,Ulmus rubra,1,,,,,,,
-Quacken Kill,Ulmus rubra,1,,,,,,,
-Roeliff Jansen Kill,Ulmus rubra,1,,,,,,,
-Saw Kill,Ulmus rubra,1,,,,,,,
-Sherriff Lake Outlet,Ulmus rubra,1,,,,,,,
-Steele Creek,Ulmus rubra,1,,,,,,,
-Valatie Kill,Ulmus rubra,1,,,,,,,
-Evas Kill,Urtica dioica,1,,,,,,,
-Evas Kill,Urtica dioica,1,,,,,,,
-Indian Kill,Urtica dioica,1,,,,,,,
-Quacken Kill,Urtica dioica,1,,,,,,,
-Roeliff Jansen Kill,Urtica dioica,1,,,,,,,
-Sprout Creek,Urtica dioica,1,,,,,,,
-Stony Creek,Urtica dioica,1,,,,,,,
-Cadman Creek,Veratrum viride,1,,,,,,,
-Mill Creek,Veratrum viride,1,,,,,,,
-Robbs Creek,Veratrum viride,1,,,,,,,
-Stewart Creek,Veratrum viride,1,,,,,,,
-Trout Brook,Veratrum viride,1,,,,,,,
-Keyser Kill,Verbascum thapsus,1,,,,,,,
-Landsman Kill,Verbascum thapsus,1,,,,,,,
-Plotter Kill,Verbascum thapsus,1,,,,,,,
-Roeliff Jansen Kill,Verbascum thapsus,1,,,,,,,
-Cobleskill Creek,Verbena hastata,1,,,,,,,
-Cobleskill Creek,Verbena urticifolia,1,,,,,,,
-Indian Kill,Veronica americana,1,,,,,,,
-Cobleskill Creek,Veronica anagallis-aquatica,1,,,,,,,
-Keyser Kill,Veronica anagallis-aquatica,1,,,,,,,
-Chester Creek,Veronica scutellata,1,,,,,,,
-Fawn Lake,Viburnum acerifolium,1,,,,,,,
-Stony Creek,Viburnum acerifolium,1,,,,,,,
-Valatie Kill,Viburnum acerifolium,1,,,,,,,
-Sprout Creek,Viburnum dentatum,1,,,,,,,
-Bullhead Pond Brook,Viburnum lantanoides,1,,,,,,,
-Stewart Creek,Viburnum lantanoides,1,,,,,,,
-Kennyetto Creek,Vinca minor,1,,,,,,,
-Ballston Creek,Viola_a,1,,,,,,,
-Indian Kill,Viola_a,1,,,,,,,
-Kinderhook Creek,Viola_a,1,,,,,,,
-Mill Brook,Viola_a,1,,,,,,,
-Minots Corner Road,Viola_a,1,,,,,,,
-North Branch West Stony Creek,Viola_a,1,,,,,,,
-Potic Creek,Viola_a,1,,,,,,,
-Quacken Kill,Viola_a,1,,,,,,,
-Robbs Creek,Viola_a,1,,,,,,,
-Sherriff Lake Outlet,Viola_a,1,,,,,,,
-Stewart Creek,Viola_a,1,,,,,,,
-Trout Brook,Viola_a,1,,,,,,,
-Wappinger Creek,Viola_a,1,,,,,,,
-Ballston Creek,Vitis riparia,1,,,,,,,
-Battenkill,Vitis riparia,1,,,,,,,
-Big Brook,Vitis riparia,1,,,,,,,
-Cobleskill Creek,Vitis riparia,1,,,,,,,
-Evas Kill,Vitis riparia,1,,,,,,,
-Fawn Lake,Vitis riparia,1,,,,,,,
-Indian Brook,Vitis riparia,1,,,,,,,
-Indian Kill,Vitis riparia,1,,,,,,,
-Kennyetto Creek,Vitis riparia,1,,,,,,,
-Keyser Kill,Vitis riparia,1,,,,,,,
-Kinderhook Creek,Vitis riparia,1,,,,,,,
-Plotter Kill,Vitis riparia,1,,,,,,,
-Quacken Kill,Vitis riparia,1,,,,,,,
-Roeliff Jansen Kill,Vitis riparia,1,,,,,,,
-Snook Kill,Vitis riparia,1,,,,,,,
-Sprout Creek,Vitis riparia,1,,,,,,,
-Sterling Creek,Vitis riparia,1,,,,,,,
-Valatie Kill,Vitis riparia,1,,,,,,,
-Robbs Creek,Woodsia obtusa,1,,,,,,,
-Cobleskill Creek,Xanthium strumarium,1,,,,,,,
-Kayaderosseras Creek,Xanthium strumarium,1,,,,,,,
+River,Species,Presence
+Mill Creek,Abies balsamea,1
+New Pond Brook,Abies balsamea,1
+Sherriff Lake Outlet,Abies balsamea,1
+Kennyetto Creek,Acer negundo,1
+Landsman Kill,Acer negundo,1
+Minots Corner Road,Acer negundo,1
+Snook Kill,Acer negundo,1
+Stewart Creek,Acer pensylvanicum,1
+Bullhead Pond Brook,Acer rubrum,1
+Cadman Creek,Acer rubrum,1
+Evas Kill,Acer rubrum,1
+Fawn Lake,Acer rubrum,1
+Hudson River,Acer rubrum,1
+Indian Kill,Acer rubrum,1
+Kayaderosseras Creek,Acer rubrum,1
+Mill Creek,Acer rubrum,1
+New Pond Brook,Acer rubrum,1
+North Branch West Stony Creek,Acer rubrum,1
+Quacken Kill,Acer rubrum,1
+Trout Brook,Acer rubrum,1
+Fishkill Creek,Acer saccharinum,1
+Kayaderosseras Creek,Acer saccharinum,1
+Roeliff Jansen Kill,Acer saccharinum,1
+Sprout Creek,Acer saccharinum,1
+Steele Creek,Acer saccharinum,1
+Alplaus Kill,Acer saccharum,1
+Ballston Creek,Acer saccharum,1
+Beaver Kill,Acer saccharum,1
+Bullhead Pond Brook,Acer saccharum,1
+Cadman Creek,Acer saccharum,1
+Daly Creek,Acer saccharum,1
+Evas Kill,Acer saccharum,1
+Fawn Lake,Acer saccharum,1
+Hans Creek,Acer saccharum,1
+Indian Brook,Acer saccharum,1
+Keyser Kill,Acer saccharum,1
+Kinderhook Creek,Acer saccharum,1
+Lansing Kill,Acer saccharum,1
+Plotter Kill,Acer saccharum,1
+Potic Creek,Acer saccharum,1
+Quacken Kill,Acer saccharum,1
+Saw Kill,Acer saccharum,1
+Stewart Creek,Acer saccharum,1
+Stony Creek,Acer saccharum,1
+Trout Brook,Acer saccharum,1
+Valatie Kill,Acer saccharum,1
+Wharton Hollow Creek,Acer saccharum,1
+Stewart Creek,Acer spicatum,1
+Cedar River,Achillea millefolium,1
+Four Mile Brook,Achillea millefolium,1
+New Pond Brook,Achillea millefolium,1
+Paragon Brook,Achillea millefolium,1
+Timmerman Creek,Achillea millefolium,1
+Big Brook,Ageratina altissima,1
+Evas Kill,Ageratina altissima,1
+Green River,Ageratina altissima,1
+Indian Kill,Ageratina altissima,1
+Kinderhook Creek,Ageratina altissima,1
+Plotter Kill,Ageratina altissima,1
+Quacken Kill,Ageratina altissima,1
+Alplaus Kill,Agrimonia gryposepala,1
+Kinderhook Creek,Agrimonia gryposepala,1
+Mill Brook,Agrimonia gryposepala,1
+Alplaus Kill,Agrostis perennans,1
+Cadman Creek,Agrostis perennans,1
+Chester Creek,Agrostis perennans,1
+Daly Creek,Agrostis perennans,1
+Hans Creek,Agrostis perennans,1
+Indian Kill,Agrostis perennans,1
+Keyser Kill,Agrostis perennans,1
+Mill Brook,Agrostis perennans,1
+Mill Creek,Agrostis perennans,1
+New Pond Brook,Agrostis perennans,1
+North Branch West Stony Creek,Agrostis perennans,1
+Robbs Creek,Agrostis perennans,1
+Robbs Creek,Agrostis perennans,1
+Sherriff Lake Outlet,Agrostis perennans,1
+Stewart Creek,Agrostis perennans,1
+Trout Brook,Agrostis perennans,1
+Fishkill Creek,Alliaria petiolata,1
+Indian Brook,Alliaria petiolata,1
+Indian Kill,Alliaria petiolata,1
+Lansing Kill,Alliaria petiolata,1
+Mohawk River,Alliaria petiolata,1
+Plotter Kill,Alliaria petiolata,1
+Potic Creek,Alliaria petiolata,1
+Roeliff Jansen Kill,Alliaria petiolata,1
+Saw Kill,Alliaria petiolata,1
+Stony Creek,Alliaria petiolata,1
+Wappinger Creek,Alliaria petiolata,1
+Boreas River,Alnus incana,1
+Cadman Creek,Alnus incana,1
+Chester Creek,Alnus incana,1
+Daly Creek,Alnus incana,1
+Four Mile Brook,Alnus incana,1
+Hans Creek,Alnus incana,1
+Hudson River,Alnus incana,1
+Jassup River,Alnus incana,1
+Kennyetto Creek,Alnus incana,1
+Mill Brook,Alnus incana,1
+Mill Creek,Alnus incana,1
+Minots Corner Road,Alnus incana,1
+Mohawk River,Alnus incana,1
+New Pond Brook,Alnus incana,1
+North Branch West Stony Creek,Alnus incana,1
+Paragon Brook,Alnus incana,1
+Robbs Creek,Alnus incana,1
+Sherriff Lake Outlet,Alnus incana,1
+Snook Kill,Alnus incana,1
+Timmerman Creek,Alnus incana,1
+Trout Brook,Alnus incana,1
+Wharton Hollow Creek,Alnus incana,1
+Quacken Kill,Ambrosia artemisiifolia,1
+Ballston Creek,Ambrosia trifida,1
+Indian Brook,Ambrosia trifida,1
+Indian Kill,Ambrosia trifida,1
+Kayaderosseras Creek,Ambrosia trifida,1
+Keyser Kill,Ambrosia trifida,1
+Landsman Kill,Ambrosia trifida,1
+Ballston Creek,Amphicarpaea bracteata,1
+Battenkill,Amphicarpaea bracteata,1
+Evas Kill,Amphicarpaea bracteata,1
+Hans Creek,Amphicarpaea bracteata,1
+Indian Kill,Amphicarpaea bracteata,1
+Mohawk River,Amphicarpaea bracteata,1
+Paragon Brook,Amphicarpaea bracteata,1
+Plotter Kill,Amphicarpaea bracteata,1
+Potic Creek,Amphicarpaea bracteata,1
+Snook Kill,Amphicarpaea bracteata,1
+Sterling Creek,Anemone virginiana,1
+Alplaus Kill,Apocynum cannabinum,1
+Cobleskill Creek,Apocynum cannabinum,1
+Daly Creek,Apocynum cannabinum,1
+Fawn Lake,Apocynum cannabinum,1
+Plotter Kill,Apocynum cannabinum,1
+Saw Kill,Apocynum cannabinum,1
+Wappinger Creek,Apocynum cannabinum,1
+Big Brook,Arctium lappa,1
+Evas Kill,Arctium lappa,1
+Bullhead Pond Brook,Arisaema triphyllum,1
+Cadman Creek,Arisaema triphyllum,1
+Daly Creek,Arisaema triphyllum,1
+Mill Brook,Arisaema triphyllum,1
+Potic Creek,Arisaema triphyllum,1
+Plotter Kill,Artemisia vulgaris,1
+Alplaus Kill,Asclepias syriaca,1
+Kayaderosseras Creek,Asclepias syriaca,1
+Paragon Brook,Asclepias syriaca,1
+Alplaus Kill,Athyrium filix-femina,1
+Cadman Creek,Athyrium filix-femina,1
+Daly Creek,Athyrium filix-femina,1
+Kinderhook Creek,Athyrium filix-femina,1
+Mill Creek,Athyrium filix-femina,1
+Mohawk River,Athyrium filix-femina,1
+Robbs Creek,Athyrium filix-femina,1
+Roeliff Jansen Kill,Athyrium filix-femina,1
+Sherriff Lake Outlet,Athyrium filix-femina,1
+Valatie Kill,Athyrium filix-femina,1
+Big Brook,Barbarea vulgaris,1
+Battenkill,Berberis thunbergii,1
+Beaver Kill,Berberis thunbergii,1
+Fishkill Creek,Berberis thunbergii,1
+Indian Brook,Berberis thunbergii,1
+Mill Brook,Berberis thunbergii,1
+Valatie Kill,Berberis thunbergii,1
+Fawn Lake,Betula alleghaniensis,1
+Hans Creek,Betula alleghaniensis,1
+Mohawk River,Betula alleghaniensis,1
+Saw Kill,Betula alleghaniensis,1
+Stewart Creek,Betula alleghaniensis,1
+Cadman Creek,Betula papyrifera,1
+Lansing Kill,Betula papyrifera,1
+Fawn Lake,Bidens connata,1
+Alplaus Kill,Bidens frondosa,1
+Ballston Creek,Bidens frondosa,1
+Big Brook,Bidens frondosa,1
+Cobleskill Creek,Bidens frondosa,1
+Evas Kill,Bidens frondosa,1
+Indian Kill,Bidens frondosa,1
+Kayaderosseras Creek,Bidens frondosa,1
+Landsman Kill,Bidens frondosa,1
+Potic Creek,Bidens frondosa,1
+Quacken Kill,Bidens frondosa,1
+Snook Kill,Bidens frondosa,1
+Stony Creek,Bidens frondosa,1
+Sterling Creek,Blephilia hirsuta,1
+Cadman Creek,Boehmeria cylindrica,1
+Indian Brook,Boehmeria cylindrica,1
+Kinderhook Creek,Boehmeria cylindrica,1
+Landsman Kill,Boehmeria cylindrica,1
+Mill Brook,Boehmeria cylindrica,1
+Potic Creek,Boehmeria cylindrica,1
+Trout Brook,Boehmeria cylindrica,1
+Cobleskill Creek,Brassica nigra,1
+Robbs Creek,Bromus ciliatus,1
+Wharton Hollow Creek,Bromus inermis,1
+Mill Creek,Bromus pubescens,1
+Alplaus Kill,Calystegia sepium,1
+Kayaderosseras Creek,Calystegia sepium,1
+Landsman Kill,Calystegia sepium,1
+Plotter Kill,Calystegia sepium,1
+Robbs Creek,Calystegia sepium,1
+Sprout Creek,Calystegia sepium,1
+Ballston Creek,Carex crinita,1
+Beaver Kill,Carex crinita,1
+Cadman Creek,Carex crinita,1
+Daly Creek,Carex crinita,1
+Four Mile Brook,Carex crinita,1
+Hans Creek,Carex crinita,1
+Kayaderosseras Creek,Carex crinita,1
+Kayaderosseras Creek,Carex crinita,1
+Keyser Kill,Carex crinita,1
+Potic Creek,Carex crinita,1
+Sherriff Lake Outlet,Carex crinita,1
+Keyser Kill,Carex scoparia,1
+Ballston Creek,Carpinus caroliniana,1
+Battenkill,Carpinus caroliniana,1
+Indian Kill,Carpinus caroliniana,1
+Kinderhook Creek,Carpinus caroliniana,1
+Lansing Kill,Carpinus caroliniana,1
+Mohawk River,Carpinus caroliniana,1
+Potic Creek,Carpinus caroliniana,1
+Sterling Creek,Carpinus caroliniana,1
+Stony Creek,Carpinus caroliniana,1
+Wharton Hollow Creek,Carpinus caroliniana,1
+Ballston Creek,Carya cordiformis,1
+Hans Creek,Carya cordiformis,1
+Alplaus Kill,Carya ovata,1
+Big Brook,Centaurea jacea,1
+Sterling Creek,Centaurea jacea,1
+Cobleskill Creek,Centaurea nigrescens,1
+Boreas River,Centaurea stoebe,1
+Keyser Kill,Centaurea stoebe,1
+Landsman Kill,Centaurea stoebe,1
+Stony Creek,Cephalanthus occidentalis,1
+Mohawk River,Chelidonium majus,1
+Quacken Kill,Chelidonium majus,1
+Roeliff Jansen Kill,Chelidonium majus,1
+Saw Kill,Chelidonium majus,1
+Cadman Creek,Chelone glabra,1
+Cedar River,Chelone glabra,1
+Four Mile Brook,Chelone glabra,1
+Mill Creek,Chelone glabra,1
+New Pond Brook,Chelone glabra,1
+North Branch West Stony Creek,Chelone glabra,1
+Robbs Creek,Chelone glabra,1
+Sherriff Lake Outlet,Chelone glabra,1
+Trout Brook,Chelone glabra,1
+Ballston Creek,Cicuta maculata,1
+Big Brook,Cicuta maculata,1
+Cedar River,Cicuta maculata,1
+Evas Kill,Cicuta maculata,1
+Kinderhook Creek,Cicuta maculata,1
+Mill Creek,Cicuta maculata,1
+Plotter Kill,Cicuta maculata,1
+Quacken Kill,Cicuta maculata,1
+Steele Creek,Cicuta maculata,1
+Sterling Creek,Cicuta maculata,1
+Stewart Creek,Cicuta maculata,1
+Timmerman Creek,Cicuta maculata,1
+Cadman Creek,Cinna arundinacea,1
+Evas Kill,Cinna arundinacea,1
+Quacken Kill,Cinna arundinacea,1
+Snook Kill,Cinna arundinacea,1
+Cadman Creek,Circaea lutetiana,1
+Daly Creek,Circaea lutetiana,1
+Evas Kill,Circaea lutetiana,1
+Indian Brook,Circaea lutetiana,1
+Indian Kill,Circaea lutetiana,1
+Potic Creek,Circaea lutetiana,1
+Robbs Creek,Circaea lutetiana,1
+Stony Creek,Circaea lutetiana,1
+Wharton Hollow Creek,Circaea lutetiana,1
+Beaver Kill,Clematis virginiana,1
+Big Brook,Clematis virginiana,1
+Boreas River,Clematis virginiana,1
+Cadman Creek,Clematis virginiana,1
+Cedar River,Clematis virginiana,1
+Daly Creek,Clematis virginiana,1
+Fawn Lake,Clematis virginiana,1
+Four Mile Brook,Clematis virginiana,1
+Mill Creek,Clematis virginiana,1
+North Branch West Stony Creek,Clematis virginiana,1
+Quacken Kill,Clematis virginiana,1
+Robbs Creek,Clematis virginiana,1
+Sherriff Lake Outlet,Clematis virginiana,1
+Sprout Creek,Clematis virginiana,1
+Sterling Creek,Clematis virginiana,1
+Stewart Creek,Clematis virginiana,1
+Timmerman Creek,Clematis virginiana,1
+Trout Brook,Clematis virginiana,1
+Wharton Hollow Creek,Clematis virginiana,1
+Beaver Kill,Clinopodium vulgare,1
+Evas Kill,Collinsonia canadensis,1
+Saw Kill,Commelina communis,1
+Fawn Lake,Cornus amomum,1
+Sprout Creek,Cornus amomum,1
+Hudson River,Cornus canadensis,1
+Boreas River,Cornus rugosa,1
+Minots Corner Road,Cornus rugosa,1
+Sterling Creek,Cornus rugosa,1
+Timmerman Creek,Cornus rugosa,1
+Ballston Creek,Cornus sericea,1
+Battenkill,Cornus sericea,1
+Boreas River,Cornus sericea,1
+Cadman Creek,Cornus sericea,1
+Chester Creek,Cornus sericea,1
+Daly Creek,Cornus sericea,1
+Indian Kill,Cornus sericea,1
+Kennyetto Creek,Cornus sericea,1
+Kinderhook Creek,Cornus sericea,1
+Mill Brook,Cornus sericea,1
+Paragon Brook,Cornus sericea,1
+Snook Kill,Cornus sericea,1
+Steele Creek,Cornus sericea,1
+Trout Brook,Cornus sericea,1
+Wappinger Creek,Cornus sericea,1
+Lansing Kill,Corylus cornuta,1
+Evas Kill,Cryptotaenia canadensis,1
+Ballston Creek,Cyperus strigosus,1
+Chester Creek,Cyperus strigosus,1
+Kayaderosseras Creek,Cyperus strigosus,1
+Landsman Kill,Dactylis glomerata,1
+Battenkill,Daucus carota,1
+Cobleskill Creek,Daucus carota,1
+Fawn Lake,Daucus carota,1
+Kennyetto Creek,Daucus carota,1
+Keyser Kill,Daucus carota,1
+Landsman Kill,Daucus carota,1
+Plotter Kill,Daucus carota,1
+Quacken Kill,Daucus carota,1
+Sterling Creek,Daucus carota,1
+Keyser Kill,Dianthus armeria,1
+Battenkill,Dichanthelium clandestinum,1
+Beaver Kill,Dichanthelium clandestinum,1
+Cadman Creek,Dichanthelium clandestinum,1
+Cedar River,Dichanthelium clandestinum,1
+Hans Creek,Dichanthelium clandestinum,1
+Indian Brook,Dichanthelium clandestinum,1
+Indian Kill,Dichanthelium clandestinum,1
+Kayaderosseras Creek,Dichanthelium clandestinum,1
+Kennyetto Creek,Dichanthelium clandestinum,1
+Kinderhook Creek,Dichanthelium clandestinum,1
+Mill Brook,Dichanthelium clandestinum,1
+North Branch West Stony Creek,Dichanthelium clandestinum,1
+Potic Creek,Dichanthelium clandestinum,1
+Quacken Kill,Dichanthelium clandestinum,1
+Roeliff Jansen Kill,Dichanthelium clandestinum,1
+Snook Kill,Dichanthelium clandestinum,1
+Trout Brook,Dichanthelium clandestinum,1
+Kayaderosseras Creek,Digitaria sanguinalis,1
+Fishkill Creek,Dioscorea villosa,1
+Lansing Kill,Dryopteris carthusiana,1
+Stewart Creek,Dryopteris carthusiana,1
+Evas Kill,Dryopteris cristata,1
+Ballston Creek,Echinocystis lobata,1
+Kayaderosseras Creek,Echinocystis lobata,1
+Alplaus Kill,Elymus canadensis,1
+Alplaus Kill,Elymus canadensis,1
+Boreas River,Elymus canadensis,1
+Cadman Creek,Elymus canadensis,1
+Hudson River,Elymus canadensis,1
+Indian Kill,Elymus canadensis,1
+Jassup River,Elymus canadensis,1
+Kinderhook Creek,Elymus canadensis,1
+Mill Brook,Elymus canadensis,1
+New Pond Brook,Elymus canadensis,1
+Plotter Kill,Elymus canadensis,1
+Quacken Kill,Elymus canadensis,1
+Robbs Creek,Elymus canadensis,1
+Snook Kill,Elymus canadensis,1
+Stony Creek,Elymus hystrix,1
+Fawn Lake,Elymus repens,1
+Cedar River,Elymus trachycaulus,1
+Beaver Kill,Elymus virginicus,1
+Saw Kill,Elymus virginicus,1
+Evas Kill,Epilobium ciliatum,1
+Snook Kill,Epilobium ciliatum,1
+Ballston Creek,Epipactis helleborine,1
+Lansing Kill,Epipactis helleborine,1
+Sterling Creek,Epipactis helleborine,1
+Stony Creek,Epipactis helleborine,1
+Valatie Kill,Epipactis helleborine,1
+Battenkill,Equisetum fluviatile,1
+Keyser Kill,Equisetum fluviatile,1
+Timmerman Creek,Equisetum fluviatile,1
+Timmerman Creek,Equisetum hyemale,1
+Cedar River,Equisetum palustre,1
+Alplaus Kill,Equisetum pratense,1
+Boreas River,Equisetum pratense,1
+Hans Creek,Equisetum pratense,1
+Potic Creek,Equisetum pratense,1
+Sherriff Lake Outlet,Equisetum pratense,1
+Snook Kill,Equisetum pratense,1
+Sterling Creek,Equisetum pratense,1
+Wappinger Creek,Equisetum pratense,1
+Keyser Kill,Erigeron annuus,1
+Kinderhook Creek,Erigeron annuus,1
+Landsman Kill,Erigeron annuus,1
+Paragon Brook,Erigeron annuus,1
+Potic Creek,Erigeron annuus,1
+Battenkill,Euonymus alatus,1
+Landsman Kill,Euonymus alatus,1
+Evas Kill,Eupatorium perfoliatum,1
+Fawn Lake,Eupatorium perfoliatum,1
+Mill Brook,Eupatorium perfoliatum,1
+Robbs Creek,Eupatorium perfoliatum,1
+Wharton Hollow Creek,Eupatorium perfoliatum,1
+Kayaderosseras Creek,Euphorbia maculata,1
+Boreas River,Euthamia graminifolia,1
+Cedar River,Euthamia graminifolia,1
+Chester Creek,Euthamia graminifolia,1
+Four Mile Brook,Euthamia graminifolia,1
+Jassup River,Euthamia graminifolia,1
+Kennyetto Creek,Euthamia graminifolia,1
+Landsman Kill,Euthamia graminifolia,1
+North Branch West Stony Creek,Euthamia graminifolia,1
+Potic Creek,Euthamia graminifolia,1
+Robbs Creek,Euthamia graminifolia,1
+Sterling Creek,Euthamia graminifolia,1
+Alplaus Kill,Fagus grandifolia,1
+Bullhead Pond Brook,Fagus grandifolia,1
+Cadman Creek,Fagus grandifolia,1
+Minots Corner Road,Fagus grandifolia,1
+Sherriff Lake Outlet,Fagus grandifolia,1
+Big Brook,Fragaria vesca,1
+Cedar River,Fragaria vesca,1
+Four Mile Brook,Fragaria vesca,1
+Hans Creek,Fragaria vesca,1
+Lansing Kill,Fragaria vesca,1
+Mill Creek,Fragaria vesca,1
+Minots Corner Road,Fragaria vesca,1
+New Pond Brook,Fragaria vesca,1
+Paragon Brook,Fragaria vesca,1
+Robbs Creek,Fragaria vesca,1
+Sterling Creek,Fragaria vesca,1
+Stewart Creek,Fragaria vesca,1
+Timmerman Creek,Fragaria vesca,1
+Ballston Creek,Fraxinus americana,1
+Battenkill,Fraxinus americana,1
+Big Brook,Fraxinus americana,1
+Bullhead Pond Brook,Fraxinus americana,1
+Fawn Lake,Fraxinus americana,1
+Fishkill Creek,Fraxinus americana,1
+Hans Creek,Fraxinus americana,1
+Indian Kill,Fraxinus americana,1
+Kinderhook Creek,Fraxinus americana,1
+Lansing Kill,Fraxinus americana,1
+Minots Corner Road,Fraxinus americana,1
+North Branch West Stony Creek,Fraxinus americana,1
+Quacken Kill,Fraxinus americana,1
+Saw Kill,Fraxinus americana,1
+Sprout Creek,Fraxinus americana,1
+Steele Creek,Fraxinus americana,1
+Stony Creek,Fraxinus americana,1
+Trout Brook,Fraxinus americana,1
+Valatie Kill,Fraxinus americana,1
+Wharton Hollow Creek,Fraxinus americana,1
+Stewart Creek,Fraxinus nigra,1
+Potic Creek,Fraxinus pennsylvanica,1
+Big Brook,Galium aparine,1
+Fawn Lake,Galium aparine,1
+Four Mile Brook,Galium aparine,1
+Robbs Creek,Galium aparine,1
+Sterling Creek,Galium aparine,1
+Cadman Creek,Galium asprellum,1
+Daly Creek,Galium asprellum,1
+Four Mile Brook,Galium asprellum,1
+Hudson River,Galium asprellum,1
+Mill Brook,Galium asprellum,1
+Mill Creek,Galium asprellum,1
+Paragon Brook,Galium asprellum,1
+Sherriff Lake Outlet,Galium asprellum,1
+Timmerman Creek,Galium asprellum,1
+Beaver Kill,Galium boreale,1
+Wappinger Creek,Galium boreale,1
+Wharton Hollow Creek,Galium boreale,1
+Cobleskill Creek,Galium mollugo,1
+Fawn Lake,Galium mollugo,1
+Keyser Kill,Galium mollugo,1
+Wharton Hollow Creek,Galium mollugo,1
+Alplaus Kill,Galium palustre,1
+Ballston Creek,Galium palustre,1
+Battenkill,Galium palustre,1
+Beaver Kill,Galium palustre,1
+Cedar River,Galium palustre,1
+Chester Creek,Galium palustre,1
+Jassup River,Galium palustre,1
+Kennyetto Creek,Galium palustre,1
+Kinderhook Creek,Galium palustre,1
+Landsman Kill,Galium palustre,1
+Mohawk River,Galium palustre,1
+Potic Creek,Galium palustre,1
+Quacken Kill,Galium palustre,1
+Roeliff Jansen Kill,Galium palustre,1
+Stony Creek,Galium palustre,1
+Wharton Hollow Creek,Galium palustre,1
+Roeliff Jansen Kill,Galium triflorum,1
+Landsman Kill,Geum canadense,1
+Mohawk River,Geum canadense,1
+Roeliff Jansen Kill,Geum canadense,1
+Snook Kill,Geum canadense,1
+Ballston Creek,Glechoma hederacea,1
+Cobleskill Creek,Glechoma hederacea,1
+Hans Creek,Glechoma hederacea,1
+Landsman Kill,Glechoma hederacea,1
+Mill Creek,Glechoma hederacea,1
+Minots Corner Road,Glechoma hederacea,1
+Mohawk River,Glechoma hederacea,1
+North Branch West Stony Creek,Glechoma hederacea,1
+Quacken Kill,Glechoma hederacea,1
+Snook Kill,Glechoma hederacea,1
+Steele Creek,Glechoma hederacea,1
+Ballston Creek,Glyceria striata,1
+Cadman Creek,Glyceria striata,1
+Daly Creek,Glyceria striata,1
+Four Mile Brook,Glyceria striata,1
+Four Mile Brook,Glyceria striata,1
+Indian Kill,Glyceria striata,1
+Keyser Kill,Glyceria striata,1
+Mill Brook,Glyceria striata,1
+Mill Creek,Glyceria striata,1
+New Pond Brook,Glyceria striata,1
+New Pond Brook,Glyceria striata,1
+North Branch West Stony Creek,Glyceria striata,1
+Robbs Creek,Glyceria striata,1
+Sherriff Lake Outlet,Glyceria striata,1
+Timmerman Creek,Glyceria striata,1
+Ballston Creek,Hamamelis virginiana,1
+Hans Creek,Hamamelis virginiana,1
+Saw Kill,Hamamelis virginiana,1
+Sterling Creek,Hamamelis virginiana,1
+Battenkill,Helianthus strumosus,1
+Valatie Kill,Helianthus strumosus,1
+Quacken Kill,Helianthus tuberosus,1
+Paragon Brook,Hemerocallis fulva,1
+Robbs Creek,Hypericum mutilum,1
+Cedar River,Hypericum perforatum,1
+Daly Creek,Hypericum perforatum,1
+Four Mile Brook,Hypericum perforatum,1
+Hudson River,Hypericum perforatum,1
+Keyser Kill,Hypericum perforatum,1
+Kinderhook Creek,Hypericum perforatum,1
+Paragon Brook,Hypericum perforatum,1
+Sterling Creek,Hypericum perforatum,1
+Wharton Hollow Creek,Hypericum perforatum,1
+Stony Creek,Hypericum punctatum,1
+Ballston Creek,Impatiens capensis,1
+Beaver Kill,Impatiens capensis,1
+Bullhead Pond Brook,Impatiens capensis,1
+Daly Creek,Impatiens capensis,1
+Fawn Lake,Impatiens capensis,1
+Fishkill Creek,Impatiens capensis,1
+Indian Brook,Impatiens capensis,1
+Indian Kill,Impatiens capensis,1
+Keyser Kill,Impatiens capensis,1
+Landsman Kill,Impatiens capensis,1
+Lansing Kill,Impatiens capensis,1
+Plotter Kill,Impatiens capensis,1
+Potic Creek,Impatiens capensis,1
+Quacken Kill,Impatiens capensis,1
+Roeliff Jansen Kill,Impatiens capensis,1
+Saw Kill,Impatiens capensis,1
+Snook Kill,Impatiens capensis,1
+Sprout Creek,Impatiens capensis,1
+Stony Creek,Impatiens capensis,1
+Ballston Creek,Impatiens pallida,1
+Evas Kill,Impatiens pallida,1
+Mohawk River,Impatiens pallida,1
+Plotter Kill,Impatiens pallida,1
+Cadman Creek,Juglans cinerea,1
+Quacken Kill,Juglans cinerea,1
+Hudson River,Juglans nigra,1
+Landsman Kill,Juglans nigra,1
+Boreas River,Juncaceae_a,1
+Chester Creek,Juncaceae_a,1
+Cobleskill Creek,Juncaceae_a,1
+Kayaderosseras Creek,Juncaceae_a,1
+Snook Kill,Juncaceae_a,1
+Four Mile Brook,Juncus articulatus,1
+Timmerman Creek,Juncus articulatus,1
+Cedar River,Juncus filiformis,1
+Four Mile Brook,Juncus filiformis,1
+Alplaus Kill,Laportea canadensis,1
+Ballston Creek,Laportea canadensis,1
+Evas Kill,Laportea canadensis,1
+Landsman Kill,Laportea canadensis,1
+Snook Kill,Laportea canadensis,1
+Cadman Creek,Leonurus cardiaca,1
+Quacken Kill,Leonurus cardiaca,1
+Roeliff Jansen Kill,Leonurus cardiaca,1
+Boreas River,Leucanthemum vulgare,1
+Cedar River,Leucanthemum vulgare,1
+Cobleskill Creek,Leucanthemum vulgare,1
+Fawn Lake,Leucanthemum vulgare,1
+Four Mile Brook,Leucanthemum vulgare,1
+Keyser Kill,Leucanthemum vulgare,1
+Cedar River,Linaria vulgaris,1
+Indian Brook,Lindera benzoin,1
+Battenkill,Liparis loeselii,1
+Mill Creek,Liparis loeselii,1
+Stewart Creek,Liparis loeselii,1
+Roeliff Jansen Kill,Lithospermum officinale,1
+Ballston Creek,Lobelia cardinalis,1
+Jassup River,Lobelia cardinalis,1
+Mill Brook,Lobelia cardinalis,1
+Mill Creek,Lobelia cardinalis,1
+Paragon Brook,Lobelia cardinalis,1
+Stewart Creek,Lobelia cardinalis,1
+Timmerman Creek,Lobelia cardinalis,1
+Trout Brook,Lobelia cardinalis,1
+Kinderhook Creek,Lobelia inflata,1
+Evas Kill,Lobelia siphilitica,1
+Snook Kill,Lobelia siphilitica,1
+Valatie Kill,Lonicera japonica,1
+Alplaus Kill,Lonicera morrowii,1
+Ballston Creek,Lonicera morrowii,1
+Battenkill,Lonicera morrowii,1
+Beaver Kill,Lonicera morrowii,1
+Big Brook,Lonicera morrowii,1
+Fawn Lake,Lonicera morrowii,1
+Fishkill Creek,Lonicera morrowii,1
+Green River,Lonicera morrowii,1
+Indian Brook,Lonicera morrowii,1
+Kennyetto Creek,Lonicera morrowii,1
+Kinderhook Creek,Lonicera morrowii,1
+Lansing Kill,Lonicera morrowii,1
+Minots Corner Road,Lonicera morrowii,1
+Mohawk River,Lonicera morrowii,1
+Paragon Brook,Lonicera morrowii,1
+Paragon Brook,Lonicera morrowii,1
+Quacken Kill,Lonicera morrowii,1
+Snook Kill,Lonicera morrowii,1
+Steele Creek,Lonicera morrowii,1
+Sterling Creek,Lonicera morrowii,1
+Stony Creek,Lonicera morrowii,1
+Valatie Kill,Lonicera morrowii,1
+Boreas River,Lotus corniculatus,1
+Cobleskill Creek,Lotus corniculatus,1
+Fawn Lake,Lotus corniculatus,1
+Keyser Kill,Lotus corniculatus,1
+Chester Creek,Ludwigia palustris,1
+Jassup River,Ludwigia palustris,1
+Hudson River,Lycopus americanus,1
+Boreas River,Lycopus rubellus,1
+Cadman Creek,Lycopus rubellus,1
+Cedar River,Lycopus rubellus,1
+Chester Creek,Lycopus rubellus,1
+Evas Kill,Lycopus rubellus,1
+Four Mile Brook,Lycopus rubellus,1
+Lansing Kill,Lycopus rubellus,1
+New Pond Brook,Lycopus rubellus,1
+North Branch West Stony Creek,Lycopus rubellus,1
+Robbs Creek,Lycopus rubellus,1
+Sherriff Lake Outlet,Lycopus rubellus,1
+Snook Kill,Lycopus rubellus,1
+Sterling Creek,Lycopus rubellus,1
+Stewart Creek,Lycopus rubellus,1
+Trout Brook,Lycopus rubellus,1
+Battenkill,Lysimachia ciliata,1
+Beaver Kill,Lysimachia ciliata,1
+Mill Brook,Lysimachia ciliata,1
+Mohawk River,Lysimachia ciliata,1
+Wharton Hollow Creek,Lysimachia ciliata,1
+Ballston Creek,Lysimachia nummularia,1
+Battenkill,Lysimachia nummularia,1
+Big Brook,Lysimachia nummularia,1
+Fishkill Creek,Lysimachia nummularia,1
+Indian Kill,Lysimachia nummularia,1
+Minots Corner Road,Lysimachia nummularia,1
+Mohawk River,Lysimachia nummularia,1
+Snook Kill,Lysimachia nummularia,1
+Sterling Creek,Lysimachia nummularia,1
+Wappinger Creek,Lysimachia nummularia,1
+Wharton Hollow Creek,Lysimachia nummularia,1
+Ballston Creek,Lysimachia quadrifolia,1
+Fawn Lake,Lysimachia terrestris,1
+Alplaus Kill,Lythrum salicaria,1
+Ballston Creek,Lythrum salicaria,1
+Cobleskill Creek,Lythrum salicaria,1
+Evas Kill,Lythrum salicaria,1
+Fawn Lake,Lythrum salicaria,1
+Indian Kill,Lythrum salicaria,1
+Kayaderosseras Creek,Lythrum salicaria,1
+Landsman Kill,Lythrum salicaria,1
+Plotter Kill,Lythrum salicaria,1
+Roeliff Jansen Kill,Lythrum salicaria,1
+Snook Kill,Lythrum salicaria,1
+Sprout Creek,Lythrum salicaria,1
+Wappinger Creek,Lythrum salicaria,1
+Bullhead Pond Brook,Maianthemum racemosum,1
+Cadman Creek,Maianthemum racemosum,1
+Hans Creek,Maianthemum racemosum,1
+Indian Kill,Maianthemum racemosum,1
+Kennyetto Creek,Maianthemum racemosum,1
+Kinderhook Creek,Maianthemum racemosum,1
+Lansing Kill,Maianthemum racemosum,1
+Minots Corner Road,Maianthemum racemosum,1
+Mohawk River,Maianthemum racemosum,1
+North Branch West Stony Creek,Maianthemum racemosum,1
+Robbs Creek,Maianthemum racemosum,1
+Stewart Creek,Maianthemum racemosum,1
+Trout Brook,Maianthemum racemosum,1
+Valatie Kill,Maianthemum racemosum,1
+Fishkill Creek,Malus pumila,1
+Kinderhook Creek,Malus pumila,1
+Alplaus Kill,Matteuccia struthiopteris,1
+Ballston Creek,Matteuccia struthiopteris,1
+Hans Creek,Matteuccia struthiopteris,1
+Indian Kill,Matteuccia struthiopteris,1
+Mill Creek,Matteuccia struthiopteris,1
+Minots Corner Road,Matteuccia struthiopteris,1
+Cobleskill Creek,Melilotus officinalis,1
+Fawn Lake,Melilotus officinalis,1
+Keyser Kill,Melilotus officinalis,1
+Landsman Kill,Melilotus officinalis,1
+Plotter Kill,Melilotus officinalis,1
+Timmerman Creek,Melilotus officinalis,1
+Wharton Hollow Creek,Melilotus officinalis,1
+Jassup River,Mimulus ringens,1
+Kayaderosseras Creek,Mimulus ringens,1
+Snook Kill,Mimulus ringens,1
+Trout Brook,Mitchella repens,1
+Stony Creek,Monotropa uniflora,1
+Quacken Kill,Muhlenbergia mexicana,1
+Alplaus Kill,Myosotis laxa,1
+Ballston Creek,Myosotis laxa,1
+Evas Kill,Myosotis laxa,1
+Kayaderosseras Creek,Myosotis laxa,1
+Keyser Kill,Myosotis laxa,1
+Cobleskill Creek,Myosotis scorpioides,1
+Fawn Lake,Myosotis scorpioides,1
+Wharton Hollow Creek,Myosotis scorpioides,1
+Boreas River,Myrica gale,1
+Chester Creek,Myrica gale,1
+Paragon Brook,Myrica gale,1
+Keyser Kill,Oenothera biennis,1
+Snook Kill,Oenothera biennis,1
+Sterling Creek,Oenothera biennis,1
+Timmerman Creek,Oenothera biennis,1
+Alplaus Kill,Onoclea sensibilis,1
+Ballston Creek,Onoclea sensibilis,1
+Battenkill,Onoclea sensibilis,1
+Beaver Kill,Onoclea sensibilis,1
+Boreas River,Onoclea sensibilis,1
+Cadman Creek,Onoclea sensibilis,1
+Cedar River,Onoclea sensibilis,1
+Chester Creek,Onoclea sensibilis,1
+Daly Creek,Onoclea sensibilis,1
+Fawn Lake,Onoclea sensibilis,1
+Four Mile Brook,Onoclea sensibilis,1
+Green River,Onoclea sensibilis,1
+Hans Creek,Onoclea sensibilis,1
+Indian Brook,Onoclea sensibilis,1
+Indian Kill,Onoclea sensibilis,1
+Jassup River,Onoclea sensibilis,1
+Kennyetto Creek,Onoclea sensibilis,1
+Kinderhook Creek,Onoclea sensibilis,1
+Mill Brook,Onoclea sensibilis,1
+Mill Creek,Onoclea sensibilis,1
+Minots Corner Road,Onoclea sensibilis,1
+Mohawk River,Onoclea sensibilis,1
+Paragon Brook,Onoclea sensibilis,1
+Potic Creek,Onoclea sensibilis,1
+Quacken Kill,Onoclea sensibilis,1
+Robbs Creek,Onoclea sensibilis,1
+Roeliff Jansen Kill,Onoclea sensibilis,1
+Sherriff Lake Outlet,Onoclea sensibilis,1
+Snook Kill,Onoclea sensibilis,1
+Sprout Creek,Onoclea sensibilis,1
+Timmerman Creek,Onoclea sensibilis,1
+Trout Brook,Onoclea sensibilis,1
+Wharton Hollow Creek,Onoclea sensibilis,1
+Robbs Creek,Osmunda cinnamomea,1
+Boreas River,Osmunda regalis,1
+Chester Creek,Osmunda regalis,1
+Daly Creek,Osmunda regalis,1
+Trout Brook,Osmunda regalis,1
+Alplaus Kill,Ostrya virginiana,1
+Ballston Creek,Ostrya virginiana,1
+Lansing Kill,Ostrya virginiana,1
+Minots Corner Road,Ostrya virginiana,1
+Sterling Creek,Ostrya virginiana,1
+Timmerman Creek,Ostrya virginiana,1
+Valatie Kill,Ostrya virginiana,1
+Alplaus Kill,Oxalis stricta,1
+Battenkill,Oxalis stricta,1
+Boreas River,Oxalis stricta,1
+Cedar River,Oxalis stricta,1
+Fishkill Creek,Oxalis stricta,1
+Hans Creek,Oxalis stricta,1
+Indian Brook,Oxalis stricta,1
+Kayaderosseras Creek,Oxalis stricta,1
+Keyser Kill,Oxalis stricta,1
+Kinderhook Creek,Oxalis stricta,1
+Landsman Kill,Oxalis stricta,1
+Mill Brook,Oxalis stricta,1
+Minots Corner Road,Oxalis stricta,1
+Potic Creek,Oxalis stricta,1
+Quacken Kill,Oxalis stricta,1
+Roeliff Jansen Kill,Oxalis stricta,1
+Sherriff Lake Outlet,Oxalis stricta,1
+Snook Kill,Oxalis stricta,1
+Sterling Creek,Oxalis stricta,1
+Stony Creek,Oxalis stricta,1
+Beaver Kill,Panicum dichotomiflorum,1
+Potic Creek,Panicum dichotomiflorum,1
+Sprout Creek,Panicum dichotomiflorum,1
+Wappinger Creek,Panicum dichotomiflorum,1
+Alplaus Kill,Parthenocissus quinquefolia,1
+Ballston Creek,Parthenocissus quinquefolia,1
+Battenkill,Parthenocissus quinquefolia,1
+Big Brook,Parthenocissus quinquefolia,1
+Daly Creek,Parthenocissus quinquefolia,1
+Evas Kill,Parthenocissus quinquefolia,1
+Fishkill Creek,Parthenocissus quinquefolia,1
+Four Mile Brook,Parthenocissus quinquefolia,1
+Indian Kill,Parthenocissus quinquefolia,1
+Kayaderosseras Creek,Parthenocissus quinquefolia,1
+Kinderhook Creek,Parthenocissus quinquefolia,1
+Lansing Kill,Parthenocissus quinquefolia,1
+Minots Corner Road,Parthenocissus quinquefolia,1
+Mohawk River,Parthenocissus quinquefolia,1
+Paragon Brook,Parthenocissus quinquefolia,1
+Potic Creek,Parthenocissus quinquefolia,1
+Quacken Kill,Parthenocissus quinquefolia,1
+Roeliff Jansen Kill,Parthenocissus quinquefolia,1
+Snook Kill,Parthenocissus quinquefolia,1
+Sprout Creek,Parthenocissus quinquefolia,1
+Steele Creek,Parthenocissus quinquefolia,1
+Sterling Creek,Parthenocissus quinquefolia,1
+Wappinger Creek,Parthenocissus quinquefolia,1
+Boreas River,Peltandra virginica,1
+Boreas River,Phalaris arundinacea,1
+Cobleskill Creek,Phalaris arundinacea,1
+Fawn Lake,Phalaris arundinacea,1
+Keyser Kill,Phalaris arundinacea,1
+North Branch West Stony Creek,Phalaris arundinacea,1
+Sprout Creek,Phalaris arundinacea,1
+Bullhead Pond Brook,Phegopteris connectilis,1
+Hudson River,Phegopteris connectilis,1
+Four Mile Brook,Phegopteris hexagonoptera,1
+New Pond Brook,Phegopteris hexagonoptera,1
+Sherriff Lake Outlet,Phegopteris hexagonoptera,1
+Stewart Creek,Phegopteris hexagonoptera,1
+Timmerman Creek,Phegopteris hexagonoptera,1
+Battenkill,Phleum pratense,1
+Cedar River,Phleum pratense,1
+Fawn Lake,Phleum pratense,1
+Paragon Brook,Phleum pratense,1
+Quacken Kill,Phleum pratense,1
+Alplaus Kill,Pilea pumila,1
+Ballston Creek,Pilea pumila,1
+Evas Kill,Pilea pumila,1
+Fishkill Creek,Pilea pumila,1
+Indian Brook,Pilea pumila,1
+Indian Kill,Pilea pumila,1
+Kinderhook Creek,Pilea pumila,1
+Landsman Kill,Pilea pumila,1
+Lansing Kill,Pilea pumila,1
+Minots Corner Road,Pilea pumila,1
+Potic Creek,Pilea pumila,1
+Quacken Kill,Pilea pumila,1
+Roeliff Jansen Kill,Pilea pumila,1
+Saw Kill,Pilea pumila,1
+Snook Kill,Pilea pumila,1
+Sprout Creek,Pilea pumila,1
+Sterling Creek,Pilea pumila,1
+Stony Creek,Pilea pumila,1
+Wappinger Creek,Pilea pumila,1
+Cadman Creek,Pinus strobus,1
+Mill Creek,Pinus strobus,1
+Paragon Brook,Pinus strobus,1
+Battenkill,Plantago lanceolata,1
+Big Brook,Plantago lanceolata,1
+Alplaus Kill,Plantago major,1
+Big Brook,Plantago major,1
+Boreas River,Plantago major,1
+Cobleskill Creek,Plantago major,1
+Evas Kill,Plantago major,1
+Fawn Lake,Plantago major,1
+Indian Kill,Plantago major,1
+Kayaderosseras Creek,Plantago major,1
+Kennyetto Creek,Plantago major,1
+Kinderhook Creek,Plantago major,1
+Lansing Kill,Plantago major,1
+Potic Creek,Plantago major,1
+Quacken Kill,Plantago major,1
+Snook Kill,Plantago major,1
+Sprout Creek,Plantago major,1
+Sterling Creek,Plantago major,1
+Stony Creek,Plantago major,1
+Kinderhook Creek,Platanus occidentalis,1
+Landsman Kill,Platanus occidentalis,1
+Sprout Creek,Platanus occidentalis,1
+Beaver Kill,Polygonum amphibium,1
+Cobleskill Creek,Polygonum amphibium,1
+Potic Creek,Polygonum amphibium,1
+Roeliff Jansen Kill,Polygonum amphibium,1
+Alplaus Kill,Polygonum cuspidatum,1
+Green River,Polygonum cuspidatum,1
+Kayaderosseras Creek,Polygonum cuspidatum,1
+Keyser Kill,Polygonum cuspidatum,1
+Steele Creek,Polygonum cuspidatum,1
+Fawn Lake,Polygonum hydropiper,1
+Saw Kill,Polygonum hydropiper,1
+Wappinger Creek,Polygonum hydropiperoides,1
+Ballston Creek,Polygonum persicaria,1
+Cobleskill Creek,Polygonum persicaria,1
+Evas Kill,Polygonum persicaria,1
+Indian Brook,Polygonum persicaria,1
+Kayaderosseras Creek,Polygonum persicaria,1
+Potic Creek,Polygonum persicaria,1
+Quacken Kill,Polygonum persicaria,1
+Sprout Creek,Polygonum persicaria,1
+Stony Creek,Polygonum persicaria,1
+Evas Kill,Polygonum punctatum,1
+Kennyetto Creek,Polygonum punctatum,1
+Quacken Kill,Polygonum punctatum,1
+Beaver Kill,Polygonum sagittatum,1
+Cadman Creek,Polygonum sagittatum,1
+Daly Creek,Polygonum sagittatum,1
+Fawn Lake,Polygonum sagittatum,1
+Indian Brook,Polygonum sagittatum,1
+New Pond Brook,Polygonum sagittatum,1
+North Branch West Stony Creek,Polygonum sagittatum,1
+Potic Creek,Polygonum sagittatum,1
+Saw Kill,Polygonum sagittatum,1
+Sherriff Lake Outlet,Polygonum sagittatum,1
+Alplaus Kill,Polygonum virginianum,1
+Indian Kill,Polygonum virginianum,1
+Kennyetto Creek,Polygonum virginianum,1
+Kinderhook Creek,Polygonum virginianum,1
+Lansing Kill,Polygonum virginianum,1
+Snook Kill,Polygonum virginianum,1
+Bullhead Pond Brook,Polystichum acrostichoides,1
+Indian Kill,Polystichum acrostichoides,1
+Ballston Creek,Populus deltoides,1
+Cadman Creek,Populus deltoides,1
+Cobleskill Creek,Populus deltoides,1
+Evas Kill,Populus deltoides,1
+Fishkill Creek,Populus deltoides,1
+Kayaderosseras Creek,Populus deltoides,1
+Keyser Kill,Populus deltoides,1
+Plotter Kill,Populus deltoides,1
+Quacken Kill,Populus deltoides,1
+Landsman Kill,Potentilla recta,1
+Big Brook,Potentilla simplex,1
+Cedar River,Potentilla simplex,1
+Four Mile Brook,Potentilla simplex,1
+Hans Creek,Potentilla simplex,1
+Keyser Kill,Potentilla simplex,1
+New Pond Brook,Potentilla simplex,1
+North Branch West Stony Creek,Potentilla simplex,1
+Paragon Brook,Potentilla simplex,1
+Roeliff Jansen Kill,Potentilla simplex,1
+Stewart Creek,Potentilla simplex,1
+Stony Creek,Potentilla simplex,1
+Bullhead Pond Brook,Prenanthes alba,1
+Big Brook,Prunella vulgaris,1
+Boreas River,Prunella vulgaris,1
+Cedar River,Prunella vulgaris,1
+Daly Creek,Prunella vulgaris,1
+Evas Kill,Prunella vulgaris,1
+Four Mile Brook,Prunella vulgaris,1
+Hans Creek,Prunella vulgaris,1
+Hudson River,Prunella vulgaris,1
+Indian Kill,Prunella vulgaris,1
+Kayaderosseras Creek,Prunella vulgaris,1
+Keyser Kill,Prunella vulgaris,1
+Kinderhook Creek,Prunella vulgaris,1
+Mill Creek,Prunella vulgaris,1
+Paragon Brook,Prunella vulgaris,1
+Potic Creek,Prunella vulgaris,1
+Sprout Creek,Prunella vulgaris,1
+Sterling Creek,Prunella vulgaris,1
+Stony Creek,Prunella vulgaris,1
+Timmerman Creek,Prunella vulgaris,1
+Wappinger Creek,Prunella vulgaris,1
+Wharton Hollow Creek,Prunella vulgaris,1
+Chester Creek,Prunus americana,1
+Cadman Creek,Prunus serotina,1
+Lansing Kill,Prunus serotina,1
+Snook Kill,Prunus serotina,1
+Battenkill,Prunus virginiana,1
+Big Brook,Prunus virginiana,1
+Hans Creek,Prunus virginiana,1
+Kennyetto Creek,Prunus virginiana,1
+Mill Creek,Prunus virginiana,1
+Minots Corner Road,Prunus virginiana,1
+Mohawk River,Prunus virginiana,1
+New Pond Brook,Prunus virginiana,1
+North Branch West Stony Creek,Prunus virginiana,1
+Stewart Creek,Prunus virginiana,1
+Trout Brook,Prunus virginiana,1
+Valatie Kill,Prunus virginiana,1
+North Branch West Stony Creek,Pteridium aquilinum,1
+Stony Creek,Quercus alba,1
+Hans Creek,Quercus velutina,1
+Fawn Lake,Ranunculus pensylvanicus,1
+Indian Brook,Ranunculus pensylvanicus,1
+Wharton Hollow Creek,Ranunculus pensylvanicus,1
+Roeliff Jansen Kill,Ranunculus recurvatus,1
+Indian Brook,Rhamnus alnifolia,1
+Alplaus Kill,Rhamnus cathartica,1
+Ballston Creek,Rhamnus cathartica,1
+Indian Kill,Rhamnus cathartica,1
+Quacken Kill,Rhamnus cathartica,1
+Big Brook,Rhus typhina,1
+Minots Corner Road,Rhus typhina,1
+Plotter Kill,Rhus typhina,1
+Steele Creek,Rhus typhina,1
+Sterling Creek,Rhus typhina,1
+Indian Brook,Robinia pseudoacacia,1
+Roeliff Jansen Kill,Robinia pseudoacacia,1
+Alplaus Kill,Rosa multiflora,1
+Alplaus Kill,Rosa multiflora,1
+Beaver Kill,Rosa multiflora,1
+Evas Kill,Rosa multiflora,1
+Fishkill Creek,Rosa multiflora,1
+Green River,Rosa multiflora,1
+Indian Brook,Rosa multiflora,1
+Kinderhook Creek,Rosa multiflora,1
+Landsman Kill,Rosa multiflora,1
+Mohawk River,Rosa multiflora,1
+Plotter Kill,Rosa multiflora,1
+Potic Creek,Rosa multiflora,1
+Quacken Kill,Rosa multiflora,1
+Roeliff Jansen Kill,Rosa multiflora,1
+Saw Kill,Rosa multiflora,1
+Sprout Creek,Rosa multiflora,1
+Steele Creek,Rosa multiflora,1
+Stony Creek,Rosa multiflora,1
+Valatie Kill,Rosa multiflora,1
+Wappinger Creek,Rosa multiflora,1
+Chester Creek,Rosa palustris,1
+Cadman Creek,Rubus allegheniensis,1
+Daly Creek,Rubus allegheniensis,1
+Indian Kill,Rubus allegheniensis,1
+Keyser Kill,Rubus allegheniensis,1
+Four Mile Brook,Rubus hispidus,1
+Kinderhook Creek,Rubus hispidus,1
+Mill Creek,Rubus hispidus,1
+North Branch West Stony Creek,Rubus hispidus,1
+Potic Creek,Rubus hispidus,1
+Ballston Creek,Rubus idaeus,1
+Jassup River,Rubus idaeus,1
+Keyser Kill,Rubus idaeus,1
+Fawn Lake,Rubus occidentalis,1
+Hudson River,Rubus occidentalis,1
+Landsman Kill,Rubus occidentalis,1
+Lansing Kill,Rubus occidentalis,1
+Minots Corner Road,Rubus occidentalis,1
+Quacken Kill,Rubus occidentalis,1
+Roeliff Jansen Kill,Rubus occidentalis,1
+Sterling Creek,Rubus occidentalis,1
+Evas Kill,Rubus odoratus,1
+Lansing Kill,Rubus odoratus,1
+Mohawk River,Rubus odoratus,1
+Steele Creek,Rubus odoratus,1
+Mill Creek,Rubus phoenicolasius,1
+Robbs Creek,Rubus phoenicolasius,1
+Sherriff Lake Outlet,Rubus phoenicolasius,1
+North Branch West Stony Creek,Rubus pubescens,1
+Stewart Creek,Rubus pubescens,1
+Indian Kill,Rudbeckia hirta,1
+Sterling Creek,Rudbeckia hirta,1
+Robbs Creek,Rudbeckia laciniata,1
+Big Brook,Rumex crispus,1
+Cedar River,Rumex crispus,1
+Kayaderosseras Creek,Rumex crispus,1
+Kinderhook Creek,Rumex crispus,1
+Mill Brook,Rumex crispus,1
+Plotter Kill,Rumex crispus,1
+Sherriff Lake Outlet,Rumex crispus,1
+Snook Kill,Rumex crispus,1
+Sterling Creek,Rumex crispus,1
+Trout Brook,Rumex crispus,1
+Cobleskill Creek,Rumex obtusifolius,1
+Keyser Kill,Rumex obtusifolius,1
+Roeliff Jansen Kill,Rumex obtusifolius,1
+Wharton Hollow Creek,Rumex obtusifolius,1
+Ballston Creek,Sagittaria latifolia,1
+Chester Creek,Sagittaria latifolia,1
+Indian Kill,Sagittaria latifolia,1
+Kayaderosseras Creek,Sagittaria latifolia,1
+Sherriff Lake Outlet,Sagittaria latifolia,1
+Cedar River,Salix alba,1
+Chester Creek,Salix alba,1
+Cobleskill Creek,Salix alba,1
+Fawn Lake,Salix alba,1
+Four Mile Brook,Salix alba,1
+Hans Creek,Salix alba,1
+Hans Creek,Salix alba,1
+Jassup River,Salix alba,1
+New Pond Brook,Salix alba,1
+North Branch West Stony Creek,Salix alba,1
+Robbs Creek,Salix alba,1
+Sherriff Lake Outlet,Salix alba,1
+Timmerman Creek,Salix alba,1
+Wharton Hollow Creek,Salix alba,1
+Battenkill,Salix nigra,1
+Boreas River,Salix nigra,1
+Four Mile Brook,Salix nigra,1
+Green River,Salix nigra,1
+Kayaderosseras Creek,Salix nigra,1
+Kennyetto Creek,Salix nigra,1
+Kinderhook Creek,Salix nigra,1
+Plotter Kill,Salix nigra,1
+Robbs Creek,Salix nigra,1
+Sherriff Lake Outlet,Salix nigra,1
+Snook Kill,Salix nigra,1
+Roeliff Jansen Kill,Salix pentandra,1
+Evas Kill,Sambucus nigra,1
+Four Mile Brook,Sambucus nigra,1
+Mill Creek,Sambucus nigra,1
+Big Brook,Saponaria officinalis,1
+Quacken Kill,Saponaria officinalis,1
+Chester Creek,Schoenoplectus pungens,1
+Beaver Kill,Scirpus atrocinctus,1
+Beaver Kill,Scirpus microcarpus,1
+Landsman Kill,Scutellaria lateriflora,1
+Saw Kill,Scutellaria lateriflora,1
+Boreas River,Securigera varia,1
+Cobleskill Creek,Securigera varia,1
+Kennyetto Creek,Securigera varia,1
+Keyser Kill,Securigera varia,1
+Mill Brook,Securigera varia,1
+New Pond Brook,Securigera varia,1
+Sherriff Lake Outlet,Securigera varia,1
+Timmerman Creek,Silene vulgaris,1
+Alplaus Kill,Solanum dulcamara,1
+Big Brook,Solanum dulcamara,1
+Evas Kill,Solanum dulcamara,1
+Fawn Lake,Solanum dulcamara,1
+Keyser Kill,Solanum dulcamara,1
+Sterling Creek,Solanum dulcamara,1
+Timmerman Creek,Solanum dulcamara,1
+Wharton Hollow Creek,Solanum dulcamara,1
+Big Brook,Solidago altissima,1
+Daly Creek,Solidago altissima,1
+Jassup River,Solidago altissima,1
+Keyser Kill,Solidago altissima,1
+Kinderhook Creek,Solidago altissima,1
+Sterling Creek,Solidago altissima,1
+Wharton Hollow Creek,Solidago altissima,1
+Big Brook,Solidago canadensis,1
+Cedar River,Solidago canadensis,1
+Green River,Solidago canadensis,1
+Indian Brook,Solidago canadensis,1
+Mill Brook,Solidago canadensis,1
+Mill Creek,Solidago canadensis,1
+North Branch West Stony Creek,Solidago canadensis,1
+Plotter Kill,Solidago canadensis,1
+Robbs Creek,Solidago canadensis,1
+Sherriff Lake Outlet,Solidago canadensis,1
+Snook Kill,Solidago canadensis,1
+Green River,Solidago flexicaulis,1
+Indian Kill,Solidago flexicaulis,1
+Lansing Kill,Solidago flexicaulis,1
+Mohawk River,Solidago flexicaulis,1
+Robbs Creek,Solidago flexicaulis,1
+Steele Creek,Solidago flexicaulis,1
+Alplaus Kill,Solidago gigantea,1
+Battenkill,Solidago gigantea,1
+Beaver Kill,Solidago gigantea,1
+Cadman Creek,Solidago gigantea,1
+Cobleskill Creek,Solidago gigantea,1
+Fawn Lake,Solidago gigantea,1
+Minots Corner Road,Solidago gigantea,1
+Paragon Brook,Solidago gigantea,1
+Plotter Kill,Solidago gigantea,1
+Quacken Kill,Solidago gigantea,1
+Roeliff Jansen Kill,Solidago gigantea,1
+Snook Kill,Solidago gigantea,1
+Sprout Creek,Solidago gigantea,1
+Steele Creek,Solidago gigantea,1
+Sterling Creek,Solidago gigantea,1
+Stony Creek,Solidago gigantea,1
+Bullhead Pond Brook,Sonchus oleraceus,1
+Kinderhook Creek,Sonchus oleraceus,1
+New Pond Brook,Sonchus oleraceus,1
+Quacken Kill,Sonchus oleraceus,1
+Snook Kill,Sonchus oleraceus,1
+Boreas River,Spiraea alba,1
+Cadman Creek,Spiraea alba,1
+Cedar River,Spiraea alba,1
+Chester Creek,Spiraea alba,1
+Four Mile Brook,Spiraea alba,1
+Hans Creek,Spiraea alba,1
+Hudson River,Spiraea alba,1
+Jassup River,Spiraea alba,1
+Mill Brook,Spiraea alba,1
+Mill Creek,Spiraea alba,1
+North Branch West Stony Creek,Spiraea alba,1
+Sherriff Lake Outlet,Spiraea alba,1
+Wharton Hollow Creek,Spiraea alba,1
+Robbs Creek,Symphyotrichum lanceolatum,1
+Snook Kill,Symphyotrichum lanceolatum,1
+Stewart Creek,Symphyotrichum lanceolatum,1
+Stewart Creek,Symphyotrichum lanceolatum,1
+Potic Creek,Symphyotrichum prenanthoides,1
+Indian Brook,Symplocarpus foetidus,1
+Quacken Kill,Tanacetum vulgare,1
+Battenkill,Taraxacum officinale,1
+Big Brook,Taraxacum officinale,1
+Cobleskill Creek,Taraxacum officinale,1
+Evas Kill,Taraxacum officinale,1
+Fawn Lake,Taraxacum officinale,1
+Keyser Kill,Taraxacum officinale,1
+Landsman Kill,Taraxacum officinale,1
+Quacken Kill,Taraxacum officinale,1
+Snook Kill,Taraxacum officinale,1
+Steele Creek,Taraxacum officinale,1
+Sterling Creek,Taraxacum officinale,1
+Alplaus Kill,Thalictrum dioicum,1
+Alplaus Kill,Thalictrum pubescens,1
+Boreas River,Thalictrum pubescens,1
+Bullhead Pond Brook,Thalictrum pubescens,1
+Cadman Creek,Thalictrum pubescens,1
+Cedar River,Thalictrum pubescens,1
+Daly Creek,Thalictrum pubescens,1
+Fawn Lake,Thalictrum pubescens,1
+Four Mile Brook,Thalictrum pubescens,1
+Green River,Thalictrum pubescens,1
+Hans Creek,Thalictrum pubescens,1
+Hudson River,Thalictrum pubescens,1
+Indian Kill,Thalictrum pubescens,1
+Lansing Kill,Thalictrum pubescens,1
+Mill Brook,Thalictrum pubescens,1
+Mill Creek,Thalictrum pubescens,1
+Mohawk River,Thalictrum pubescens,1
+New Pond Brook,Thalictrum pubescens,1
+North Branch West Stony Creek,Thalictrum pubescens,1
+Paragon Brook,Thalictrum pubescens,1
+Potic Creek,Thalictrum pubescens,1
+Quacken Kill,Thalictrum pubescens,1
+Robbs Creek,Thalictrum pubescens,1
+Roeliff Jansen Kill,Thalictrum pubescens,1
+Sherriff Lake Outlet,Thalictrum pubescens,1
+Stewart Creek,Thalictrum pubescens,1
+Trout Brook,Thalictrum pubescens,1
+Valatie Kill,Thalictrum pubescens,1
+Cadman Creek,Thelypteris noveboracensis,1
+North Branch West Stony Creek,Thelypteris palustris,1
+Hudson River,Thuja occidentalis,1
+New Pond Brook,Thuja occidentalis,1
+Paragon Brook,Thuja occidentalis,1
+Alplaus Kill,Tilia americana,1
+Ballston Creek,Tilia americana,1
+Battenkill,Tilia americana,1
+Fishkill Creek,Tilia americana,1
+Green River,Tilia americana,1
+Indian Kill,Tilia americana,1
+Kennyetto Creek,Tilia americana,1
+Kinderhook Creek,Tilia americana,1
+Minots Corner Road,Tilia americana,1
+Mohawk River,Tilia americana,1
+Quacken Kill,Tilia americana,1
+Steele Creek,Tilia americana,1
+Sterling Creek,Tilia americana,1
+Alplaus Kill,Toxicodendron radicans,1
+Big Brook,Toxicodendron radicans,1
+Cobleskill Creek,Toxicodendron radicans,1
+Fishkill Creek,Toxicodendron radicans,1
+Indian Brook,Toxicodendron radicans,1
+Indian Kill,Toxicodendron radicans,1
+Kennyetto Creek,Toxicodendron radicans,1
+Kinderhook Creek,Toxicodendron radicans,1
+Landsman Kill,Toxicodendron radicans,1
+Potic Creek,Toxicodendron radicans,1
+Quacken Kill,Toxicodendron radicans,1
+Sprout Creek,Toxicodendron radicans,1
+Steele Creek,Toxicodendron radicans,1
+Stony Creek,Toxicodendron radicans,1
+Wappinger Creek,Toxicodendron radicans,1
+Keyser Kill,Trifolium aureum,1
+Sterling Creek,Trifolium aureum,1
+Kayaderosseras Creek,Trifolium pratense,1
+Kennyetto Creek,Trifolium pratense,1
+Keyser Kill,Trifolium pratense,1
+Kinderhook Creek,Trifolium pratense,1
+Landsman Kill,Trifolium pratense,1
+Mill Brook,Trifolium pratense,1
+Paragon Brook,Trifolium pratense,1
+Sterling Creek,Trifolium pratense,1
+Stony Creek,Trifolium pratense,1
+Timmerman Creek,Trifolium pratense,1
+Wharton Hollow Creek,Trifolium pratense,1
+Keyser Kill,Trifolium repens,1
+Kinderhook Creek,Trifolium repens,1
+Stewart Creek,Trillium erectum,1
+Ballston Creek,Tsuga canadensis,1
+Cadman Creek,Tsuga canadensis,1
+Evas Kill,Tsuga canadensis,1
+Hans Creek,Tsuga canadensis,1
+Minots Corner Road,Tsuga canadensis,1
+Mohawk River,Tsuga canadensis,1
+North Branch West Stony Creek,Tsuga canadensis,1
+Paragon Brook,Tsuga canadensis,1
+Saw Kill,Tsuga canadensis,1
+Sterling Creek,Tsuga canadensis,1
+Stewart Creek,Tsuga canadensis,1
+Trout Brook,Tsuga canadensis,1
+Valatie Kill,Tsuga canadensis,1
+Beaver Kill,Tussilago farfara,1
+Cadman Creek,Tussilago farfara,1
+Daly Creek,Tussilago farfara,1
+Evas Kill,Tussilago farfara,1
+Green River,Tussilago farfara,1
+Keyser Kill,Tussilago farfara,1
+Lansing Kill,Tussilago farfara,1
+Plotter Kill,Tussilago farfara,1
+Saw Kill,Tussilago farfara,1
+Steele Creek,Tussilago farfara,1
+Sterling Creek,Tussilago farfara,1
+Stewart Creek,Tussilago farfara,1
+Timmerman Creek,Tussilago farfara,1
+Wharton Hollow Creek,Tussilago farfara,1
+Plotter Kill,Ulmus americana,1
+Snook Kill,Ulmus americana,1
+Big Brook,Ulmus rubra,1
+Evas Kill,Ulmus rubra,1
+Fishkill Creek,Ulmus rubra,1
+Green River,Ulmus rubra,1
+Hans Creek,Ulmus rubra,1
+Indian Kill,Ulmus rubra,1
+Jassup River,Ulmus rubra,1
+Lansing Kill,Ulmus rubra,1
+Paragon Brook,Ulmus rubra,1
+Quacken Kill,Ulmus rubra,1
+Roeliff Jansen Kill,Ulmus rubra,1
+Saw Kill,Ulmus rubra,1
+Sherriff Lake Outlet,Ulmus rubra,1
+Steele Creek,Ulmus rubra,1
+Valatie Kill,Ulmus rubra,1
+Evas Kill,Urtica dioica,1
+Evas Kill,Urtica dioica,1
+Indian Kill,Urtica dioica,1
+Quacken Kill,Urtica dioica,1
+Roeliff Jansen Kill,Urtica dioica,1
+Sprout Creek,Urtica dioica,1
+Stony Creek,Urtica dioica,1
+Cadman Creek,Veratrum viride,1
+Mill Creek,Veratrum viride,1
+Robbs Creek,Veratrum viride,1
+Stewart Creek,Veratrum viride,1
+Trout Brook,Veratrum viride,1
+Keyser Kill,Verbascum thapsus,1
+Landsman Kill,Verbascum thapsus,1
+Plotter Kill,Verbascum thapsus,1
+Roeliff Jansen Kill,Verbascum thapsus,1
+Cobleskill Creek,Verbena hastata,1
+Cobleskill Creek,Verbena urticifolia,1
+Indian Kill,Veronica americana,1
+Cobleskill Creek,Veronica anagallis-aquatica,1
+Keyser Kill,Veronica anagallis-aquatica,1
+Chester Creek,Veronica scutellata,1
+Fawn Lake,Viburnum acerifolium,1
+Stony Creek,Viburnum acerifolium,1
+Valatie Kill,Viburnum acerifolium,1
+Sprout Creek,Viburnum dentatum,1
+Bullhead Pond Brook,Viburnum lantanoides,1
+Stewart Creek,Viburnum lantanoides,1
+Kennyetto Creek,Vinca minor,1
+Ballston Creek,Viola_a,1
+Indian Kill,Viola_a,1
+Kinderhook Creek,Viola_a,1
+Mill Brook,Viola_a,1
+Minots Corner Road,Viola_a,1
+North Branch West Stony Creek,Viola_a,1
+Potic Creek,Viola_a,1
+Quacken Kill,Viola_a,1
+Robbs Creek,Viola_a,1
+Sherriff Lake Outlet,Viola_a,1
+Stewart Creek,Viola_a,1
+Trout Brook,Viola_a,1
+Wappinger Creek,Viola_a,1
+Ballston Creek,Vitis riparia,1
+Battenkill,Vitis riparia,1
+Big Brook,Vitis riparia,1
+Cobleskill Creek,Vitis riparia,1
+Evas Kill,Vitis riparia,1
+Fawn Lake,Vitis riparia,1
+Indian Brook,Vitis riparia,1
+Indian Kill,Vitis riparia,1
+Kennyetto Creek,Vitis riparia,1
+Keyser Kill,Vitis riparia,1
+Kinderhook Creek,Vitis riparia,1
+Plotter Kill,Vitis riparia,1
+Quacken Kill,Vitis riparia,1
+Roeliff Jansen Kill,Vitis riparia,1
+Snook Kill,Vitis riparia,1
+Sprout Creek,Vitis riparia,1
+Sterling Creek,Vitis riparia,1
+Valatie Kill,Vitis riparia,1
+Cobleskill Creek,Xanthium strumarium,1
+Kayaderosseras Creek,Xanthium strumarium,1
