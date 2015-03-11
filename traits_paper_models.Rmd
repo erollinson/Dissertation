@@ -155,7 +155,7 @@ require(arm) #for display()
 traitsdiv<-read.csv("FD.csv", check.names=TRUE) #oops i have two columns named as site; I can fix that (the first should be row.names) but for now just used the renamed Site.1 in the model
 
 
-#Functional richness #something is wrong with the Fric values - recalculate and reimport.  it's meant to vary between 0 and 1 (therefore should be binomial).  higher is richer
+#Functional richness #something is wrong with the Fric values - recalculate and reimport.  it's meant to vary between 0 and 1 (therefore should be binomial).  higher is richer.  Oh they are all wrong - the whole thing shifted the column names one left of where they should be
 Fric0<-glm(FRic ~ 1, family="quasipoisson", offset=log(Area), data=traitsdiv)
 Fric1<-glm(FRic ~ River, family ="quasipoisson", offset=log(Area), data=traitsdiv)
 Fric2<-glm(FRic ~ River/Site.1, family="quasipoisson", offset=log(Area), data=traitsdiv)
@@ -262,36 +262,67 @@ rep=99
 permute<-matrix(nrow=rep, ncol=4)
 for (i in 1:rep) {
   temp<-randomizeMatrix(cover, null.model="independentswap", iterations = 1000)
-  FDtemp<-dbFD(pref_traits, temp, stand.x=FALSE, ord="podani", corr = "cailliez") #this is silly I don't need FD in here, I need something like NND and maxD after Mouillot et al.  but maybe this will tell me something else 
+  FDtemp<-dbFD(pref_traits, temp, stand.x=TRUE, ord="podani", corr = "cailliez") #this is silly I don't need FD in here, I need something like NND and maxD after Mouillot et al.  but maybe this will tell me something else 
   permute[i, ] <-c(mean(FDtemp$FEve), mean(FDtemp$FDiv), mean(FDtemp$FDis), mean(FDtemp$RaoQ))
 }
 
+FEvehist<-permute[,1]
+hist(FEvehist, breaks=100)
+abline(v=0.670, lwd=2, col="purple") #this isn't plotting and also is an inaccurate test since i am plotting a single community value on a histogram of mean FEves across all communities.  
 
 #maybe make an array and save the value for each community and test each community against its own null distribution??
+#this isn't working
+#require(picante)
+#require(FD)
+#rep=2
+#array<-array(0, dim=c(rep,24,4))
+#for (i in 1:rep) {
+ # temp<-randomizeMatrix(cover, null.model="independentswap", iterations = 1000)
+ # FDtemp<-dbFD(pref_traits, temp, stand.x=TRUE, ord="podani", corr = "cailliez")
+ # FEve = FDtemp$FEve
+ # FDiv = FDtemp$FDiv
+ # FDis = FDtemp$FDis
+#  RaoQ = FDtemp$RaoQ
+#  for (j in 1:24){
+#  array[i,j, ] <-c(FEve, FDiv, FDis, RaoQ)
+#  }
+#}
+
+#Trying a different approach
 
 require(picante)
 require(FD)
-rep=99
-array<-array(0, dim=rep,4,24)
+rep=2
+permFEve<-matrix(nrow=rep, ncol=24)
+permFDiv<-matrix(nrow=rep, ncol=24)
+permFDis<-matrix(nrow=rep, ncol=24)
+permRaoQ<-matrix(nrow=rep, ncol=24)
 for (i in 1:rep) {
   temp<-randomizeMatrix(cover, null.model="independentswap", iterations = 1000)
-  FDtemp<-dbFD(pref_traits, temp, stand.x=FALSE, ord="podani", corr = "cailliez") #this is silly I don't need FD in here, I need something like NND and maxD after Mouillot et al.  but maybe this will tell me something else #maybe make an array and save the value for each community and test each community against its own null distribution??
-  for (j in 1:24){
-  array [i, ] <-c(FDtemp[j,FEve], FDtemp[j,FDiv], FDtemp[j,FDis], FDtemp[j,RaoQ])
-  }
+  FDtemp<-dbFD(pref_traits, temp, stand.x=TRUE, ord="podani", corr = "cailliez")
+  FEve = FDtemp$FEve
+  FDiv = FDtemp$FDiv
+  FDis = FDtemp$FDis
+  RaoQ = FDtemp$RaoQ
+  permFEve[i,]<-FEve
+  permFDiv[i,]<-FDiv
+  permFDis[i,]<-FDis
+  permRaoQ[i,]<-RaoQ
 }
 
+#this will provide each row as a permutation and each column as one of the communities, with a separate table for each statistic.  This can be used to test each community for environmental filtering etc once I figure out how to calculate probabilities on the histogram i made)
 
-
-
-
-
-
-
+is it just if my values fall outside 0.25 and .975?  
 
 
 
 ```
+
+#get quantiles
+quant.hu <- apply(test, 2, quantile, probs = c(.025, .975))
+q.dat <- melt(data.frame(t(quant.hu)))
+q.dat2 <- cbind(q.dat, num=rep(1:25, 2))
+
 
 trying new package 'cati'
 ```{r}
