@@ -3,17 +3,106 @@ A vague attempt at RLQ analysis
 
 Read in the data
 ```{r}
-traits<-read.csv("site_by_trait_matrix_interp.csv") #this would be better if I make a new traits matrix with all 2013 species, then a presence/absence matrix for all 2013 species
+traits<-read.csv("2013_babytraits.csv", check.names=FALSE) #check.names=FALSE stops R from putting periods in the species name (e.g. Abies.balsamea instead of Abies balsamea; this keeps the naming consistent with the species list)
+row.names(traits)<-traits$Species
+traits<-traits[,2:4]
 
+splist<-read.csv("2013_species_presence_list_for_traits.csv")
+
+env<-read.csv("2013_environment_matrix_pared.csv")
+row.names(env)<-env$River #to turn the first column into the row names
+env<-env[,2:14] #to remove the duplicate first column now that the row names are labelled
+```
+
+Transform the species list into a matrix
+```{r}
+require(reshape)
+species<-cast(splist, River ~ Species, value="Presence", fun.aggregate=sum) #sum here will provide an accurate presence/absence matrix, since each species is only listed once per river in the original list, and the sum can only be zero or one.  fun.aggregate=max can be used, but will provide 1/-INF rather than 1/0 and the -INF will have to be transformed to 0.
+species<-as.data.frame(species) #because FXN 'cast' returns output in class cast
+row.names(species)<-species$River #to turn the first column into the row names
+species<-species[,2:256] #to remove the duplicate first column now that the row names are labelled
+```
+
+Get all the matrices into the correct shape 
+```{r}
+#site x species matrix requires species in rows, which it is
+
+#site x environment matrix requires environment in rows
+tenv<-t(env)
+tenv<-as.data.frame(tenv)
+
+#trait x species matrix requires traits in rows
+ttraits<-t(traits)
+ttraits<-as.data.frame(traits)
 
 ```
 
+Perform the RLQ analysis
 ```{r}
 require(ade4)
+modelsp<-dudi.coa(species)
+modelenv<-dudi.hillsmith(env, row.w = modelsp$lw)
+modeltrait<-dudi.hillsmith(traits, row.w =modelsp$cw)
+rlq1<-rlq(modelenv, modelsp, modeltrait)
+plot(rlq1)
+summary(rlq1)
+testrlq<-randtest(rlq1)
+testrlq
+fourthcorner.rlq(rlq1,type="Q.axes")
+fourthcorner.rlq(rlq1,type="R.axes")
+
+nrepet = 9999
+fourth<-fourthcorner(env, species, traits, modeltype=6, , p.adjust.method.G="fdr", p.adjust.method.D="fdr", nrepet = nrepet) 
+plot(fourth, alpha = 0.05, stat = "D2")
 ```
 
+p.adjust.methods
+# c("holm", "hochberg", "hommel", "bonferroni", "BH", "BY",
+#   "fdr", "none")
 
+Additional plotting options courtesy http://www.esapubs.org/archive/ecol/E095/002/suppl-1.pdf
+```{r}
+par(mfrow = c(1,1))#asking R to plot 3 side by side plots
+s.arrow(rlq1$l1) #l1 = arrows for environment
+s.arrow(rlq1$c1) # c1 = arrows for traits
+s.label(rlq1$lQ, boxes = FALSE) #ordination of the species distances, drawn without boxes around the names
+
+plot(fourth, x.rlq=rlq1, alpha = 0.05, stat = "D2", type = "biplot")
+
+```
+
+Additional analyses also from esapubs
+```{r}
+nrepet=9999
+testrlq<-randtest(rlq1, modeltype=6, nrepet = nrepet) #test based on total inertia of RLQ analysis to evaluate global significance of traits-environment relationship
+testrlq
+plot(testrlq)
+Srlq<-fourthcorner2(env, species, traits, modeltype=6, p.adjust.method.G="fdr", nrepet=nrepet)
+Srlq$trRLQ #returns the total inertial of the RLQ analysis
+
+
+```
+#this should be repeated after pruning the environmental and trait variables somewhat.  too many; after correcting for multiple comparisons everything washes out - wait until I can add my own pH and sand % measures.
+
+
+Sample code from the package description
 coa1<- dudi.coa(on a site x species abundance matrix with species in rows)
 dudimil<- dudi.hillsmith(on a site x environment matrix with environment in rows)
 duditrait<- dudi.hillsmith(on a species x trait matrix with traits in rows)
 rlq1 <-rlq (dudimil, coa1, duditrait)
+
+```{r}
+  data(aviurba)
+   coa1 <- dudi.coa(aviurba$fau, scannf = FALSE, nf = 2)
+   dudimil <- dudi.hillsmith(aviurba$mil, scannf = FALSE, nf = 2, row.w = coa1$lw)
+   duditrait <- dudi.hillsmith(aviurba$traits, scannf = FALSE, nf = 2, row.w = coa1$cw)
+   rlq1 <- rlq(dudimil, coa1, duditrait, scannf = FALSE, nf = 2)
+   plot(rlq1)
+   summary(rlq1)
+   randtest(rlq1)
+   fourthcorner.rlq(rlq1,type="Q.axes")
+   fourthcorner.rlq(rlq1,type="R.axes")
+
+```
+
+

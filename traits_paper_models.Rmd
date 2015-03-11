@@ -148,6 +148,123 @@ test2<-test$CWM
 ```
 
 
+reimport Fdiversity values as a table
+```{r}
+require(lme4) #for GLMs
+require(arm) #for display()
+traitsdiv<-read.csv("FD.csv", check.names=TRUE) #oops i have two columns named as site; I can fix that (the first should be row.names) but for now just used the renamed Site.1 in the model
+
+
+#Functional richness
+Fric0<-glm(FRic ~ 1, family="quasipoisson", offset=log(Area), data=traitsdiv)
+Fric1<-glm(FRic ~ River, family ="quasipoisson", offset=log(Area), data=traitsdiv)
+Fric2<-glm(FRic ~ River/Site.1, family="quasipoisson", offset=log(Area), data=traitsdiv)
+Fric3<-glm(FRic ~ River/Site.1/Bank, family="quasipoisson", offset=log(Area), data=traitsdiv)
+display(Fric0)
+display(Fric1)
+display(Fric2)
+display(Fric3)
+anova(Fric0,Fric1,Fric2,Fric3, test="Chisq")
+summary(Fric3)
+
+model.matrix(Fric3) #use this on the model of interest (rich1, rich2, etc - to look at all the comparisons in the model matrix and confirm what contrasts go with which somewhat-obscure name in the summary)
+
+#Functional evenness
+FEve0<-glm(FEve ~ 1, family="quasipoisson", offset=log(Area), data=traitsdiv)
+FEve1<-glm(FEve ~ River, family ="quasipoisson", offset=log(Area), data=traitsdiv)
+FEve2<-glm(FEve ~ River/Site.1, family="quasipoisson", offset=log(Area), data=traitsdiv)
+FEve3<-glm(FEve ~ River/Site.1/Bank, family="quasipoisson", offset=log(Area), data=traitsdiv)
+display(FEve0)
+display(FEve1)
+display(FEve2)
+display(FEve3)
+anova(FEve0,FEve1,FEve2,FEve3, test="Chisq")
+summary(FEve3)
+
+#Functional diversity
+FDiv0<-glm(FDiv ~ 1, family="quasipoisson", offset=log(Area), data=traitsdiv)
+FDiv1<-glm(FDiv ~ River, family ="quasipoisson", offset=log(Area), data=traitsdiv)
+FDiv2<-glm(FDiv ~ River/Site.1, family="quasipoisson", offset=log(Area), data=traitsdiv)
+FDiv3<-glm(FDiv ~ River/Site.1/Bank, family="quasipoisson", offset=log(Area), data=traitsdiv)
+display(FDiv0)
+display(FDiv1)
+display(FDiv2)
+display(FDiv3)
+anova(FDiv0,FDiv1,FDiv2,FDiv3, test="Chisq")
+summary(FDiv3)
+
+
+#RaoQ - varies between zero and 1 - should use binomial?
+RaoQ0<-glm(RaoQ ~ 1, family="quasibinomial", offset=log(Area), data=traitsdiv)
+RaoQ1<-glm(RaoQ ~ River, family ="quasibinomial", offset=log(Area), data=traitsdiv)
+RaoQ2<-glm(RaoQ ~ River/Site.1, family="quasibinomial", offset=log(Area), data=traitsdiv)
+RaoQ3<-glm(RaoQ ~ River/Site.1/Bank, family="quasibinomial", offset=log(Area), data=traitsdiv)
+display(RaoQ0)
+display(RaoQ1)
+display(RaoQ2)
+display(RaoQ3)
+anova(RaoQ0,RaoQ1,RaoQ2,RaoQ3, test="Chisq")
+summary(RaoQ3)
+
+
+```
+
+The most basic possible plot to look at all the points for greenline versus upslope, for whichever variable in "data" is desired:
+```{r}
+require(ggplot2)
+qplot(data=traitsdiv, y=FDiv, x=Bank, geom("point"))
+
+```
+
+Code for checking the distribution - plotting a dist on a histogram???
+> hist(traitsdiv$FDiv)
+> x<-traitsdiv$FDiv
+> h<-hist(x, breaks=10)
+> xfit<-seq(min(x), max(x), length=40)
+> yfit<-dpoisson(xfit, mean=mean(x), sd=sd(x))
+Error: could not find function "dpoisson"
+> ??functions
+> yfit<-ppois(xfit, mean=mean(x), sd=sd(x))
+Error in ppois(xfit, mean = mean(x), sd = sd(x)) : 
+  unused arguments (mean = mean(x), sd = sd(x))
+> yfit<-ppois(xfit)
+Error in ppois(xfit) : argument "lambda" is missing, with no default
+> yfit<-ppois(xfit)
+Error in ppois(xfit) : argument "lambda" is missing, with no default
+> help(ppois)
+> yfit<-ppois(xfit, lambda=mean(x))
+> yfit<-yfit*diff(h$mids[1:2]*length(x))
+> lines(xfit, yfit, col="blue", lwd=2)
+
+
+Null community assembly?
+
+http://stackoverflow.com/questions/6422273/how-to-randomize-or-permute-a-dataframe-rowwise-and-columnwise
+
+use sample or permatswap in vegan or randomizeMatrix in picante
+
+```{r}
+require(vegan)
+
+#I think I have to use count data for this rather than cover data
+matrix<-read.csv("2012_abundancematrix_modified.csv")
+row.names(matrix)<-matrix$Site
+comm<-matrix[,4:246]
+test<-permatswap(comm, method="quasiswap", fixedmar="both", shuffle = "samp", strata = NULL, mtype="count", times=99)
+
+
+
+somehow need to iterate FD across this
+
+
+
+
+
+
+
+
+
+```
 
 trying new package 'cati'
 ```{r}

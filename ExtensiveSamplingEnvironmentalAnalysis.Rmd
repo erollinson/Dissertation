@@ -115,10 +115,39 @@ CCA for the subset
 ```{r}
 cca.envsub2<-(cca(comm, envsub2))
 plot(cca.envsub2)
+ord<-cca.envsub2
+
+plot(ord, type = "n")
+text(cca.envsub2, display="species", cex=0.7)
+
+
+goodness(cca.envsub2, display = "species", statistic = "explained")
+
+
+summary(cca.envsub2)
+
 anovasub2<-anova.cca(cca.envsub2, alpha=0.05, beta=0.01, step=100, perm.max=999)
 anovasub2
 bioenv(comm, envsub2, upto=16)
+
+
+
+
+env3<-read.csv("envsub2.csv")
+row.names(env3)<-env3$X
+env3<-env3[,2:18]
+cca3<-cca(comm, env3)
+plot(cca3)
+summary(cca3)
+
+env4<-env3[,c(7,10,11,12,13,14,17)]
+cca4<-cca(comm, env4)
+plot(cca4)
+summary(cca4)
+bioenv(comm, env4, upto=5)
+
 ```
+
 
 
 add elevation remove longitude
@@ -130,13 +159,4 @@ check my LOI against the % organic in complexes with multiple series (figure out
 test pH, measure %sand?
 soil depth in the series?  (before hitting bedrock) organic matter?   - take from the ucdavis series profiles
 
-multi-scale niche?  
-
-email to jessica: http://casoilresource.lawr.ucdavis.edu/gmap/
-
-
-prisma diagram for lab meeting
-
-ask susan about indonesia species
-ageratina adenophera
-chromolina spp. (2)
+multi-scale niche

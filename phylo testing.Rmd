@@ -1,0 +1,540 @@
+Phylogenetic diversity analyses
+==============================================================================================================================
+This has lifted all the code from the slopes_paper_glms.Rmd for use in phylodiv stuff
+
+Load required libraries
+```{r}
+require(lme4) #for GLMs
+require(arm) #for some things I was trying based on Gelman and Hill code - the format of the output from glms is different if i use "summary(model)" instead of "display(model)" as they, apparently, do
+require(MDM) #for modeling an analogue to Shannon diversity (I will likely not end up using this)
+require(vegan) #for species accumulation curves and ordination
+require(data.table) #for some of the (now defunct) species accumulation curve data frame reshaping
+require(ggplot2)
+```
+
+
+Import required data sheets and minor corrections for compatibility
+```{r}
+data<-read.csv("https://raw.githubusercontent.com/erollinson/Dissertation/master/2012_Intensive_Surveys_R_9_1_14.csv") # rows are sites, columns are vegetation summaries and background data on each site; this data frame is used for GLMs
+groups<-read.csv("2012 Data Summary with Averages 3_3_14 for R by origin for figure merge.csv") #this table is not needed for analysis, but facilitates making figures that display introduced and native species separately
+matrix<-read.csv("2012_abundancematrix_modified.csv") #rows are sites, columns are species abundances; this data frame is used for ordinations, species accumulations, and ANOSIM ##5/9/2014 this matrix is no longer the matrix used for species accumulations, just for MDM/ordinations
+
+#one site has a total average cover >100% (when all species estimates are summed),  but for my interests that is the same as 100% cover.  I will fix that here and leave the original number intact in the original csv.
+data$HerbCov[data$HerbCov > 1] <- 1
+```
+
+Some useful code tidbits
+-------------------------------------------------------
+
+Note that in RStudio, the data fram view only displays a certain number of columns.  For a large dataset, if you need to view the entire data frame, you can use the command below to open it in a separate window.
+
+utils::View(data)
+
+```{r}
+utils::View(matrix)
+```
+
+The most basic possible plot to look at all the points for greenline versus upslope, for whichever variable in "data" is desired:
+```{r}
+require(ggplot2)
+qplot(data=data, y=CountSp, x=River, geom("point"))
+```
+
+
+Phylogenetic diversity
+
+```{r}
+require(picante)
+require(phytools)
+tree<-read.newick("newick_2012sp.txt")
+tree2<-collapse.singles(tree)
+tree3<-compute.brlen(tree2)
+test<-comdist(matrix, tree)
+
+
+```
+
+
+
+
+
+
+
+
+GLMs
+-------------------------------------------------------
+
+Poisson regression is required for the following variables:
+species richness (overall; introduced; native)
+number of individuals (overall; introduced; native)
+
+Check if these are very over/underdispersed or have a lot of zeroes; if so, a different model is required. 
+
+Checked - Residual deviance > df, the quasipoisson and quasibinomial models will work with this
+
+
+Historical notes, now solved?
+Potential problem: All of these data are corrected per area sampled, which does not work with the straightforward Poisson model (which requires integers).  An alternate method for performing Poisson regression on non-integers is provided at http://www.r-bloggers.com/poisson-regression-on-non-integers/, although I don't completely follow it.  It throws a warning for the model that the values are non-integer but fits the model and allows an anova to be run, and stackexchange suggests that it is appropriate to use the Poisson distribution even for non-integers that are still best approximated by Poisson (http://stats.stackexchange.com/questions/70054/how-is-it-possible-that-poisson-glm-accepts-non-integer-numbers).  Using family quasipoisson instead of poisson suppresses these warnings.
+
+8/2014 followup: can use Poisson and correct for area within the linear model itself.
+
+
+Testing the contribution of bank type (Poisson response variables)
+--------------------------------------------------------
+Analytical approach: model with and without the Bank factor, compared by chisq.  see http://www.ats.ucla.edu/stat/r/dae/poissonreg.htm
+Questions: is this model comparison (with and without bank) the correct approach?  Is chisq the correct comparison for the two models?  How do I address multiple comparisons with this approach?  With this approach, how do I test the river effect (it seems wrong to remove the top-level factor in the nested data)?  
+
+Note from Gelman and Hill  page 117 - adjust inferences for overdispersion by multiplying the standard errors of all the coefficient estimates by the quare root of the estimated overdispersion.
+
+For all of the models below, the former code based on the models I wrote for ANOVA is commented out, and new code (cleaner models and correcting for area within the model) is written below each.
+
+```{r}
+#quick plot of the species counts to have handy while comparing poisson and quasipoisson (poisson p=0.048, quasipoisson p=0.837).
+qplot(data=data, y=CountSpPerM, x=River, geom("point"))
+```
+
+these are the changes from heather - "-1" to take the intercept out and then return to "summary" to get the p values.  look into how to interpret estimates after log-correction.
+
+this produces very different values than the original approach; poisson vs. quasipoisson also produce very different results (anova completely identical except for radically different p values).  
+
+n.b. running "poisson" does not provide an overdispersion parameter while "quasipoisson" does; although in the sample results shown in Gelman and Hill both show an overdispersion parameter. Quasipoisson is automatically applying the overdispersion parameter to the se, which i assume is then carried over into the chi-sq test?  But the anova table is 100% identical except for the p-value, so I'm not exactly sure what's happening here.
+
+
+```{r}
+#run everything quasi, subtract out the intercept, report p-values from the summary as such  
+#why am I removing the intercept?  Added back in for now for more interpretable model comparisons. (To my eye, anyway.)
+
+
+#Number of species per meter
+#-------------------------------------
+#rich1<-glm(CountSpPerM ~ River + (River/Site) + (Site/Bank), family="quasipoisson", data=data)
+#rich2<-glm(CountSpPerM ~ River + (River/Site), family="quasipoisson", data=data)
+#anova(rich2, rich1, test = "Chisq")
+
+#rich0<-glm(CountSp ~ 1, family="poisson", offset=log(Area), data=data)
+#rich1<-glm(CountSp ~ River/Site, family="poisson", offset=log(Area), data=data)
+#rich2<-glm(CountSp ~ River/Site/Bank, family="poisson", offset=log(Area), data=data)
+#display(rich0)
+#display(rich1)
+#display(rich2)
+#anova(rich1, rich2, test="Chisq")
+
+
+rich0<-glm(CountSp ~ 1, family="quasipoisson", offset=log(Area), data=data)
+rich1<-glm(CountSp ~ River, family ="quasipoisson", offset=log(Area), data=data)
+rich2<-glm(CountSp ~ River/Site, family="quasipoisson", offset=log(Area), data=data)
+rich3<-glm(CountSp ~ River/Site/Bank, family="quasipoisson", offset=log(Area), data=data)
+display(rich0)
+display(rich1)
+display(rich2)
+display(rich3)
+anova(rich0,rich1,rich2,rich3, test="Chisq")
+summary(rich3)
+
+model.matrix(rich3) #use this on the model of interest (rich1, rich2, etc - to look at all the comparisons in the model matrix and confirm what contrasts go with which somewhat-obscure name in the summary)
+
+#Number of native species per meter
+#-------------------------------------
+#nrich1<-glm(CountNatSpPerM ~ River + (River/Site) + (Site/Bank), family="quasipoisson", data=data)
+#nrich2<-glm(CountNatSpPerM ~ River + (River/Site), family="quasipoisson", data=data)
+#anova(nrich2, nrich1, test = "Chisq")
+
+#nrich0<-glm(CountNatSp ~ 1, family="poisson", offset=log(Area), data=data)
+#nrich1<-glm(CountNatSp ~ River/Site, family="poisson", offset=log(Area), data=data)
+#nrich2<-glm(CountNatSp ~ River/Site/Bank, family="poisson", offset=log(Area), data=data)
+#display(nrich0)
+#display(nrich1)
+#display(nrich2)
+#anova(nrich1,nrich2, test="Chisq")
+
+nrich0<-glm(CountNatSp ~ 1, family="quasipoisson", offset=log(Area), data=data)
+nrich1<-glm(CountNatSp ~ River, family="quasipoisson", offset=log(Area), data=data)
+nrich2<-glm(CountNatSp ~ River/Site, family="quasipoisson", offset=log(Area), data=data)
+nrich3<-glm(CountNatSp ~ River/Site/Bank, family="quasipoisson", offset=log(Area), data=data)
+display(nrich0)
+display(nrich1)
+display(nrich2)
+display(nrich3)
+anova(nrich0, nrich1,nrich2, nrich3, test="Chisq")
+summary(nrich3)
+
+
+#Number of introduced species per meter
+#-------------------------------------
+#irich1<-glm(CountInvSpPerM ~ River + (River/Site) + (Site/Bank), family="quasipoisson", data=data)
+#irich2<-glm(CountInvSpPerM ~ River + (River/Site), family="quasipoisson", data=data)
+#anova(irich2, irich1, test = "Chisq")
+
+#irich0<-glm(CountInvSp ~ 1, family="poisson", offset=log(Area), data=data)
+#irich1<-glm(CountInvSp ~ River/Site, family="poisson", offset=log(Area), data=data)
+#irich2<-glm(CountInvSp ~ River/Site/Bank, family="poisson", offset=log(Area), data=data)
+#display(irich0)
+#display(irich1)
+#display(irich2)
+#anova(irich1,irich2,test="Chisq")
+
+irich0<-glm(CountInvSp ~ 1, family="quasipoisson", offset=log(Area), data=data)
+irich1<-glm(CountInvSp ~ River, family="quasipoisson", offset=log(Area), data=data)
+irich2<-glm(CountInvSp ~ River/Site, family="quasipoisson", offset=log(Area), data=data)
+irich3<-glm(CountInvSp ~ River/Site/Bank, family="quasipoisson", offset=log(Area), data=data)
+display(irich0)
+display(irich1)
+display(irich2)
+summary (irich3)
+anova(irich0, irich1,irich2, irich3, test="Chisq")
+
+
+#testing LMER for Dana
+# irich2<-lmer(CountInvSp ~ (1|River) + (1|Site) + (Bank), REML=TRUE, data=data)
+# summary(irich2)
+
+
+#Number of individuals per meter
+#-------------------------------------
+#ct1<-glm(CountIndPerM ~ River + (River/Site) + (Site/Bank), family="quasipoisson", data=data)
+#ct2<-glm(CountIndPerM ~ River + (River/Site), family="quasipoisson", data=data)
+#anova(ct2, ct1, test = "Chisq")
+
+#ct0<-glm(CountInd ~ 1, family="poisson", offset=log(Area), data=data)
+#ct1<-glm(CountInd ~ River/Site, family="poisson", offset=log(Area), data=data)
+#ct2<-glm(CountInd ~ River/Site/Bank, family="poisson", offset=log(Area), data=data)
+#display(ct0)
+#display(ct1)
+#display(ct2)
+#anova(ct1,ct2,test="Chisq")
+
+ct0<-glm(CountInd ~ 1, family="quasipoisson", offset=log(Area), data=data)
+ct1<-glm(CountInd ~ River, family="quasipoisson", offset=log(Area), data=data)
+ct2<-glm(CountInd ~ River/Site, family="quasipoisson", offset=log(Area), data=data)
+ct3<-glm(CountInd ~ River/Site/Bank, family="quasipoisson", offset=log(Area), data=data)
+display(ct0)
+display(ct1)
+display(ct2)
+summary(ct3)
+anova(ct0, ct1,ct2, ct3,test="Chisq")
+
+#Number of native individuals per meter
+#-------------------------------------
+#nct1<-glm(CountNatIndPerM ~ River + (River/Site) + (Site/Bank), family="quasipoisson", data=data)
+#nct2<-glm(CountNatIndPerM ~ River + (River/Site), family="quasipoisson", data=data)
+#anova(nct2, nct1, test = "Chisq")
+
+#nct0<-glm(CountNatInd ~ 1, family="poisson", offset=log(Area), data=data)
+#nct1<-glm(CountNatInd ~ River/Site, family="poisson", offset=log(Area), data=data)
+#nct2<-glm(CountNatInd ~ River/Site/Bank, family="poisson", offset=log(Area), data=data)
+#display(nct0)
+#display(nct1)
+#display(nct2)
+#anova(nct1, nct2, test="Chisq")
+
+nct0<-glm(CountNatInd ~ 1, family="quasipoisson", offset=log(Area), data=data)
+nct1<-glm(CountNatInd ~ River, family="quasipoisson", offset=log(Area), data=data)
+nct2<-glm(CountNatInd ~ River/Site, family="quasipoisson", offset=log(Area), data=data)
+nct3<-glm(CountNatInd ~ River/Site/Bank, family="quasipoisson", offset=log(Area), data=data)
+display(nct0)
+display(nct1)
+display(nct2)
+anova(nct0, nct1, nct2, nct3, test="Chisq")
+summary(nct3)
+
+
+#Number of introduced individuals per meter
+#-------------------------------------
+#ict1<-glm(CountInvIndPerM ~ River + (River/Site) + (Site/Bank), family="quasipoisson", data=data)
+#ict2<-glm(CountInvIndPerM ~ River + (River/Site), family="quasipoisson", data=data)
+#anova(rich2, rich1, test = "Chisq")
+
+#ict0<-glm(CountInvInd ~ 1, family="poisson", offset=log(Area), data=data)
+#ict1<-glm(CountInvInd ~ River/Site, family="poisson", offset=log(Area), data=data)
+#ict3<-glm(CountInvInd ~ River, family = "poisson", offset=log(Area), data=data)
+#ict2<-glm(CountInvInd ~ River/Site/Bank, family="poisson", offset=log(Area), data=data)
+#display(ict0)
+#display(ict1)
+#display(ict2)
+#summary(ict2)
+#anova(ict1, ict2, test="Chisq")
+
+ict0<-glm(CountInvInd ~ 1, family="quasipoisson", offset=log(Area), data=data)
+ict1<-glm(CountInvInd ~ River, family="quasipoisson", offset=log(Area), data=data)
+ict2<-glm(CountInvInd ~ River/Site, family="quasipoisson", offset=log(Area), data=data)
+ict3<-glm(CountInvInd ~ River/Site/Bank, family="quasipoisson", offset=log(Area), data=data)
+display(ict0)
+display(ict1)
+display(ict2)
+summary(ict3)
+anova(ict0, ict1, ict2, ict3, test="Chisq")
+```
+
+Full summaries for the Poisson models
+---------------------------------------
+
+*Most importantly*: I'm not sure how to tell if this is parsing the nested nature of the data correctly - it's easy enough to tell in an ANOVA model by looking at the df and MS, but I don't know how I would make sure that this model is nesting correctly.  I'm concerned about this because many of the ANOVA approaches I initially used in R did not handle two levels of nesting well - it tested everything over the residual MS regardless of how I structured the linear model.
+
+Other thoughts:
+
+I am not sure how to correctly interpret the output of these.  I understand that, e.g., "RiverIndian"" and "RiverKayaderosseras"" are each making comparisons to Ballston (these are the three rivers in the study), but I'm not sure how to (or if one can) translate this into an overall statement about differences among rivers in the same way that one might in an ANOVA approach.  Is it perhaps appropriate to only make statements about the bank effect using the analyses above, and leave statements about rivers to the full model outputs below?  I'm also not sure how best to handle multiple comparisons here.
+
+```{r}s
+#"display" and "summary" show different coefficient estimates. ???
+summary(rich2)
+summary(nrich2)
+summary(irich2)
+summary(ct2)
+summary(nct2)
+summary(ict2)
+```
+
+
+Testing the contribution of bank type (Binomial response variables): (%cover (%int; %nat))
+------------------------------------------------------------------------------------------------------
+(Same questions as above for the Poisson models, and binomial vs. quasibinomial?)
+Cover is only estimated for herbaceous species, which were always subsampled in the same total area (quadrats within the overall transect)
+
+```{r}
+#Need to set any >100% cover equal to 1 for these models to work (this is fine in the context of the actual questions I'm asking, it's just a quirk of the methodology that estimated cover for each species separately such that occasionally it can add to >100% when they are covering at different heights off the ground - but for summary purposes this is 100% cover:
+data$HerbCov[data$HerbCov > 1] <- 1
+data$NatHerbCov[data$NatHerbCov > 1] <- 1
+data$InvHerbCov[data$InvHerbCov > 1] <- 1
+
+#Percent vegetative cover
+#-------------------------------------
+#cov1<-glm(HerbCov ~ River + (River/Site) + (Site/Bank), family="quasibinomial", data=data)
+#cov2<-glm(HerbCov ~ River + (River/Site), family="quasibinomial", data=data)
+#anova(cov2, cov1, test = "Chisq")
+
+#cov0<-glm(HerbCov ~ 1, family="binomial", data=data)
+#cov1<-glm(HerbCov ~ River/Site, family="binomial", data=data)
+#cov2<-glm(HerbCov ~ River/Site/Bank, family="binomial", data=data)
+#display(cov0)
+#display(cov1)
+#display(cov2)
+#anova(cov1, cov2, test="Chisq")
+
+cov0<-glm(HerbCov ~ 1, family="quasibinomial", data=data)
+cov1<-glm(HerbCov ~ River, family="quasibinomial", data=data)
+cov2<-glm(HerbCov ~ River/Site, family="quasibinomial", data=data)
+cov3<-glm(HerbCov ~ River/Site/Bank, family="quasibinomial", data=data)
+display(cov0)
+display(cov1)
+display(cov2)
+anova(cov0, cov1, cov2, cov3, test="Chisq")
+summary(cov3)
+
+#Percent native cover
+#-------------------------------------
+#ncov1<-glm(NatHerbCov ~ River + (River/Site) + (Site/Bank), family="quasibinomial", data=data)
+#ncov2<-glm(NatHerbCov ~ River + (River/Site), family="quasibinomial", data=data)
+#anova(ncov2, ncov1, test = "Chisq")
+
+# ncov0<-glm(NatHerbCov ~ 1, family="binomial", data=data)
+# ncov1<-glm(NatHerbCov ~ River/Site, family="binomial", data=data)
+# ncov2<-glm(NatHerbCov ~ River/Site/Bank, family="binomial", data=data)
+# display(ncov0)
+# display(ncov1)
+# display(ncov2)
+# anova(ncov1, ncov2, test="Chisq")
+
+ncov0<-glm(NatHerbCov ~ 1, family="quasibinomial", data=data)
+ncov1<-glm(NatHerbCov ~ River, family="quasibinomial", data=data)
+ncov2<-glm(NatHerbCov ~ River/Site, family="quasibinomial", data=data)
+ncov3<-glm(NatHerbCov ~ River/Site/Bank, family="quasibinomial", data=data)
+display(ncov0)
+display(ncov1)
+display(ncov2)
+anova(ncov0, ncov1, ncov2, ncov3, test="Chisq")
+summary(ncov3)
+
+#Percent introduced cover
+#-------------------------------------
+#icov1<-glm(InvHerbCov ~ River + (River/Site) + (Site/Bank), family="quasibinomial", data=data)
+#icov2<-glm(InvHerbCov ~ River + (River/Site), family="quasibinomial", data=data)
+#anova(icov2, icov1)
+
+# icov0<-glm(InvHerbCov ~ 1, family="binomial", data=data)
+# icov1<-glm(InvHerbCov ~ River/Site, family="binomial", data=data)
+# icov2<-glm(InvHerbCov ~ River/Site/Bank, family="binomial", data=data)
+# display(icov0)
+# display(icov1)
+# display(icov2)
+# anova(icov1, icov2, test="Chisq")
+
+icov0<-glm(InvHerbCov ~ 1, family="quasibinomial", data=data)
+icov1<-glm(InvHerbCov ~ River, family="quasibinomial", data=data)
+icov2<-glm(InvHerbCov ~ River/Site, family="quasibinomial", data=data)
+icov3<-glm(InvHerbCov ~ River/Site/Bank, family="quasibinomial", data=data)
+display(icov0)
+display(icov1)
+display(icov2)
+anova(icov0, icov1, icov2, icov3, test="Chisq")
+summary(icov3)
+
+```
+
+
+Full summaries for the binomial models
+---------------------------------------
+
+```{r}
+summary(cov2)
+summary(ncov2)
+summary(icov2)
+```
+
+
+Solution for interpreting the weird coefficients:  call exp(model$coefficients)?  I think this might still have the area offset problem, though.  http://stats.stackexchange.com/questions/8661/logistic-regression-in-r-odds-ratio
+
+
+
+Multinomial diversity model MDM for Shannon diversity (see De'ath 2012 Ecology 93:2286-2296)
+--------------------------------------------------------------------------------------------
+
+*No questions on this part.*
+
+Jessica and I have decided it is probably best to just leave Shannon diversity out of the final manuscript, since it doesn't seem to be showing anything interesting/useful anyway.
+
+This needs to start with a site by species abundance matrix, create a class MDM out of it.
+```{r}
+fit0<-mdm(y2p(matrix[,4:246])~1, data=matrix)
+fit1<-mdm(y2p(matrix[,4:246])~1 + Stream, data=matrix)
+fit2<-mdm(y2p(matrix[,4:246])~1 + Site, data=matrix)
+fit3<-mdm(y2p(matrix[,4:246])~1 + Elev, data=matrix)
+anova(fit0, fit1, fit2, fit3)
+#No idea how to interpret this???
+```
+
+Species accumulation curves
+----------------------------------------------
+
+*No questions on this part.*
+
+Various approaches to this problem are preserved here for posterity; I've marked the section that produces the correct species accumulation curves for the manuscript.
+
+Resort the matrix so it is sorted by the Elev column
+Note in future that package "dplyr" is probably brilliant for this kind of sorting (see below that something about "data.table" output breaks the specaccum function, so I had to use an alternate approach for the final analysis)
+```{r}
+require(data.table)
+matsort<-data.table(matrix, key="Elev")
+```
+
+Run species accumulation function for greenlines and upslopes separately
+```{r}
+#greenlines
+gl<-specaccum(matrix[1:12, 4:246], method="exact", permutations = 999, conditioned = TRUE)
+#upslope
+up<-specaccum(matrix[13:24, 4:246], method="exact", permutations = 999, conditioned = TRUE)
+plot(gl, ci.type="line", ci.col="blue")
+plot(up, add=TRUE, ci.type="line", ci.col="red")
+```
+
+
+This code works, but I should implement it at a finer scale than over 12 sites.  Quadrat level would work; need a solution for how to integrate woody species?  Maybe just as a "woody" quadrat.  Can test this code at for herbaceous plants only using the dataset used in the Permutation seminar. Note this is *herbaceous plants only*, and is missing morphospecies that could not be identified to species or species that do not have a definite native/introduced origin status. 
+
+```{r}
+herbs<-read.csv("herbs_quadratlevel.csv")
+
+#greenlines
+gl<-specaccum(herbs[1:240, 3:165], method="random", permutations = 999, conditioned = TRUE)
+#upslope
+up<-specaccum(herbs[241:480, 3:165], method="random", permutations = 999, conditioned = TRUE)
+plot(gl, ci.type="line", ci.col="blue")
+plot(up, add=TRUE, ci.type="line", ci.col="red")
+```
+
+Trying all this again for the full 2012 data set... quadrat equivalents for woody species have been established by dividing the woody transect into 1 m sequential plots.
+
+Creating a site by species matrix at the quadrat scale, starting with a list of species presences (or abundances).  This dataset just contains presences - I don't think that it depends on including abundances, but doublecheck that.  I think it's fine when using sampled sites instead of sampled individuals.
+
+```{r}
+splist<-read.csv("species accumulations for 2012 obs 5_8_2014 b.csv")
+require(reshape)
+quadmat<- cast(splist,  Code + NewQuad ~ Species, value='Present', fun=mean) #mean is a placeholder here since this is just a presence list, mean of a bunch of 1s is 1
+
+quadmat <- as.data.frame(quadmat) #fixes the recast as a data frame
+quadmat[is.na(quadmat)] <- 0 #refills the empty cells with 0
+```
+
+Export quadmat to Excel to add the missing (empty) quadrats
+```{r}
+write.table(quadmat, file="quadmat2012.csv", sep=",", row.names=F)
+```
+
+Reimport the matrix and sort by elevation
+```{r}
+quadmatrix<-read.csv("quadmat2012allrows.csv")
+
+#require(data.table)
+#matsort<-data.table(matrix, key="Elev")
+#matsort<-as.data.table(matsort)
+#commented out this code - the current form of that csv file is already sorted
+```
+
+Run species accumulations - this is the code that works for the manuscript
+This works if I don't run the matrix through the sorting process - something about data.table() breaks the data frame, apparently.  No idea.  But this code works now.
+
+```{r}
+#greenlines
+gl<-specaccum(quadmatrix[1:761, 3:247], method="random", permutations = 999, conditioned = TRUE)
+#upslope
+up<-specaccum(quadmatrix[762:1542, 3:247], method="random", permutations = 999, conditioned = TRUE)
+plot(gl, ci.type="line", ci.col="blue", xlab = "Quadrats", ylab = "Accumulated Species")
+plot(up, add=TRUE, ci.type="line", ci.col="red")
+```
+
+Testing significance?  Mao and Li (Biometrics 2009) suggest an eigenvalue adjusted chi-squared test, but the method is super confusing.  Here's code for a chi-squared test but no guarantees of accuracy.
+
+```{r}
+lines<-c(gl$richness, up$richness)
+> chisq.test(lines)
+```
+
+
+Plotting the species accumulation curve in ggplot2 for better visualizations for print
+```{r}
+#turn the specaccum output into a dataframe, add a column to label the site type (greenline or upslope)
+upt<-as.data.frame(up[2:5])
+upt["type"] <- NA
+upt[is.na(upt)] <-"up"
+
+#repeat the process for the greenline data
+glt<-as.data.frame(gl[2:5])
+glt["type"] <-NA
+glt[is.na(glt)] <- "gl"
+
+#merge the two data frames for plotting in ggplot
+
+plottable<-rbind(upt,glt)
+
+#make a plot
+require(ggplot2)
+ggplot(data=plottable, aes(x=sites, y=richness, shape=type)) +geom_ribbon(aes(ymax=richness+1.96*sd, ymin=richness-1.96*sd), fill= NA, linetype = 3, color = "black") + geom_line(aes(linetype=type), size=1) +theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA)) + xlab("Plots") + ylab("Species Richness")
+
+
+```
+
+
+Testing online demos for comparison:
+
+From http://www.ats.ucla.edu/stat/r/dae/poissonreg.htm
+
+```{r}
+p<-read.csv("http://www.ats.ucla.edu/stat/data/poisson_sim.csv")
+p <- within(p, {
+    prog <- factor(prog, levels = 1:3, labels = c("General", "Academic", "Vocational"))
+    id <- factor(id)
+})
+summary(p)
+#This puts labels on the imported data sheet and then gives summary stats for each column
+
+m1 <- glm(num_awards ~ prog + math, family = "poisson", data = p)
+summary(m1)
+
+#this gives a full model
+#we can test a model removing prog and then compare the two using a chi-sq test
+
+## update m1 model dropping prog
+m2 <- update(m1, . ~ . - prog)
+## test model differences with chi square test
+anova(m2, m1, test = "Chisq")
+```
+
+
