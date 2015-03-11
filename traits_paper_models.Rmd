@@ -66,7 +66,7 @@ pref_traits<-traits_tp[,c(6,9:11,21,26:28,33,36,38,42,43,46,47)]#making a smalle
 #47 seed number per reproduction unit
 
 
-FD<-dbFD(pref_traits, cover, stand.x=FALSE, ord="podani", corr = "cailliez") #this is what worked
+FD<-dbFD(pref_traits, cover, stand.x=TRUE, ord="podani", corr = "cailliez", w.abun=TRUE, stand.FRic=TRUE) #this is what worked
 
 
 
@@ -155,7 +155,7 @@ require(arm) #for display()
 traitsdiv<-read.csv("FD.csv", check.names=TRUE) #oops i have two columns named as site; I can fix that (the first should be row.names) but for now just used the renamed Site.1 in the model
 
 
-#Functional richness
+#Functional richness #something is wrong with the Fric values - recalculate and reimport.  it's meant to vary between 0 and 1 (therefore should be binomial).  higher is richer
 Fric0<-glm(FRic ~ 1, family="quasipoisson", offset=log(Area), data=traitsdiv)
 Fric1<-glm(FRic ~ River, family ="quasipoisson", offset=log(Area), data=traitsdiv)
 Fric2<-glm(FRic ~ River/Site.1, family="quasipoisson", offset=log(Area), data=traitsdiv)
@@ -254,7 +254,34 @@ test<-permatswap(comm, method="quasiswap", fixedmar="both", shuffle = "samp", st
 
 
 
-somehow need to iterate FD across this
+#somehow need to iterate FD across this
+#need to load in the traits data
+require(picante)
+require(FD)
+rep=99
+permute<-matrix(nrow=rep, ncol=4)
+for (i in 1:rep) {
+  temp<-randomizeMatrix(cover, null.model="independentswap", iterations = 1000)
+  FDtemp<-dbFD(pref_traits, temp, stand.x=FALSE, ord="podani", corr = "cailliez") #this is silly I don't need FD in here, I need something like NND and maxD after Mouillot et al.  but maybe this will tell me something else 
+  permute[i, ] <-c(mean(FDtemp$FEve), mean(FDtemp$FDiv), mean(FDtemp$FDis), mean(FDtemp$RaoQ))
+}
+
+
+#maybe make an array and save the value for each community and test each community against its own null distribution??
+
+require(picante)
+require(FD)
+rep=99
+array<-array(0, dim=rep,4,24)
+for (i in 1:rep) {
+  temp<-randomizeMatrix(cover, null.model="independentswap", iterations = 1000)
+  FDtemp<-dbFD(pref_traits, temp, stand.x=FALSE, ord="podani", corr = "cailliez") #this is silly I don't need FD in here, I need something like NND and maxD after Mouillot et al.  but maybe this will tell me something else #maybe make an array and save the value for each community and test each community against its own null distribution??
+  for (j in 1:24){
+  array [i, ] <-c(FDtemp[j,FEve], FDtemp[j,FDiv], FDtemp[j,FDis], FDtemp[j,RaoQ])
+  }
+}
+
+
 
 
 
