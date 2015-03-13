@@ -54,6 +54,7 @@ fourthcorner.rlq(rlq1,type="R.axes")
 nrepet = 9999
 fourth<-fourthcorner(env, species, traits, modeltype=6, , p.adjust.method.G="fdr", p.adjust.method.D="fdr", nrepet = nrepet) 
 plot(fourth, alpha = 0.05, stat = "D2")
+summary(fourth)
 ```
 
 p.adjust.methods
@@ -63,8 +64,10 @@ p.adjust.methods
 Additional plotting options courtesy http://www.esapubs.org/archive/ecol/E095/002/suppl-1.pdf
 ```{r}
 par(mfrow = c(1,1))#asking R to plot 3 side by side plots
-s.arrow(rlq1$l1) #l1 = arrows for environment
-s.arrow(rlq1$c1) # c1 = arrows for traits
+
+s.arrow(rlq1$c1, addaxes=TRUE, boxes=FALSE) # c1 = arrows for traits
+s.arrow(rlq1$l1, addaxes=TRUE, add.plot=TRUE, boxes=FALSE) #l1 = arrows for environment
+#par(new=T)
 s.label(rlq1$lQ, boxes = FALSE) #ordination of the species distances, drawn without boxes around the names
 
 plot(fourth, x.rlq=rlq1, alpha = 0.05, stat = "D2", type = "biplot")

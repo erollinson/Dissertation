@@ -65,17 +65,14 @@ pref_traits<-traits_tp[,c(6,9:11,21,26:28,33,36,38,42,43,46,47)]#making a smalle
 #46 seed mass
 #47 seed number per reproduction unit
 
-
+#pref_traits: 181 x 15 traits are columns
+#cover: 24 x 181 species are columns
 FD<-dbFD(pref_traits, cover, stand.x=TRUE, ord="podani", corr = "cailliez", w.abun=TRUE, stand.FRic=TRUE) #this is what worked
-
-
 
 #try to make a species by species distance matrix to use in the Mouillot et al. method?
 
-
 gowdist<-gowdis(pref_traits)
 gowdist2<-as.matrix(gowdist)
-
 
 #gowdis test data
 
@@ -120,32 +117,8 @@ text(ord, display ="sites", cex =0.7)
 plot(ord)
 text(ord, display="species", cex=0.7)
 
-
-
-
-#Trying a PCA
-
-
 ```
-Trying a different package
 
-```{r}
-require(StatMatch)
-test<-gower.dist(cover, traits)
-
-require(cluster)
-test<-daisy(traits, metric = "euclidean")
-test<-as.data.frame(test)
-
-require(vegan)  #this is working
-test<-cca(cover, sitebytrait_noNA)
-plot(test, type="n")
-text(test, display="bp")
-text(test, display="species")
-
-
-test2<-test$CWM
-```
 
 
 reimport Fdiversity values as a table
@@ -153,7 +126,6 @@ reimport Fdiversity values as a table
 require(lme4) #for GLMs
 require(arm) #for display()
 traitsdiv<-read.csv("FD.csv", check.names=TRUE) #oops i have two columns named as site; I can fix that (the first should be row.names) but for now just used the renamed Site.1 in the model
-
 
 #Functional richness #something is wrong with the Fric values - recalculate and reimport.  it's meant to vary between 0 and 1 (therefore should be binomial).  higher is richer.  Oh they are all wrong - the whole thing shifted the column names one left of where they should be
 Fric0<-glm(FRic ~ 1, family="quasipoisson", offset=log(Area), data=traitsdiv)
@@ -216,28 +188,206 @@ qplot(data=traitsdiv, y=FDiv, x=Bank, geom("point"))
 
 ```
 
-Code for checking the distribution - plotting a dist on a histogram???
-> hist(traitsdiv$FDiv)
-> x<-traitsdiv$FDiv
-> h<-hist(x, breaks=10)
-> xfit<-seq(min(x), max(x), length=40)
-> yfit<-dpoisson(xfit, mean=mean(x), sd=sd(x))
-Error: could not find function "dpoisson"
-> ??functions
-> yfit<-ppois(xfit, mean=mean(x), sd=sd(x))
-Error in ppois(xfit, mean = mean(x), sd = sd(x)) : 
-  unused arguments (mean = mean(x), sd = sd(x))
-> yfit<-ppois(xfit)
-Error in ppois(xfit) : argument "lambda" is missing, with no default
-> yfit<-ppois(xfit)
-Error in ppois(xfit) : argument "lambda" is missing, with no default
-> help(ppois)
-> yfit<-ppois(xfit, lambda=mean(x))
-> yfit<-yfit*diff(h$mids[1:2]*length(x))
-> lines(xfit, yfit, col="blue", lwd=2)
+------------------------------------------------------------------------------------
+*Native vs. introduced portions of the community*
+
+```{r}
+fulllist<-read.csv("2013_speciespresences_by_origin.csv", check.names=FALSE)
+
+invs<-fulllist[1:308,1:3] #subset of the complete species list that are known introduced
+nats<-fulllist[343:1545, 1:3] #subset of the complete species list that are known native
+
+#omits species with unresolved origin status entirely (n=7 species; 34 observations)
+
+require(reshape)
+tempinvs<-cast(invs, River ~ Species, value="Presence", fun.aggregate=mean)
+row.names(tempinvs)<-tempinvs$River
+tempinvs2<-tempinvs[,2:62]
+tempinvs3<-rapply(tempinvs2, f=function(x) ifelse(is.nan(x),0,x), how="replace")
+tempinvs3<-as.data.frame(tempinvs3, check.names=FALSE)
+row.names(tempinvs3)<-tempinvs$River
+invcomm<-tempinvs3
+
+tempnats<-cast(nats, River~Species, value="Presence", fun.aggregate=mean)
+row.names(tempnats)<-tempnats$River
+tempnats2<-tempnats[,2:213]
+tempnats3<-rapply(tempnats2, f=function(x) ifelse(is.nan(x),0,x), how="replace")
+tempnats3<-as.data.frame(tempnats3)
+row.names(tempnats3)<-tempnats$River
+natcomm<-tempnats3
 
 
-Null community assembly?
+#import traits matrices for inv and nat 2013 species (do i need these? yes
+
+invtraits<-read.csv("2013_traits_invs.csv")
+nattraits<-read.csv("2013_traits_natives.csv")
+
+row.names(invtraits)<-invtraits$Trait
+invtraits2<-invtraits[,2:61]
+
+row.names(nattraits)<-nattraits$Trait
+nattraits2<-nattraits[,2:189]
+
+#import full 2013 traits matrix (no, would have to prune the NIs.  just merge the two above.)
+
+alltraits<-merge(invtraits, nattraits)
+
+#no, what i need is a site x trait matrix for nats and invs and then merge the site x trait matrices
+
+
+#transpose for FD 
+tinvtraits<-t(invtraits2)
+tinvtraits<-as.data.frame(tinvtraits)
+tnattraits<-t(nattraits2)
+tnattraits<-as.data.frame(tnattraits)
+
+#community matrix has an error invcomm contains Cynanchum louiseae and traits matrix does not.  Remove from invcomm it is column 12
+#same error for natives, many in community list but no traits
+
+#25 brachyelytrum aristosum
+#43 cornus obliqua
+#51 doellengeria umbellata
+#55 elymus canadensis
+#67 eurybia divaricata
+#68 euthamia caroliniana
+#70 eutrochium maculatum
+#71 euthrochium purpureum
+#82 gentiana linearis
+#86 helianthus divaricatus
+#89 heuchera villosa
+#118 oclemena acuminata
+#135 polygonum arifolium
+#136 polygonum cilinode
+#145 prenanthes altissima
+#146 prenanthes trifoliata
+#153 quercus prenoides
+#175 smilax tamnoides
+#180 solidago latissimifolia
+#182 stellaria pubera
+#183 symphyotrichum dumosum
+#185 symphyotrichum novae.angleae
+#190 thalictrum thalictroides
+#196 triadenum virginicum
+#211 woodsia obtusa
+
+invcomm2<-invcomm[,c(1:11,13:61)]
+
+natcomm2<-natcomm[,c(1:24,26:42, 44:50, 52:54,56:66,69,72:81,83:85,87,88,90:117, 119:134, 137:144, 147:152,154:174,176:179,181,184,186:189,191:195,197:210,212)]
+
+
+#pref_traits: 181 x 15 traits are columns
+#cover: 24 x 181 species are columns
+
+#tnattraits: 188 x 76, traits are columns
+#natcomm2: 53 x 188, species are columns
+
+#tinvtraits 60 x 76, traits are columns
+#invcomm2: 53 x 60, species are columns
+#distance matrix?
+
+#FDnat<-dbFD(tinvtraits, invcomm2, stand.x=TRUE, ord="podani", corr = "cailliez", w.abun=TRUE, stand.FRic=TRUE)
+#FDinv<-dbFD(tnattraits, natcomm2, stand.x=TRUE, ord="podani", corr = "cailliez", w.abun=TRUE, stand.FRic=TRUE )
+
+#ok, need to do the same export-and-interpolate for the traits matrix as I did for the first FD
+#seed mass was missing for 2 species, gave it the median (inv traits)
+#seed mass missing for 29 species, give them the median (nat traits)
+
+write.table(tnattraits, "2013nativetraits.csv", sep=",")
+write.table(tinvtraits, "2013invtraits.csv", sep=",")
+
+
+#needed to delete eleocharis intermedia from traits before reimporting, it wasn't in comm data (native species)
+
+#reimport traits data
+
+invtrt<-read.csv("2013invtraits_interp.csv")
+row.names(invtrt)<-invtrt$X
+invtrt<-invtrt[,2:63]
+
+nattrt<-read.csv("2013nativetraits_interp.csv")
+row.names(nattrt)<-nattrt$X
+nattrt<-nattrt[,2:66]
+
+
+# i think i need to try resaving these csvs with everything set to numeric in excel, delete the totally NA traits (no data for any species in the subset), deleting the extra rows
+#the same traits should also be used for native and invasive distance matrices, so once these are reimported as edited above,  make preferred-trait subsets that have matching traits
+
+
+FDinv<-dbFD(invtrt, invcomm2, stand.x=TRUE, ord="podani", corr = "cailliez", w.abun=TRUE, stand.FRic=TRUE)
+FDnat<-dbFD(nattrt, natcomm2, stand.x=TRUE, ord="podani", corr = "cailliez", w.abun=TRUE, stand.FRic=TRUE )
+
+
+#throwing an error  Species labels in 'x' and 'a' need to be identical and ordered alphabetically (or simply in the same order). for natives; invasives are working.  export nattrt and natcomm2 to check quickly in excel.  The issue is misspelling = "Oenothera biennis" in the traits file and Oenethera biennis in the community file.  Oenothera is the correct spelling; change the name of that column in the community file.  
+
+#write.table(nattrt, "testfile_nativetraits.csv", sep=",", row.names=TRUE)
+#write.table(natcomm2, "testfile_nativecomm.csv", sep=",", row.names=TRUE)
+#can delete those tables now
+
+names(natcomm2)[names(natcomm2)=="Oenethera.biennis"] <- "Oenothera.biennis"
+
+
+
+#export $CWM from this to get the traits matrix to then marge back together and compare community distances.
+#for future reference 'functcomp' returns the community level weighted means, don't have to run all other things in 'dbFD'
+
+inv_sitebytrait<-FDinv$CWM
+nat_sitebytrait<-FDnat$CWM
+
+#write these to tables so i have them saved in case the code magically dies
+write.table(inv_sitebytrait, "sitebytraitmatrix_inv2013.csv", sep=",", row.names=TRUE, col.names=TRUE)
+write.table(nat_sitebytrait, "sitebytraitmatrix_nat2013.csv", sep=",", row.names=TRUE, col.names=TRUE)
+
+
+#reimport the site by trait matrix that has been pruned to shared/preferred traits and lists communities separately as invasive and native portions of each site.
+
+partcomm<-read.csv("2013_sitebytraitmatrix_partitionedbyorigin.csv")
+row.names(partcomm)<-partcomm$Comm
+partcomm<-partcomm[,3:23]
+
+
+#rough interpolation to allow ordination to proceed  - give any NA the median value for that column
+fx=function(x){
+  x[is.na(x)]=median(x, na.rm=TRUE)
+  x
+}
+int_partcomm=data.frame(apply(int_partcomm,2,fx))
+
+
+
+#Ordinate that matrix
+
+require(vegan)
+ord<-metaMDS(int_partcomm, distance="gower", noshare=FALSE, zerodist="add", k=3)
+ordiplot(ord, type="n", xlim=c(-0.3,0.5), ylim=c(-0.3, 0.5))
+type=c(rep("Introduced", 53), rep("Native", 53))
+#ordihull(ord, groups=type, draw="polygon", col="grey90", label=F) #for tightest convex hull containing all points in the group
+ordiellipse(ord, groups=type, draw="lines", kind="sd", col="black", label=T) #for ellipse representing SD of community
+
+points(ord, display="sites", col=c(rep("red", 53), rep("blue", 53)), pch= 19)
+
+orditorp(ord, display="species", col="black", pch=8) #this will plot the traits ("species" in vegan package lingo which always means whatever your columns are)
+
+
+#test significance
+anosim(int_partcomm, type)
+
+
+#try to make a species by species distance matrix to use in the Mouillot et al. method?
+#gowdist<-gowdis(pref_traits)
+#gowdist2<-as.matrix(gowdist)
+
+#gowdis test data
+
+ex1<-gowdis(dummy$trait)
+ex1<-as.matrix(ex1)
+```
+
+
+
+
+
+------------------------------------------------------------------------------------
+*Null community assembly*
 
 http://stackoverflow.com/questions/6422273/how-to-randomize-or-permute-a-dataframe-rowwise-and-columnwise
 
@@ -322,6 +472,29 @@ is it just if my values fall outside 0.25 and .975?
 quant.hu <- apply(test, 2, quantile, probs = c(.025, .975))
 q.dat <- melt(data.frame(t(quant.hu)))
 q.dat2 <- cbind(q.dat, num=rep(1:25, 2))
+
+Code for checking the distribution - plotting a dist on a histogram???
+> hist(traitsdiv$FDiv)
+> x<-traitsdiv$FDiv
+> h<-hist(x, breaks=10)
+> xfit<-seq(min(x), max(x), length=40)
+> yfit<-dpoisson(xfit, mean=mean(x), sd=sd(x))
+Error: could not find function "dpoisson"
+> ??functions
+> yfit<-ppois(xfit, mean=mean(x), sd=sd(x))
+Error in ppois(xfit, mean = mean(x), sd = sd(x)) : 
+  unused arguments (mean = mean(x), sd = sd(x))
+> yfit<-ppois(xfit)
+Error in ppois(xfit) : argument "lambda" is missing, with no default
+> yfit<-ppois(xfit)
+Error in ppois(xfit) : argument "lambda" is missing, with no default
+> help(ppois)
+> yfit<-ppois(xfit, lambda=mean(x))
+> yfit<-yfit*diff(h$mids[1:2]*length(x))
+> lines(xfit, yfit, col="blue", lwd=2)
+
+JUNK LEFTOVER CODE
+------------------------------------------------------------
 
 
 trying new package 'cati'
@@ -725,10 +898,27 @@ test_trait_data(sp_list_community, pool, log=TRUE, reps=999, abweight=FALSE, ver
 # null_..._sd	= standard deviation of the null distrbution for a given metric (e.g. null_range_sd)
 
 ```
+Trying a different package
+
+```{r}
+require(StatMatch)
+test<-gower.dist(cover, traits)
+
+require(cluster)
+test<-daisy(traits, metric = "euclidean")
+test<-as.data.frame(test)
+
+require(vegan)  #this is working
+test<-cca(cover, sitebytrait_noNA)
+plot(test, type="n")
+text(test, display="bp")
+text(test, display="species")
 
 
-JUNK LEFTOVER CODE
--------------------------------------------------------------
+test2<-test$CWM
+```
+
+-
 
 Import a new community dataset with cover values
 ```{r}
