@@ -70,6 +70,9 @@ pref_traits<-traits_tp[,c(6,9:11,21,26:28,33,36,38,42,43,46,47)]#making a smalle
 
 
 FD<-dbFD(pref_traits, cover, stand.x=TRUE, ord="podani", corr = "cailliez", w.abun=TRUE, stand.FRic=TRUE) 
+export = FD[1:8]
+test<-as.data.frame(export)
+write.table(test, "functionaldiv2012.csv", sep=",")
 
 #this is what worked
 ```
@@ -460,7 +463,7 @@ is it just if my values fall outside 0.025 and .975?
 
 write.table(permFDis, file="nullFDis.csv", sep=",")
 write.table(permFDiv, file="nullFDiv.csv", sep=",")
-write.table(permFEve, file="nullFEve,csv", sep=",")
+write.table(permFEve, file="nullFEve.csv", sep=",")
 write.table(permRaoQ, file="nullRaoQ.csv", sep=",")
 
 ```
