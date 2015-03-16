@@ -67,19 +67,11 @@ pref_traits<-traits_tp[,c(6,9:11,21,26:28,33,36,38,42,43,46,47)]#making a smalle
 
 #pref_traits: 181 x 15 traits are columns
 #cover: 24 x 181 species are columns
-FD<-dbFD(pref_traits, cover, stand.x=TRUE, ord="podani", corr = "cailliez", w.abun=TRUE, stand.FRic=TRUE) #this is what worked
-
-#try to make a species by species distance matrix to use in the Mouillot et al. method?
-
-gowdist<-gowdis(pref_traits)
-gowdist2<-as.matrix(gowdist)
-
-#gowdis test data
-
-ex1<-gowdis(dummy$trait)
-ex1<-as.matrix(ex1)
 
 
+FD<-dbFD(pref_traits, cover, stand.x=TRUE, ord="podani", corr = "cailliez", w.abun=TRUE, stand.FRic=TRUE) 
+
+#this is what worked
 ```
 
 reimport sites by traits
@@ -442,14 +434,14 @@ abline(v=0.670, lwd=2, col="purple") #this isn't plotting and also is an inaccur
 
 require(picante)
 require(FD)
-rep=2
+rep=999
 permFEve<-matrix(nrow=rep, ncol=24)
 permFDiv<-matrix(nrow=rep, ncol=24)
 permFDis<-matrix(nrow=rep, ncol=24)
 permRaoQ<-matrix(nrow=rep, ncol=24)
-for (i in 1:rep) {
+for (i in 11:rep) {
   temp<-randomizeMatrix(cover, null.model="independentswap", iterations = 1000)
-  FDtemp<-dbFD(pref_traits, temp, stand.x=TRUE, ord="podani", corr = "cailliez")
+  try(FDtemp<-dbFD(pref_traits, temp, stand.x=TRUE, ord="podani", corr = "cailliez"), silent=TRUE)
   FEve = FDtemp$FEve
   FDiv = FDtemp$FDiv
   FDis = FDtemp$FDis
@@ -462,9 +454,14 @@ for (i in 1:rep) {
 
 #this will provide each row as a permutation and each column as one of the communities, with a separate table for each statistic.  This can be used to test each community for environmental filtering etc once I figure out how to calculate probabilities on the histogram i made)
 
-is it just if my values fall outside 0.25 and .975?  
+is it just if my values fall outside 0.025 and .975?  
 
+#Export the null tables so I don't have to run this again.  
 
+write.table(permFDis, file="nullFDis.csv", sep=",")
+write.table(permFDiv, file="nullFDiv.csv", sep=",")
+write.table(permFEve, file="nullFEve,csv", sep=",")
+write.table(permRaoQ, file="nullRaoQ.csv", sep=",")
 
 ```
 
