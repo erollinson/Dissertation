@@ -69,12 +69,57 @@ pref_traits<-traits_tp[,c(6,9:11,21,26:28,33,36,38,42,43,46,47)]#making a smalle
 #cover: 24 x 181 species are columns
 
 
-FD<-dbFD(pref_traits, cover, stand.x=TRUE, ord="podani", corr = "cailliez", w.abun=TRUE, stand.FRic=TRUE) 
+FD<-dbFD(pref_traits, cover, stand.x=TRUE, ord="podani", corr = "cailliez", w.abun=TRUE, stand.FRic=TRUE) #this is what worked
+
+
 export = FD[1:8]
 test<-as.data.frame(export)
 write.table(test, "functionaldiv2012.csv", sep=",")
 
-#this is what worked
+export2 = FD[2]
+test2<-as.data.frame(export2)
+
+CWM<-FD$CWM
+
+CWM$type<-c("g","g","u","u","g","g","u","u","g","g","u","u","g","g","u","u","g","g","u","u","g","g","u","u")
+
+
+#write.table(CWM, "2012CWMtemp.csv", sep=",") exported to sort because every option of sorting in R was breaking things
+#reimport sorted by bank type
+
+CWM2<-read.csv("2012CWMtemp.csv")
+row.names(CWM2)<-CWM2$X
+CWM2<-CWM2[,2:16]
+
+
+#need to standardize each column
+
+CWM2scaled<-as.data.frame(scale(CWM2))
+
+
+#rough interpolation to allow ordination to proceed  - give any NA the median value for that column
+fx=function(x){
+  x[is.na(x)]=median(x, na.rm=TRUE)
+  x
+}
+CWM2=data.frame(apply(CWM2,2,fx))
+
+#don't use the scaled one, none of the distances in vegan like negative values
+
+require(vegan)
+ordslope<-metaMDS(CWM2, dist="gower") #gower scales each column to unit range
+
+type=c(rep("GL", 12), rep("UP", 12))
+ordiplot(ordslope, type="n")
+#ordihull(ord, groups=type, draw="polygon", col="grey90", label=F) #for tightest convex hull containing all points in the group
+ordiellipse(ordslope, groups=type, draw="lines", kind="sd", col="black", label=T) #for ellipse representing SD of community
+
+points(ordslope, display="sites", col=c(rep("red", 12), rep("blue", 12)), pch= 19)
+
+orditorp(ordslope, display="species", col="black", pch=8) #this will plot the traits ("species" in vegan package lingo which always means whatever your columns are)
+
+anosim(CWM2, type)
+
 ```
 
 reimport sites by traits
@@ -183,6 +228,29 @@ qplot(data=traitsdiv, y=FDiv, x=Bank, geom("point"))
 
 ```
 
+------------------------------------------------------------------------------------
+*FD of native community regressed against % invasive species / invasive cover*
+
+
+
+
+
+
+------------------------------------------------------------------------------------
+*Riparian vs. upslope communities*
+
+```{r}
+#read in 2012 abundances
+intensivelist<-read.csv("2012_abundancematrix_withgroupings.csv")
+intensivelist<-intensivelist[order(intensivelist$elev),]
+
+#separate into greenline and upslope communities
+gl<-intensivelist[c(1,2,5,6,9,10,13,14,17,18,21,22),]
+up<-intensivelist[c(3,4,7,8,11,12,15,16,19,20,23,24),]
+
+#wait is this necessary, don't i have a distance matrix for 2012
+
+```
 ------------------------------------------------------------------------------------
 *Native vs. introduced portions of the community*
 
