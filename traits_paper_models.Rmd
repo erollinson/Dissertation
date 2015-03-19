@@ -375,7 +375,7 @@ nattrt<-nattrt[,2:66]
 # i think i need to try resaving these csvs with everything set to numeric in excel, delete the totally NA traits (no data for any species in the subset), deleting the extra rows
 #the same traits should also be used for native and invasive distance matrices, so once these are reimported as edited above,  make preferred-trait subsets that have matching traits
 
-
+require(FD)
 FDinv<-dbFD(invtrt, invcomm2, stand.x=TRUE, ord="podani", corr = "cailliez", w.abun=TRUE, stand.FRic=TRUE)
 FDnat<-dbFD(nattrt, natcomm2, stand.x=TRUE, ord="podani", corr = "cailliez", w.abun=TRUE, stand.FRic=TRUE )
 
@@ -413,8 +413,7 @@ fx=function(x){
   x[is.na(x)]=median(x, na.rm=TRUE)
   x
 }
-int_partcomm=data.frame(apply(int_partcomm,2,fx))
-
+int_partcomm=data.frame(apply(partcomm,2,fx))
 
 
 #Ordinate that matrix
@@ -445,6 +444,82 @@ ex1<-gowdis(dummy$trait)
 ex1<-as.matrix(ex1)
 ```
 
+
+plotting some of the inv versus native traits - first try without interpolated values
+```{r}
+invtraits<-read.csv("2013_traits_invs.csv")
+nattraits<-read.csv("2013_traits_natives.csv")
+
+row.names(invtraits)<-invtraits$Trait
+invtraits2<-invtraits[,2:61]
+
+row.names(nattraits)<-nattraits$Trait
+nattraits2<-nattraits[,2:189]
+
+tinvtraits2<-as.data.frame(t(invtraits2))
+tnattraits2<-as.data.frame(t(nattraits2))
+tinvtraits2$Origin<-"I"
+tnattraits2$Origin<-"N"
+
+alltraits2<-rbind(tinvtraits2, tnattraits2)
+
+require(ggplot2)
+
+require(plyr)
+
+#plot seed mass
+names(alltraits2)[names(alltraits2)=="Seed mass"] <-"Seedmass" #ddply doesn't seem to like spaces in column names, or ""ing them
+
+cseed<-ddply(alltraits2, c("Origin"), summarise,
+             N = sum(!is.na(Seedmass)),
+             mean = mean(Seedmass, na.rm=TRUE),
+             sd = sd(Seedmass, na.rm=TRUE),
+             se = sd/sqrt(N))
+
+#require(bear)
+#dfseed<-summarySE(alltraits2, measurevar="Leaf dry mass", groupvars=c("Origin"))
+
+ggplot(cseed, aes(x=Origin, y=mean)) + geom_bar(position=position_dodge(), stat="identity") + geom_errorbar(aes(ymin=mean-se, ymax = mean+se), width=.2) + ggtitle("Seed Mass")
+
+
+#plot SSD
+
+names(alltraits2)[names(alltraits2)=="Stem specific density (SSD)"] <-"ssd" #ddply doesn't seem to like spaces in column names, or ""ing them
+
+cssd<-ddply(alltraits2, c("Origin"), summarise,
+             N = sum(!is.na(ssd)),
+             mean = mean(ssd, na.rm=TRUE),
+             sd = sd(ssd, na.rm=TRUE),
+             se = sd/sqrt(N))
+
+ggplot(cssd, aes(x=Origin, y=mean)) + geom_bar(position=position_dodge(), stat="identity") + geom_errorbar(aes(ymin=mean-se, ymax = mean+se), width=.2) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))+ ylab("SSD")
+
+#plot SLA
+
+names(alltraits2)[names(alltraits2)=="Leaf specific area (SLA)"] <-"sla" #ddply doesn't seem to like spaces in column names, or ""ing them
+
+csla<-ddply(alltraits2, c("Origin"), summarise,
+             N = sum(!is.na(sla)),
+             mean = mean(sla, na.rm=TRUE),
+             sd = sd(sla, na.rm=TRUE),
+             se = sd/sqrt(N))
+
+ggplot(csla, aes(x=Origin, y=mean)) + geom_bar(position=position_dodge(), stat="identity") + geom_errorbar(aes(ymin=mean-se, ymax = mean+se), width=.2) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))+ ylab("SLA")
+
+#plot leaf N per dry mass
+
+names(alltraits2)[names(alltraits2)=="Leaf nitrogen (N) content per dry mass"] <-"leafN" #ddply doesn't seem to like spaces in column names, or ""ing them
+
+cleafN<-ddply(alltraits2, c("Origin"), summarise,
+             N = sum(!is.na(leafN)),
+             mean = mean(leafN, na.rm=TRUE),
+             sd = sd(leafN, na.rm=TRUE),
+             se = sd/sqrt(N))
+
+ggplot(cleafN, aes(x=Origin, y=mean)) + geom_bar(position=position_dodge(), stat="identity") + geom_errorbar(aes(ymin=mean-se, ymax = mean+se), width=.2) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))+ ylab("Leaf N per dry mass (mg/g)")
+
+
+```
 
 
 
