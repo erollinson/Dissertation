@@ -440,10 +440,49 @@ anosim(int_partcomm, type)
 
 #gowdis test data
 
-ex1<-gowdis(dummy$trait)
-ex1<-as.matrix(ex1)
+#ex1<-gowdis(dummy$trait)
+#ex1<-as.matrix(ex1)
+
+
 ```
 
+
+plotting a PCA plotting code from http://stackoverflow.com/questions/6578355/plotting-pca-biplot-with-ggplot2
+```{r}
+
+#look at the above again as a PCA so i can put biplot arrows in?
+
+require(ade4)
+pcatest<-dudi.pca(int_partcomm)
+pcatest2<-prcomp(int_partcomm, scale=TRUE)
+plot(pcatest2)
+biplot(pcatest2)
+
+PCbiplot <- function(PC, x="PC1", y="PC2") {
+    # PC being a prcomp object
+    data <- data.frame(obsnames=row.names(PC$x), PC$x)
+    plot <- ggplot(data, aes_string(x=x, y=y)) + geom_text(alpha=.4, size=3, aes(label=obsnames))
+    plot <- plot + geom_hline(aes(0), size=.2) + geom_vline(aes(0), size=.2)
+    datapc <- data.frame(varnames=rownames(PC$rotation), PC$rotation)
+    mult <- min(
+        (max(data[,y]) - min(data[,y])/(max(datapc[,y])-min(datapc[,y]))),
+        (max(data[,x]) - min(data[,x])/(max(datapc[,x])-min(datapc[,x])))
+        )
+    datapc <- transform(datapc,
+            v1 = .7 * mult * (get(x)),
+            v2 = .7 * mult * (get(y))
+            )
+    plot <- plot + coord_equal() + geom_text(data=datapc, aes(x=v1, y=v2, label=varnames), size = 5, vjust=1, color="red")
+    plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2), arrow=arrow(length=unit(0.2,"cm")), alpha=0.75, color="red")
+    plot
+}
+
+fit <- prcomp(USArrests, scale=T)
+PCbiplot(fit)
+
+
+
+```
 
 plotting some of the inv versus native traits - first try without interpolated values
 ```{r}
