@@ -25,6 +25,7 @@ test<-comdist(matrix, tree)
 
 ```
 
+<<<<<<< HEAD
 phylogenetic composition native vs. introduced subset of community
 
 ```{r}
@@ -35,11 +36,17 @@ require(phytools)
 tree<-read.newick("newick_2013_newtree.txt")
 tree2<-collapse.singles(tree)
 plot(tree2)
+=======
+
+
+phylogenetic composition native vs. introduced subset of community
+>>>>>>> 53b34dc728debd2f3da8b485489140685e2131a7
 
 #read in 2013 species
 comm13<-read.csv("2013_speciespresences_by_origin.csv")
 comm<-comm13[,1:3]
 
+<<<<<<< HEAD
 #read in phylo formatted list of 2013 species   #this has the wrong origins assigned in it something got mis-sorted
 
 splist<-read.csv("2013_taxa_phyloformat_columns.csv")
@@ -129,6 +136,118 @@ test3<-comdist(species, ageisdm)
 
 ```
 
+=======
+```{r}
+require(picante)
+require(phytools)
+
+#read in the tree for all the species found in 2013
+tree<-read.newick("newick_2013_newtree.txt")
+tree2<-collapse.singles(tree)
+plot(tree2)
+
+#read in 2013 species
+comm13<-read.csv("2013_speciespresences_by_origin.csv")
+comm<-comm13[,1:3]
+
+#read in phylo formatted list of 2013 species   #this has the wrong origins assigned in it something got mis-sorted
+
+splist<-read.csv("2013_taxa_phyloformat_columns.csv")
+
+#transform 2013 species list to presence/absence matrix
+require(reshape)
+species<-cast(comm, River ~ Species, value="Presence", fun.aggregate=sum) #sum here will provide an accurate presence/absence matrix, since each species is only listed once per river in the original list, and the sum can only be zero or one.  fun.aggregate=max can be used, but will provide 1/-INF rather than 1/0 and the -INF will have to be transformed to 0.
+species<-as.data.frame(species) #because FXN 'cast' returns output in class cast
+row.names(species)<-species$River #to turn the first column into the row names
+species<-species[,2:281] #to remove the duplicate first column now that the row names are labelled
+
+
+#plot a tree with tip labels for origin ("trait" = origin)
+color.plot.phylo(tree2, splist, "Origin", "Species")  #this is throwing an error about mismatched numbers of species but they aren't actually mismatched so i'm not sure what's happening
+
+```
+
+
+convert phylo object to interspecific distance matrix
+
+```{r}
+isdm<-cophenetic(tree2) #isdm = interspecific distance matrix
+```
+
+
+
+try calculating MPD between inv and nat subsets
+
+```{r}
+fulllist<-read.csv("2013_speciespresences_by_origin_sitenamepartitioned.csv", check.names=FALSE)
+
+
+#omits species with unresolved origin status entirely (n=7 species; 34 observations)
+#make this list into a pres/abs matrix
+
+require(reshape)
+partcomms<-cast(fulllist, PartSite ~ Species, value="Presence", fun.aggregate=mean)
+row.names(partcomms)<-partcomms$PartSite
+partcomms2<-partcomms[,2:274]
+partcomms2<-rapply(partcomms2, f=function(x) ifelse(is.nan(x),0,x), how="replace")
+partcomms3<-as.data.frame(partcomms2, check.names=FALSE)
+row.names(partcomms3)<-partcomms$PartSite
+comm13<-partcomms3
+
+write.table(comm13, "2013presabsmatrix_partbyorigin_phylonames.csv", sep=",")
+#fixed the genus.species to genus_species
+
+comm<-read.csv("2013presabsmatrix_partbyorigin_phylonames.csv")
+row.names(comm)<-comm$X
+comm<-comm[,2:274]
+
+require(picante)
+
+test<-comdist(comm, isdm)
+
+prune.sample(comm, tree2)
+
+
+
+
+
+#phylodiversity
+
+agetree<-read.newick("tree13_withages.new")
+agetree2<-collapse.singles(agetree)
+plot(agetree2)
+test2<-pd(comm, agetree2)
+
+
+ageisdm<-cophenetic(agetree2) #isdm = interspecific distance matrix
+
+test3<-comdist(comm, ageisdm)
+
+
+#phylodiversity without the I/N divide
+
+#read in 2013 specie
+
+#transform 2013 species list to presence/absence matrix
+comm13<-read.csv("2013_speciespresences_by_origin.csv")
+comm<-comm13[,1:3]
+
+
+require(reshape)
+species<-cast(comm, River ~ Species, value="Presence", fun.aggregate=sum) #sum here will provide an accurate presence/absence matrix, since each species is only listed once per river in the original list, and the sum can only be zero or one.  fun.aggregate=max can be used, but will provide 1/-INF rather than 1/0 and the -INF will have to be transformed to 0.
+species<-as.data.frame(species) #because FXN 'cast' returns output in class cast
+row.names(species)<-species$River #to turn the first column into the row names
+species<-species[,2:274] #to remove the duplicate first column now that the row names are labelled
+
+PD<-pd(species, agetree2)
+
+new<-match.phylo.comm(agetree2, species)
+
+test3<-comdist(species, ageisdm)
+
+```
+
+>>>>>>> 53b34dc728debd2f3da8b485489140685e2131a7
 tools for making data frames match
 match.phylo.comm(tree,comm)
 
