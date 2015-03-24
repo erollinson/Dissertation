@@ -226,7 +226,7 @@ test3<-comdist(comm, ageisdm)
 
 #phylodiversity without the I/N divide
 
-#read in 2013 specie
+#read in 2013 species
 
 #transform 2013 species list to presence/absence matrix
 comm13<-read.csv("2013_speciespresences_by_origin.csv")
@@ -247,7 +247,7 @@ test3<-comdist(species, ageisdm)
 
 ```
 
->>>>>>> 53b34dc728debd2f3da8b485489140685e2131a7
+
 tools for making data frames match
 match.phylo.comm(tree,comm)
 

@@ -1,0 +1,77 @@
+Trait,berberis_thunbergii,euonymus_alatus,lonicera_morrowii,malus_pumila,rhamnus_cathartica,rubus_phoenicolasius,salix_alba,salix_pentandra
+Dispersal syndrome,NA,NA,NA,NA,NA,NA,NA,NA
+Dispersal unit dry mass,NA,NA,NA,NA,15.09,NA,NA,NA
+Dispersal unit length,NA,NA,NA,NA,6.085,NA,NA,NA
+Dispersal unit thickness,NA,NA,NA,NA,5.1,NA,NA,NA
+Dispersal unit width,NA,NA,NA,NA,5.165,NA,NA,NA
+Germination efficiency,NA,NA,NA,NA,NA,NA,NA,NA
+Germination requirement,NA,NA,NA,NA,NA,NA,NA,NA
+Leaf area,NA,NA,NA,NA,568.902973,NA,475.33,620.966
+Leaf carbon (C) content per area,NA,NA,NA,NA,22,NA,NA,NA
+Leaf carbon (C) content per dry mass,NA,NA,NA,NA,43,NA,44.33,466.34
+Leaf carbon/nitrogen (C/N) ratio,NA,NA,NA,NA,21.6,NA,15.87,NA
+Leaf density,NA,NA,NA,NA,NA,NA,NA,NA
+Leaf dry mass,NA,NA,NA,NA,47.894,NA,60.4,55.602
+Leaf dry mass per plant,NA,NA,NA,NA,NA,NA,NA,NA
+"Leaf dry mass per plant dry mass (leaf weight ratio, LWR)",NA,NA,NA,NA,0.43,NA,NA,NA
+Leaf dry matter content (LDMC),NA,NA,NA,NA,3.148709677,NA,297.635,250.1766667
+Leaf fresh mass,NA,NA,NA,NA,NA,NA,NA,NA
+Leaf lamina thickness,NA,NA,NA,NA,0.2,NA,NA,NA
+Leaf lifespan,NA,NA,NA,NA,6.8,NA,NA,NA
+Leaf nitrogen (N) content,NA,NA,NA,NA,6.575,NA,NA,NA
+Leaf nitrogen (N) content per area,NA,NA,NA,NA,1.924,NA,NA,NA
+Leaf nitrogen (N) content per dry mass,NA,NA,NA,17.37,15.693,NA,2.56,29.06
+Leaf nitrogen/phosphorus (N/P) ratio,NA,NA,NA,NA,15.91,NA,NA,NA
+Leaf phosphorus (P) content per area,NA,NA,NA,NA,0.1,NA,NA,NA
+Leaf phosphorus (P) content per dry mass,NA,0.35,NA,NA,511.8,NA,0.25,1.68
+Leaf physical strength,NA,NA,NA,NA,2.09,NA,NA,NA
+Leaf porosity,NA,NA,NA,NA,NA,NA,8,NA
+Leaf potassium (K) content per area,NA,NA,NA,NA,0.56,NA,NA,NA
+Leaf potassium (K) content per dry mass,NA,8.5,NA,NA,7.136666667,NA,NA,NA
+Leaf respiration per dry mass,NA,NA,NA,NA,NA,NA,NA,NA
+Leaf specific area (SLA),NA,62,NA,NA,46.76952381,NA,1068.273333,39.94
+Leaf texture (sclerophylly),NA,NA,NA,NA,NA,NA,NA,NA
+Leaf thickness,NA,NA,NA,NA,130.92,NA,NA,NA
+Leaf type,NA,NA,NA,NA,NA,NA,NA,NA
+Metamorphoses and morphological adaptations: seed or dispersal unit,NA,NA,NA,NA,NA,NA,NA,NA
+Mycorrhizal type,NA,NA,NA,NA,NA,NA,NA,NA
+Nitrogen fixation capacity,NA,NA,NA,NA,NA,NA,NA,NA
+Phenology: reproductive,5,NA,NA,NA,5.5,NA,4.5,5.5
+Phenology: vegetative,NA,NA,NA,NA,NA,NA,NA,NA
+Photosynthesis leaf intercellular CO2 concentration,NA,NA,NA,NA,118.8825,NA,NA,NA
+Photosynthesis net assimilytion rate (NAR),NA,NA,NA,NA,0,NA,NA,NA
+Photosynthesis per leaf area,NA,NA,NA,NA,10.84666667,NA,NA,NA
+Photosynthesis per leaf dry mass,NA,NA,NA,NA,45.08333333,NA,NA,NA
+Plant age of maturity (first flowering),NA,NA,NA,NA,NA,NA,NA,NA
+Plant growth form,NA,NA,NA,NA,NA,NA,NA,NA
+Plant height generative,NA,NA,NA,NA,NA,NA,18,8
+Plant height vegetative,4.666666667,NA,NA,10,6.033333333,2,24.66363636,16.75
+Plant lifespan,NA,NA,NA,NA,NA,NA,162.5,NA
+Plant relative growth rate (RGR),NA,NA,NA,NA,0.076,NA,NA,NA
+Plant tolerance to drought,3.5,2,NA,3.13,3.46,2.5,2,0.53
+Plant tolerance to frost,76,NA,NA,NA,NA,NA,33.5,41
+Plant tolerance to human impact,2,NA,NA,NA,2,NA,3,2
+Plant tolerance to planting density,525,NA,NA,NA,NA,NA,300,225
+Plant tolerance to precipitation,45,NA,NA,NA,NA,NA,55,37.5
+Plant tolerance to shade,1.5,4.33,NA,2.17,1.93,1.83,1.99,1.93
+Plant tolerance to soil pH,6.35,NA,NA,NA,NA,NA,6.15,7
+Plant tolerance to waterlogging,1.5,2,NA,1.52,2.25,1,4.1,3.95
+Reproductive dry mass per plant,NA,NA,NA,NA,NA,NA,NA,NA
+Root nitrogen (N) content per dry mass,NA,NA,NA,NA,NA,NA,NA,NA
+Rooting depth,18,NA,NA,NA,NA,NA,24,12
+Seed length,NA,NA,NA,NA,NA,NA,0.9,1.73
+Seed mass,4520.9,17.28833333,2.98,22.4,23.954,NA,0.12,2250000.135
+Seed number per ramet,NA,NA,NA,NA,NA,NA,NA,NA
+Seed number per reproducton unit,NA,NA,NA,NA,NA,NA,49581.33333,56840.4
+Seed protein content per mass,NA,20.5,NA,NA,NA,NA,NA,NA
+Seed thickness,NA,NA,NA,NA,NA,NA,0.25,0.4
+Seed width,NA,NA,NA,NA,NA,NA,0.25,0.4
+Seedbank lifespan,NA,NA,NA,NA,NA,NA,NA,NA
+Species distribution: number of floristic zones,2,NA,NA,NA,3,NA,3,3
+Stem dry mass per plant,NA,NA,NA,NA,18.27,NA,NA,NA
+Stem length (height),NA,NA,NA,NA,51.5,NA,NA,NA
+Stem nitrogen (N) content per dry mass,NA,NA,NA,NA,NA,NA,NA,NA
+Stem specific density (SSD),NA,NA,NA,320.325,237.0533333,NA,119.41,NA
+Stomata conductance per leaf area,NA,NA,NA,NA,440,NA,NA,NA
+Wood dry mass per plant dry mass,NA,NA,NA,NA,NA,NA,NA,NA
+Woodiness,NA,NA,NA,NA,NA,NA,NA,NA

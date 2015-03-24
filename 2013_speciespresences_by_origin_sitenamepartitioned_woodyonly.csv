@@ -1,0 +1,404 @@
+PartSite,Species,Presence,Origin
+Battenkill I,Berberis thunbergii,1,I
+Beaver Kill I,Berberis thunbergii,1,I
+Fishkill Creek I,Berberis thunbergii,1,I
+Indian Brook I,Berberis thunbergii,1,I
+Mill Brook I,Berberis thunbergii,1,I
+Valatie Kill I,Berberis thunbergii,1,I
+Battenkill I,Euonymus alatus,1,I
+Landsman Kill I,Euonymus alatus,1,I
+Alplaus Kill I,Lonicera morrowii,1,I
+Ballston Creek I,Lonicera morrowii,1,I
+Battenkill I,Lonicera morrowii,1,I
+Beaver Kill I,Lonicera morrowii,1,I
+Big Brook I,Lonicera morrowii,1,I
+Fawn Lake I,Lonicera morrowii,1,I
+Fishkill Creek I,Lonicera morrowii,1,I
+Green River I,Lonicera morrowii,1,I
+Indian Brook I,Lonicera morrowii,1,I
+Kennyetto Creek I,Lonicera morrowii,1,I
+Kinderhook Creek I,Lonicera morrowii,1,I
+Lansing Kill I,Lonicera morrowii,1,I
+Minots Corner Road I,Lonicera morrowii,1,I
+Mohawk River I,Lonicera morrowii,1,I
+Paragon Brook I,Lonicera morrowii,1,I
+Paragon Brook I,Lonicera morrowii,1,I
+Quacken Kill I,Lonicera morrowii,1,I
+Snook Kill I,Lonicera morrowii,1,I
+Steele Creek I,Lonicera morrowii,1,I
+Sterling Creek I,Lonicera morrowii,1,I
+Stony Creek I,Lonicera morrowii,1,I
+Valatie Kill I,Lonicera morrowii,1,I
+Fishkill Creek I,Malus pumila,1,I
+Kinderhook Creek I,Malus pumila,1,I
+Alplaus Kill I,Rhamnus cathartica,1,I
+Ballston Creek I,Rhamnus cathartica,1,I
+Indian Kill I,Rhamnus cathartica,1,I
+Quacken Kill I,Rhamnus cathartica,1,I
+Mill Creek I,Rubus phoenicolasius,1,I
+Robbs Creek I,Rubus phoenicolasius,1,I
+Sherriff Lake Outlet I,Rubus phoenicolasius,1,I
+Cedar River I,Salix alba,1,I
+Chester Creek I,Salix alba,1,I
+Cobleskill Creek I,Salix alba,1,I
+Fawn Lake I,Salix alba,1,I
+Four Mile Brook I,Salix alba,1,I
+Hans Creek I,Salix alba,1,I
+Hans Creek I,Salix alba,1,I
+Jassup River I,Salix alba,1,I
+New Pond Brook I,Salix alba,1,I
+North Branch West Stony Creek I,Salix alba,1,I
+Robbs Creek I,Salix alba,1,I
+Sherriff Lake Outlet I,Salix alba,1,I
+Timmerman Creek I,Salix alba,1,I
+Wharton Hollow Creek I,Salix alba,1,I
+Roeliff Jansen Kill I,Salix pentandra,1,I
+Mill Creek N,Abies balsamea,1,N
+New Pond Brook N,Abies balsamea,1,N
+Sherriff Lake Outlet N,Abies balsamea,1,N
+Kennyetto Creek N,Acer negundo,1,N
+Landsman Kill N,Acer negundo,1,N
+Minots Corner Road N,Acer negundo,1,N
+Snook Kill N,Acer negundo,1,N
+Stewart Creek N,Acer pensylvanicum,1,N
+Bullhead Pond Brook N,Acer rubrum,1,N
+Cadman Creek N,Acer rubrum,1,N
+Evas Kill N,Acer rubrum,1,N
+Fawn Lake N,Acer rubrum,1,N
+Hudson River N,Acer rubrum,1,N
+Indian Kill N,Acer rubrum,1,N
+Kayaderosseras Creek N,Acer rubrum,1,N
+Mill Creek N,Acer rubrum,1,N
+New Pond Brook N,Acer rubrum,1,N
+North Branch West Stony Creek N,Acer rubrum,1,N
+Quacken Kill N,Acer rubrum,1,N
+Trout Brook N,Acer rubrum,1,N
+Fishkill Creek N,Acer saccharinum,1,N
+Kayaderosseras Creek N,Acer saccharinum,1,N
+Roeliff Jansen Kill N,Acer saccharinum,1,N
+Sprout Creek N,Acer saccharinum,1,N
+Steele Creek N,Acer saccharinum,1,N
+Alplaus Kill N,Acer saccharum,1,N
+Ballston Creek N,Acer saccharum,1,N
+Beaver Kill N,Acer saccharum,1,N
+Bullhead Pond Brook N,Acer saccharum,1,N
+Cadman Creek N,Acer saccharum,1,N
+Daly Creek N,Acer saccharum,1,N
+Evas Kill N,Acer saccharum,1,N
+Fawn Lake N,Acer saccharum,1,N
+Hans Creek N,Acer saccharum,1,N
+Indian Brook N,Acer saccharum,1,N
+Keyser Kill N,Acer saccharum,1,N
+Kinderhook Creek N,Acer saccharum,1,N
+Lansing Kill N,Acer saccharum,1,N
+Plotter Kill N,Acer saccharum,1,N
+Potic Creek N,Acer saccharum,1,N
+Quacken Kill N,Acer saccharum,1,N
+Saw Kill N,Acer saccharum,1,N
+Stewart Creek N,Acer saccharum,1,N
+Stony Creek N,Acer saccharum,1,N
+Trout Brook N,Acer saccharum,1,N
+Valatie Kill N,Acer saccharum,1,N
+Wharton Hollow Creek N,Acer saccharum,1,N
+Stewart Creek N,Acer spicatum,1,N
+Boreas River N,Alnus incana,1,N
+Cadman Creek N,Alnus incana,1,N
+Chester Creek N,Alnus incana,1,N
+Daly Creek N,Alnus incana,1,N
+Four Mile Brook N,Alnus incana,1,N
+Hans Creek N,Alnus incana,1,N
+Hudson River N,Alnus incana,1,N
+Jassup River N,Alnus incana,1,N
+Kennyetto Creek N,Alnus incana,1,N
+Mill Brook N,Alnus incana,1,N
+Mill Creek N,Alnus incana,1,N
+Minots Corner Road N,Alnus incana,1,N
+Mohawk River N,Alnus incana,1,N
+New Pond Brook N,Alnus incana,1,N
+North Branch West Stony Creek N,Alnus incana,1,N
+Paragon Brook N,Alnus incana,1,N
+Robbs Creek N,Alnus incana,1,N
+Sherriff Lake Outlet N,Alnus incana,1,N
+Snook Kill N,Alnus incana,1,N
+Timmerman Creek N,Alnus incana,1,N
+Trout Brook N,Alnus incana,1,N
+Wharton Hollow Creek N,Alnus incana,1,N
+Fawn Lake N,Betula alleghaniensis,1,N
+Hans Creek N,Betula alleghaniensis,1,N
+Mohawk River N,Betula alleghaniensis,1,N
+Saw Kill N,Betula alleghaniensis,1,N
+Stewart Creek N,Betula alleghaniensis,1,N
+Cadman Creek N,Betula papyrifera,1,N
+Lansing Kill N,Betula papyrifera,1,N
+Ballston Creek N,Carpinus caroliniana,1,N
+Battenkill N,Carpinus caroliniana,1,N
+Indian Kill N,Carpinus caroliniana,1,N
+Kinderhook Creek N,Carpinus caroliniana,1,N
+Lansing Kill N,Carpinus caroliniana,1,N
+Mohawk River N,Carpinus caroliniana,1,N
+Potic Creek N,Carpinus caroliniana,1,N
+Sterling Creek N,Carpinus caroliniana,1,N
+Stony Creek N,Carpinus caroliniana,1,N
+Wharton Hollow Creek N,Carpinus caroliniana,1,N
+Ballston Creek N,Carya cordiformis,1,N
+Hans Creek N,Carya cordiformis,1,N
+Alplaus Kill N,Carya ovata,1,N
+Stony Creek N,Cephalanthus occidentalis,1,N
+Fawn Lake N,Cornus amomum,1,N
+Sprout Creek N,Cornus amomum,1,N
+Hudson River N,Cornus canadensis,1,N
+Fishkill Creek N,Cornus obliqua,1,N
+Hudson River N,Cornus obliqua,1,N
+Lansing Kill N,Cornus obliqua,1,N
+Mohawk River N,Cornus obliqua,1,N
+Potic Creek N,Cornus obliqua,1,N
+Snook Kill N,Cornus obliqua,1,N
+Sterling Creek N,Cornus obliqua,1,N
+Boreas River N,Cornus rugosa,1,N
+Minots Corner Road N,Cornus rugosa,1,N
+Sterling Creek N,Cornus rugosa,1,N
+Timmerman Creek N,Cornus rugosa,1,N
+Ballston Creek N,Cornus sericea,1,N
+Battenkill N,Cornus sericea,1,N
+Boreas River N,Cornus sericea,1,N
+Cadman Creek N,Cornus sericea,1,N
+Chester Creek N,Cornus sericea,1,N
+Daly Creek N,Cornus sericea,1,N
+Indian Kill N,Cornus sericea,1,N
+Kennyetto Creek N,Cornus sericea,1,N
+Kinderhook Creek N,Cornus sericea,1,N
+Mill Brook N,Cornus sericea,1,N
+Paragon Brook N,Cornus sericea,1,N
+Snook Kill N,Cornus sericea,1,N
+Steele Creek N,Cornus sericea,1,N
+Trout Brook N,Cornus sericea,1,N
+Wappinger Creek N,Cornus sericea,1,N
+Lansing Kill N,Corylus cornuta,1,N
+Alplaus Kill N,Fagus grandifolia,1,N
+Bullhead Pond Brook N,Fagus grandifolia,1,N
+Cadman Creek N,Fagus grandifolia,1,N
+Minots Corner Road N,Fagus grandifolia,1,N
+Sherriff Lake Outlet N,Fagus grandifolia,1,N
+Ballston Creek N,Fraxinus americana,1,N
+Battenkill N,Fraxinus americana,1,N
+Big Brook N,Fraxinus americana,1,N
+Bullhead Pond Brook N,Fraxinus americana,1,N
+Fawn Lake N,Fraxinus americana,1,N
+Fishkill Creek N,Fraxinus americana,1,N
+Hans Creek N,Fraxinus americana,1,N
+Indian Kill N,Fraxinus americana,1,N
+Kinderhook Creek N,Fraxinus americana,1,N
+Lansing Kill N,Fraxinus americana,1,N
+Minots Corner Road N,Fraxinus americana,1,N
+North Branch West Stony Creek N,Fraxinus americana,1,N
+Quacken Kill N,Fraxinus americana,1,N
+Saw Kill N,Fraxinus americana,1,N
+Sprout Creek N,Fraxinus americana,1,N
+Steele Creek N,Fraxinus americana,1,N
+Stony Creek N,Fraxinus americana,1,N
+Trout Brook N,Fraxinus americana,1,N
+Valatie Kill N,Fraxinus americana,1,N
+Wharton Hollow Creek N,Fraxinus americana,1,N
+Stewart Creek N,Fraxinus nigra,1,N
+Potic Creek N,Fraxinus pennsylvanica,1,N
+Ballston Creek N,Hamamelis virginiana,1,N
+Hans Creek N,Hamamelis virginiana,1,N
+Saw Kill N,Hamamelis virginiana,1,N
+Sterling Creek N,Hamamelis virginiana,1,N
+Ballston Creek N,Helianthus divaricatus,1,N
+Kayaderosseras Creek N,Helianthus divaricatus,1,N
+Steele Creek N,Helianthus divaricatus,1,N
+Cadman Creek N,Juglans cinerea,1,N
+Quacken Kill N,Juglans cinerea,1,N
+Hudson River N,Juglans nigra,1,N
+Landsman Kill N,Juglans nigra,1,N
+Indian Brook N,Lindera benzoin,1,N
+Boreas River N,Myrica gale,1,N
+Chester Creek N,Myrica gale,1,N
+Paragon Brook N,Myrica gale,1,N
+Bullhead Pond Brook N,Oclemena acuminata,1,N
+Stewart Creek N,Oclemena acuminata,1,N
+Keyser Kill N,Oenethera biennis,1,N
+Snook Kill N,Oenethera biennis,1,N
+Sterling Creek N,Oenethera biennis,1,N
+Timmerman Creek N,Oenethera biennis,1,N
+Alplaus Kill N,Ostrya virginiana,1,N
+Ballston Creek N,Ostrya virginiana,1,N
+Lansing Kill N,Ostrya virginiana,1,N
+Minots Corner Road N,Ostrya virginiana,1,N
+Sterling Creek N,Ostrya virginiana,1,N
+Timmerman Creek N,Ostrya virginiana,1,N
+Valatie Kill N,Ostrya virginiana,1,N
+Cadman Creek N,Pinus strobus,1,N
+Mill Creek N,Pinus strobus,1,N
+Paragon Brook N,Pinus strobus,1,N
+Kinderhook Creek N,Platanus occidentalis,1,N
+Landsman Kill N,Platanus occidentalis,1,N
+Sprout Creek N,Platanus occidentalis,1,N
+Ballston Creek N,Populus deltoides,1,N
+Cadman Creek N,Populus deltoides,1,N
+Cobleskill Creek N,Populus deltoides,1,N
+Evas Kill N,Populus deltoides,1,N
+Fishkill Creek N,Populus deltoides,1,N
+Kayaderosseras Creek N,Populus deltoides,1,N
+Keyser Kill N,Populus deltoides,1,N
+Plotter Kill N,Populus deltoides,1,N
+Quacken Kill N,Populus deltoides,1,N
+Chester Creek N,Prunus americana,1,N
+Cadman Creek N,Prunus serotina,1,N
+Lansing Kill N,Prunus serotina,1,N
+Snook Kill N,Prunus serotina,1,N
+Battenkill N,Prunus virginiana,1,N
+Big Brook N,Prunus virginiana,1,N
+Hans Creek N,Prunus virginiana,1,N
+Kennyetto Creek N,Prunus virginiana,1,N
+Mill Creek N,Prunus virginiana,1,N
+Minots Corner Road N,Prunus virginiana,1,N
+Mohawk River N,Prunus virginiana,1,N
+New Pond Brook N,Prunus virginiana,1,N
+North Branch West Stony Creek N,Prunus virginiana,1,N
+Stewart Creek N,Prunus virginiana,1,N
+Trout Brook N,Prunus virginiana,1,N
+Valatie Kill N,Prunus virginiana,1,N
+Stony Creek N,Quercus alba,1,N
+Fishkill Creek N,Quercus prinoides,1,N
+Hans Creek N,Quercus velutina,1,N
+Indian Brook N,Rhamnus alnifolia,1,N
+Big Brook N,Rhus typhina,1,N
+Minots Corner Road N,Rhus typhina,1,N
+Plotter Kill N,Rhus typhina,1,N
+Steele Creek N,Rhus typhina,1,N
+Sterling Creek N,Rhus typhina,1,N
+Indian Brook N,Robinia pseudoacacia,1,N
+Roeliff Jansen Kill N,Robinia pseudoacacia,1,N
+Chester Creek N,Rosa palustris,1,N
+Cadman Creek N,Rubus allegheniensis,1,N
+Daly Creek N,Rubus allegheniensis,1,N
+Indian Kill N,Rubus allegheniensis,1,N
+Keyser Kill N,Rubus allegheniensis,1,N
+Four Mile Brook N,Rubus hispidus,1,N
+Kinderhook Creek N,Rubus hispidus,1,N
+Mill Creek N,Rubus hispidus,1,N
+North Branch West Stony Creek N,Rubus hispidus,1,N
+Potic Creek N,Rubus hispidus,1,N
+Ballston Creek N,Rubus idaeus,1,N
+Jassup River N,Rubus idaeus,1,N
+Keyser Kill N,Rubus idaeus,1,N
+Fawn Lake N,Rubus occidentalis,1,N
+Hudson River N,Rubus occidentalis,1,N
+Landsman Kill N,Rubus occidentalis,1,N
+Lansing Kill N,Rubus occidentalis,1,N
+Minots Corner Road N,Rubus occidentalis,1,N
+Quacken Kill N,Rubus occidentalis,1,N
+Roeliff Jansen Kill N,Rubus occidentalis,1,N
+Sterling Creek N,Rubus occidentalis,1,N
+Evas Kill N,Rubus odoratus,1,N
+Lansing Kill N,Rubus odoratus,1,N
+Mohawk River N,Rubus odoratus,1,N
+Steele Creek N,Rubus odoratus,1,N
+Battenkill N,Salix nigra,1,N
+Boreas River N,Salix nigra,1,N
+Four Mile Brook N,Salix nigra,1,N
+Green River N,Salix nigra,1,N
+Kayaderosseras Creek N,Salix nigra,1,N
+Kennyetto Creek N,Salix nigra,1,N
+Kinderhook Creek N,Salix nigra,1,N
+Plotter Kill N,Salix nigra,1,N
+Robbs Creek N,Salix nigra,1,N
+Sherriff Lake Outlet N,Salix nigra,1,N
+Snook Kill N,Salix nigra,1,N
+Boreas River N,Spiraea alba,1,N
+Cadman Creek N,Spiraea alba,1,N
+Cedar River N,Spiraea alba,1,N
+Chester Creek N,Spiraea alba,1,N
+Four Mile Brook N,Spiraea alba,1,N
+Hans Creek N,Spiraea alba,1,N
+Hudson River N,Spiraea alba,1,N
+Jassup River N,Spiraea alba,1,N
+Mill Brook N,Spiraea alba,1,N
+Mill Creek N,Spiraea alba,1,N
+North Branch West Stony Creek N,Spiraea alba,1,N
+Sherriff Lake Outlet N,Spiraea alba,1,N
+Wharton Hollow Creek N,Spiraea alba,1,N
+Ballston Creek N,Stellaria pubera,1,N
+Beaver Kill N,Stellaria pubera,1,N
+Cedar River N,Stellaria pubera,1,N
+Hans Creek N,Stellaria pubera,1,N
+Jassup River N,Stellaria pubera,1,N
+Kayaderosseras Creek N,Stellaria pubera,1,N
+Kinderhook Creek N,Stellaria pubera,1,N
+Quacken Kill N,Stellaria pubera,1,N
+Robbs Creek N,Stellaria pubera,1,N
+Roeliff Jansen Kill N,Stellaria pubera,1,N
+Stony Creek N,Stellaria pubera,1,N
+Alplaus Kill N,Symphyotrichum dumosum,1,N
+Ballston Creek N,Symphyotrichum dumosum,1,N
+Big Brook N,Symphyotrichum dumosum,1,N
+Cadman Creek N,Symphyotrichum dumosum,1,N
+Daly Creek N,Symphyotrichum dumosum,1,N
+Evas Kill N,Symphyotrichum dumosum,1,N
+Hans Creek N,Symphyotrichum dumosum,1,N
+Indian Kill N,Symphyotrichum dumosum,1,N
+Kinderhook Creek N,Symphyotrichum dumosum,1,N
+Kinderhook Creek N,Symphyotrichum dumosum,1,N
+Landsman Kill N,Symphyotrichum dumosum,1,N
+Lansing Kill N,Symphyotrichum dumosum,1,N
+Mill Brook N,Symphyotrichum dumosum,1,N
+Mill Creek N,Symphyotrichum dumosum,1,N
+Paragon Brook N,Symphyotrichum dumosum,1,N
+Quacken Kill N,Symphyotrichum dumosum,1,N
+Snook Kill N,Symphyotrichum dumosum,1,N
+Sprout Creek N,Symphyotrichum dumosum,1,N
+Wappinger Creek N,Symphyotrichum dumosum,1,N
+Hudson River N,Thuja occidentalis,1,N
+New Pond Brook N,Thuja occidentalis,1,N
+Paragon Brook N,Thuja occidentalis,1,N
+Alplaus Kill N,Tilia americana,1,N
+Ballston Creek N,Tilia americana,1,N
+Battenkill N,Tilia americana,1,N
+Fishkill Creek N,Tilia americana,1,N
+Green River N,Tilia americana,1,N
+Indian Kill N,Tilia americana,1,N
+Kennyetto Creek N,Tilia americana,1,N
+Kinderhook Creek N,Tilia americana,1,N
+Minots Corner Road N,Tilia americana,1,N
+Mohawk River N,Tilia americana,1,N
+Quacken Kill N,Tilia americana,1,N
+Steele Creek N,Tilia americana,1,N
+Sterling Creek N,Tilia americana,1,N
+Ballston Creek N,Tsuga canadensis,1,N
+Cadman Creek N,Tsuga canadensis,1,N
+Evas Kill N,Tsuga canadensis,1,N
+Hans Creek N,Tsuga canadensis,1,N
+Minots Corner Road N,Tsuga canadensis,1,N
+Mohawk River N,Tsuga canadensis,1,N
+North Branch West Stony Creek N,Tsuga canadensis,1,N
+Paragon Brook N,Tsuga canadensis,1,N
+Saw Kill N,Tsuga canadensis,1,N
+Sterling Creek N,Tsuga canadensis,1,N
+Stewart Creek N,Tsuga canadensis,1,N
+Trout Brook N,Tsuga canadensis,1,N
+Valatie Kill N,Tsuga canadensis,1,N
+Plotter Kill N,Ulmus americana,1,N
+Snook Kill N,Ulmus americana,1,N
+Big Brook N,Ulmus rubra,1,N
+Evas Kill N,Ulmus rubra,1,N
+Fishkill Creek N,Ulmus rubra,1,N
+Green River N,Ulmus rubra,1,N
+Hans Creek N,Ulmus rubra,1,N
+Indian Kill N,Ulmus rubra,1,N
+Jassup River N,Ulmus rubra,1,N
+Lansing Kill N,Ulmus rubra,1,N
+Paragon Brook N,Ulmus rubra,1,N
+Quacken Kill N,Ulmus rubra,1,N
+Roeliff Jansen Kill N,Ulmus rubra,1,N
+Saw Kill N,Ulmus rubra,1,N
+Sherriff Lake Outlet N,Ulmus rubra,1,N
+Steele Creek N,Ulmus rubra,1,N
+Valatie Kill N,Ulmus rubra,1,N
+Fawn Lake N,Viburnum acerifolium,1,N
+Stony Creek N,Viburnum acerifolium,1,N
+Valatie Kill N,Viburnum acerifolium,1,N
+Sprout Creek N,Viburnum dentatum,1,N
+Bullhead Pond Brook N,Viburnum lantanoides,1,N
+Stewart Creek N,Viburnum lantanoides,1,N

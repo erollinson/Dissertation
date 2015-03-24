@@ -5,7 +5,7 @@ date: "Friday, January 30, 2015"
 output: html_document
 ---
 
-Import the community species abundance dataset  (should I be making a new one by cover and using that instead?) - yes, this now imports by cover for all species
+Import the community species abundance dataset by cover
 
 ```{r}
 require(RCurl)
@@ -28,7 +28,6 @@ rownames(cover)<-cover$Code
 cover<-cover[,2:182]
 ```
 
-
 Import the traits matrix and make sure all values are numeric
 
 ```{r}
@@ -49,28 +48,30 @@ traits_tp<-t(traits)
 traits_tp<-as.data.frame(traits_tp)
 
 pref_traits<-traits_tp[,c(6,9:11,21,26:28,33,36,38,42,43,46,47)]#making a smaller list of traits of particular interest
-#6:leaf area
-#9: leaf C/N
-#10: leaf density
-#11:leaf dry mass
-#21: leaf N/P
-#26: K per dry mass
-#27: SLA
-#28: leaf thickness
-#33: photosynthesis per leaf area
-#36 plant height vegetative
-#38 plant relative growth rate
-#42 root N per dry mass
-#43 root depth
-#46 seed mass
-#47 seed number per reproduction unit
 
-#pref_traits: 181 x 15 traits are columns
-#cover: 24 x 181 species are columns
+```
 
+6:leaf area
+9: leaf C/N
+10: leaf density
+11:leaf dry mass
+21: leaf N/P
+26: K per dry mass
+27: SLA
+28: leaf thickness
+33: photosynthesis per leaf area
+36 plant height vegetative
+38 plant relative growth rate
+42 root N per dry mass
+43 root depth
+46 seed mass
+47 seed number per reproduction unit
 
+pref_traits: 181 x 15 traits are columns
+cover: 24 x 181 species are columns
+
+```{r}
 FD<-dbFD(pref_traits, cover, stand.x=TRUE, ord="podani", corr = "cailliez", w.abun=TRUE, stand.FRic=TRUE) #this is what worked
-
 
 export = FD[1:8]
 test<-as.data.frame(export)
@@ -83,7 +84,6 @@ CWM<-FD$CWM
 
 CWM$type<-c("g","g","u","u","g","g","u","u","g","g","u","u","g","g","u","u","g","g","u","u","g","g","u","u")
 
-
 #write.table(CWM, "2012CWMtemp.csv", sep=",") exported to sort because every option of sorting in R was breaking things
 #reimport sorted by bank type
 
@@ -91,11 +91,9 @@ CWM2<-read.csv("2012CWMtemp.csv")
 row.names(CWM2)<-CWM2$X
 CWM2<-CWM2[,2:16]
 
-
 #need to standardize each column
 
 CWM2scaled<-as.data.frame(scale(CWM2))
-
 
 #rough interpolation to allow ordination to proceed  - give any NA the median value for that column
 fx=function(x){
@@ -123,7 +121,6 @@ anosim(CWM2, type)
 ```
 
 reimport sites by traits
-
 ```{r}
 require(RCurl)
 options(RCurlOptions = list(cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")))
@@ -133,7 +130,6 @@ rownames(sitebytrait)<-sitebytrait$Site
 sitebytrait<-sitebytrait[,2:57]
 prcomp(sitebytrait)
 ```
-
 
 ordinate PCA
 ```{r}
@@ -158,8 +154,6 @@ plot(ord)
 text(ord, display="species", cex=0.7)
 
 ```
-
-
 
 reimport Fdiversity values as a table
 ```{r}
@@ -229,14 +223,6 @@ qplot(data=traitsdiv, y=FDiv, x=Bank, geom("point"))
 ```
 
 ------------------------------------------------------------------------------------
-*FD of native community regressed against % invasive species / invasive cover*
-
-
-
-
-
-
-------------------------------------------------------------------------------------
 *Riparian vs. upslope communities*
 
 ```{r}
@@ -258,7 +244,7 @@ up<-intensivelist[c(3,4,7,8,11,12,15,16,19,20,23,24),]
 fulllist<-read.csv("2013_speciespresences_by_origin.csv", check.names=FALSE)
 
 invs<-fulllist[1:308,1:3] #subset of the complete species list that are known introduced
-nats<-fulllist[343:1545, 1:3] #subset of the complete species list that are known native
+nats<-fulllist[309:1511, 1:3] #subset of the complete species list that are known native
 
 #omits species with unresolved origin status entirely (n=7 species; 34 observations)
 
@@ -280,7 +266,7 @@ row.names(tempnats3)<-tempnats$River
 natcomm<-tempnats3
 
 
-#import traits matrices for inv and nat 2013 species (do i need these? yes
+#import traits matrices for inv and nat 2013 species
 
 invtraits<-read.csv("2013_traits_invs.csv")
 nattraits<-read.csv("2013_traits_natives.csv")
@@ -291,52 +277,52 @@ invtraits2<-invtraits[,2:61]
 row.names(nattraits)<-nattraits$Trait
 nattraits2<-nattraits[,2:189]
 
-#import full 2013 traits matrix (no, would have to prune the NIs.  just merge the two above.)
-
 alltraits<-merge(invtraits, nattraits)
-
-#no, what i need is a site x trait matrix for nats and invs and then merge the site x trait matrices
-
 
 #transpose for FD 
 tinvtraits<-t(invtraits2)
 tinvtraits<-as.data.frame(tinvtraits)
 tnattraits<-t(nattraits2)
 tnattraits<-as.data.frame(tnattraits)
+```
+community matrix has an error invcomm contains Cynanchum louiseae and traits matrix does not.  Remove from invcomm it is column 12
 
-#community matrix has an error invcomm contains Cynanchum louiseae and traits matrix does not.  Remove from invcomm it is column 12
-#same error for natives, many in community list but no traits
+same error for natives, many in community list but no traits
 
-#25 brachyelytrum aristosum
-#43 cornus obliqua
-#51 doellengeria umbellata
-#55 elymus canadensis
-#67 eurybia divaricata
-#68 euthamia caroliniana
-#70 eutrochium maculatum
-#71 euthrochium purpureum
-#82 gentiana linearis
-#86 helianthus divaricatus
-#89 heuchera villosa
-#118 oclemena acuminata
-#135 polygonum arifolium
-#136 polygonum cilinode
-#145 prenanthes altissima
-#146 prenanthes trifoliata
-#153 quercus prenoides
-#175 smilax tamnoides
-#180 solidago latissimifolia
-#182 stellaria pubera
-#183 symphyotrichum dumosum
-#185 symphyotrichum novae.angleae
-#190 thalictrum thalictroides
-#196 triadenum virginicum
-#211 woodsia obtusa
+25 brachyelytrum aristosum
+43 cornus obliqua
+51 doellengeria umbellata
+55 elymus canadensis
+67 eurybia divaricata
+68 euthamia caroliniana
+70 eutrochium maculatum
+71 euthrochium purpureum
+82 gentiana linearis
+86 helianthus divaricatus
+89 heuchera villosa
+118 oclemena acuminata
+135 polygonum arifolium
+136 polygonum cilinode
+145 prenanthes altissima
+146 prenanthes trifoliata
+153 quercus prenoides
+175 smilax tamnoides
+180 solidago latissimifolia
+182 stellaria pubera
+183 symphyotrichum dumosum
+185 symphyotrichum novae.angleae
+190 thalictrum thalictroides
+196 triadenum virginicum
+211 woodsia obtusa
 
+```{r}
 invcomm2<-invcomm[,c(1:11,13:61)]
 
 natcomm2<-natcomm[,c(1:24,26:42, 44:50, 52:54,56:66,69,72:81,83:85,87,88,90:117, 119:134, 137:144, 147:152,154:174,176:179,181,184,186:189,191:195,197:210,212)]
 
+#export these to categorize them as woody or herbaceous
+#write.table(invcomm2, "tempinvasivecomm13.csv", sep=",")
+#write.table(natcomm2, "tempnativecomm13.csv", sep=",")
 
 #pref_traits: 181 x 15 traits are columns
 #cover: 24 x 181 species are columns
@@ -358,7 +344,6 @@ natcomm2<-natcomm[,c(1:24,26:42, 44:50, 52:54,56:66,69,72:81,83:85,87,88,90:117,
 write.table(tnattraits, "2013nativetraits.csv", sep=",")
 write.table(tinvtraits, "2013invtraits.csv", sep=",")
 
-
 #needed to delete eleocharis intermedia from traits before reimporting, it wasn't in comm data (native species)
 
 #reimport traits data
@@ -371,13 +356,12 @@ nattrt<-read.csv("2013nativetraits_interp.csv")
 row.names(nattrt)<-nattrt$X
 nattrt<-nattrt[,2:66]
 
-
-# i think i need to try resaving these csvs with everything set to numeric in excel, delete the totally NA traits (no data for any species in the subset), deleting the extra rows
+#i think i need to try resaving these csvs with everything set to numeric in excel, delete the totally NA traits (no data for any species in the subset), deleting the extra rows
 #the same traits should also be used for native and invasive distance matrices, so once these are reimported as edited above,  make preferred-trait subsets that have matching traits
 
-require(FD)
-FDinv<-dbFD(invtrt, invcomm2, stand.x=TRUE, ord="podani", corr = "cailliez", w.abun=TRUE, stand.FRic=TRUE)
-FDnat<-dbFD(nattrt, natcomm2, stand.x=TRUE, ord="podani", corr = "cailliez", w.abun=TRUE, stand.FRic=TRUE )
+#require(FD)
+#FDinv<-dbFD(invtrt, invcomm2, stand.x=TRUE, ord="podani", corr = "cailliez", w.abun=TRUE, stand.FRic=TRUE)
+#FDnat<-dbFD(nattrt, natcomm2, stand.x=TRUE, ord="podani", corr = "cailliez", w.abun=TRUE, stand.FRic=TRUE )
 
 
 #throwing an error  Species labels in 'x' and 'a' need to be identical and ordered alphabetically (or simply in the same order). for natives; invasives are working.  export nattrt and natcomm2 to check quickly in excel.  The issue is misspelling = "Oenothera biennis" in the traits file and Oenethera biennis in the community file.  Oenothera is the correct spelling; change the name of that column in the community file.  
@@ -388,7 +372,12 @@ FDnat<-dbFD(nattrt, natcomm2, stand.x=TRUE, ord="podani", corr = "cailliez", w.a
 
 names(natcomm2)[names(natcomm2)=="Oenethera.biennis"] <- "Oenothera.biennis"
 
+rownames(invtrt)<-colnames(invcomm2)
+rownames(nattrt)<-colnames(natcomm2)
 
+require(FD)
+FDinv<-dbFD(invtrt, invcomm2, stand.x=TRUE, ord="podani", corr = "cailliez", w.abun=TRUE, stand.FRic=TRUE)
+FDnat<-dbFD(nattrt, natcomm2, stand.x=TRUE, ord="podani", corr = "cailliez", w.abun=TRUE, stand.FRic=TRUE)
 
 #export $CWM from this to get the traits matrix to then marge back together and compare community distances.
 #for future reference 'functcomp' returns the community level weighted means, don't have to run all other things in 'dbFD'
@@ -400,13 +389,11 @@ nat_sitebytrait<-FDnat$CWM
 write.table(inv_sitebytrait, "sitebytraitmatrix_inv2013.csv", sep=",", row.names=TRUE, col.names=TRUE)
 write.table(nat_sitebytrait, "sitebytraitmatrix_nat2013.csv", sep=",", row.names=TRUE, col.names=TRUE)
 
-
 #reimport the site by trait matrix that has been pruned to shared/preferred traits and lists communities separately as invasive and native portions of each site.
 
 partcomm<-read.csv("2013_sitebytraitmatrix_partitionedbyorigin.csv")
 row.names(partcomm)<-partcomm$Comm
 partcomm<-partcomm[,3:23]
-
 
 #rough interpolation to allow ordination to proceed  - give any NA the median value for that column
 fx=function(x){
@@ -433,18 +420,273 @@ orditorp(ord, display="species", col="black", pch=8) #this will plot the traits 
 #test significance
 anosim(int_partcomm, type)
 
-
-#try to make a species by species distance matrix to use in the Mouillot et al. method?
-#gowdist<-gowdis(pref_traits)
-#gowdist2<-as.matrix(gowdist)
-
-#gowdis test data
-
-#ex1<-gowdis(dummy$trait)
-#ex1<-as.matrix(ex1)
-
+#look at pairwise differences
+diff<-as.matrix(vegdist(int_partcomm, method ="gower")) 
+diffni<-diff[1:53,54:ncol(diff)]
+diffni2<-diag(diffni)
+hist(diffni2, breaks=20)
+mean(diffni2)
 
 ```
+
+Native vs. introduced - herbs only and woody only.
+Need to prune the partitioned community into a herbaceous-only version and a woody-only version
+
+```{r}
+natwood<-read.csv("2013_TRY_traitsmatrix_nativewoody.csv")
+intwood<-read.csv("2013_TRY_traitsmatrix_introducedwoody.csv")
+natherb<-read.csv("2013_TRY_traitsmatrix_nativeherbs.csv")
+intherb<-read.csv("2013_TRY_traitsmatrix_introducedherbs.csv")
+
+hpartcomm<-read.csv("2013_speciespresences_by_origin_sitenamepartitioned_herbsonly.csv")
+wpartcomm<-read.csv("2013_speciespresences_by_origin_sitenamepartitioned_woodyonly.csv")
+
+
+#make p/a matrices for woody and herbaceous communities (partitioned by origin)
+
+require(reshape)
+
+hp1<-cast(hpartcomm, PartSite ~ Species, value="Presence", fun.aggregate=mean)
+row.names(hp1)<-hp1$PartSite
+hp2<-hp1[,2:203]
+hp3<-rapply(hp2, f=function(x) ifelse(is.nan(x),0,x), how="replace")
+hp3<-as.data.frame(hp3, check.names=FALSE)
+row.names(hp3)<-hp1$PartSite
+
+
+wp1<-cast(wpartcomm, PartSite ~ Species, value="Presence", fun.aggregate=mean)
+row.names(wp1)<-wp1$PartSite
+wp2<-wp1[,2:72]
+wp3<-rapply(wp2, f=function(x) ifelse(is.nan(x), 0, x), how="replace")
+wp3<-as.data.frame(wp3, check.names=FALSE)
+row.names(wp3)<-wp1$PartSite
+
+#make woody and herbaceous trait matrices
+wtraits<-merge(natwood,intwood)
+row.names(wtraits)<-wtraits$Trait
+wtraits<-wtraits[,2:66]
+wtraits<-wtraits[order(row.names(wtraits)),]
+
+
+htraits<-merge(natherb, intherb)
+
+#transpose traits matrices for FD
+wtraitst<-as.data.frame(t(wtraits))
+wtraitst<-wtraitst[order(row.names(wtraitst)),]
+
+
+#get the CWM for woody and herbaceous parts of the already-partitioned-by-origin communities
+
+#traits 65 species x 76 traits
+#comm 91 sites x 71 species
+
+#^there are probably species in the community list of ambiguous origin that need removing
+#in wp3, remove:
+#18 cornus obliqua
+#28 helianthus divaricatus
+#35 oclemena acuminata
+#45 quercus prinoides
+#62 stellaria pubera
+#63 symphotrichum dumosum
+
+wp3<-wp3[,c(1:17,19:27,29:34,36:44, 46:61, 64:71)]
+#and then the oenethera/oenothera spelling problem again
+names(wp3)[names(wp3)=="Oenethera.biennis"] <- "Oenothera.biennis"
+
+#seed mass is 62, missing for row 53 rubus phoenicolasus
+wtraitst[53,62]<-median(wtraitst[c(1:52,54:nrow(wtraitst)),62])  #this puts the median seed mass value in for the one missing seed mass value
+
+
+require(FD)
+hFD<-dbFD(wtraitst, wp3, stand.x=TRUE, ord="podani", corr = "cailliez")
+#traits: traits are columns 65 species, 76 traits
+#p/a: species are columns 91 "sites", 65 species
+
+#confusingly this is still throwing an error so let's interpolate everything for now and return to the issue later
+
+#fx=function(x){
+#  x[is.na(x)]=median(x, na.rm=TRUE)
+#  x
+#}
+#iwtraitst=data.frame(apply(wtraitst,2,fx))
+
+#nope, that still throws an error.  are there totally missing species causing a problem?  no, all species have at least one presence
+
+#can i go to the original working code and just separate out the herbs and woody from the working invasive/native matrices? 
+
+
+
+#try again reading in different datasets
+
+#TRAITS
+natwoodt<-read.csv("2013nativetraits_interp_wood_preftraits.csv", row.names=1)
+intwoodt<-read.csv("2013invtraits_interp_wood_preftraits.csv", row.names=1)
+natherbt<-read.csv("2013nativetraits_interp_herbs_preftraits.csv", row.names=1)
+intherbt<-read.csv("2013invtraits_interp_herbs_preftraits.csv", row.names=1)
+
+#COMMUNITIES
+natwoodc<-read.csv("nativewood13.csv", row.names=1)
+intwoodc<-read.csv("intwood13_noempty.csv", row.names=1)
+natherbc<-read.csv("nativeherbs13.csv", row.names=1)
+intherbc<-read.csv("intherbs13_noempty.csv", row.names=1)
+
+#transpose the traits matrices for FD, which requires species as rows and traits as columns
+#outdated, current data frames imported already in correct format
+#tnatwoodt<-as.data.frame(t(natwoodt))
+#tintwoodt<-as.data.frame(t(intwoodt))
+#tnatherbt<-as.data.frame(t(natherbt))
+#tintherbt<-as.data.frame(t(intherbt))
+
+#fixing minor errors/mismatches
+###problem with native herbs - typos in names causing mismatch
+names(natherbc)[names(natherbc)=="athyrium_filix.femina"] <- "athyrium_filix_femina"
+names(natherbc)[names(natherbc)=="veronica_anagallis.aquatica"] <- "veronica_anagallis_aquatica"
+###problem with invasive wood - completely NA traits (cols 10, 14, 21) need to be removed
+intwoodt2<-intwoodt[,c(1:9,11:13,15:20)]
+
+require(FD)
+nwFD<-dbFD(natwoodt, natwoodc, stand.x=TRUE, ord="podani", corr = "cailliez", w.abun=TRUE, stand.FRic=TRUE) #works
+#so the issue is that it doesn't like a traits column that is entirely NAs
+nhFD<-dbFD(natherbt, natherbc, stand.x=TRUE, ord="podani", corr = "cailliez", w.abun=TRUE, stand.FRic=TRUE) #works
+iwFD<-dbFD(intwoodt2, intwoodc, stand.x=TRUE, ord="podani", corr = "cailliez", w.abun=TRUE, stand.FRic=TRUE) #works
+ihFD<-dbFD(intherbt, intherbc, stand.x=TRUE, ord="podani", corr = "cailliez", w.abun=TRUE, stand.FRic=TRUE) #works
+
+#export all the CWMs before the code stops working
+
+write.table(nwFD$CWM, "nwCWM.csv", sep=",", col.names=NA, row.names=TRUE)
+write.table(nhFD$CWM, "nhCWM.csv", sep=",", col.names=NA, row.names=TRUE)
+write.table(iwFD$CWM, "iwCWM.csv", sep=",", col.names=NA, row.names=TRUE)
+write.table(ihFD$CWM, "ihCWM.csv", sep=",", col.names=NA, row.names=TRUE)
+
+#merge the native and introduced bits for herbs, and separately for woody,  reimport the site by trait matrices, listing communities separately as introduced and native portions of each site.  
+
+wpcomm<-read.csv("woodCWM_partbyorigin.csv", row.names=1)
+hpcomm<-read.csv("herbsCWM_partbyorigin.csv", row.names=1)
+
+
+#rough interpolations to allow ordination to proceed  - give any NA the median value for that column
+fx=function(x){
+  x[is.na(x)]=median(x, na.rm=TRUE)
+  x
+}
+
+iwpcomm=data.frame(apply(wpcomm,2,fx))
+ihpcomm=data.frame(apply(hpcomm,2,fx))
+
+#Ordinate those matrices
+
+###woody
+
+require(vegan)
+word<-metaMDS(iwpcomm, distance="gower", noshare=FALSE, zerodist="add", k=3)
+ordiplot(word, type="n")
+wtype=c(rep("Native", 53), rep("Introduced", 38))
+#ordihull(ord, groups=type, draw="polygon", col="grey90", label=F) #for tightest convex hull containing all points in the group
+ordiellipse(word, groups=wtype, draw="lines", kind="sd", col="black", label=T) #for ellipse representing SD of community
+
+points(word, display="sites", col=c(rep("blue", 53), rep("red", 38)), pch= 19)
+
+orditorp(ord, display="species", col="black", pch=8) #this will plot the traits ("species" in vegan package lingo which always means whatever your columns are)
+
+##herbs
+hord<-metaMDS(ihpcomm, distance="gower", noshare=FALSE, zerodist="add", k=3)
+ordiplot(hord, type="n")
+htype=c(rep("Introduced", 50), rep("Native", 53))
+#ordihull(ord, groups=type, draw="polygon", col="grey90", label=F) #for tightest convex hull containing all points in the group
+ordiellipse(hord, groups=htype, draw="lines", kind="sd", col="black", label=T) #for ellipse representing SD of community
+
+points(hord, display="sites", col=c(rep("red", 50), rep("blue", 53)), pch= 19)
+
+orditorp(ord, display="species", col="black", pch=8) #this will plot the traits ("species" in vegan package lingo which always means whatever your columns are)
+
+#test significance
+anosim(iwpcomm, wtype)
+anosim(ihpcomm, htype)
+
+#get the dissimilarities to look at them pairwise within each community
+wooddist<-as.matrix(vegdist(iwpcomm, method ="gower"))   #use this and make a histogram of average distances between the native and introduced bits of each community
+herbdist<-as.matrix(vegdist(ihpcomm, method="gower"))
+
+##look at the average dissimilarities
+###woody
+wdiff<-wooddist[1:53,54:91]
+#then remove the missing introduced communities (5,6,7,12,13,19,23,25,36,37,41,44,47,50,52)
+wdiff2<-wdiff[c(1:4,8:11,14:18,20:22,24,26:35,38:40,42,43,45,46,48,48,51,53),]
+wdiff3<-diag(wdiff2)
+hist(wdiff3, breaks=22)
+mean(wdiff3)
+
+#herbaceous
+hdiff<-herbdist[1:50,51:103]
+#then remove the missing introduced communities (10,22,39)
+hdiff2<-hdiff[,c(1:9,11:21,23:38,40:ncol(hdiff))]
+hdiff3<-diag(hdiff2)
+hist(hdiff3, breaks=20)
+mean(hdiff3)
+
+#what do all pairwise distances look like?
+
+hist(wdiff2)
+mean(wdiff2)
+hist(hdiff2)
+mean(hdiff2)
+
+```
+
+introduced woody - removing empty communities
+big brook
+boreas river
+bullhead pond brook
+daly creek
+evas kill
+hudson river
+kayaderosseras creek
+keyser kill
+plotter kill
+potic creek
+saw kill
+sprout creek
+stewart creek
+trout brook
+wappinger creek
+
+introduced herbs - removing empty communities
+chester creek
+jassup river
+robbs creek
+
+native herbs - formatting mismatch for athyrium filix-femina
+
+
+
+
+What is the average dissimilarity among communities generally?
+Need a CWM for all the 2013 species
+```{r}
+sites<-read.csv("2013_species_presence_list_for_traits.csv")
+require(reshape)
+tempsites<-cast(sites, River ~ Species, value ="Presence", fun.aggregate=mean)
+row.names(tempsites)<-tempsites$River
+tempsites2<-tempsites[,2:ncol(tempsites)]
+tempsites3<-as.data.frame(rapply(tempsites2, f=function(x) ifelse(is.nan(x),0,x), how="replace"))
+rownames(tempsites3)<-tempsites$River
+comm<-tempsites3
+
+traits<-read.csv("2013_TRY_traitsmatrix.csv", row.names=1)
+
+ttraits<-t(traits)
+
+#mismatch between the two at row 71 - traits lists eleocharis intermedia and community lists elymus canadensis.  delete both.
+
+ttraits<-ttraits[c(1:70,72:nrow(ttraits)),]
+comm<-comm[,c(1:70,72:ncol(comm))]
+
+require(FD)
+allFD<-dbFD(ttraits, comm)
+
+#need to revisit this.  use the preferred traits only and remove any N/I partitioning.  investigate the eleocharis/elymus problem.
+```
+
 
 
 plotting a PCA plotting code from http://stackoverflow.com/questions/6578355/plotting-pca-biplot-with-ggplot2
