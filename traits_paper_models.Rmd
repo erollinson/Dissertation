@@ -34,9 +34,7 @@ Import the traits matrix and make sure all values are numeric
 require(RCurl)
 options(RCurlOptions = list(cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")))
 raw <- getURL("https://raw.githubusercontent.com/erollinson/Dissertation/master/TRY_traitsmatrix_quant_only2012sp_interpseedmass_absval.csv") #insert the  raw URL for the data file on github here
-traits<- read.csv(text = raw, check.names = FALSE) #read in the github file
-rownames(traits)<-traits$Trait
-traits<-traits[,2:182]
+traits<- read.csv(text = raw, check.names = FALSE, row.names=1) #read in the github file
 ```
 
 playing with the FD functional diversity package - species have to be columns in the community dataset and rows in the traits dataset
@@ -48,6 +46,8 @@ traits_tp<-t(traits)
 traits_tp<-as.data.frame(traits_tp)
 
 pref_traits<-traits_tp[,c(6,9:11,21,26:28,33,36,38,42,43,46,47)]#making a smaller list of traits of particular interest
+
+newpreftraits<-traits_tp[,c(8,9,13,16,20,21,23,26,27,28,29, 35,39,43,44,46,47,48,54,55,56)]
 
 ```
 
@@ -70,12 +70,84 @@ pref_traits<-traits_tp[,c(6,9:11,21,26:28,33,36,38,42,43,46,47)]#making a smalle
 pref_traits: 181 x 15 traits are columns
 cover: 24 x 181 species are columns
 
+
+Redo this with the preferred traits use in native v. introduced?
+8 leaf C per dry mass
+9 leaf C to N ratio
+13 leaf weight ratio
+16 lamina thickness
+20 leaf N per dry mass
+21 leaf N to P ratio
+23 leaf P per dry mass
+leaf physical strength (n/a, sub in #29 leaf thickness)
+26 leaf K per dry mass
+27 leaf respiration per dry mass
+28 SLA
+35 photosynthesis per leaf dry mass
+39 RGR
+43 root N per dry mass
+44 rooting depth
+46 seed mass
+47 seed no per repro unit
+48 seed protein content per mass
+54 SSD
+55 stomata conductance per leaf area
+56 wood dry mass per plant dry mass
+
+with original preferred traits
 ```{r}
 FD<-dbFD(pref_traits, cover, stand.x=TRUE, ord="podani", corr = "cailliez", w.abun=TRUE, stand.FRic=TRUE) #this is what worked
 
 export = FD[1:8]
 test<-as.data.frame(export)
-write.table(test, "functionaldiv2012.csv", sep=",")
+write.table(test, "functionaldiv2012.csv", sep=",", col.names=NA, row.names=TRUE)
+
+export2 = FD[2]
+test2<-as.data.frame(export2)
+
+CWM2<-FD$CWM
+
+CWM2$type<-c("g","g","u","u","g","g","u","u","g","g","u","u","g","g","u","u","g","g","u","u","g","g","u","u")
+CWM2<-CWM2[order(CWM2$type),]
+
+#need to standardize each column - no, gower does this automatically
+
+CWM3<-CWM2[,1:21]
+
+#rough interpolation to allow ordination to proceed  - give any NA the median value for that column
+fx=function(x){
+  x[is.na(x)]=median(x, na.rm=TRUE)
+  x
+}
+CWM3=data.frame(apply(CWM3,2,fx))
+
+#don't use the scaled one, none of the distances in vegan like negative values
+
+require(vegan)
+ordslope<-metaMDS(CWM3, dist="gower") #gower scales each column to unit range
+
+type=c(rep("GL", 12), rep("UP", 12))
+ordiplot(ordslope, type="n", xlim=(c(-.5,1)), ylim=(c(-.5,1)))
+#ordihull(ord, groups=type, draw="polygon", col="grey90", label=F) #for tightest convex hull containing all points in the group
+ordiellipse(ordslope, groups=type, draw="lines", kind="sd", col="black", label=T) #for ellipse representing SD of community
+
+points(ordslope, display="sites", col=c(rep("red", 12), rep("blue", 12)), pch= 19)
+
+orditorp(ordslope, display="species", col="black", pch=8) #this will plot the traits ("species" in vegan package lingo which always means whatever your columns are)
+
+anosim(CWM3, type, distance="gower")
+
+slopeNMDSpts<-ordslope$points
+
+```
+
+with new preferred traits
+```{r}
+FD<-dbFD(newpreftraits, cover, stand.x=TRUE, ord="podani", corr = "cailliez", w.abun=TRUE, stand.FRic=TRUE) #this is what worked
+
+export = FD[1:8]
+test<-as.data.frame(export)
+write.table(test, "functionaldiv2012_newtraits.csv", sep=",") #new traits uses the same traits as in the native vs. introduced work
 
 export2 = FD[2]
 test2<-as.data.frame(export2)
@@ -119,6 +191,9 @@ orditorp(ordslope, display="species", col="black", pch=8) #this will plot the tr
 anosim(CWM2, type)
 
 ```
+
+
+
 
 reimport sites by traits
 ```{r}
@@ -418,19 +493,48 @@ orditorp(ord, display="species", col="black", pch=8) #this will plot the traits 
 
 
 #test significance
-anosim(int_partcomm, type)
+anosim(int_partcomm, type, distance="gower")
 
 #look at pairwise differences
 diff<-as.matrix(vegdist(int_partcomm, method ="gower")) 
 diffni<-diff[1:53,54:ncol(diff)]
 diffni2<-diag(diffni)
 hist(diffni2, breaks=20)
+lines(density(diffni2), lwd=2)
 mean(diffni2)
+
+#try a PCA
+
+require(ape)
+allpca<-pcoa(diff, correction="cailliez")
+biplot(allpca, xlabs=rep("", 106))
 
 ```
 
+
+Example code to get a biplot with points  #this isn't working, it plots text with points, but i could use that to tailor by hand in illustrator... 
+
+fit<-princomp(some.data, cor=T) 
+
+biplot(fit, xlabs=rep("", no.of.poins)) #biplot without points 
+
+#some scaling of plot parameters 
+
+rrr<-apply(fit$scores[,1:2],2, range) 
+(abs(rrr)+.1)*sign(rrr) 
+par(usr=as.vector(rrr)) 
+
+# plot the points according to some leves 
+points(fit$scores[,1:2], 
+col=jet.colors(11)[(as.numeric(kvalita.ag$typ[cc]))], pch=20) 
+
+
+
+-----------------------------
+
+
 Native vs. introduced - herbs only and woody only.
-Need to prune the partitioned community into a herbaceous-only version and a woody-only version
+Need to prune the partitioned community into a herbaceous-only version and a woody-only version - this set of code didn't work, skip to next section
 
 ```{r}
 natwood<-read.csv("2013_TRY_traitsmatrix_nativewoody.csv")
@@ -514,7 +618,11 @@ hFD<-dbFD(wtraitst, wp3, stand.x=TRUE, ord="podani", corr = "cailliez")
 
 #can i go to the original working code and just separate out the herbs and woody from the working invasive/native matrices? 
 
+```
 
+
+This is the attempt at native vs. introduced that worked
+```{r}
 
 #try again reading in different datasets
 
@@ -600,8 +708,8 @@ points(hord, display="sites", col=c(rep("red", 50), rep("blue", 53)), pch= 19)
 orditorp(ord, display="species", col="black", pch=8) #this will plot the traits ("species" in vegan package lingo which always means whatever your columns are)
 
 #test significance
-anosim(iwpcomm, wtype)
-anosim(ihpcomm, htype)
+anosim(iwpcomm, wtype, distance="gower")
+anosim(ihpcomm, htype, distance="gower")
 
 #get the dissimilarities to look at them pairwise within each community
 wooddist<-as.matrix(vegdist(iwpcomm, method ="gower"))   #use this and make a histogram of average distances between the native and introduced bits of each community
@@ -633,6 +741,7 @@ mean(hdiff2)
 
 ```
 
+
 introduced woody - removing empty communities
 big brook
 boreas river
@@ -657,7 +766,25 @@ robbs creek
 
 native herbs - formatting mismatch for athyrium filix-femina
 
+Attempting a PCA to display some of the traits...
 
+```{r}
+require(ape)
+require(vegan)
+
+#get the dissimilarities to look at them pairwise within each community
+wooddist<-as.matrix(vegdist(iwpcomm, method ="gower"))   #use this and make a histogram of average distances between the native and introduced bits of each community
+herbdist<-as.matrix(vegdist(ihpcomm, method="gower"))
+
+wpctest<-pcoa(wooddist, correction="cailliez")
+biplot(wpctest, Y=iwpcomm)
+
+hpctest<-pcoa(herbdist, correction="cailliez")
+biplot(hpctest, Y=ihpcomm)
+
+#this makes a hot mess graphically
+
+```
 
 
 What is the average dissimilarity among communities generally?
@@ -861,7 +988,7 @@ abline(v=0.670, lwd=2, col="purple") #this isn't plotting and also is an inaccur
 
 require(picante)
 require(FD)
-rep=999
+rep=99
 permFEve<-matrix(nrow=rep, ncol=24)
 permFDiv<-matrix(nrow=rep, ncol=24)
 permFDis<-matrix(nrow=rep, ncol=24)
@@ -889,6 +1016,22 @@ write.table(permFDis, file="nullFDis.csv", sep=",")
 write.table(permFDiv, file="nullFDiv.csv", sep=",")
 write.table(permFEve, file="nullFEve.csv", sep=",")
 write.table(permRaoQ, file="nullRaoQ.csv", sep=",")
+
+FDiv<-read.csv("nullFDiv.csv", row.names=1)
+
+hist(FDiv$B1GH, breaks=20)
+mean.FDiv=mean(FDiv$B1GH, na.rm=T)
+var.FDiv=var(FDiv$B1GH, na.rm=T)
+sd.FDiv=sd(FDiv$B1GH, na.rm=T)
+max.FDiv=max(FDiv$B1GH, na.rm=T)
+
+
+hist(FDiv$B1GH, breaks=20, freq=F, xlab = "Functional Diversity", ylab='Probability')
+lines(density(FDiv$B1GH, na.rm=T, from=0, to=max.FDiv), lwd=2)
+
+
+
+lines(density(FDiv$B1GH), lwd=2)
 
 ```
 
