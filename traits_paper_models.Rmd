@@ -512,6 +512,34 @@ biplot(allpca, xlabs=rep("", 106))
 ```
 
 
+another attempt at pairwise using betadisper
+
+```{r}
+bdiff<-vegdist(int_partcomm, method="gower")
+groups<-factor(c(rep(1,53), rep(2,8)), labels=c("introduced", "native"))
+mod<-betadisper(bdiff, groups)
+
+
+```
+
+Trying to get pairwise significance values from adonis  - ignore.  this loop works but doesn't give me what i want it to give me, adonis doesn't give a significance on differences between groups, it partitions differences based on each variable
+
+
+```{r}
+require(vegan)
+rep=53
+j=53
+pairwise<-list()
+for (i in 1:rep) {
+  temp<-diff[c(i,j),]
+  compare<-adonis(diff~Leaf.C.per.dry.mass + Leaf.C.to.N.ratio + Leaf.weight.ratio + Lamina.thickness + Leaf.N.per.dry.mass + Leaf.N.to.P.ratio + Leaf.P.per.dry.mass + Leaf.physical.strength + Leaf.K.per.dry.mass + Leaf.K.per.dry.mass + Leaf.respiration.per.dry.mass + SLA + Photosynthesis.per.leaf.dry.mass + RGR + Root.N.per.dry.mass + Rooting.depth + Seed.mass + Seed.number.per.reproduction.unit + Seed.protein.content.per.mass + SSD + Stomata.conductance.per.leaf.area + Wood.dry.mass.per.total.dry.mass, permutations=99, int_partcomm, method="gower")
+  pairwise[[i]]=compare
+  j=j+1
+}
+
+
+
+```
 Example code to get a biplot with points  #this isn't working, it plots text with points, but i could use that to tailor by hand in illustrator... 
 
 fit<-princomp(some.data, cor=T) 
@@ -887,7 +915,7 @@ cseed<-ddply(alltraits2, c("Origin"), summarise,
 #require(bear)
 #dfseed<-summarySE(alltraits2, measurevar="Leaf dry mass", groupvars=c("Origin"))
 
-ggplot(cseed, aes(x=Origin, y=mean)) + geom_bar(position=position_dodge(), stat="identity") + geom_errorbar(aes(ymin=mean-se, ymax = mean+se), width=.2) + ggtitle("Seed Mass")
+ggplot(cseed, aes(x=Origin, y=mean)) + geom_bar(position=position_dodge(), stat="identity") + geom_errorbar(aes(ymin=mean-se, ymax = mean+se), width=.2)  + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))+ ylab("Seed mass (mg)")
 
 
 #plot SSD
@@ -925,6 +953,83 @@ cleafN<-ddply(alltraits2, c("Origin"), summarise,
              se = sd/sqrt(N))
 
 ggplot(cleafN, aes(x=Origin, y=mean)) + geom_bar(position=position_dodge(), stat="identity") + geom_errorbar(aes(ymin=mean-se, ymax = mean+se), width=.2) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))+ ylab("Leaf N per dry mass (mg/g)")
+
+
+#RGR
+
+names(alltraits2)[names(alltraits2)=="Plant relative growth rate (RGR)"] <-"RGR" #ddply doesn't seem to like spaces in column names, or ""ing them
+
+cRGR<-ddply(alltraits2, c("Origin"), summarise,
+             N = sum(!is.na(RGR)),
+             mean = mean(RGR, na.rm=TRUE),
+             sd = sd(RGR, na.rm=TRUE),
+             se = sd/sqrt(N))
+
+ggplot(cRGR, aes(x=Origin, y=mean)) + geom_bar(position=position_dodge(), stat="identity") + geom_errorbar(aes(ymin=mean-se, ymax = mean+se), width=.2) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))+ ylab("Relative growth rate (g/g/day)")
+
+#C:N
+
+names(alltraits2)[names(alltraits2)=="LeafCN"] <-"leafCN" #ddply doesn't seem to like spaces in column names, or ""ing them
+
+cleafCN<-ddply(alltraits2, c("Origin"), summarise,
+             N = sum(!is.na(leafCN)),
+             mean = mean(leafCN, na.rm=TRUE),
+             sd = sd(leafCN, na.rm=TRUE),
+             se = sd/sqrt(N))
+
+ggplot(cleafCN, aes(x=Origin, y=mean)) + geom_bar(position=position_dodge(), stat="identity") + geom_errorbar(aes(ymin=mean-se, ymax = mean+se), width=.2) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))+ ylab("Leaf C:N ratio")
+
+#Root N
+
+names(alltraits2)[names(alltraits2)=="Root nitrogen (N) content per dry mass"] <-"RootN" #ddply doesn't seem to like spaces in column names, or ""ing them
+
+crootN<-ddply(alltraits2, c("Origin"), summarise,
+             N = sum(!is.na(RootN)),
+             mean = mean(RootN, na.rm=TRUE),
+             sd = sd(RootN, na.rm=TRUE),
+             se = sd/sqrt(N))
+
+ggplot(crootN, aes(x=Origin, y=mean)) + geom_bar(position=position_dodge(), stat="identity") + geom_errorbar(aes(ymin=mean-se, ymax = mean+se), width=.2) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))+ ylab("Root N (mg per g dry root mass)")
+
+#Respiration
+
+names(alltraits2)[names(alltraits2)=="Leaf respiration per dry mass"] <-"resp" #ddply doesn't seem to like spaces in column names, or ""ing them
+
+cresp<-ddply(alltraits2, c("Origin"), summarise,
+             N = sum(!is.na(resp)),
+             mean = mean(resp, na.rm=TRUE),
+             sd = sd(resp, na.rm=TRUE),
+             se = sd/sqrt(N))
+
+ggplot(cresp, aes(x=Origin, y=mean)) + geom_bar(position=position_dodge(), stat="identity") + geom_errorbar(aes(ymin=mean-se, ymax = mean+se), width=.2) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))+ ylab("Leaf respiration (nmol CO2 per g dry leaf per s)")
+
+#photosynthesis
+
+names(alltraits2)[names(alltraits2)=="Photosynthesis per leaf dry mass"] <-"phot" #ddply doesn't seem to like spaces in column names, or ""ing them
+
+cphot<-ddply(alltraits2, c("Origin"), summarise,
+             N = sum(!is.na(phot)),
+             mean = mean(phot, na.rm=TRUE),
+             sd = sd(phot, na.rm=TRUE),
+             se = sd/sqrt(N))
+
+ggplot(cphot, aes(x=Origin, y=mean)) + geom_bar(position=position_dodge(), stat="identity") + geom_errorbar(aes(ymin=mean-se, ymax = mean+se), width=.2) + theme_bw() + theme (panel.grid.majo                                                                                                                                                                                                                                                                                                                        r=element_line(color = NA), panel.grid.minor=element_line(color = NA))+ ylab("Photosynthesis (nmol CO2 per g dry leaf per s)")
+
+
+#seed number
+names(alltraits2)[names(alltraits2)=="Seed number per reproducton unit"] <-"seedno" #ddply doesn't seem to like spaces in column names, or ""ing them
+
+cseedno<-ddply(alltraits2, c("Origin"), summarise,
+             N = sum(!is.na(seedno)),
+             mean = mean(seedno, na.rm=TRUE),
+             sd = sd(seedno, na.rm=TRUE),
+             se = sd/sqrt(N))
+
+
+cseedno$Origin<-factor(cseedno$Origin, levels=c("N", "I"))
+
+ggplot(cseedno, aes(x=Origin, y=log(mean,10))) + geom_bar(position=position_dodge(), stat="identity") + geom_errorbar(aes(ymin=log(mean-se,10), ymax = log(mean+se,10), width=.2)) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))+ ylab("log(Number of seeds per reproductive unit)")
+
 
 
 ```
