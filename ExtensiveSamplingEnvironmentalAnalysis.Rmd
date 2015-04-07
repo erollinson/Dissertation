@@ -148,7 +148,15 @@ bioenv(comm, env4, upto=5)
 
 ```
 
+#try a PCA
+```{r}
 
+#NEED SITE DISTANCE MATRIX
+
+require(ape)
+allpca<-pcoa("YOUR DIFFERENCE MATRIX", correction="cailliez")
+biplot(allpca, xlabs=rep("", 106))
+```
 
 add elevation remove longitude
 distance to a highway
