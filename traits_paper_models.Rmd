@@ -206,7 +206,7 @@ sitebytrait<-sitebytrait[,2:57]
 prcomp(sitebytrait)
 ```
 
-ordinate PCA
+ordinate
 ```{r}
 
 #remove traits with NAs
@@ -509,6 +509,17 @@ require(ape)
 allpca<-pcoa(diff, correction="cailliez")
 biplot(allpca, xlabs=rep("", 106))
 
+testpca<-princomp(diff)
+biplot(testpca)
+
+
+#this is the bit that works for plotting traits on things
+require(ade4)
+pcatest<-dudi.pca(int_partcomm)
+pcatest2<-prcomp(int_partcomm, scale=TRUE)
+plot(pcatest2)
+biplot(pcatest2)
+
 ```
 
 
@@ -518,9 +529,8 @@ another attempt at pairwise using betadisper
 bdiff<-vegdist(int_partcomm, method="gower")
 groups<-factor(c(rep(1,53), rep(2,8)), labels=c("introduced", "native"))
 mod<-betadisper(bdiff, groups)
-
-
 ```
+
 
 Trying to get pairwise significance values from adonis  - ignore.  this loop works but doesn't give me what i want it to give me, adonis doesn't give a significance on differences between groups, it partitions differences based on each variable
 
@@ -540,6 +550,9 @@ for (i in 1:rep) {
 
 
 ```
+
+
+
 Example code to get a biplot with points  #this isn't working, it plots text with points, but i could use that to tailor by hand in illustrator... 
 
 fit<-princomp(some.data, cor=T) 

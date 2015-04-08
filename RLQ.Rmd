@@ -27,7 +27,7 @@ row.names(env)<-env$River #to turn the first column into the row names
 env<-env[,2:14] #to remove the duplicate first column now that the row names are labelled
 
 #cut environmental variables down to most interesting
-env2<-env[,c(1,4,8,11:12)]
+env2<-env[,c(8,11,13)]
 
 ```
 
@@ -70,7 +70,7 @@ fourthcorner.rlq(rlq1,type="Q.axes")
 fourthcorner.rlq(rlq1,type="R.axes")
 
 nrepet = 99999
-fourth<-fourthcorner(env2, species, traits, modeltype=6, , p.adjust.method.G="fdr", p.adjust.method.D="fdr", nrepet = nrepet) 
+fourth<-fourthcorner(env2, species, traits, modeltype=6, p.adjust.method.G="fdr", p.adjust.method.D="fdr", nrepet = nrepet) 
 plot(fourth, alpha = 0.05, stat = "D2")
 summary(fourth)
 ```
