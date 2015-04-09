@@ -186,31 +186,58 @@ test for limiting similarity vs. environmental filtering
 
 ```{r}
 
-#use the pres/abs matrix for 2013 as 'matrix'
+#use the pres/abs matrix for 2013 'comm' in the randomizer
 #need a traits matrix for 2013 that matches the pres/abs matrix for 2013, use the same traits as were used in the 2012 analysis
 
+traits<-read.csv("2013_TRY_traitsmatrix.csv", check.names=FALSE, row.names=1)
+
+prunecomm<-comm[colnames(comm) %in% colnames(traits)]
+prunetraits<-traits[colnames(traits) %in% colnames(comm)]
+
+#FD requires the traits matrix to have traits in columns and the community matrix to have species in columns; therefore, transpose 'prunetraits'
+
+tprunetraits<-as.data.frame(t(prunetraits))
+
+#cut this down just to my traits of interest
+
+pref_traits<-tprunetraits[,c(10,11,15,22,23,25,29,30,31,43,49,59,60,62,64,65,73,74,75)]
+
+#interpolate the most commonly measured variable in the pref_traits matrix so there aren't NAs in the distance matrix
+#can't get apply to work for a single column, so I did two - seed mass and rooting depth
+
+fx=function(x){
+  x[is.na(x)]=median(x, na.rm=TRUE)
+  x
+}
+
+ipreftraits<-data.frame(pref_traits[,c(1:12,15:19)], apply(pref_traits[,c(13:14)], 2, fx))
+
+#invcomm2: 53 x 60, species are columns
 require(picante)
 require(FD)
-rep=99
+rep=9999
 nsites=53
-permFEve<-matrix(nrow=rep, ncol=nsites)
-permFDiv<-matrix(nrow=rep, ncol=nsites)
-permFDis<-matrix(nrow=rep, ncol=nsites)
-permRaoQ<-matrix(nrow=rep, ncol=nsites)
+permFEve13<-matrix(nrow=rep, ncol=nsites)
+permFDiv13<-matrix(nrow=rep, ncol=nsites)
+permFDis13<-matrix(nrow=rep, ncol=nsites)
+permRaoQ13<-matrix(nrow=rep, ncol=nsites)
 for (i in 1:rep) {
-  temp<-randomizeMatrix(cover, null.model="independentswap", iterations = 1000)
-  try(FDtemp<-dbFD(pref_traits, temp, stand.x=TRUE, ord="podani", corr = "cailliez"), silent=TRUE)
+  temp<-randomizeMatrix(prunecomm, null.model="independentswap", iterations = 1000)
+  try(FDtemp<-dbFD(ipreftraits, temp, stand.x=TRUE, ord="podani", corr = "cailliez"), silent=TRUE)
   FEve = FDtemp$FEve
   FDiv = FDtemp$FDiv
   FDis = FDtemp$FDis
   RaoQ = FDtemp$RaoQ
-  permFEve[i,]<-FEve
-  permFDiv[i,]<-FDiv
-  permFDis[i,]<-FDis
-  permRaoQ[i,]<-RaoQ
+  permFEve13[i,]<-FEve
+  permFDiv13[i,]<-FDiv
+  permFDis13[i,]<-FDis
+  permRaoQ13[i,]<-RaoQ
+  }
+
+#cancelled after seven hours, had only done 1k.  Do not ever run this on the laptop again.  
+  
 ```
 
-}
 
 
 

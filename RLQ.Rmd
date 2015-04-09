@@ -69,7 +69,7 @@ testrlq
 fourthcorner.rlq(rlq1,type="Q.axes")
 fourthcorner.rlq(rlq1,type="R.axes")
 
-nrepet = 99999
+nrepet = 9999
 fourth<-fourthcorner(env2, species, traits, modeltype=6, p.adjust.method.G="fdr", p.adjust.method.D="fdr", nrepet = nrepet) 
 plot(fourth, alpha = 0.05, stat = "D2")
 summary(fourth)
