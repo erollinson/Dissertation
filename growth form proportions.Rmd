@@ -1,0 +1,21 @@
+---
+title: "Comparison of major functional groups 2013"
+author: "Emily J. Rollinson"
+date: "Tuesday, May 19, 2015"
+output: html_document
+---
+
+Are introduced species disproportionately annuals, herbaceous, etc?
+
+```{r}
+growth<-read.csv("2013_counts_originbygrowthforms.csv", check.names=FALSE)
+span<-read.csv("2013_counts_originbylifespan.csv", check.names=FALSE)
+
+names(growth)[names(growth)=="Growth Form"]<-"GrowthForm"
+
+growthmodel<-glm(Count~ Origin*GrowthForm, family="quasipoisson", data=growth)
+summary(growthmodel)
+
+
+lifemodel<-glm(Count ~ Origin*Lifespan, family="quasipoisson", data=span)
+summary(lifemodel)

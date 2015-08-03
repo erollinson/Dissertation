@@ -142,7 +142,7 @@ bioenv(comm, env4, upto=5)
 ```
 
 
-Yet another set of preferred environmental variables and the corresponding CCA
+Yet another set of preferred environmental variables and the corresponding CCA  <- this is the one to use
 
 
 ````{r}

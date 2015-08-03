@@ -114,7 +114,7 @@ CWM2<-CWM2[order(CWM2$type),]
 
 CWM3<-CWM2[,1:21]
 
-#rough interpolation to allow ordination to proceed  - give any NA the median value for that column
+#rough imputation to allow ordination to proceed  - give any NA the median value for that column
 fx=function(x){
   x[is.na(x)]=median(x, na.rm=TRUE)
   x
@@ -167,7 +167,7 @@ CWM2<-CWM2[,2:16]
 
 CWM2scaled<-as.data.frame(scale(CWM2))
 
-#rough interpolation to allow ordination to proceed  - give any NA the median value for that column
+#rough imputation to allow ordination to proceed  - give any NA the median value for that column
 fx=function(x){
   x[is.na(x)]=median(x, na.rm=TRUE)
   x

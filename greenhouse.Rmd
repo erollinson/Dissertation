@@ -1,0 +1,144 @@
+---
+title: "Greenhouse Flooding 1"
+author: "Emily J. Rollinson"
+date: "Monday, August 03, 2015"
+output: html_document
+---
+
+Read in the data and replace missing values with na
+```{r}
+data<-read.csv("greenhouse_flood_exp1.csv", check.names=FALSE, na.strings=c("",".","NA"))
+```
+
+Analysis
+
+```{r}
+require(lme4)
+require(arm)
+
+#use the subsetted data for this (below)
+
+#End Height
+ht0<-glm(Height ~ 1,  family="gaussian", data=end)
+ht1<-glm(Height ~ Source,  family="gaussian", data=end)
+ht2<-glm(Height ~ Source/Species,  family="gaussian", data=end)
+ht3<-glm(Height ~ Source/Species/Treatment,  family="gaussian", data=end)
+
+display(ht0)
+display(ht1)
+display(ht2)
+display(ht3)
+anova(ht0,ht1,ht2,ht3, test="Chisq")
+summary(ht3)
+
+anova(lm(Height~Source/Species/Treatment, end))
+
+anova(lm(Leaves~Source/Species/Treatment, end))
+
+```
+
+Survival analysis http://www.statmethods.net/stats/frequencies.html
+```{r}
+#g test on total mortality - in each treatment, for each species? 
+require(vcd)
+surv<-read.csv("greenhouse_survival.csv", check.names=FALSE)
+surv2<-surv[,1:4]
+test<-structable(~Species+Treatment+Week, data=surv2)
+as.table(test)
+mantelhaen.test(array)
+
+
+array<-xtabs(N~Species +Treatment + Week, surv)
+```
+
+Figures for time series
+```{r}
+#SUMMARY STATS
+require(bear)
+
+
+#Height
+tsheight<-summarySE(data,measurevar="Height", groupvars=c("Species", "Treatment", "Week"), na.rm=TRUE)
+tsheight$Species<-factor(tsheight$Species,levels=c("BiFr", "PoPe", "PrVu", "SoFl", "PoVi", "MaVu"))
+
+#Leaves
+tsleaves<-summarySE(data,measurevar="Leaves", groupvars=c("Species", "Treatment", "Week"), na.rm=TRUE)
+tsleaves$Species<-factor(tsleaves$Species,levels=c("BiFr", "PoPe", "PrVu", "SoFl", "PoVi", "MaVu"))
+
+
+#FIGURES
+require(ggplot2)
+cbPalette2 <- c("#999999", "#E69F00", "#56B4E9", "#009E73")
+
+#Height
+tsheight<-within(tsheight, Treatment<-factor(Treatment, levels=c("control", "flood", "bury", "fertilizer")))
+
+ggplot(data=tsheight, aes(x=Week, y=Height, color=Treatment)) + facet_wrap(~Species, nrow=2) + geom_line(stat="identity", size=0.75) + geom_pointrange(aes(ymin=Height-se, ymax=Height+se), size=0.6) + scale_x_discrete(breaks=c(0,1,2,3,4,5,6,7,8,9), labels=c("0","1","2","3","4","5","6","7","8","9")) + scale_color_manual(values=cbPalette2) +theme_bw() +  theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))
+
+#Leaves
+tsleaves<-within(tsleaves, Treatment<-factor(Treatment, levels=c("control", "flood", "bury", "fertilizer")))
+
+ggplot(data=tsleaves, aes(x=Week, y=Leaves, color=Treatment)) + facet_wrap(~Species, nrow=2) + geom_line(stat="identity", size=0.75) + geom_pointrange(aes(ymin=Leaves-se, ymax=Leaves+se), size=0.6) + scale_x_discrete(breaks=c(0,1,2,3,4,5,6,7,8,9), labels=c("0","1","2","3","4","5","6","7","8","9")) + scale_color_manual(values=cbPalette2) +theme_bw() +  theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))
+
+
+#Survivorship
+ggplot(data=tsleaves, aes(x=Week, y=N, color=Treatment)) + facet_wrap(~Species, nrow=2) + geom_line(stat="identity", size=0.75) + scale_x_discrete(breaks=c(0,1,2,3,4,5,6,7,8,9), labels=c("0","1","2","3","4","5","6","7","8","9")) + scale_color_manual(values=cbPalette2) +theme_bw() +  theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))+ scale_y_discrete(breaks=c(0,1,2,3,4,5,6,7,8,9,10,11,12), labels=c("0","1","2","3","4","5","6","7","8","9", "10", "11", "12"))
+
+
+#worksbutismessy
+#ggplot(data=tsheight, aes(x=Week, y=Height, color=Treatment)) + facet_wrap(~Species, nrow=2) + geom_line(stat="identity") +geom_point(stat="identity") + geom_errorbar(aes(ymin=Height-se, ymax=Height+se)) + scale_x_discrete(limits=c(0,9), breaks=c(0,1,2,3,4,5,6,7,8,9), labels=c("0", "1","2","3","4","5", "6","7","8","9"))
+
+```
+
+
+Subset the data for just the final week
+```{r}
+#sorts the data by week
+sorter<-data[order(data$Week),]
+#subsets the rows regarding Week 9 of the trial
+end<-sorter[1823:2043,1:8]
+
+```
+
+Figures for the final week
+```{r}
+require(bear)
+
+#SUMMARY STATS
+
+#Height
+height<-summarySE(end,measurevar="Height", groupvars=c("Species", "Treatment"), na.rm=TRUE)
+
+#Stupid juggling to get the rows in non-alphabetical order
+height$Species<-as.character(height$Species)
+height$Species<-factor(height$Species,levels=c("BiFr", "PoPe", "PrVu", "SoFl", "PoVi", "MaVu"))
+
+
+#Leaves
+leaves<-summarySE(end, measurevar="Leaves", groupvars=c("Species", "Treatment"), na.rm=TRUE)
+leaves$Species<-as.character(leaves$Species)
+leaves$Species<-factor(leaves$Species, levels=c("BiFr", "PoPe", "PrVu", "SoFl", "PoVi", "MaVu"))
+
+#FIGURES
+require(ggplot2)
+require(wesanderson)
+palette <-wes_palette("Darjeeling")
+cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+
+#Height
+
+height<-within(height, Treatment<-factor(Treatment, levels=c("control", "flood", "bury", "fertilizer")))
+ggplot(height[!is.na(height$Height),], aes(x=factor(Treatment), y=Height, fill=factor(Treatment))) + geom_bar(stat="identity", position="dodge", aes(order=desc(Treatment))) + scale_fill_manual(values=cbPalette) +scale_color_manual(values=cbPalette) +  geom_errorbar(aes(ymin=Height-se, ymax=Height+se), colour="black", width=.2, position=position_dodge(width=0.9)) + xlab("Species") + ylab("Height (cm)") + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA)) + facet_wrap(~Species, nrow=2)
+
+#Leaves
+leaves<-within(leaves, Treatment<-factor(Treatment, levels=c("control", "flood", "bury", "fertilizer")))
+ggplot(leaves[!is.na(leaves$Leaves),], aes(x=factor(Treatment), y=Leaves, fill=factor(Treatment))) + geom_bar(stat="identity", position="dodge", aes(order=desc(Treatment))) + scale_fill_manual(values=cbPalette) +scale_color_manual(values=cbPalette) +  geom_errorbar(aes(ymin=Leaves-se, ymax=Leaves+se), colour="black", width=.2, position=position_dodge(width=0.9)) + xlab("Species") + ylab("Number of leaves") + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA)) +facet_wrap(~Species, nrow=2)
+
+#OLDFIGURES
+#this works except the error bars
+#ggplot(height[!is.na(height$Height),], aes(x=factor(Species), y=factor(Height) ,fill=factor(Treatment))) + geom_bar(stat="identity", position="dodge", aes(order=desc(Treatment))) + scale_fill_manual(values=cbPalette) +scale_color_manual(values=cbPalette) +  geom_errorbar(aes(ymin=Height-se, ymax=Height+se), colour="black", width=.2, position=position_dodge(width=0.9)) + xlab("Species") + ylab("Height (cm)") + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA)) 
+#trying to fix
+#ggplot(height, aes(x=factor(Species), y=factor(Height) ,fill=factor(Treatment))) + geom_bar(stat="identity", position="dodge", aes(order=desc(Treatment))) + scale_fill_manual(values=cbPalette) +scale_color_manual(values=cbPalette) +  geom_errorbar(aes(ymin=Height-se, ymax=Height+se), colour="black", width=.2, position=position_dodge(width=0.9)) + xlab("Species") + ylab("Height (cm)") + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA)) + scale_y_discrete(limits=c(0,45), breaks=c(0,5,10,15,20,25,30,35,40,45), labels=c("0", "5","10","15","20","25", "30","35","40","45"))
+#this works
+#ggplot(height[!is.na(height$Height),], aes(x=factor(Species), y=Height, fill=factor(Treatment))) + geom_bar(stat="identity", position="dodge", aes(order=desc(Treatment))) + scale_fill_manual(values=cbPalette) +scale_color_manual(values=cbPalette) +  geom_errorbar(aes(ymin=Height-se, ymax=Height+se), colour="black", width=.2, position=position_dodge(width=0.9)) + xlab("Species") + ylab("Height (cm)") + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA)) 
+```
