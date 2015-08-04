@@ -40,15 +40,25 @@ anova(lm(Leaves~Source/Species/Treatment, end))
 Survival analysis http://www.statmethods.net/stats/frequencies.html
 ```{r}
 #g test on total mortality - in each treatment, for each species? 
+
 require(vcd)
+
 surv<-read.csv("greenhouse_survival.csv", check.names=FALSE)
-surv2<-surv[,1:4]
-test<-structable(~Species+Treatment+Week, data=surv2)
-as.table(test)
-mantelhaen.test(array)
+surv2<-surv[,c(1,3:5)]
+
+mat<-xtabs(Dead~Source+Treatment, surv2)
+assocstats(mat)
+
+require(ca)
+ca(mat)
+
+#lor<-loddsratio(array,1,log=FALSE)
+#summary(lor)
+
+#mantelhaen.test(array)
 
 
-array<-xtabs(N~Species +Treatment + Week, surv)
+
 ```
 
 Figures for time series
