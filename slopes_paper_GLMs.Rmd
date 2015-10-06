@@ -59,6 +59,7 @@ Potential problem: All of these data are corrected per area sampled, which does 
 Testing native versus introduced diversity
 -----------------------------------------------------------------
 ```{r}
+#richness
 ordata<-read.csv("2012_diversity_by_origin.csv")
 
 r0<-glm(Rich ~ 1, family="quasipoisson", offset=log(Area), data=ordata)
@@ -73,6 +74,42 @@ display(r3)
 display(r4)
 anova(r0,r1,r2,r3,r4, test="Chisq")
 summary(r4)
+
+#number of individuals
+
+i0<-glm(Indiv ~ 1, family="quasipoisson", offset=log(Area), data=ordata)
+i1<-glm(Indiv ~ River, family ="quasipoisson", offset=log(Area), data=ordata)
+i2<-glm(Indiv ~ River/Site, family="quasipoisson", offset=log(Area), data=ordata)
+i3<-glm(Indiv ~ River/Site/Bank, family="quasipoisson", offset=log(Area), data=ordata)
+i4<-glm(Indiv ~ Origin + River/Site/Bank, family="quasipoisson", offset=log(Area), data=ordata)
+display(i0)
+display(i1)
+display(i2)
+display(i3)
+display(i4)
+anova(i0,i1,i2,i3,i4, test="Chisq")
+summary(i4)
+
+
+#cover
+
+###change any values greater than 1 to 1 to fit binomial
+ordata$Cover[ordata$Cover > 1] <- 1
+
+
+c0<-glm(Cover ~ 1, family="quasibinomial", offset=log(Area), data=ordata)
+c1<-glm(Cover ~ River, family ="quasibinomial", offset=log(Area), data=ordata)
+c2<-glm(Cover ~ River/Site, family="quasibinomial", offset=log(Area), data=ordata)
+c3<-glm(Cover ~ River/Site/Bank, family="quasibinomial", offset=log(Area), data=ordata)
+c4<-glm(Cover ~ Origin + River/Site/Bank, family="quasibinomial", offset=log(Area), data=ordata)
+display(c0)
+display(c1)
+display(c2)
+display(c3)
+display(c4)
+anova(c0,c1,c2,c3,c4, test="Chisq")
+summary(c4)
+
 
 ```
 
