@@ -145,6 +145,29 @@ with new preferred traits
 ```{r}
 FD<-dbFD(newpreftraits, cover, stand.x=TRUE, ord="podani", corr = "cailliez", w.abun=TRUE, stand.FRic=TRUE) #this is what worked
 
+FDiv<-FD$FDiv
+
+require(lme4)
+FDivcsv<-read.csv("FDiv.csv", header=TRUE)
+FDivcsv<-FDivcsv[,1:4]
+
+FDivtest<-lm(FDiv ~ Stream/Site/Bank, data=FDivcsv)
+anova(FDivtest)
+
+#OR to conform to other tests in the slopes paper
+require(arm)
+fdiv0<-glm(FDiv ~ 1, data=FDivcsv)
+fdiv1<-glm(FDiv ~Stream, data=FDivcsv)
+fdiv2<-glm(FDiv ~ Stream/Site, data=FDivcsv)
+fdiv3<-glm(FDiv ~ Stream/Site/Bank, data=FDivcsv)
+display(fdiv0)
+display(fdiv1)
+display(fdiv2)
+display(fdiv3)
+anova(fdiv0,fdiv1,fdiv2,fdiv3, test="Chisq")
+summary(fdiv3)
+
+
 export = FD[1:8]
 test<-as.data.frame(export)
 write.table(test, "functionaldiv2012_newtraits.csv", sep=",") #new traits uses the same traits as in the native vs. introduced work
@@ -470,7 +493,7 @@ partcomm<-read.csv("2013_sitebytraitmatrix_partitionedbyorigin.csv")
 row.names(partcomm)<-partcomm$Comm
 partcomm<-partcomm[,3:23]
 
-#rough interpolation to allow ordination to proceed  - give any NA the median value for that column
+#rough imputation to allow ordination to proceed  - give any NA the median value for that column
 fx=function(x){
   x[is.na(x)]=median(x, na.rm=TRUE)
   x
@@ -495,7 +518,91 @@ orditorp(ord, display="species", col="black", pch=8) #this will plot the traits 
 #test significance
 anosim(int_partcomm, type, distance="gower")
 
-#look at pairwise differences
+
+#posthoc tests of individual traits
+#these all use grouping=type as defined in the overall ordination above (53 data points for inv, 53 for nat)
+
+##leafc
+leafc<-as.data.frame(int_partcomm[,1])
+anosim(leafc,type,distance="gower")
+
+##leafn
+leafn<-as.data.frame(int_partcomm[,5])
+anosim(leafn,type,distance="gower")
+
+##leafp
+leafp<-as.data.frame(int_partcomm[,7])
+anosim(leafp,type,distance="gower")
+
+##leafk
+leafk<-as.data.frame(int_partcomm[,9])
+anosim(leafk,type,distance="gower")
+
+##cn
+cn<-as.data.frame(int_partcomm[,2])
+anosim(cn,type,distance="gower")
+
+##np
+np<-as.data.frame(int_partcomm[,6])
+anosim(np,type,distance="gower")
+
+##sla
+sla<-as.data.frame(int_partcomm[,11])
+anosim(sla,type,distance="gower")
+
+##lwr
+lwr<-as.data.frame(int_partcomm[,3])
+anosim(lwr,type,distance="gower")
+
+##stomata
+stomata<-as.data.frame(int_partcomm[,20])
+anosim(stomata,type,distance="gower")
+
+##ssd
+ssd<-as.data.frame(int_partcomm[,19])
+anosim(ssd,type,distance="gower")
+
+#woodymass
+woodymass<-as.data.frame(int_partcomm[,21])
+anosim(woodymass,type,distance="gower")
+
+##rootn
+rootn<-as.data.frame(int_partcomm[,14])
+anosim(rootn,type,distance="gower")
+
+##rootdepth
+rootdepth<-as.data.frame(int_partcomm[,15])
+anosim(rootdepth,type,distance="gower")
+
+##seedno
+seedno<-as.data.frame(int_partcomm[,17])
+anosim(seedno,type,distance="gower")
+
+##protein
+protein<-as.data.frame(int_partcomm[,18])
+anosim(protein,type,distance="gower")
+
+##seedmass
+seedmass<-as.data.frame(int_partcomm[,16])
+anosim(seedmass,type,distance="gower")
+
+##rgr
+rgr<-as.data.frame(int_partcomm[,13])
+anosim(rgr,type,distance="gower")
+
+##photosynth
+ps<-as.data.frame(int_partcomm[,12])
+anosim(ps,type,distance="gower")
+
+##resp
+resp<-as.data.frame(int_partcomm[,10])
+anoresp<-anosim(resp,type,distance="gower")
+
+
+
+
+
+#look at pairwise differences within each site (unfinished code)
 diff<-as.matrix(vegdist(int_partcomm, method ="gower")) 
 diffni<-diff[1:53,54:ncol(diff)]
 diffni2<-diag(diffni)
@@ -713,7 +820,7 @@ wpcomm<-read.csv("woodCWM_partbyorigin.csv", row.names=1)
 hpcomm<-read.csv("herbsCWM_partbyorigin.csv", row.names=1)
 
 
-#rough interpolations to allow ordination to proceed  - give any NA the median value for that column
+#rough imputations to allow ordination to proceed  - give any NA the median value for that column
 fx=function(x){
   x[is.na(x)]=median(x, na.rm=TRUE)
   x
@@ -755,6 +862,12 @@ anosim(ihpcomm, htype, distance="gower")
 #get the dissimilarities to look at them pairwise within each community
 wooddist<-as.matrix(vegdist(iwpcomm, method ="gower"))   #use this and make a histogram of average distances between the native and introduced bits of each community
 herbdist<-as.matrix(vegdist(ihpcomm, method="gower"))
+
+
+
+
+
+
 
 ##look at the average dissimilarities
 ###woody
@@ -826,7 +939,129 @@ biplot(hpctest, Y=ihpcomm)
 #this makes a hot mess graphically
 
 ```
+TODAY
+look at different lifespans
 
+```{r}
+
+
+#TRAITS
+nat_ann<-read.csv("2013_nattraits_impute_annual.csv", row.names=1)
+nat_per<-read.csv("2013_nattraits_impute_perennial.csv", row.names=1)
+inv_ann<-read.csv("2013_invtraits_impute_annual.csv", row.names=1)
+inv_per<-read.csv("2013_invtraits_impute_perennial.csv", row.names=1)
+#biennials were only seen for invasives and not natives, so no point in ordinating
+#FD requires species as rows and traits as columns
+
+
+#subset traits (FD won't work with empty trait columns
+natann<-Filter(function(x)!all(is.na(x)), nat_ann)
+natper<-Filter(function(x)!all(is.na(x)), nat_per)
+invann<-Filter(function(x)!all(is.na(x)), inv_ann)
+invper<-Filter(function(x)!all(is.na(x)), inv_per)
+
+#COMMUNITIES
+nat_ann_c<-read.csv("2013_presences_nat_ann.csv")
+nat_per_c<-read.csv("2013_presences_nat_per.csv")
+inv_ann_c<-read.csv("2013_presences_inv_ann.csv")
+inv_per_c<-read.csv("2013_presences_inv_per.csv")
+
+#Make Community Matrices
+require(reshape)
+
+comm_natann<-cast(nat_ann_c, River ~ Species, value="Presence", fun.aggregate=mean)
+comm_natann<-as.data.frame(comm_natann)
+comm_natann[is.na(comm_natann)]<-0
+row.names(comm_natann)<-comm_natann$River
+comm_natann<-comm_natann[,2:ncol(comm_natann)]
+
+comm_natper<-cast(nat_per_c, River ~ Species, value="Presence", fun.aggregate=mean)
+comm_natper<-as.data.frame(comm_natper)
+comm_natper[is.na(comm_natper)]<-0
+row.names(comm_natper)<-comm_natper$River
+comm_natper<-comm_natper[,2:ncol(comm_natper)]
+
+comm_invann<-cast(inv_ann_c, River ~ Species, value="Presence", fun.aggregate=mean)
+comm_invann<-as.data.frame(comm_invann)
+comm_invann[is.na(comm_invann)]<-0
+row.names(comm_invann)<-comm_invann$River
+comm_invann<-comm_invann[,2:ncol(comm_invann)]
+
+comm_invper<-cast(inv_per_c, River ~ Species, value="Presence", fun.aggregate=mean)
+comm_invper<-as.data.frame(comm_invper)
+comm_invper[is.na(comm_invper)]<-0
+row.names(comm_invper)<-comm_invper$River
+comm_invper<-comm_invper[,2:ncol(comm_invper)]
+
+#Calculate CWMs
+require(FD)
+
+nafd<-dbFD(natann, comm_natann, stand.x=TRUE, ord="podani", corr="cailliez", w.abun=TRUE, stand.FRic=TRUE) #works
+npfd<-dbFD(natper, comm_natper, stand.x=TRUE, ord="podani", corr="cailliez", w.abun=TRUE, stand.FRic=TRUE) #works
+iafd<-dbFD(invann, comm_invann, stand.x=TRUE, ord="podani", corr="cailliez", w.abun=TRUE, stand.FRic=TRUE) #works
+ipfd<-dbFD(invper, comm_invper, stand.x=TRUE, ord="podani", corr="cailliez", w.abun=TRUE, stand.FRic=TRUE) #works
+
+#Export CWMs for safekeeping
+write.table(nafd$CWM, "nafdCWM.csv", sep=",", col.names=NA, row.names=TRUE)
+write.table(npfd$CWM, "npfdCWM.csv", sep=",", col.names=NA, row.names=TRUE)
+write.table(iafd$CWM, "iafdCWM.csv", sep=",", col.names=NA, row.names=TRUE)
+write.table(ipfd$CWM, "ipfdCWM.csv", sep=",", col.names=NA, row.names=TRUE)
+
+
+#merge the native and introduced bits for herbs, and separately for woody,  reimport the site by trait matrices, listing communities separately as introduced and native portions of each site.  
+
+anncomm<-read.csv("2013_CWM_annuals_partitionedbyorigin.csv", row.names=1)
+percomm<-read.csv("2013_CWM_perennials_partitionedbyorigin.csv", row.names=1)
+
+
+#rough imputations to allow ordination to proceed  - give any NA the median value for that column
+fx=function(x){
+  x<-as.numeric(as.character(x))
+  x[is.na(x)]=median(x, na.rm=TRUE)
+  x
+}
+
+ianncomm=data.frame(apply(anncomm,2,fx))
+row.names(ianncomm)<-rownames(anncomm)
+ipercomm=data.frame(apply(percomm,2,fx))
+row.names(ipercomm)<-rownames(percomm)
+
+#Ordinate those matrices
+
+###annual
+
+require(vegan)
+annord<-metaMDS(ianncomm, distance="gower", noshare=FALSE, zerodist="add", k=3)
+ordiplot(annord, type="n")
+atype=c(rep("Introduced", 9), rep("Native", 32))
+#ordihull(annord, groups=wtype, draw="polygon", col="grey90", label=F) #for tightest convex hull containing all points in the group
+ordiellipse(annord, groups=atype, draw="lines", kind="sd", col="black", label=T) #for ellipse representing SD of community
+points(annord, display="sites", col=c(rep("blue", 9), rep("red", 15)), pch= 19)
+
+#orditorp(annord, display="species", col="black", pch=8) #this will plot the traits ("species" in vegan package lingo which always means whatever your columns are)
+
+##perennial
+
+perord<-metaMDS(ipercomm, distance="gower", noshare=FALSE, zerodist="add", k=3)
+ordiplot(perord, type="n")
+ptype=c(rep("Introduced", 52), rep("Native", 53))
+#ordihull(ord, groups=type, draw="polygon", col="grey90", label=F) #for tightest convex hull containing all points in the group
+ordiellipse(perord, groups=ptype, draw="lines", kind="sd", col="black", label=T) #for ellipse representing SD of community
+
+points(perord, display="sites", col=c(rep("red", 52), rep("blue", 53)), pch= 19)
+
+orditorp(ord, display="species", col="black", pch=8) #this will plot the traits ("species" in vegan package lingo which always means whatever your columns are)
+
+#test significance
+anosim(ipercomm, ptype, distance="gower")
+anosim(ianncomm, atype, distance="gower")
+
+
+#subset leaf nitrogen (this works but is a demo. would want to do it with full data set, not partitioned)
+iperleafC<-as.data.frame(ipercomm[,1])
+
+anosim(iperleafC,ptype,distance="gower")
+```
 
 What is the average dissimilarity among communities generally?
 Need a CWM for all the 2013 species
@@ -894,7 +1129,7 @@ PCbiplot(fit)
 
 ```
 
-plotting some of the inv versus native traits - first try without interpolated values
+plot the introduced versus native traits (all traits, no imputed values)
 ```{r}
 invtraits<-read.csv("2013_traits_invs.csv")
 nattraits<-read.csv("2013_traits_natives.csv")
@@ -916,46 +1151,19 @@ require(ggplot2)
 
 require(plyr)
 
-#plot seed mass
-names(alltraits2)[names(alltraits2)=="Seed mass"] <-"Seedmass" #ddply doesn't seem to like spaces in column names, or ""ing them
+#Leaf C
 
-cseed<-ddply(alltraits2, c("Origin"), summarise,
-             N = sum(!is.na(Seedmass)),
-             mean = mean(Seedmass, na.rm=TRUE),
-             sd = sd(Seedmass, na.rm=TRUE),
+names(alltraits2)[names(alltraits2)=="Leaf carbon (C) content per dry mass"] <-"leafC" #ddply doesn't seem to like spaces in column names, or ""ing them
+
+cleafC<-ddply(alltraits2, c("Origin"), summarise,
+             N = sum(!is.na(leafC)),
+             mean = mean(leafC, na.rm=TRUE),
+             sd = sd(leafC, na.rm=TRUE),
              se = sd/sqrt(N))
 
-#require(bear)
-#dfseed<-summarySE(alltraits2, measurevar="Leaf dry mass", groupvars=c("Origin"))
+ggplot(cleafC, aes(x=Origin, y=mean)) + geom_bar(position=position_dodge(), stat="identity") + geom_errorbar(aes(ymin=mean-se, ymax = mean+se), width=.2) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))+ ylab("Leaf C per dry mass (mg/g)")
 
-ggplot(cseed, aes(x=Origin, y=mean)) + geom_bar(position=position_dodge(), stat="identity") + geom_errorbar(aes(ymin=mean-se, ymax = mean+se), width=.2)  + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))+ ylab("Seed mass (mg)")
-
-
-#plot SSD
-
-names(alltraits2)[names(alltraits2)=="Stem specific density (SSD)"] <-"ssd" #ddply doesn't seem to like spaces in column names, or ""ing them
-
-cssd<-ddply(alltraits2, c("Origin"), summarise,
-             N = sum(!is.na(ssd)),
-             mean = mean(ssd, na.rm=TRUE),
-             sd = sd(ssd, na.rm=TRUE),
-             se = sd/sqrt(N))
-
-ggplot(cssd, aes(x=Origin, y=mean)) + geom_bar(position=position_dodge(), stat="identity") + geom_errorbar(aes(ymin=mean-se, ymax = mean+se), width=.2) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))+ ylab("SSD")
-
-#plot SLA
-
-names(alltraits2)[names(alltraits2)=="Leaf specific area (SLA)"] <-"sla" #ddply doesn't seem to like spaces in column names, or ""ing them
-
-csla<-ddply(alltraits2, c("Origin"), summarise,
-             N = sum(!is.na(sla)),
-             mean = mean(sla, na.rm=TRUE),
-             sd = sd(sla, na.rm=TRUE),
-             se = sd/sqrt(N))
-
-ggplot(csla, aes(x=Origin, y=mean)) + geom_bar(position=position_dodge(), stat="identity") + geom_errorbar(aes(ymin=mean-se, ymax = mean+se), width=.2) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))+ ylab("SLA")
-
-#plot leaf N per dry mass
+#Leaf N
 
 names(alltraits2)[names(alltraits2)=="Leaf nitrogen (N) content per dry mass"] <-"leafN" #ddply doesn't seem to like spaces in column names, or ""ing them
 
@@ -967,6 +1175,179 @@ cleafN<-ddply(alltraits2, c("Origin"), summarise,
 
 ggplot(cleafN, aes(x=Origin, y=mean)) + geom_bar(position=position_dodge(), stat="identity") + geom_errorbar(aes(ymin=mean-se, ymax = mean+se), width=.2) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))+ ylab("Leaf N per dry mass (mg/g)")
 
+#Leaf P
+
+names(alltraits2)[names(alltraits2)=="Leaf phosphorus (P) content per dry mass"] <-"leafP" #ddply doesn't seem to like spaces in column names, or ""ing them
+
+cleafP<-ddply(alltraits2, c("Origin"), summarise,
+             N = sum(!is.na(leafP)),
+             mean = mean(leafP, na.rm=TRUE),
+             sd = sd(leafP, na.rm=TRUE),
+             se = sd/sqrt(N))
+
+ggplot(cleafP, aes(x=Origin, y=mean)) + geom_bar(position=position_dodge(), stat="identity") + geom_errorbar(aes(ymin=mean-se, ymax = mean+se), width=.2) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))+ ylab("Leaf P per dry mass (mg/g)")
+
+#Leaf K
+
+names(alltraits2)[names(alltraits2)=="Leaf potassium (K) content per dry mass"] <-"leafK" #ddply doesn't seem to like spaces in column names, or ""ing them
+
+cleafK<-ddply(alltraits2, c("Origin"), summarise,
+             N = sum(!is.na(leafK)),
+             mean = mean(leafK, na.rm=TRUE),
+             sd = sd(leafK, na.rm=TRUE),
+             se = sd/sqrt(N))
+
+ggplot(cleafK, aes(x=Origin, y=mean)) + geom_bar(position=position_dodge(), stat="identity") + geom_errorbar(aes(ymin=mean-se, ymax = mean+se), width=.2) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))+ ylab("Leaf K per dry mass (mg/g)")
+
+#C:N
+names(alltraits2)[names(alltraits2)=="Leaf carbon/nitrogen (C/N) ratio"] <-"leafCN" #ddply doesn't seem to like spaces in column names, or ""ing them
+
+cleafCN<-ddply(alltraits2, c("Origin"), summarise,
+             N = sum(!is.na(leafCN)),
+             mean = mean(leafCN, na.rm=TRUE),
+             sd = sd(leafCN, na.rm=TRUE),
+             se = sd/sqrt(N))
+
+ggplot(cleafCN, aes(x=Origin, y=mean)) + geom_bar(position=position_dodge(), stat="identity") + geom_errorbar(aes(ymin=mean-se, ymax = mean+se), width=.2) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))+ ylab("Leaf C:N ratio")
+
+#N:P
+
+names(alltraits2)[names(alltraits2)=="Leaf nitrogen/phosphorus (N/P) ratio"] <-"leafNP" #ddply doesn't seem to like spaces in column names, or ""ing them
+
+cleafNP<-ddply(alltraits2, c("Origin"), summarise,
+             N = sum(!is.na(leafNP)),
+             mean = mean(leafNP, na.rm=TRUE),
+             sd = sd(leafNP, na.rm=TRUE),
+             se = sd/sqrt(N))
+
+ggplot(cleafNP, aes(x=Origin, y=mean)) + geom_bar(position=position_dodge(), stat="identity") + geom_errorbar(aes(ymin=mean-se, ymax = mean+se), width=.2) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))+ ylab("Leaf N:P ratio")
+
+#SLA
+
+names(alltraits2)[names(alltraits2)=="Leaf specific area (SLA)"] <-"sla" #ddply doesn't seem to like spaces in column names, or ""ing them
+
+csla<-ddply(alltraits2, c("Origin"), summarise,
+             N = sum(!is.na(sla)),
+             mean = mean(sla, na.rm=TRUE),
+             sd = sd(sla, na.rm=TRUE),
+             se = sd/sqrt(N))
+
+ggplot(csla, aes(x=Origin, y=mean)) + geom_bar(position=position_dodge(), stat="identity") + geom_errorbar(aes(ymin=mean-se, ymax = mean+se), width=.2) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))+ ylab("SLA")
+
+#LWR
+
+names(alltraits2)[names(alltraits2)=="Leaf dry mass per plant dry mass (leaf weight ratio, LWR)"] <-"lwr" #ddply doesn't seem to like spaces in column names, or ""ing them
+
+clwr<-ddply(alltraits2, c("Origin"), summarise,
+             N = sum(!is.na(lwr)),
+             mean = mean(lwr, na.rm=TRUE),
+             sd = sd(lwr, na.rm=TRUE),
+             se = sd/sqrt(N))
+
+ggplot(clwr, aes(x=Origin, y=mean)) + geom_bar(position=position_dodge(), stat="identity") + geom_errorbar(aes(ymin=mean-se, ymax = mean+se), width=.2) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))+ ylab("LWR")
+
+#Stomata conductance
+
+names(alltraits2)[names(alltraits2)=="Stomata conductance per leaf area"] <-"stomataconductance" #ddply doesn't seem to like spaces in column names, or ""ing them
+
+cstomataconductance<-ddply(alltraits2, c("Origin"), summarise,
+             N = sum(!is.na(stomataconductance)),
+             mean = mean(stomataconductance, na.rm=TRUE),
+             sd = sd(stomataconductance, na.rm=TRUE),
+             se = sd/sqrt(N))
+
+ggplot(cstomataconductance, aes(x=Origin, y=mean)) + geom_bar(position=position_dodge(), stat="identity") + geom_errorbar(aes(ymin=mean-se, ymax = mean+se), width=.2) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))+ ylab("Stomata conductance per leaf area")
+
+#SSD
+names(alltraits2)[names(alltraits2)=="Stem specific density (SSD)"] <-"ssd" #ddply doesn't seem to like spaces in column names, or ""ing them
+
+cssd<-ddply(alltraits2, c("Origin"), summarise,
+             N = sum(!is.na(ssd)),
+             mean = mean(ssd, na.rm=TRUE),
+             sd = sd(ssd, na.rm=TRUE),
+             se = sd/sqrt(N))
+
+ggplot(cssd, aes(x=Origin, y=mean)) + geom_bar(position=position_dodge(), stat="identity") + geom_errorbar(aes(ymin=mean-se, ymax = mean+se), width=.2) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))+ ylab("SSD")
+
+
+#WoodyMass
+
+names(alltraits2)[names(alltraits2)=="Wood dry mass per plant dry mass"] <-"woodymass" #ddply doesn't seem to like spaces in column names, or ""ing them
+
+cwoodymass<-ddply(alltraits2, c("Origin"), summarise,
+             N = sum(!is.na(woodymass)),
+             mean = mean(woodymass, na.rm=TRUE),
+             sd = sd(woodymass, na.rm=TRUE),
+             se = sd/sqrt(N))
+
+ggplot(cwoodymass, aes(x=Origin, y=mean)) + geom_bar(position=position_dodge(), stat="identity") + geom_errorbar(aes(ymin=mean-se, ymax = mean+se), width=.2) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))+ ylab("Woody dry mass per plant dry mass")
+
+#RootN
+
+names(alltraits2)[names(alltraits2)=="Root nitrogen (N) content per dry mass"] <-"RootN" #ddply doesn't seem to like spaces in column names, or ""ing them
+
+crootN<-ddply(alltraits2, c("Origin"), summarise,
+             N = sum(!is.na(RootN)),
+             mean = mean(RootN, na.rm=TRUE),
+             sd = sd(RootN, na.rm=TRUE),
+             se = sd/sqrt(N))
+
+ggplot(crootN, aes(x=Origin, y=mean)) + geom_bar(position=position_dodge(), stat="identity") + geom_errorbar(aes(ymin=mean-se, ymax = mean+se), width=.2) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))+ ylab("Root N (mg per g dry root mass)")
+
+
+#Rootdepth
+
+names(alltraits2)[names(alltraits2)=="Rooting depth"] <-"rootdepth" #ddply doesn't seem to like spaces in column names, or ""ing them
+
+crootdepth<-ddply(alltraits2, c("Origin"), summarise,
+             N = sum(!is.na(rootdepth)),
+             mean = mean(rootdepth, na.rm=TRUE),
+             sd = sd(rootdepth, na.rm=TRUE),
+             se = sd/sqrt(N))
+
+ggplot(crootdepth, aes(x=Origin, y=mean)) + geom_bar(position=position_dodge(), stat="identity") + geom_errorbar(aes(ymin=mean-se, ymax = mean+se), width=.2) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))+ ylab("Root depth (cm)")
+
+#Seednumber
+
+names(alltraits2)[names(alltraits2)=="Seed number per reproducton unit"] <-"seedno" #ddply doesn't seem to like spaces in column names, or ""ing them
+
+cseedno<-ddply(alltraits2, c("Origin"), summarise,
+             N = sum(!is.na(seedno)),
+             mean = mean(seedno, na.rm=TRUE),
+             sd = sd(seedno, na.rm=TRUE),
+             se = sd/sqrt(N))
+
+
+cseedno$Origin<-factor(cseedno$Origin, levels=c("N", "I")) #puts the natives on the lefthand side
+
+ggplot(cseedno, aes(x=Origin, y=log(mean,10))) + geom_bar(position=position_dodge(), stat="identity") + geom_errorbar(aes(ymin=log(mean-se,10), ymax = log(mean+se,10), width=.2)) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))+ ylab("log(Number of seeds per reproductive unit)")
+
+
+#Seedprotein
+
+names(alltraits2)[names(alltraits2)=="Seed protein content per mass"] <-"Seedprotein" #ddply doesn't seem to like spaces in column names, or ""ing them
+
+cSeedprotein<-ddply(alltraits2, c("Origin"), summarise,
+             N = sum(!is.na(Seedprotein)),
+             mean = mean(Seedprotein, na.rm=TRUE),
+             sd = sd(Seedprotein, na.rm=TRUE),
+             se = sd/sqrt(N))
+
+
+ggplot(cSeedprotein, aes(x=Origin, y=mean)) + geom_bar(position=position_dodge(), stat="identity") + geom_errorbar(aes(ymin=mean-se, ymax = mean+se), width=.2)  + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))+ ylab("Seed protein content per mass (%)")
+
+
+#Seedmass
+names(alltraits2)[names(alltraits2)=="Seed mass"] <-"Seedmass" #ddply doesn't seem to like spaces in column names, or ""ing them
+
+cseed<-ddply(alltraits2, c("Origin"), summarise,
+             N = sum(!is.na(Seedmass)),
+             mean = mean(Seedmass, na.rm=TRUE),
+             sd = sd(Seedmass, na.rm=TRUE),
+             se = sd/sqrt(N))
+
+
+ggplot(cseed, aes(x=Origin, y=mean)) + geom_bar(position=position_dodge(), stat="identity") + geom_errorbar(aes(ymin=mean-se, ymax = mean+se), width=.2)  + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))+ ylab("Seed mass (mg)")
 
 #RGR
 
@@ -980,32 +1361,19 @@ cRGR<-ddply(alltraits2, c("Origin"), summarise,
 
 ggplot(cRGR, aes(x=Origin, y=mean)) + geom_bar(position=position_dodge(), stat="identity") + geom_errorbar(aes(ymin=mean-se, ymax = mean+se), width=.2) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))+ ylab("Relative growth rate (g/g/day)")
 
-#C:N
+#Photosynthrate
+names(alltraits2)[names(alltraits2)=="Photosynthesis per leaf dry mass"] <-"phot" #ddply doesn't seem to like spaces in column names, or ""ing them
 
-names(alltraits2)[names(alltraits2)=="LeafCN"] <-"leafCN" #ddply doesn't seem to like spaces in column names, or ""ing them
-
-cleafCN<-ddply(alltraits2, c("Origin"), summarise,
-             N = sum(!is.na(leafCN)),
-             mean = mean(leafCN, na.rm=TRUE),
-             sd = sd(leafCN, na.rm=TRUE),
+cphot<-ddply(alltraits2, c("Origin"), summarise,
+             N = sum(!is.na(phot)),
+             mean = mean(phot, na.rm=TRUE),
+             sd = sd(phot, na.rm=TRUE),
              se = sd/sqrt(N))
 
-ggplot(cleafCN, aes(x=Origin, y=mean)) + geom_bar(position=position_dodge(), stat="identity") + geom_errorbar(aes(ymin=mean-se, ymax = mean+se), width=.2) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))+ ylab("Leaf C:N ratio")
+ggplot(cphot, aes(x=Origin, y=mean)) + geom_bar(position=position_dodge(), stat="identity") + geom_errorbar(aes(ymin=mean-se, ymax = mean+se), width=.2) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))+ ylab("Photosynthesis (nmol CO2 per g dry leaf per s)")
 
-#Root N
 
-names(alltraits2)[names(alltraits2)=="Root nitrogen (N) content per dry mass"] <-"RootN" #ddply doesn't seem to like spaces in column names, or ""ing them
-
-crootN<-ddply(alltraits2, c("Origin"), summarise,
-             N = sum(!is.na(RootN)),
-             mean = mean(RootN, na.rm=TRUE),
-             sd = sd(RootN, na.rm=TRUE),
-             se = sd/sqrt(N))
-
-ggplot(crootN, aes(x=Origin, y=mean)) + geom_bar(position=position_dodge(), stat="identity") + geom_errorbar(aes(ymin=mean-se, ymax = mean+se), width=.2) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))+ ylab("Root N (mg per g dry root mass)")
-
-#Respiration
-
+#Leafresp
 names(alltraits2)[names(alltraits2)=="Leaf respiration per dry mass"] <-"resp" #ddply doesn't seem to like spaces in column names, or ""ing them
 
 cresp<-ddply(alltraits2, c("Origin"), summarise,
@@ -1016,38 +1384,10 @@ cresp<-ddply(alltraits2, c("Origin"), summarise,
 
 ggplot(cresp, aes(x=Origin, y=mean)) + geom_bar(position=position_dodge(), stat="identity") + geom_errorbar(aes(ymin=mean-se, ymax = mean+se), width=.2) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))+ ylab("Leaf respiration (nmol CO2 per g dry leaf per s)")
 
-#photosynthesis
-
-names(alltraits2)[names(alltraits2)=="Photosynthesis per leaf dry mass"] <-"phot" #ddply doesn't seem to like spaces in column names, or ""ing them
-
-cphot<-ddply(alltraits2, c("Origin"), summarise,
-             N = sum(!is.na(phot)),
-             mean = mean(phot, na.rm=TRUE),
-             sd = sd(phot, na.rm=TRUE),
-             se = sd/sqrt(N))
-
-ggplot(cphot, aes(x=Origin, y=mean)) + geom_bar(position=position_dodge(), stat="identity") + geom_errorbar(aes(ymin=mean-se, ymax = mean+se), width=.2) + theme_bw() + theme (panel.grid.majo                                                                                                                                                                                                                                                                                                                        r=element_line(color = NA), panel.grid.minor=element_line(color = NA))+ ylab("Photosynthesis (nmol CO2 per g dry leaf per s)")
-
-
-#seed number
-names(alltraits2)[names(alltraits2)=="Seed number per reproducton unit"] <-"seedno" #ddply doesn't seem to like spaces in column names, or ""ing them
-
-cseedno<-ddply(alltraits2, c("Origin"), summarise,
-             N = sum(!is.na(seedno)),
-             mean = mean(seedno, na.rm=TRUE),
-             sd = sd(seedno, na.rm=TRUE),
-             se = sd/sqrt(N))
-
-
-cseedno$Origin<-factor(cseedno$Origin, levels=c("N", "I"))
-
-ggplot(cseedno, aes(x=Origin, y=log(mean,10))) + geom_bar(position=position_dodge(), stat="identity") + geom_errorbar(aes(ymin=log(mean-se,10), ymax = log(mean+se,10), width=.2)) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))+ ylab("log(Number of seeds per reproductive unit)")
 
 
 
 ```
-
-
 
 
 ------------------------------------------------------------------------------------
@@ -1226,9 +1566,9 @@ for (j in 1:reps){
 
 #make a output matrix to fill all the different simulations (why we have a third dimension, so that it does not replace the earlier matrix)
 
-http://stackoverflow.com/questions/24314878/compute-all-pairwise-differences-within-a-vector-in-r
+#http://stackoverflow.com/questions/24314878/compute-all-pairwise-differences-within-a-vector-in-r
 
-min NND - for species i:length(species) in sites j:length(sites), calculate all pairwise distances using gowdist matrix and save the smallest of these.  
+#min NND - for species i:length(species) in sites j:length(sites), calculate all pairwise distances using gowdist matrix and save the smallest of these.  
 
 for (i in 1:sites){
   pairdist<-(j:k - j:k)   abs(apply(combn(1:length(species),2),2,diff))

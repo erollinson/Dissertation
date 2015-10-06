@@ -5,6 +5,9 @@ date: "Wednesday, November 12, 2014"
 output: html_document
 ---
 
+This file contains analyses for plant communities surveyed by EJR in summer 2013 in the Upper Hudson watershed (small stream riparian zones).  Presence/absence data.  These analyses focus on correlations with environmental characteristics.  
+
+
 Import the species list
 ```{r}
 require(RCurl)
@@ -14,12 +17,12 @@ list <- read.csv(text = raw) #read in the github file
 ```
 
 Cast the list into a site by species matrix, and convert the output (default of class 'cast') to a dataframe.
-
 ```{r}
 require(reshape)
 matrix<-cast(list, River ~ Species, value='Presence')
 comm<-as.data.frame(matrix)
 ```
+
 
 Import the environment matrix
 ```{r}
@@ -48,13 +51,13 @@ env1km<-env[,c(1:23,39:53)]
 env10km<-env[,c(1:23,54:68)]
 ```
 
-Run a CCA for quantitative variables
+Run a CCA for quantitative environmental characteristics
 
-n.b. gave keyser kill 0 LOI - had no sample because it was entirely too rocky to sample, that seems a reasonable placeholder
+Keyser Kill is assigned a value of 0 for LOI; no soil sample was collected because the site substrate was too rocky to collect, so the assumption of 0 organic material seems reasonable
 
-Is there a way to do spatial control instead including lat/long as variables?
+[Is there a way to do spatial control instead including lat/long as variables?] n.b. lat/long not included in final analysis
 
-
+CCAs for environmental datasets containing landcover at different buffer areas (other variables are unchanged among these three)
 ```{r}
 require(vegan)
 cca.env100m<-(cca(comm, env100m))
@@ -75,7 +78,7 @@ plot(cca.env10km)
 ```
 
 
-put some numbers onto the cca
+Permutation tests for CCA to assess the significance of any groupings
 
 ```{r}
 require(vegan)
@@ -88,14 +91,14 @@ aov3
 ```
 
 
-best subset of environmental variables with maximum (rank) correlation with community dissimilarities
+Identify the best subset of environmental variables with maximum (rank) correlation with community dissimilarities, where in upto=n, n=the number of environmental variables to identify
 
 ```{r}
 require(vegan)
 bioenv(comm, env, upto=8)
 ```
 
-subset the 100m environmental data to those that are most likely of interest (remove isothermality, etc) and sum the land cover to broader categories
+Subset the 100m environmental data to those that are most likely of interest (remove isothermality, etc) and sum the land cover to broader categories
 
 ```{r}
 envsub<-env100m[,c(1:2,6:7,16:38)]
@@ -106,7 +109,7 @@ envsub$wetlands<-rowSums(envsub[,13:14])
 envsub2<-envsub[,c(1:12,28:31)]
 ```
 
-CCA for the subset
+CCA for the subset created above
 
 ```{r}
 cca.envsub2<-(cca(comm, envsub2))
@@ -144,7 +147,6 @@ bioenv(comm, env4, upto=5)
 
 Yet another set of preferred environmental variables and the corresponding CCA  <- this is the one to use
 
-
 ````{r}
 require(vegan)
 env5<-env[,c(19,22,23,24,40:54,70:73)]
@@ -166,10 +168,7 @@ plot(prefcca)
 ```
 
 
-
-
-
-#try a PCA
+PCA
 ```{r}
 
 require(ade4)
@@ -183,7 +182,6 @@ biplot(pcatest2)
 
 
 test for limiting similarity vs. environmental filtering
-
 ```{r}
 
 #use the pres/abs matrix for 2013 'comm' in the randomizer
@@ -244,7 +242,7 @@ for (i in 1:rep) {
 
 
 
-
+Note from meeting with jessica
 
 add elevation remove longitude
 distance to a highway

@@ -7,12 +7,6 @@ output: html_document
 
 Taken from http://www.cookbook-r.com/Tools_for_experiments/Generating_counterbalanced_orders/ on 11/19/2014
 
-Generate latin square (need to define the function first using the next box below)
-
-```{r}
-latinsquare(4)
-```
-
 This code defines the function for generating latin squares
 ```{r}
 ## -len is the size of the latin square
@@ -123,4 +117,11 @@ latinsquare <- function(len, reps=1, seed=NA, returnstrings=FALSE) {
     if (returnstrings) { return(squareid) }
     else               { return(allsq) }
 }
+```
+
+
+Generate latin square, where for latinsquare(n) n=the dimensions of the square
+
+```{r}
+latinsquare(4)
 ```

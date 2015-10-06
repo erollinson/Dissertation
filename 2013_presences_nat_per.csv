@@ -1,0 +1,945 @@
+River,Species,Presence
+Mill Creek,abies_balsamea,1
+New Pond Brook,abies_balsamea,1
+Sherriff Lake Outlet,abies_balsamea,1
+Kennyetto Creek,acer_negundo,1
+Landsman Kill,acer_negundo,1
+Minots Corner Road,acer_negundo,1
+Snook Kill,acer_negundo,1
+Stewart Creek,acer_pensylvanicum,1
+Bullhead Pond Brook,acer_rubrum,1
+Cadman Creek,acer_rubrum,1
+Evas Kill,acer_rubrum,1
+Fawn Lake,acer_rubrum,1
+Hudson River,acer_rubrum,1
+Indian Kill,acer_rubrum,1
+Kayaderosseras Creek,acer_rubrum,1
+Mill Creek,acer_rubrum,1
+New Pond Brook,acer_rubrum,1
+North Branch West Stony Creek,acer_rubrum,1
+Quacken Kill,acer_rubrum,1
+Trout Brook,acer_rubrum,1
+Fishkill Creek,acer_saccharinum,1
+Kayaderosseras Creek,acer_saccharinum,1
+Roeliff Jansen Kill,acer_saccharinum,1
+Sprout Creek,acer_saccharinum,1
+Steele Creek,acer_saccharinum,1
+Alplaus Kill,acer_saccharum,1
+Ballston Creek,acer_saccharum,1
+Beaver Kill,acer_saccharum,1
+Bullhead Pond Brook,acer_saccharum,1
+Cadman Creek,acer_saccharum,1
+Daly Creek,acer_saccharum,1
+Evas Kill,acer_saccharum,1
+Fawn Lake,acer_saccharum,1
+Hans Creek,acer_saccharum,1
+Indian Brook,acer_saccharum,1
+Keyser Kill,acer_saccharum,1
+Kinderhook Creek,acer_saccharum,1
+Lansing Kill,acer_saccharum,1
+Plotter Kill,acer_saccharum,1
+Potic Creek,acer_saccharum,1
+Quacken Kill,acer_saccharum,1
+Saw Kill,acer_saccharum,1
+Stewart Creek,acer_saccharum,1
+Stony Creek,acer_saccharum,1
+Trout Brook,acer_saccharum,1
+Valatie Kill,acer_saccharum,1
+Wharton Hollow Creek,acer_saccharum,1
+Stewart Creek,acer_spicatum,1
+Big Brook,ageratina_altissima,1
+Evas Kill,ageratina_altissima,1
+Green River,ageratina_altissima,1
+Indian Kill,ageratina_altissima,1
+Kinderhook Creek,ageratina_altissima,1
+Plotter Kill,ageratina_altissima,1
+Quacken Kill,ageratina_altissima,1
+Alplaus Kill,agrimonia_gryposepala,1
+Kinderhook Creek,agrimonia_gryposepala,1
+Mill Brook,agrimonia_gryposepala,1
+Alplaus Kill,agrostis_perennans,1
+Cadman Creek,agrostis_perennans,1
+Chester Creek,agrostis_perennans,1
+Daly Creek,agrostis_perennans,1
+Hans Creek,agrostis_perennans,1
+Indian Kill,agrostis_perennans,1
+Keyser Kill,agrostis_perennans,1
+Mill Brook,agrostis_perennans,1
+Mill Creek,agrostis_perennans,1
+New Pond Brook,agrostis_perennans,1
+North Branch West Stony Creek,agrostis_perennans,1
+Robbs Creek,agrostis_perennans,1
+Robbs Creek,agrostis_perennans,1
+Sherriff Lake Outlet,agrostis_perennans,1
+Stewart Creek,agrostis_perennans,1
+Trout Brook,agrostis_perennans,1
+Boreas River,alnus_incana,1
+Cadman Creek,alnus_incana,1
+Chester Creek,alnus_incana,1
+Daly Creek,alnus_incana,1
+Four Mile Brook,alnus_incana,1
+Hans Creek,alnus_incana,1
+Hudson River,alnus_incana,1
+Jassup River,alnus_incana,1
+Kennyetto Creek,alnus_incana,1
+Mill Brook,alnus_incana,1
+Mill Creek,alnus_incana,1
+Minots Corner Road,alnus_incana,1
+Mohawk River,alnus_incana,1
+New Pond Brook,alnus_incana,1
+North Branch West Stony Creek,alnus_incana,1
+Paragon Brook,alnus_incana,1
+Robbs Creek,alnus_incana,1
+Sherriff Lake Outlet,alnus_incana,1
+Snook Kill,alnus_incana,1
+Timmerman Creek,alnus_incana,1
+Trout Brook,alnus_incana,1
+Wharton Hollow Creek,alnus_incana,1
+Ballston Creek,amphicarpaea_bracteata,1
+Battenkill,amphicarpaea_bracteata,1
+Evas Kill,amphicarpaea_bracteata,1
+Hans Creek,amphicarpaea_bracteata,1
+Indian Kill,amphicarpaea_bracteata,1
+Mohawk River,amphicarpaea_bracteata,1
+Paragon Brook,amphicarpaea_bracteata,1
+Plotter Kill,amphicarpaea_bracteata,1
+Potic Creek,amphicarpaea_bracteata,1
+Snook Kill,amphicarpaea_bracteata,1
+Sterling Creek,anemone_virginiana,1
+Alplaus Kill,apocynum_cannabinum,1
+Cobleskill Creek,apocynum_cannabinum,1
+Daly Creek,apocynum_cannabinum,1
+Fawn Lake,apocynum_cannabinum,1
+Plotter Kill,apocynum_cannabinum,1
+Saw Kill,apocynum_cannabinum,1
+Wappinger Creek,apocynum_cannabinum,1
+Bullhead Pond Brook,arisaema_triphyllum,1
+Cadman Creek,arisaema_triphyllum,1
+Daly Creek,arisaema_triphyllum,1
+Mill Brook,arisaema_triphyllum,1
+Potic Creek,arisaema_triphyllum,1
+Alplaus Kill,asclepias_syriaca,1
+Kayaderosseras Creek,asclepias_syriaca,1
+Paragon Brook,asclepias_syriaca,1
+Alplaus Kill,athyrium_filix_femina,1
+Cadman Creek,athyrium_filix_femina,1
+Daly Creek,athyrium_filix_femina,1
+Kinderhook Creek,athyrium_filix_femina,1
+Mill Creek,athyrium_filix_femina,1
+Mohawk River,athyrium_filix_femina,1
+Robbs Creek,athyrium_filix_femina,1
+Roeliff Jansen Kill,athyrium_filix_femina,1
+Sherriff Lake Outlet,athyrium_filix_femina,1
+Valatie Kill,athyrium_filix_femina,1
+Fawn Lake,betula_alleghaniensis,1
+Hans Creek,betula_alleghaniensis,1
+Mohawk River,betula_alleghaniensis,1
+Saw Kill,betula_alleghaniensis,1
+Stewart Creek,betula_alleghaniensis,1
+Cadman Creek,betula_papyrifera,1
+Lansing Kill,betula_papyrifera,1
+Sterling Creek,blephilia_hirsuta,1
+Cadman Creek,boehmeria_cylindrica,1
+Indian Brook,boehmeria_cylindrica,1
+Kinderhook Creek,boehmeria_cylindrica,1
+Landsman Kill,boehmeria_cylindrica,1
+Mill Brook,boehmeria_cylindrica,1
+Potic Creek,boehmeria_cylindrica,1
+Trout Brook,boehmeria_cylindrica,1
+Robbs Creek,bromus_ciliatus,1
+Mill Creek,bromus_pubescens,1
+Ballston Creek,carex_crinita,1
+Beaver Kill,carex_crinita,1
+Cadman Creek,carex_crinita,1
+Daly Creek,carex_crinita,1
+Four Mile Brook,carex_crinita,1
+Hans Creek,carex_crinita,1
+Kayaderosseras Creek,carex_crinita,1
+Kayaderosseras Creek,carex_crinita,1
+Keyser Kill,carex_crinita,1
+Potic Creek,carex_crinita,1
+Sherriff Lake Outlet,carex_crinita,1
+Keyser Kill,carex_scoparia,1
+Ballston Creek,carpinus_caroliniana,1
+Battenkill,carpinus_caroliniana,1
+Indian Kill,carpinus_caroliniana,1
+Kinderhook Creek,carpinus_caroliniana,1
+Lansing Kill,carpinus_caroliniana,1
+Mohawk River,carpinus_caroliniana,1
+Potic Creek,carpinus_caroliniana,1
+Sterling Creek,carpinus_caroliniana,1
+Stony Creek,carpinus_caroliniana,1
+Wharton Hollow Creek,carpinus_caroliniana,1
+Ballston Creek,carya_cordiformis,1
+Hans Creek,carya_cordiformis,1
+Alplaus Kill,carya_ovata,1
+Stony Creek,cephalanthus_occidentalis,1
+Cadman Creek,chelone_glabra,1
+Cedar River,chelone_glabra,1
+Four Mile Brook,chelone_glabra,1
+Mill Creek,chelone_glabra,1
+New Pond Brook,chelone_glabra,1
+North Branch West Stony Creek,chelone_glabra,1
+Robbs Creek,chelone_glabra,1
+Sherriff Lake Outlet,chelone_glabra,1
+Trout Brook,chelone_glabra,1
+Ballston Creek,cicuta_maculata,1
+Big Brook,cicuta_maculata,1
+Cedar River,cicuta_maculata,1
+Evas Kill,cicuta_maculata,1
+Kinderhook Creek,cicuta_maculata,1
+Mill Creek,cicuta_maculata,1
+Plotter Kill,cicuta_maculata,1
+Quacken Kill,cicuta_maculata,1
+Steele Creek,cicuta_maculata,1
+Sterling Creek,cicuta_maculata,1
+Stewart Creek,cicuta_maculata,1
+Timmerman Creek,cicuta_maculata,1
+Cadman Creek,cinna_arundinacea,1
+Evas Kill,cinna_arundinacea,1
+Quacken Kill,cinna_arundinacea,1
+Snook Kill,cinna_arundinacea,1
+Cadman Creek,circaea_lutetiana,1
+Daly Creek,circaea_lutetiana,1
+Evas Kill,circaea_lutetiana,1
+Indian Brook,circaea_lutetiana,1
+Indian Kill,circaea_lutetiana,1
+Potic Creek,circaea_lutetiana,1
+Robbs Creek,circaea_lutetiana,1
+Stony Creek,circaea_lutetiana,1
+Wharton Hollow Creek,circaea_lutetiana,1
+Beaver Kill,clematis_virginiana,1
+Big Brook,clematis_virginiana,1
+Boreas River,clematis_virginiana,1
+Cadman Creek,clematis_virginiana,1
+Cedar River,clematis_virginiana,1
+Daly Creek,clematis_virginiana,1
+Fawn Lake,clematis_virginiana,1
+Four Mile Brook,clematis_virginiana,1
+Mill Creek,clematis_virginiana,1
+North Branch West Stony Creek,clematis_virginiana,1
+Quacken Kill,clematis_virginiana,1
+Robbs Creek,clematis_virginiana,1
+Sherriff Lake Outlet,clematis_virginiana,1
+Sprout Creek,clematis_virginiana,1
+Sterling Creek,clematis_virginiana,1
+Stewart Creek,clematis_virginiana,1
+Timmerman Creek,clematis_virginiana,1
+Trout Brook,clematis_virginiana,1
+Wharton Hollow Creek,clematis_virginiana,1
+Beaver Kill,clinopodium_vulgare,1
+Evas Kill,collinsonia_canadensis,1
+Fawn Lake,cornus_amomum,1
+Sprout Creek,cornus_amomum,1
+Hudson River,cornus_canadensis,1
+Boreas River,cornus_rugosa,1
+Minots Corner Road,cornus_rugosa,1
+Sterling Creek,cornus_rugosa,1
+Timmerman Creek,cornus_rugosa,1
+Ballston Creek,cornus_sericea,1
+Battenkill,cornus_sericea,1
+Boreas River,cornus_sericea,1
+Cadman Creek,cornus_sericea,1
+Chester Creek,cornus_sericea,1
+Daly Creek,cornus_sericea,1
+Indian Kill,cornus_sericea,1
+Kennyetto Creek,cornus_sericea,1
+Kinderhook Creek,cornus_sericea,1
+Mill Brook,cornus_sericea,1
+Paragon Brook,cornus_sericea,1
+Snook Kill,cornus_sericea,1
+Steele Creek,cornus_sericea,1
+Trout Brook,cornus_sericea,1
+Wappinger Creek,cornus_sericea,1
+Lansing Kill,corylus_cornuta,1
+Evas Kill,cryptotaenia_canadensis,1
+Ballston Creek,cyperus_strigosus,1
+Chester Creek,cyperus_strigosus,1
+Kayaderosseras Creek,cyperus_strigosus,1
+Battenkill,dichanthelium_clandestinum,1
+Beaver Kill,dichanthelium_clandestinum,1
+Cadman Creek,dichanthelium_clandestinum,1
+Cedar River,dichanthelium_clandestinum,1
+Hans Creek,dichanthelium_clandestinum,1
+Indian Brook,dichanthelium_clandestinum,1
+Indian Kill,dichanthelium_clandestinum,1
+Kayaderosseras Creek,dichanthelium_clandestinum,1
+Kennyetto Creek,dichanthelium_clandestinum,1
+Kinderhook Creek,dichanthelium_clandestinum,1
+Mill Brook,dichanthelium_clandestinum,1
+North Branch West Stony Creek,dichanthelium_clandestinum,1
+Potic Creek,dichanthelium_clandestinum,1
+Quacken Kill,dichanthelium_clandestinum,1
+Roeliff Jansen Kill,dichanthelium_clandestinum,1
+Snook Kill,dichanthelium_clandestinum,1
+Trout Brook,dichanthelium_clandestinum,1
+Fishkill Creek,dioscorea_villosa,1
+Lansing Kill,dryopteris_carthusiana,1
+Stewart Creek,dryopteris_carthusiana,1
+Evas Kill,dryopteris_cristata,1
+Stony Creek,elymus_hystrix,1
+Cedar River,elymus_trachycaulus,1
+Beaver Kill,elymus_virginicus,1
+Saw Kill,elymus_virginicus,1
+Evas Kill,epilobium_ciliatum,1
+Snook Kill,epilobium_ciliatum,1
+Battenkill,equisetum_fluviatile,1
+Keyser Kill,equisetum_fluviatile,1
+Timmerman Creek,equisetum_fluviatile,1
+Timmerman Creek,equisetum_hyemale,1
+Cedar River,equisetum_palustre,1
+Alplaus Kill,equisetum_pratense,1
+Boreas River,equisetum_pratense,1
+Hans Creek,equisetum_pratense,1
+Potic Creek,equisetum_pratense,1
+Sherriff Lake Outlet,equisetum_pratense,1
+Snook Kill,equisetum_pratense,1
+Sterling Creek,equisetum_pratense,1
+Wappinger Creek,equisetum_pratense,1
+Evas Kill,eupatorium_perfoliatum,1
+Fawn Lake,eupatorium_perfoliatum,1
+Mill Brook,eupatorium_perfoliatum,1
+Robbs Creek,eupatorium_perfoliatum,1
+Wharton Hollow Creek,eupatorium_perfoliatum,1
+Boreas River,euthamia_graminifolia,1
+Cedar River,euthamia_graminifolia,1
+Chester Creek,euthamia_graminifolia,1
+Four Mile Brook,euthamia_graminifolia,1
+Jassup River,euthamia_graminifolia,1
+Kennyetto Creek,euthamia_graminifolia,1
+Landsman Kill,euthamia_graminifolia,1
+North Branch West Stony Creek,euthamia_graminifolia,1
+Potic Creek,euthamia_graminifolia,1
+Robbs Creek,euthamia_graminifolia,1
+Sterling Creek,euthamia_graminifolia,1
+Alplaus Kill,fagus_grandifolia,1
+Bullhead Pond Brook,fagus_grandifolia,1
+Cadman Creek,fagus_grandifolia,1
+Minots Corner Road,fagus_grandifolia,1
+Sherriff Lake Outlet,fagus_grandifolia,1
+Big Brook,fragaria_vesca,1
+Cedar River,fragaria_vesca,1
+Four Mile Brook,fragaria_vesca,1
+Hans Creek,fragaria_vesca,1
+Lansing Kill,fragaria_vesca,1
+Mill Creek,fragaria_vesca,1
+Minots Corner Road,fragaria_vesca,1
+New Pond Brook,fragaria_vesca,1
+Paragon Brook,fragaria_vesca,1
+Robbs Creek,fragaria_vesca,1
+Sterling Creek,fragaria_vesca,1
+Stewart Creek,fragaria_vesca,1
+Timmerman Creek,fragaria_vesca,1
+Ballston Creek,fraxinus_americana,1
+Battenkill,fraxinus_americana,1
+Big Brook,fraxinus_americana,1
+Bullhead Pond Brook,fraxinus_americana,1
+Fawn Lake,fraxinus_americana,1
+Fishkill Creek,fraxinus_americana,1
+Hans Creek,fraxinus_americana,1
+Indian Kill,fraxinus_americana,1
+Kinderhook Creek,fraxinus_americana,1
+Lansing Kill,fraxinus_americana,1
+Minots Corner Road,fraxinus_americana,1
+North Branch West Stony Creek,fraxinus_americana,1
+Quacken Kill,fraxinus_americana,1
+Saw Kill,fraxinus_americana,1
+Sprout Creek,fraxinus_americana,1
+Steele Creek,fraxinus_americana,1
+Stony Creek,fraxinus_americana,1
+Trout Brook,fraxinus_americana,1
+Valatie Kill,fraxinus_americana,1
+Wharton Hollow Creek,fraxinus_americana,1
+Stewart Creek,fraxinus_nigra,1
+Potic Creek,fraxinus_pennsylvanica,1
+Cadman Creek,galium_asprellum,1
+Daly Creek,galium_asprellum,1
+Four Mile Brook,galium_asprellum,1
+Hudson River,galium_asprellum,1
+Mill Brook,galium_asprellum,1
+Mill Creek,galium_asprellum,1
+Paragon Brook,galium_asprellum,1
+Sherriff Lake Outlet,galium_asprellum,1
+Timmerman Creek,galium_asprellum,1
+Beaver Kill,galium_boreale,1
+Wappinger Creek,galium_boreale,1
+Wharton Hollow Creek,galium_boreale,1
+Alplaus Kill,galium_palustre,1
+Ballston Creek,galium_palustre,1
+Battenkill,galium_palustre,1
+Beaver Kill,galium_palustre,1
+Cedar River,galium_palustre,1
+Chester Creek,galium_palustre,1
+Jassup River,galium_palustre,1
+Kennyetto Creek,galium_palustre,1
+Kinderhook Creek,galium_palustre,1
+Landsman Kill,galium_palustre,1
+Mohawk River,galium_palustre,1
+Potic Creek,galium_palustre,1
+Quacken Kill,galium_palustre,1
+Roeliff Jansen Kill,galium_palustre,1
+Stony Creek,galium_palustre,1
+Wharton Hollow Creek,galium_palustre,1
+Roeliff Jansen Kill,galium_triflorum,1
+Landsman Kill,geum_canadense,1
+Mohawk River,geum_canadense,1
+Roeliff Jansen Kill,geum_canadense,1
+Snook Kill,geum_canadense,1
+Ballston Creek,glyceria_striata,1
+Cadman Creek,glyceria_striata,1
+Daly Creek,glyceria_striata,1
+Four Mile Brook,glyceria_striata,1
+Four Mile Brook,glyceria_striata,1
+Indian Kill,glyceria_striata,1
+Keyser Kill,glyceria_striata,1
+Mill Brook,glyceria_striata,1
+Mill Creek,glyceria_striata,1
+New Pond Brook,glyceria_striata,1
+New Pond Brook,glyceria_striata,1
+North Branch West Stony Creek,glyceria_striata,1
+Robbs Creek,glyceria_striata,1
+Sherriff Lake Outlet,glyceria_striata,1
+Timmerman Creek,glyceria_striata,1
+Ballston Creek,hamamelis_virginiana,1
+Hans Creek,hamamelis_virginiana,1
+Saw Kill,hamamelis_virginiana,1
+Sterling Creek,hamamelis_virginiana,1
+Battenkill,helianthus_strumosus,1
+Valatie Kill,helianthus_strumosus,1
+Quacken Kill,helianthus_tuberosus,1
+Robbs Creek,hypericum_mutilum,1
+Stony Creek,hypericum_punctatum,1
+Cadman Creek,juglans_cinerea,1
+Quacken Kill,juglans_cinerea,1
+Hudson River,juglans_nigra,1
+Landsman Kill,juglans_nigra,1
+Four Mile Brook,juncus_articulatus,1
+Timmerman Creek,juncus_articulatus,1
+Cedar River,juncus_filiformis,1
+Four Mile Brook,juncus_filiformis,1
+Alplaus Kill,laportea_canadensis,1
+Ballston Creek,laportea_canadensis,1
+Evas Kill,laportea_canadensis,1
+Landsman Kill,laportea_canadensis,1
+Snook Kill,laportea_canadensis,1
+Indian Brook,lindera_benzoin,1
+Battenkill,liparis_loeselii,1
+Mill Creek,liparis_loeselii,1
+Stewart Creek,liparis_loeselii,1
+Ballston Creek,lobelia_cardinalis,1
+Jassup River,lobelia_cardinalis,1
+Mill Brook,lobelia_cardinalis,1
+Mill Creek,lobelia_cardinalis,1
+Paragon Brook,lobelia_cardinalis,1
+Stewart Creek,lobelia_cardinalis,1
+Timmerman Creek,lobelia_cardinalis,1
+Trout Brook,lobelia_cardinalis,1
+Evas Kill,lobelia_siphilitica,1
+Snook Kill,lobelia_siphilitica,1
+Chester Creek,ludwigia_palustris,1
+Jassup River,ludwigia_palustris,1
+Hudson River,lycopus_americanus,1
+Boreas River,lycopus_rubellus,1
+Cadman Creek,lycopus_rubellus,1
+Cedar River,lycopus_rubellus,1
+Chester Creek,lycopus_rubellus,1
+Evas Kill,lycopus_rubellus,1
+Four Mile Brook,lycopus_rubellus,1
+Lansing Kill,lycopus_rubellus,1
+New Pond Brook,lycopus_rubellus,1
+North Branch West Stony Creek,lycopus_rubellus,1
+Robbs Creek,lycopus_rubellus,1
+Sherriff Lake Outlet,lycopus_rubellus,1
+Snook Kill,lycopus_rubellus,1
+Sterling Creek,lycopus_rubellus,1
+Stewart Creek,lycopus_rubellus,1
+Trout Brook,lycopus_rubellus,1
+Battenkill,lysimachia_ciliata,1
+Beaver Kill,lysimachia_ciliata,1
+Mill Brook,lysimachia_ciliata,1
+Mohawk River,lysimachia_ciliata,1
+Wharton Hollow Creek,lysimachia_ciliata,1
+Ballston Creek,lysimachia_quadrifolia,1
+Fawn Lake,lysimachia_terrestris,1
+Bullhead Pond Brook,maianthemum_racemosum,1
+Cadman Creek,maianthemum_racemosum,1
+Hans Creek,maianthemum_racemosum,1
+Indian Kill,maianthemum_racemosum,1
+Kennyetto Creek,maianthemum_racemosum,1
+Kinderhook Creek,maianthemum_racemosum,1
+Lansing Kill,maianthemum_racemosum,1
+Minots Corner Road,maianthemum_racemosum,1
+Mohawk River,maianthemum_racemosum,1
+North Branch West Stony Creek,maianthemum_racemosum,1
+Robbs Creek,maianthemum_racemosum,1
+Stewart Creek,maianthemum_racemosum,1
+Trout Brook,maianthemum_racemosum,1
+Valatie Kill,maianthemum_racemosum,1
+Alplaus Kill,matteuccia_struthiopteris,1
+Ballston Creek,matteuccia_struthiopteris,1
+Hans Creek,matteuccia_struthiopteris,1
+Indian Kill,matteuccia_struthiopteris,1
+Mill Creek,matteuccia_struthiopteris,1
+Minots Corner Road,matteuccia_struthiopteris,1
+Jassup River,mimulus_ringens,1
+Kayaderosseras Creek,mimulus_ringens,1
+Snook Kill,mimulus_ringens,1
+Trout Brook,mitchella_repens,1
+Stony Creek,monotropa_uniflora,1
+Quacken Kill,muhlenbergia_mexicana,1
+Alplaus Kill,myosotis_laxa,1
+Ballston Creek,myosotis_laxa,1
+Evas Kill,myosotis_laxa,1
+Kayaderosseras Creek,myosotis_laxa,1
+Keyser Kill,myosotis_laxa,1
+Boreas River,myrica_gale,1
+Chester Creek,myrica_gale,1
+Paragon Brook,myrica_gale,1
+Keyser Kill,oenothera_biennis,1
+Snook Kill,oenothera_biennis,1
+Sterling Creek,oenothera_biennis,1
+Timmerman Creek,oenothera_biennis,1
+Alplaus Kill,onoclea_sensibilis,1
+Ballston Creek,onoclea_sensibilis,1
+Battenkill,onoclea_sensibilis,1
+Beaver Kill,onoclea_sensibilis,1
+Boreas River,onoclea_sensibilis,1
+Cadman Creek,onoclea_sensibilis,1
+Cedar River,onoclea_sensibilis,1
+Chester Creek,onoclea_sensibilis,1
+Daly Creek,onoclea_sensibilis,1
+Fawn Lake,onoclea_sensibilis,1
+Four Mile Brook,onoclea_sensibilis,1
+Green River,onoclea_sensibilis,1
+Hans Creek,onoclea_sensibilis,1
+Indian Brook,onoclea_sensibilis,1
+Indian Kill,onoclea_sensibilis,1
+Jassup River,onoclea_sensibilis,1
+Kennyetto Creek,onoclea_sensibilis,1
+Kinderhook Creek,onoclea_sensibilis,1
+Mill Brook,onoclea_sensibilis,1
+Mill Creek,onoclea_sensibilis,1
+Minots Corner Road,onoclea_sensibilis,1
+Mohawk River,onoclea_sensibilis,1
+Paragon Brook,onoclea_sensibilis,1
+Potic Creek,onoclea_sensibilis,1
+Quacken Kill,onoclea_sensibilis,1
+Robbs Creek,onoclea_sensibilis,1
+Roeliff Jansen Kill,onoclea_sensibilis,1
+Sherriff Lake Outlet,onoclea_sensibilis,1
+Snook Kill,onoclea_sensibilis,1
+Sprout Creek,onoclea_sensibilis,1
+Timmerman Creek,onoclea_sensibilis,1
+Trout Brook,onoclea_sensibilis,1
+Wharton Hollow Creek,onoclea_sensibilis,1
+Robbs Creek,osmunda_cinnamomea,1
+Boreas River,osmunda_regalis,1
+Chester Creek,osmunda_regalis,1
+Daly Creek,osmunda_regalis,1
+Trout Brook,osmunda_regalis,1
+Alplaus Kill,ostrya_virginiana,1
+Ballston Creek,ostrya_virginiana,1
+Lansing Kill,ostrya_virginiana,1
+Minots Corner Road,ostrya_virginiana,1
+Sterling Creek,ostrya_virginiana,1
+Timmerman Creek,ostrya_virginiana,1
+Valatie Kill,ostrya_virginiana,1
+Alplaus Kill,oxalis_stricta,1
+Battenkill,oxalis_stricta,1
+Boreas River,oxalis_stricta,1
+Cedar River,oxalis_stricta,1
+Fishkill Creek,oxalis_stricta,1
+Hans Creek,oxalis_stricta,1
+Indian Brook,oxalis_stricta,1
+Kayaderosseras Creek,oxalis_stricta,1
+Keyser Kill,oxalis_stricta,1
+Kinderhook Creek,oxalis_stricta,1
+Landsman Kill,oxalis_stricta,1
+Mill Brook,oxalis_stricta,1
+Minots Corner Road,oxalis_stricta,1
+Potic Creek,oxalis_stricta,1
+Quacken Kill,oxalis_stricta,1
+Roeliff Jansen Kill,oxalis_stricta,1
+Sherriff Lake Outlet,oxalis_stricta,1
+Snook Kill,oxalis_stricta,1
+Sterling Creek,oxalis_stricta,1
+Stony Creek,oxalis_stricta,1
+Alplaus Kill,parthenocissus_quinquefolia,1
+Ballston Creek,parthenocissus_quinquefolia,1
+Battenkill,parthenocissus_quinquefolia,1
+Big Brook,parthenocissus_quinquefolia,1
+Daly Creek,parthenocissus_quinquefolia,1
+Evas Kill,parthenocissus_quinquefolia,1
+Fishkill Creek,parthenocissus_quinquefolia,1
+Four Mile Brook,parthenocissus_quinquefolia,1
+Indian Kill,parthenocissus_quinquefolia,1
+Kayaderosseras Creek,parthenocissus_quinquefolia,1
+Kinderhook Creek,parthenocissus_quinquefolia,1
+Lansing Kill,parthenocissus_quinquefolia,1
+Minots Corner Road,parthenocissus_quinquefolia,1
+Mohawk River,parthenocissus_quinquefolia,1
+Paragon Brook,parthenocissus_quinquefolia,1
+Potic Creek,parthenocissus_quinquefolia,1
+Quacken Kill,parthenocissus_quinquefolia,1
+Roeliff Jansen Kill,parthenocissus_quinquefolia,1
+Snook Kill,parthenocissus_quinquefolia,1
+Sprout Creek,parthenocissus_quinquefolia,1
+Steele Creek,parthenocissus_quinquefolia,1
+Sterling Creek,parthenocissus_quinquefolia,1
+Wappinger Creek,parthenocissus_quinquefolia,1
+Boreas River,peltandra_virginica,1
+Boreas River,phalaris_arundinacea,1
+Cobleskill Creek,phalaris_arundinacea,1
+Fawn Lake,phalaris_arundinacea,1
+Keyser Kill,phalaris_arundinacea,1
+North Branch West Stony Creek,phalaris_arundinacea,1
+Sprout Creek,phalaris_arundinacea,1
+Bullhead Pond Brook,phegopteris_connectilis,1
+Hudson River,phegopteris_connectilis,1
+Four Mile Brook,phegopteris_hexagonoptera,1
+New Pond Brook,phegopteris_hexagonoptera,1
+Sherriff Lake Outlet,phegopteris_hexagonoptera,1
+Stewart Creek,phegopteris_hexagonoptera,1
+Timmerman Creek,phegopteris_hexagonoptera,1
+Cadman Creek,pinus_strobus,1
+Mill Creek,pinus_strobus,1
+Paragon Brook,pinus_strobus,1
+Kinderhook Creek,platanus_occidentalis,1
+Landsman Kill,platanus_occidentalis,1
+Sprout Creek,platanus_occidentalis,1
+Beaver Kill,polygonum_amphibium,1
+Cobleskill Creek,polygonum_amphibium,1
+Potic Creek,polygonum_amphibium,1
+Roeliff Jansen Kill,polygonum_amphibium,1
+Wappinger Creek,polygonum_hydropiperoides,1
+Evas Kill,polygonum_punctatum,1
+Kennyetto Creek,polygonum_punctatum,1
+Quacken Kill,polygonum_punctatum,1
+Beaver Kill,polygonum_sagittatum,1
+Cadman Creek,polygonum_sagittatum,1
+Daly Creek,polygonum_sagittatum,1
+Fawn Lake,polygonum_sagittatum,1
+Indian Brook,polygonum_sagittatum,1
+New Pond Brook,polygonum_sagittatum,1
+North Branch West Stony Creek,polygonum_sagittatum,1
+Potic Creek,polygonum_sagittatum,1
+Saw Kill,polygonum_sagittatum,1
+Sherriff Lake Outlet,polygonum_sagittatum,1
+Alplaus Kill,polygonum_virginianum,1
+Indian Kill,polygonum_virginianum,1
+Kennyetto Creek,polygonum_virginianum,1
+Kinderhook Creek,polygonum_virginianum,1
+Lansing Kill,polygonum_virginianum,1
+Snook Kill,polygonum_virginianum,1
+Bullhead Pond Brook,polystichum_acrostichoides,1
+Indian Kill,polystichum_acrostichoides,1
+Ballston Creek,populus_deltoides,1
+Cadman Creek,populus_deltoides,1
+Cobleskill Creek,populus_deltoides,1
+Evas Kill,populus_deltoides,1
+Fishkill Creek,populus_deltoides,1
+Kayaderosseras Creek,populus_deltoides,1
+Keyser Kill,populus_deltoides,1
+Plotter Kill,populus_deltoides,1
+Quacken Kill,populus_deltoides,1
+Big Brook,potentilla_simplex,1
+Cedar River,potentilla_simplex,1
+Four Mile Brook,potentilla_simplex,1
+Hans Creek,potentilla_simplex,1
+Keyser Kill,potentilla_simplex,1
+New Pond Brook,potentilla_simplex,1
+North Branch West Stony Creek,potentilla_simplex,1
+Paragon Brook,potentilla_simplex,1
+Roeliff Jansen Kill,potentilla_simplex,1
+Stewart Creek,potentilla_simplex,1
+Stony Creek,potentilla_simplex,1
+Bullhead Pond Brook,prenanthes_alba,1
+Big Brook,prunella_vulgaris,1
+Boreas River,prunella_vulgaris,1
+Cedar River,prunella_vulgaris,1
+Daly Creek,prunella_vulgaris,1
+Evas Kill,prunella_vulgaris,1
+Four Mile Brook,prunella_vulgaris,1
+Hans Creek,prunella_vulgaris,1
+Hudson River,prunella_vulgaris,1
+Indian Kill,prunella_vulgaris,1
+Kayaderosseras Creek,prunella_vulgaris,1
+Keyser Kill,prunella_vulgaris,1
+Kinderhook Creek,prunella_vulgaris,1
+Mill Creek,prunella_vulgaris,1
+Paragon Brook,prunella_vulgaris,1
+Potic Creek,prunella_vulgaris,1
+Sprout Creek,prunella_vulgaris,1
+Sterling Creek,prunella_vulgaris,1
+Stony Creek,prunella_vulgaris,1
+Timmerman Creek,prunella_vulgaris,1
+Wappinger Creek,prunella_vulgaris,1
+Wharton Hollow Creek,prunella_vulgaris,1
+Chester Creek,prunus_americana,1
+Cadman Creek,prunus_serotina,1
+Lansing Kill,prunus_serotina,1
+Snook Kill,prunus_serotina,1
+Battenkill,prunus_virginiana,1
+Big Brook,prunus_virginiana,1
+Hans Creek,prunus_virginiana,1
+Kennyetto Creek,prunus_virginiana,1
+Mill Creek,prunus_virginiana,1
+Minots Corner Road,prunus_virginiana,1
+Mohawk River,prunus_virginiana,1
+New Pond Brook,prunus_virginiana,1
+North Branch West Stony Creek,prunus_virginiana,1
+Stewart Creek,prunus_virginiana,1
+Trout Brook,prunus_virginiana,1
+Valatie Kill,prunus_virginiana,1
+North Branch West Stony Creek,pteridium_aquilinum,1
+Stony Creek,quercus_alba,1
+Hans Creek,quercus_velutina,1
+Fawn Lake,ranunculus_pensylvanicus,1
+Indian Brook,ranunculus_pensylvanicus,1
+Wharton Hollow Creek,ranunculus_pensylvanicus,1
+Roeliff Jansen Kill,ranunculus_recurvatus,1
+Indian Brook,rhamnus_alnifolia,1
+Big Brook,rhus_typhina,1
+Minots Corner Road,rhus_typhina,1
+Plotter Kill,rhus_typhina,1
+Steele Creek,rhus_typhina,1
+Sterling Creek,rhus_typhina,1
+Indian Brook,robinia_pseudoacacia,1
+Roeliff Jansen Kill,robinia_pseudoacacia,1
+Chester Creek,rosa_palustris,1
+Cadman Creek,rubus_allegheniensis,1
+Daly Creek,rubus_allegheniensis,1
+Indian Kill,rubus_allegheniensis,1
+Keyser Kill,rubus_allegheniensis,1
+Four Mile Brook,rubus_hispidus,1
+Kinderhook Creek,rubus_hispidus,1
+Mill Creek,rubus_hispidus,1
+North Branch West Stony Creek,rubus_hispidus,1
+Potic Creek,rubus_hispidus,1
+Ballston Creek,rubus_idaeus,1
+Jassup River,rubus_idaeus,1
+Keyser Kill,rubus_idaeus,1
+Fawn Lake,rubus_occidentalis,1
+Hudson River,rubus_occidentalis,1
+Landsman Kill,rubus_occidentalis,1
+Lansing Kill,rubus_occidentalis,1
+Minots Corner Road,rubus_occidentalis,1
+Quacken Kill,rubus_occidentalis,1
+Roeliff Jansen Kill,rubus_occidentalis,1
+Sterling Creek,rubus_occidentalis,1
+Evas Kill,rubus_odoratus,1
+Lansing Kill,rubus_odoratus,1
+Mohawk River,rubus_odoratus,1
+Steele Creek,rubus_odoratus,1
+North Branch West Stony Creek,rubus_pubescens,1
+Stewart Creek,rubus_pubescens,1
+Indian Kill,rudbeckia_hirta,1
+Sterling Creek,rudbeckia_hirta,1
+Robbs Creek,rudbeckia_laciniata,1
+Ballston Creek,sagittaria_latifolia,1
+Chester Creek,sagittaria_latifolia,1
+Indian Kill,sagittaria_latifolia,1
+Kayaderosseras Creek,sagittaria_latifolia,1
+Sherriff Lake Outlet,sagittaria_latifolia,1
+Battenkill,salix_nigra,1
+Boreas River,salix_nigra,1
+Four Mile Brook,salix_nigra,1
+Green River,salix_nigra,1
+Kayaderosseras Creek,salix_nigra,1
+Kennyetto Creek,salix_nigra,1
+Kinderhook Creek,salix_nigra,1
+Plotter Kill,salix_nigra,1
+Robbs Creek,salix_nigra,1
+Sherriff Lake Outlet,salix_nigra,1
+Snook Kill,salix_nigra,1
+Chester Creek,schoenoplectus_pungens,1
+Beaver Kill,scirpus_atrocinctus,1
+Beaver Kill,scirpus_microcarpus,1
+Landsman Kill,scutellaria_lateriflora,1
+Saw Kill,scutellaria_lateriflora,1
+Big Brook,solidago_altissima,1
+Daly Creek,solidago_altissima,1
+Jassup River,solidago_altissima,1
+Keyser Kill,solidago_altissima,1
+Kinderhook Creek,solidago_altissima,1
+Sterling Creek,solidago_altissima,1
+Wharton Hollow Creek,solidago_altissima,1
+Big Brook,solidago_canadensis,1
+Cedar River,solidago_canadensis,1
+Green River,solidago_canadensis,1
+Indian Brook,solidago_canadensis,1
+Mill Brook,solidago_canadensis,1
+Mill Creek,solidago_canadensis,1
+North Branch West Stony Creek,solidago_canadensis,1
+Plotter Kill,solidago_canadensis,1
+Robbs Creek,solidago_canadensis,1
+Sherriff Lake Outlet,solidago_canadensis,1
+Snook Kill,solidago_canadensis,1
+Green River,solidago_flexicaulis,1
+Indian Kill,solidago_flexicaulis,1
+Lansing Kill,solidago_flexicaulis,1
+Mohawk River,solidago_flexicaulis,1
+Robbs Creek,solidago_flexicaulis,1
+Steele Creek,solidago_flexicaulis,1
+Alplaus Kill,solidago_gigantea,1
+Battenkill,solidago_gigantea,1
+Beaver Kill,solidago_gigantea,1
+Cadman Creek,solidago_gigantea,1
+Cobleskill Creek,solidago_gigantea,1
+Fawn Lake,solidago_gigantea,1
+Minots Corner Road,solidago_gigantea,1
+Paragon Brook,solidago_gigantea,1
+Plotter Kill,solidago_gigantea,1
+Quacken Kill,solidago_gigantea,1
+Roeliff Jansen Kill,solidago_gigantea,1
+Snook Kill,solidago_gigantea,1
+Sprout Creek,solidago_gigantea,1
+Steele Creek,solidago_gigantea,1
+Sterling Creek,solidago_gigantea,1
+Stony Creek,solidago_gigantea,1
+Boreas River,spiraea_alba,1
+Cadman Creek,spiraea_alba,1
+Cedar River,spiraea_alba,1
+Chester Creek,spiraea_alba,1
+Four Mile Brook,spiraea_alba,1
+Hans Creek,spiraea_alba,1
+Hudson River,spiraea_alba,1
+Jassup River,spiraea_alba,1
+Mill Brook,spiraea_alba,1
+Mill Creek,spiraea_alba,1
+North Branch West Stony Creek,spiraea_alba,1
+Sherriff Lake Outlet,spiraea_alba,1
+Wharton Hollow Creek,spiraea_alba,1
+Robbs Creek,symphyotrichum_lanceolatum,1
+Snook Kill,symphyotrichum_lanceolatum,1
+Stewart Creek,symphyotrichum_lanceolatum,1
+Stewart Creek,symphyotrichum_lanceolatum,1
+Potic Creek,symphyotrichum_prenanthoides,1
+Indian Brook,symplocarpus_foetidus,1
+Alplaus Kill,thalictrum_dioicum,1
+Alplaus Kill,thalictrum_pubescens,1
+Boreas River,thalictrum_pubescens,1
+Bullhead Pond Brook,thalictrum_pubescens,1
+Cadman Creek,thalictrum_pubescens,1
+Cedar River,thalictrum_pubescens,1
+Daly Creek,thalictrum_pubescens,1
+Fawn Lake,thalictrum_pubescens,1
+Four Mile Brook,thalictrum_pubescens,1
+Green River,thalictrum_pubescens,1
+Hans Creek,thalictrum_pubescens,1
+Hudson River,thalictrum_pubescens,1
+Indian Kill,thalictrum_pubescens,1
+Lansing Kill,thalictrum_pubescens,1
+Mill Brook,thalictrum_pubescens,1
+Mill Creek,thalictrum_pubescens,1
+Mohawk River,thalictrum_pubescens,1
+New Pond Brook,thalictrum_pubescens,1
+North Branch West Stony Creek,thalictrum_pubescens,1
+Paragon Brook,thalictrum_pubescens,1
+Potic Creek,thalictrum_pubescens,1
+Quacken Kill,thalictrum_pubescens,1
+Robbs Creek,thalictrum_pubescens,1
+Roeliff Jansen Kill,thalictrum_pubescens,1
+Sherriff Lake Outlet,thalictrum_pubescens,1
+Stewart Creek,thalictrum_pubescens,1
+Trout Brook,thalictrum_pubescens,1
+Valatie Kill,thalictrum_pubescens,1
+Cadman Creek,thelypteris_noveboracensis,1
+North Branch West Stony Creek,thelypteris_palustris,1
+Hudson River,thuja_occidentalis,1
+New Pond Brook,thuja_occidentalis,1
+Paragon Brook,thuja_occidentalis,1
+Alplaus Kill,tilia_americana,1
+Ballston Creek,tilia_americana,1
+Battenkill,tilia_americana,1
+Fishkill Creek,tilia_americana,1
+Green River,tilia_americana,1
+Indian Kill,tilia_americana,1
+Kennyetto Creek,tilia_americana,1
+Kinderhook Creek,tilia_americana,1
+Minots Corner Road,tilia_americana,1
+Mohawk River,tilia_americana,1
+Quacken Kill,tilia_americana,1
+Steele Creek,tilia_americana,1
+Sterling Creek,tilia_americana,1
+Alplaus Kill,toxicodendron_radicans,1
+Big Brook,toxicodendron_radicans,1
+Cobleskill Creek,toxicodendron_radicans,1
+Fishkill Creek,toxicodendron_radicans,1
+Indian Brook,toxicodendron_radicans,1
+Indian Kill,toxicodendron_radicans,1
+Kennyetto Creek,toxicodendron_radicans,1
+Kinderhook Creek,toxicodendron_radicans,1
+Landsman Kill,toxicodendron_radicans,1
+Potic Creek,toxicodendron_radicans,1
+Quacken Kill,toxicodendron_radicans,1
+Sprout Creek,toxicodendron_radicans,1
+Steele Creek,toxicodendron_radicans,1
+Stony Creek,toxicodendron_radicans,1
+Wappinger Creek,toxicodendron_radicans,1
+Stewart Creek,trillium_erectum,1
+Ballston Creek,tsuga_canadensis,1
+Cadman Creek,tsuga_canadensis,1
+Evas Kill,tsuga_canadensis,1
+Hans Creek,tsuga_canadensis,1
+Minots Corner Road,tsuga_canadensis,1
+Mohawk River,tsuga_canadensis,1
+North Branch West Stony Creek,tsuga_canadensis,1
+Paragon Brook,tsuga_canadensis,1
+Saw Kill,tsuga_canadensis,1
+Sterling Creek,tsuga_canadensis,1
+Stewart Creek,tsuga_canadensis,1
+Trout Brook,tsuga_canadensis,1
+Valatie Kill,tsuga_canadensis,1
+Plotter Kill,ulmus_americana,1
+Snook Kill,ulmus_americana,1
+Big Brook,ulmus_rubra,1
+Evas Kill,ulmus_rubra,1
+Fishkill Creek,ulmus_rubra,1
+Green River,ulmus_rubra,1
+Hans Creek,ulmus_rubra,1
+Indian Kill,ulmus_rubra,1
+Jassup River,ulmus_rubra,1
+Lansing Kill,ulmus_rubra,1
+Paragon Brook,ulmus_rubra,1
+Quacken Kill,ulmus_rubra,1
+Roeliff Jansen Kill,ulmus_rubra,1
+Saw Kill,ulmus_rubra,1
+Sherriff Lake Outlet,ulmus_rubra,1
+Steele Creek,ulmus_rubra,1
+Valatie Kill,ulmus_rubra,1
+Cadman Creek,veratrum_viride,1
+Mill Creek,veratrum_viride,1
+Robbs Creek,veratrum_viride,1
+Stewart Creek,veratrum_viride,1
+Trout Brook,veratrum_viride,1
+Cobleskill Creek,verbena_hastata,1
+Cobleskill Creek,verbena_urticifolia,1
+Indian Kill,veronica_americana,1
+Cobleskill Creek,veronica_anagallis_aquatica,1
+Keyser Kill,veronica_anagallis_aquatica,1
+Chester Creek,veronica_scutellata,1
+Fawn Lake,viburnum_acerifolium,1
+Stony Creek,viburnum_acerifolium,1
+Valatie Kill,viburnum_acerifolium,1
+Sprout Creek,viburnum_dentatum,1
+Bullhead Pond Brook,viburnum_lantanoides,1
+Stewart Creek,viburnum_lantanoides,1
+Ballston Creek,vitis_riparia,1
+Battenkill,vitis_riparia,1
+Big Brook,vitis_riparia,1
+Cobleskill Creek,vitis_riparia,1
+Evas Kill,vitis_riparia,1
+Fawn Lake,vitis_riparia,1
+Indian Brook,vitis_riparia,1
+Indian Kill,vitis_riparia,1
+Kennyetto Creek,vitis_riparia,1
+Keyser Kill,vitis_riparia,1
+Kinderhook Creek,vitis_riparia,1
+Plotter Kill,vitis_riparia,1
+Quacken Kill,vitis_riparia,1
+Roeliff Jansen Kill,vitis_riparia,1
+Snook Kill,vitis_riparia,1
+Sprout Creek,vitis_riparia,1
+Sterling Creek,vitis_riparia,1
+Valatie Kill,vitis_riparia,1

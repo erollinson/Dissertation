@@ -4,18 +4,28 @@ author: "Emily J. Rollinson"
 date: "Tuesday, May 19, 2015"
 output: html_document
 ---
+Uses species presence/absence data from the 53 streams surveyed in the Upper Hudson watershed by EJR in 2013.  Species are identified as introduced or native to New York State using the New York Flora Atlas, and identified by growth form and lifespan using USDA PLANTS.  
+
 
 Are introduced species disproportionately annuals, herbaceous, etc?
-
 ```{r}
-growth<-read.csv("2013_counts_originbygrowthforms.csv", check.names=FALSE)
-span<-read.csv("2013_counts_originbylifespan.csv", check.names=FALSE)
+growth<-read.csv("2013_counts_originbygrowthforms.csv", check.names=FALSE) #number of species observed across all sites in the categories of native/introduced x herbaceous/woody
+span<-read.csv("2013_counts_originbylifespan.csv", check.names=FALSE) #number of species observed across all sites in the categories of native/introduced x annual/biennial/perennial
 
+#renaming the Growth Form column to remove a problematic space in the title
 names(growth)[names(growth)=="Growth Form"]<-"GrowthForm"
 
+#quasipoisson for count data
 growthmodel<-glm(Count~ Origin*GrowthForm, family="quasipoisson", data=growth)
 summary(growthmodel)
+anova(growthmodel, test='Chisq')
 
-
+#quasipoisson for count data
 lifemodel<-glm(Count ~ Origin*Lifespan, family="quasipoisson", data=span)
 summary(lifemodel)
+anova(lifemodel, test='Chisq')
+```
+
+https://stat.ethz.ch/R-manual/R-devel/library/stats/html/anova.glm.html
+
+suggests chi-square and that likelihood ratio and chi-sq ain this code are equivalent
