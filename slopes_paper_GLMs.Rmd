@@ -56,6 +56,26 @@ Potential problem: All of these data are corrected per area sampled, which does 
 
 8/2014 followup: can use Poisson and correct for area within the linear model itself.
 
+Testing native versus introduced diversity
+-----------------------------------------------------------------
+```{r}
+ordata<-read.csv("2012_diversity_by_origin.csv")
+
+r0<-glm(Rich ~ 1, family="quasipoisson", offset=log(Area), data=ordata)
+r1<-glm(Rich ~ River, family ="quasipoisson", offset=log(Area), data=ordata)
+r2<-glm(Rich ~ River/Site, family="quasipoisson", offset=log(Area), data=ordata)
+r3<-glm(Rich ~ River/Site/Bank, family="quasipoisson", offset=log(Area), data=ordata)
+r4<-glm(Rich ~ Origin + River/Site/Bank, family="quasipoisson", offset=log(Area), data=ordata)
+display(r0)
+display(r1)
+display(r2)
+display(r3)
+display(r4)
+anova(r0,r1,r2,r3,r4, test="Chisq")
+summary(r4)
+
+```
+
 
 Testing the contribution of bank type (Poisson response variables)
 --------------------------------------------------------
