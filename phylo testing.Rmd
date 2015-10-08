@@ -22,10 +22,9 @@ tree2<-collapse.singles(tree)
 tree3<-compute.brlen(tree2)
 test<-comdist(matrix, tree)
 
-
 ```
 
-<<<<<<< HEAD
+
 phylogenetic composition native vs. introduced subset of community
 
 ```{r}
@@ -36,17 +35,16 @@ require(phytools)
 tree<-read.newick("newick_2013_newtree.txt")
 tree2<-collapse.singles(tree)
 plot(tree2)
-=======
 
+```
 
 phylogenetic composition native vs. introduced subset of community
->>>>>>> 53b34dc728debd2f3da8b485489140685e2131a7
 
+````{r}
 #read in 2013 species
 comm13<-read.csv("2013_speciespresences_by_origin.csv")
 comm<-comm13[,1:3]
 
-<<<<<<< HEAD
 #read in phylo formatted list of 2013 species   #this has the wrong origins assigned in it something got mis-sorted
 
 splist<-read.csv("2013_taxa_phyloformat_columns.csv")
@@ -95,6 +93,19 @@ comm<-read.csv("2013presabsmatrix_partbyorigin_phylonames.csv")
 row.names(comm)<-comm$X
 comm<-comm[,2:274]
 
+
+
+#get tree for 2013
+require(picante)
+require(phytools)
+tree13<-read.newick("newick_2013_newtree.txt")
+tree132<-collapse.singles(tree13)
+tree133<-compute.brlen(tree132)
+test<-comdist(matrix, tree13) #what's matrix?
+
+#convert phylo to interspecific distances
+isdm<-cophenetic(tree132) #isdm = interspecific distance matrix
+
 require(picante)
 
 test<-comdist(comm, isdm)
@@ -136,7 +147,7 @@ test3<-comdist(species, ageisdm)
 
 ```
 
-=======
+
 ```{r}
 require(picante)
 require(phytools)
