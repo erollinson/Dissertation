@@ -1,5 +1,5 @@
 ---
-title: "Analysis of Extensive Watershed Plant Community Sampling (Chapter 3 pt 1)"
+title: "Analysis of Extensive Watershed Plant Community Sampling (Chapter 4)"
 author: "Emily J. Rollinson"
 date: "Wednesday, November 12, 2014"
 output: html_document
@@ -32,6 +32,7 @@ raw <- getURL("https://raw.githubusercontent.com/erollinson/Dissertation/master/
 env<- read.csv(text = raw, check.names = FALSE, row.names=1) #read in the github file
 ```
 
+
 Reframe the matrices so that the river names are row names and not a column (this is done on import for env)
 ```{r}
 rownames(comm)<-comm$River
@@ -43,6 +44,148 @@ Reframe the matrices so all the columns are numeric
 comm[,1:ncol(comm)]<-sapply(comm[,1:ncol(comm)], as.numeric)
 env[,1:ncol(env)]<-sapply(env[,1:ncol(env)], as.numeric)
 ```
+
+
+*this is the one used in environmental analyses presented*
+chooses preferred environmental variables and gives corresponding CCA
+
+````{r}
+require(vegan)
+env5<-env[,c(19,22,23,24,40:54,70:73)]
+
+env5$developed<-rowSums(env5[,15:18])
+env5$forest<-rowSums(env5[,19:21])
+env5$cultivated<-rowSums(env5[,7:8])
+env5$wetlands<-rowSums(env5[,5:6])
+
+prefenv<-env5[,c(1:4,20:22, 24:27)]
+
+require(vegan)
+prefcca<-cca(comm, prefenv)
+summary(prefcca)
+bioenv(comm,prefenv, upto=6)
+plot(prefcca)
+anova.cca(prefcca)
+
+#this gives crosses for species and circles for the sites
+
+
+#do i want RDA instead?
+prefrda<-rda(comm, prefenv)
+summary (prefrda)
+plot(prefrda)
+anova.cca(prefrda, model="direct")
+
+```
+
+test for spatial autocorrelation
+```{r}
+require(vegan)
+require(fossil)
+#comm is the community p/a matrix
+
+geo<-read.csv("2013_sitecoordinates.csv", header=T, row.names=1)
+spatdist<-earth.dist(geo) #returns distances in kilometers
+summary(spatdist) #minimum distance 2 km, median 57, mean 68, maximum 245 km
+specdist<-vegdist(comm, method="bray")
+
+spatcorr<-mantel.correlog(specdist, spatdist, nperm=999) #ah, you have to put species first and spatial second
+
+summary(spatcorr)
+spatcorr
+plot(spatcorr)
+
+
+#partial Mantel test including enviro variables
+require(ecodist)
+envdist<-dist(prefenv, method="euclidean")
+envspat<-pmgram(specdist, spatdist, envdist, nperm=999)
+plot(envspat)
+
+
+#MRM
+
+mrm<-MRM(specdist ~ spatdist + envdist, nperm=999)
+mrm
+```
+
+
+
+PCA
+```{r}
+
+require(ade4)
+pcatest<-dudi.pca(int_partcomm)
+pcatest2<-prcomp(int_partcomm, scale=TRUE)
+plot(pcatest2)
+biplot(pcatest2)
+
+
+```
+
+
+test for limiting similarity vs. environmental filtering
+```{r}
+
+#use the pres/abs matrix for 2013 'comm' in the randomizer
+#need a traits matrix for 2013 that matches the pres/abs matrix for 2013, use the same traits as were used in the 2012 analysis
+
+traits<-read.csv("2013_TRY_traitsmatrix.csv", check.names=FALSE, row.names=1)
+
+prunecomm<-comm[colnames(comm) %in% colnames(traits)]
+prunetraits<-traits[colnames(traits) %in% colnames(comm)]
+
+#FD requires the traits matrix to have traits in columns and the community matrix to have species in columns; therefore, transpose 'prunetraits'
+
+tprunetraits<-as.data.frame(t(prunetraits))
+
+#cut this down just to my traits of interest
+
+pref_traits<-tprunetraits[,c(10,11,15,22,23,25,29,30,31,43,49,59,60,62,64,65,73,74,75)]
+
+#interpolate the most commonly measured variable in the pref_traits matrix so there aren't NAs in the distance matrix
+#can't get apply to work for a single column, so I did two - seed mass and rooting depth
+
+fx=function(x){
+  x[is.na(x)]=median(x, na.rm=TRUE)
+  x
+}
+
+ipreftraits<-data.frame(pref_traits[,c(1:12,15:19)], apply(pref_traits[,c(13:14)], 2, fx))
+
+#invcomm2: 53 x 60, species are columns
+require(picante)
+require(FD)
+rep=9999
+nsites=53
+permFEve13<-matrix(nrow=rep, ncol=nsites)
+permFDiv13<-matrix(nrow=rep, ncol=nsites)
+permFDis13<-matrix(nrow=rep, ncol=nsites)
+permRaoQ13<-matrix(nrow=rep, ncol=nsites)
+for (i in 1:rep) {
+  temp<-randomizeMatrix(prunecomm, null.model="independentswap", iterations = 1000)
+  try(FDtemp<-dbFD(ipreftraits, temp, stand.x=TRUE, ord="podani", corr = "cailliez"), silent=TRUE)
+  FEve = FDtemp$FEve
+  FDiv = FDtemp$FDiv
+  FDis = FDtemp$FDis
+  RaoQ = FDtemp$RaoQ
+  permFEve13[i,]<-FEve
+  permFDiv13[i,]<-FDiv
+  permFDis13[i,]<-FDis
+  permRaoQ13[i,]<-RaoQ
+  }
+
+#cancelled after seven hours, had only done 1k.  Do not ever run this on the laptop again.  
+  
+```
+
+
+
+
+
+
+
+no longer used code kept here for reference
 
 Make separate environment matrices for the different buffer sizes (100m, 1km, 10km)
 ```{r}
@@ -145,106 +288,10 @@ bioenv(comm, env4, upto=5)
 ```
 
 
-Yet another set of preferred environmental variables and the corresponding CCA  <- this is the one to use
-
-````{r}
-require(vegan)
-env5<-env[,c(19,22,23,24,40:54,70:73)]
-
-env5$developed<-rowSums(env5[,15:18])
-env5$forest<-rowSums(env5[,19:21])
-env5$cultivated<-rowSums(env5[,7:8])
-env5$wetlands<-rowSums(env5[,5:6])
-
-prefenv<-env5[,c(1:4,20:22, 24:27)]
-
-require(vegan)
-prefcca<-cca(comm, prefenv)
-summary(prefcca)
-bioenv(comm,prefenv, upto=6)
-plot(prefcca)
-
-#this gives crosses for speies and circles for the sites
-```
-
-
-PCA
-```{r}
-
-require(ade4)
-pcatest<-dudi.pca(int_partcomm)
-pcatest2<-prcomp(int_partcomm, scale=TRUE)
-plot(pcatest2)
-biplot(pcatest2)
-
-
-```
-
-
-test for limiting similarity vs. environmental filtering
-```{r}
-
-#use the pres/abs matrix for 2013 'comm' in the randomizer
-#need a traits matrix for 2013 that matches the pres/abs matrix for 2013, use the same traits as were used in the 2012 analysis
-
-traits<-read.csv("2013_TRY_traitsmatrix.csv", check.names=FALSE, row.names=1)
-
-prunecomm<-comm[colnames(comm) %in% colnames(traits)]
-prunetraits<-traits[colnames(traits) %in% colnames(comm)]
-
-#FD requires the traits matrix to have traits in columns and the community matrix to have species in columns; therefore, transpose 'prunetraits'
-
-tprunetraits<-as.data.frame(t(prunetraits))
-
-#cut this down just to my traits of interest
-
-pref_traits<-tprunetraits[,c(10,11,15,22,23,25,29,30,31,43,49,59,60,62,64,65,73,74,75)]
-
-#interpolate the most commonly measured variable in the pref_traits matrix so there aren't NAs in the distance matrix
-#can't get apply to work for a single column, so I did two - seed mass and rooting depth
-
-fx=function(x){
-  x[is.na(x)]=median(x, na.rm=TRUE)
-  x
-}
-
-ipreftraits<-data.frame(pref_traits[,c(1:12,15:19)], apply(pref_traits[,c(13:14)], 2, fx))
-
-#invcomm2: 53 x 60, species are columns
-require(picante)
-require(FD)
-rep=9999
-nsites=53
-permFEve13<-matrix(nrow=rep, ncol=nsites)
-permFDiv13<-matrix(nrow=rep, ncol=nsites)
-permFDis13<-matrix(nrow=rep, ncol=nsites)
-permRaoQ13<-matrix(nrow=rep, ncol=nsites)
-for (i in 1:rep) {
-  temp<-randomizeMatrix(prunecomm, null.model="independentswap", iterations = 1000)
-  try(FDtemp<-dbFD(ipreftraits, temp, stand.x=TRUE, ord="podani", corr = "cailliez"), silent=TRUE)
-  FEve = FDtemp$FEve
-  FDiv = FDtemp$FDiv
-  FDis = FDtemp$FDis
-  RaoQ = FDtemp$RaoQ
-  permFEve13[i,]<-FEve
-  permFDiv13[i,]<-FDiv
-  permFDis13[i,]<-FDis
-  permRaoQ13[i,]<-RaoQ
-  }
-
-#cancelled after seven hours, had only done 1k.  Do not ever run this on the laptop again.  
-  
-```
-
-
-
-
-
-
 
 Note from meeting with jessica
 
-add elevation remove longitude
+add elevation remove longitude DONE
 distance to a highway
 distance to a major population center
 human population in a zip code?
