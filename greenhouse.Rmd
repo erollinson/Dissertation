@@ -10,32 +10,129 @@ Read in the data and replace missing values with na
 data<-read.csv("greenhouse_flood_exp1.csv", check.names=FALSE, na.strings=c("",".","NA"))
 ```
 
-Analysis
+Survival analysis
+0=still alive at end of study
+1=died
+
+from coxph output, expcoef = Hazard Ratio - multiplicative effect of covariate on hazard function. <1 = reduction in hazard, >1 = increase in hazard
+
+in coxph, can use cluster(x) to cluster by non-independence (here, family)
+https://rpubs.com/daspringate/survival
+```{r}
+require(survival)
+surv<-read.csv("greenhouse_survivaltime.csv", check.names=FALSE, na.strings=c("", ".", "NA"))
+
+#rename control to acontrol so it is alphabetically first and the contrasts are against the control
+
+surv$Treatment<-as.character(surv$Treatment)
+surv$Treatment<-replace(surv$Treatment, surv$Treatment=="control", "acontrol")
+surv$Treatment<-as.factor(surv$Treatment)
+
+#build the response variable, clusters by family (accounts for non-independence)
+
+#cox proportional hazards model
+S<-Surv(time=surv$StartWeek, time2=surv$EndWeek, event=surv$Death)
+model<-coxph(S ~ Source + Treatment + Source:Treatment, data=surv)
+summary(model)
+
+#proportional hazards is OK if not clustered by family.
+
+#test the assumption of proportional hazards
+validate<-cox.zph(model, transform="km")
+validate
+plot(validate)
+
+#individual subsets violate the assumption but the global model does not
+#now what?
+
+#try stratifying?  this one actually makes it worse
+strmodel<-coxph(S~strata(Source) + Treatment + cluster(Family), data=surv)
+summary(strmodel)
+valstr<-cox.zph(strmodel, transform="km")
+valstr
+
+#kaplan-meier, but doesn't allow interactions
+
+kmodel<-survfit(S ~ Source + Treatment, data=surv)
+summary(kmodel)
+
+```
+
+
+Plot survival functions (requires running the function at the bottom of this code for ggsurv)
+
+```{r}
+require(ggplot2)
+
+#plots the four treatments
+plotmodel<-survfit(S ~ Treatment, data=surv)
+ggsurv(plotmodel)
+
+
+```
+
+
+Growth analyses
+
+so i want time nested within each?
+can i treat deaths as censored wrt time?
+
+```{r}
+require(lme4)
+rm<-lmer(Height ~ Week * Treatment * Source + (Week | Source:Individual) + (Week * Treatment || Source), data=data)
+summary(rm)
+```
+
+
+Subset the data for just the final week
+```{r}
+end<-data[data$Week=="9",]
+
+#and then remove rows with NA
+end<-end[complete.cases(end),]
+```
+
+Analysis of endpoint data
 
 ```{r}
 require(lme4)
 require(arm)
 
 #use the subsetted data for this (below)
-
 #End Height
-ht0<-glm(Height ~ 1,  family="gaussian", data=end)
-ht1<-glm(Height ~ Source,  family="gaussian", data=end)
-ht2<-glm(Height ~ Source/Species,  family="gaussian", data=end)
-ht3<-glm(Height ~ Source/Species/Treatment,  family="gaussian", data=end)
+#ht0<-glm(Height ~ 1,  family="gaussian", data=end)
+#ht1<-glm(Height ~ Source,  family="gaussian", data=end)
+#ht2<-glm(Height ~ Source/Species,  family="gaussian", data=end)
+#ht3<-glm(Height ~ Source/Species/Treatment,  family="gaussian", data=end)
 
-display(ht0)
-display(ht1)
-display(ht2)
-display(ht3)
-anova(ht0,ht1,ht2,ht3, test="Chisq")
-summary(ht3)
+#display(ht0)
+#display(ht1)
+#display(ht2)
+#display(ht3)
+#anova(ht0,ht1,ht2,ht3, test="Chisq")
+#summary(ht3)
+#test<-lmer(Height ~ Source * Treatment + (1|Block), end)
+#anova(lm(Height~ Family/Source * Treatment, end))
+#anova(lm(Leaves~ Family/Source * Treatment, end))
 
-anova(lm(Height~Source/Species/Treatment, end))
 
-anova(lm(Leaves~Source/Species/Treatment, end))
+#rename control to acontrol so it is alphabetically first and the contrasts are against the control
+
+end$Treatment<-as.character(end$Treatment)
+end$Treatment<-replace(end$Treatment, end$Treatment=="control", "acontrol")
+end$Treatment<-as.factor(end$Treatment)
+
+
+#lme requires removing all rows with NA
+model_lme<-lme(Height ~ Source * Treatment, random=~1|Block, data=end)
+summary(model_lme)
+anova(model_lme)
+
+model_leaf<-lme(Leaves ~ Source * Treatment, random = ~1|Block, data=end)
+summary(model_leaf)
 
 ```
+
 
 Survival analysis http://www.statmethods.net/stats/frequencies.html
 ```{r}
@@ -64,7 +161,7 @@ ca(mat)
 Figures for time series
 ```{r}
 #SUMMARY STATS
-require(bear)
+#require(bear) #bear is a deprecated package, will need to rewrite code
 
 
 #Height
@@ -101,33 +198,56 @@ ggplot(data=tsleaves, aes(x=Week, y=N, color=Treatment)) + facet_wrap(~Species, 
 ```
 
 
-Subset the data for just the final week
-```{r}
-#sorts the data by week
-sorter<-data[order(data$Week),]
-#subsets the rows regarding Week 9 of the trial
-end<-sorter[1823:2043,1:8]
-
-```
-
 Figures for the final week
 ```{r}
-require(bear)
+#require(bear)
+#bear package no longer works so summarySE does not work; will need to use ddply
 
+#example
+#cleafC<-ddply(alltraits2, c("Origin"), summarise,
+            # N = sum(!is.na(leafC)),
+            # mean = mean(leafC, na.rm=TRUE),
+           #  sd = sd(leafC, na.rm=TRUE),
+           #  se = sd/sqrt(N))
+
+require(plyr)
 #SUMMARY STATS
 
+
 #Height
-height<-summarySE(end,measurevar="Height", groupvars=c("Species", "Treatment"), na.rm=TRUE)
+#height<-summarySE(end,measurevar="Height", groupvars=c("Species", "Treatment"), na.rm=TRUE)
+height<-ddply(end, c("Species", "Treatment"), summarise,
+              N = sum(!is.na(Height)),
+              mean = mean(Height, na.rm=TRUE),
+              sd = sd(Height, na.rm=TRUE), 
+              se = sd/sqrt(N))
+
 
 #Stupid juggling to get the rows in non-alphabetical order
 height$Species<-as.character(height$Species)
 height$Species<-factor(height$Species,levels=c("BiFr", "PoPe", "PrVu", "SoFl", "PoVi", "MaVu"))
-
+#replace NA SEs with 0 so ggplot doesn't fail (sample size of 1)
+height[is.na(height)]<-0
+levels(height$Species)<-c("Bidens frondosa", "Polygonum pennsylvanicum", "Prunella vulgaris", "Solidago flexicaulis", "Polygonum virginianum", "Marrubium vulgare")
+levels(height$Treatment)<-c("control", "submerge", "bury", "nutrient")
 
 #Leaves
-leaves<-summarySE(end, measurevar="Leaves", groupvars=c("Species", "Treatment"), na.rm=TRUE)
-leaves$Species<-as.character(leaves$Species)
+#leaves<-summarySE(end, measurevar="Leaves", groupvars=c("Species", "Treatment"), na.rm=TRUE)
+#leaves$Species<-as.character(leaves$Species)
+
+
+leaves<-ddply(end, c("Species", "Treatment"), summarise,
+                     N=sum(!is.na(Leaves)),
+                     mean = mean(Leaves, na.rm=TRUE),
+                     sd = sd(Leaves, na.rm=TRUE),
+                     se=sd/sqrt(N))
+
+
 leaves$Species<-factor(leaves$Species, levels=c("BiFr", "PoPe", "PrVu", "SoFl", "PoVi", "MaVu"))
+leaves[is.na(leaves)]<-0
+levels(leaves$Species)<-c("Bidens frondosa", "Polygonum pennsylvanicum", "Prunella vulgaris", "Solidago flexicaulis", "Polygonum virginianum", "Marrubium vulgare")
+levels(leaves$Treatment)<-c("bury", "control", "nutrient", "submerge")
+
 
 #FIGURES
 require(ggplot2)
@@ -137,12 +257,14 @@ cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2",
 
 #Height
 
-height<-within(height, Treatment<-factor(Treatment, levels=c("control", "flood", "bury", "fertilizer")))
-ggplot(height[!is.na(height$Height),], aes(x=factor(Treatment), y=Height, fill=factor(Treatment))) + geom_bar(stat="identity", position="dodge", aes(order=desc(Treatment))) + scale_fill_manual(values=cbPalette) +scale_color_manual(values=cbPalette) +  geom_errorbar(aes(ymin=Height-se, ymax=Height+se), colour="black", width=.2, position=position_dodge(width=0.9)) + xlab("Species") + ylab("Height (cm)") + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA)) + facet_wrap(~Species, nrow=2)
+height<-within(height, Treatment<-factor(Treatment, levels=c("control", "submerge", "bury", "nutrient")))
+
+ggplot(height, aes(x=factor(Treatment), y=mean, fill=factor(Treatment))) + geom_point(stat="identity", position="dodge", size=4, aes(order=desc(Treatment))) +  geom_errorbar(aes(ymin=mean-se, ymax=mean+se), colour="black", width=.4) + xlab("Species") + ylab("Height (cm)") + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA)) + facet_wrap(~Species, nrow=2)
 
 #Leaves
-leaves<-within(leaves, Treatment<-factor(Treatment, levels=c("control", "flood", "bury", "fertilizer")))
-ggplot(leaves[!is.na(leaves$Leaves),], aes(x=factor(Treatment), y=Leaves, fill=factor(Treatment))) + geom_bar(stat="identity", position="dodge", aes(order=desc(Treatment))) + scale_fill_manual(values=cbPalette) +scale_color_manual(values=cbPalette) +  geom_errorbar(aes(ymin=Leaves-se, ymax=Leaves+se), colour="black", width=.2, position=position_dodge(width=0.9)) + xlab("Species") + ylab("Number of leaves") + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA)) +facet_wrap(~Species, nrow=2)
+leaves<-within(leaves, Treatment<-factor(Treatment, levels=c("control", "submerge", "bury", "nutrient")))
+
+ggplot(leaves, aes(x=factor(Treatment), y=mean, fill=factor(Treatment))) + geom_point(stat="identity", position="dodge", size=4, aes(order=desc(Treatment))) +geom_errorbar(aes(ymin=mean-se, ymax=mean+se), colour="black", width=.4) + xlab("Species") + ylab("Number of leaves") + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA)) +facet_wrap(~Species, nrow=2)
 
 #OLDFIGURES
 #this works except the error bars
@@ -151,4 +273,139 @@ ggplot(leaves[!is.na(leaves$Leaves),], aes(x=factor(Treatment), y=Leaves, fill=f
 #ggplot(height, aes(x=factor(Species), y=factor(Height) ,fill=factor(Treatment))) + geom_bar(stat="identity", position="dodge", aes(order=desc(Treatment))) + scale_fill_manual(values=cbPalette) +scale_color_manual(values=cbPalette) +  geom_errorbar(aes(ymin=Height-se, ymax=Height+se), colour="black", width=.2, position=position_dodge(width=0.9)) + xlab("Species") + ylab("Height (cm)") + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA)) + scale_y_discrete(limits=c(0,45), breaks=c(0,5,10,15,20,25,30,35,40,45), labels=c("0", "5","10","15","20","25", "30","35","40","45"))
 #this works
 #ggplot(height[!is.na(height$Height),], aes(x=factor(Species), y=Height, fill=factor(Treatment))) + geom_bar(stat="identity", position="dodge", aes(order=desc(Treatment))) + scale_fill_manual(values=cbPalette) +scale_color_manual(values=cbPalette) +  geom_errorbar(aes(ymin=Height-se, ymax=Height+se), colour="black", width=.2, position=position_dodge(width=0.9)) + xlab("Species") + ylab("Height (cm)") + theme_bw() + theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA)) 
+```
+
+
+
+Function for suvival curves in ggplot by Edwin Thoen
+http://www.r-statistics.com/2013/07/creating-good-looking-survival-curves-the-ggsurv-function/
+
+```{r}
+ggsurv <- function(s, CI = 'def', plot.cens = T, surv.col = 'gg.def',
+                   cens.col = 'red', lty.est = 1, lty.ci = 2,
+                   cens.shape = 3, back.white = F, xlab = 'Time',
+                   ylab = 'Survival', main = ''){
+ 
+  library(ggplot2)
+  strata <- ifelse(is.null(s$strata) ==T, 1, length(s$strata))
+  stopifnot(length(surv.col) == 1 | length(surv.col) == strata)
+  stopifnot(length(lty.est) == 1 | length(lty.est) == strata)
+ 
+  ggsurv.s <- function(s, CI = 'def', plot.cens = T, surv.col = 'gg.def',
+                       cens.col = 'red', lty.est = 1, lty.ci = 2,
+                       cens.shape = 3, back.white = F, xlab = 'Time',
+                       ylab = 'Survival', main = ''){
+ 
+    dat <- data.frame(time = c(0, s$time),
+                      surv = c(1, s$surv),
+                      up = c(1, s$upper),
+                      low = c(1, s$lower),
+                      cens = c(0, s$n.censor))
+    dat.cens <- subset(dat, cens != 0)
+ 
+    col <- ifelse(surv.col == 'gg.def', 'black', surv.col)
+ 
+    pl <- ggplot(dat, aes(x = time, y = surv)) +
+      xlab(xlab) + ylab(ylab) + ggtitle(main) +
+      geom_step(col = col, lty = lty.est)
+ 
+    pl <- if(CI == T | CI == 'def') {
+      pl + geom_step(aes(y = up), color = col, lty = lty.ci) +
+        geom_step(aes(y = low), color = col, lty = lty.ci)
+    } else (pl)
+ 
+    pl <- if(plot.cens == T & length(dat.cens) > 0){
+      pl + geom_point(data = dat.cens, aes(y = surv), shape = cens.shape,
+                       col = cens.col)
+    } else if (plot.cens == T & length(dat.cens) == 0){
+      stop ('There are no censored observations')
+    } else(pl)
+ 
+    pl <- if(back.white == T) {pl + theme_bw()
+    } else (pl)
+    pl
+  }
+ 
+  ggsurv.m <- function(s, CI = 'def', plot.cens = T, surv.col = 'gg.def',
+                       cens.col = 'red', lty.est = 1, lty.ci = 2,
+                       cens.shape = 3, back.white = F, xlab = 'Time',
+                       ylab = 'Survival', main = '') {
+    n <- s$strata
+ 
+    groups <- factor(unlist(strsplit(names
+                                     (s$strata), '='))[seq(2, 2*strata, by = 2)])
+    gr.name <-  unlist(strsplit(names(s$strata), '='))[1]
+    gr.df <- vector('list', strata)
+    ind <- vector('list', strata)
+    n.ind <- c(0,n); n.ind <- cumsum(n.ind)
+    for(i in 1:strata) ind[[i]] <- (n.ind[i]+1):n.ind[i+1]
+ 
+    for(i in 1:strata){
+      gr.df[[i]] <- data.frame(
+        time = c(0, s$time[ ind[[i]] ]),
+        surv = c(1, s$surv[ ind[[i]] ]),
+        up = c(1, s$upper[ ind[[i]] ]),
+        low = c(1, s$lower[ ind[[i]] ]),
+        cens = c(0, s$n.censor[ ind[[i]] ]),
+        group = rep(groups[i], n[i] + 1))
+    }
+ 
+    dat <- do.call(rbind, gr.df)
+    dat.cens <- subset(dat, cens != 0)
+ 
+    pl <- ggplot(dat, aes(x = time, y = surv, group = group)) +
+      xlab(xlab) + ylab(ylab) + ggtitle(main) +
+      geom_step(aes(col = group, lty = group))
+ 
+    col <- if(length(surv.col == 1)){
+      scale_colour_manual(name = gr.name, values = rep(surv.col, strata))
+    } else{
+      scale_colour_manual(name = gr.name, values = surv.col)
+    }
+ 
+    pl <- if(surv.col[1] != 'gg.def'){
+      pl + col
+    } else {pl + scale_colour_discrete(name = gr.name)}
+ 
+    line <- if(length(lty.est) == 1){
+      scale_linetype_manual(name = gr.name, values = rep(lty.est, strata))
+    } else {scale_linetype_manual(name = gr.name, values = lty.est)}
+ 
+    pl <- pl + line
+ 
+    pl <- if(CI == T) {
+      if(length(surv.col) > 1 && length(lty.est) > 1){
+        stop('Either surv.col or lty.est should be of length 1 in order
+             to plot 95% CI with multiple strata')
+      }else if((length(surv.col) > 1 | surv.col == 'gg.def')[1]){
+        pl + geom_step(aes(y = up, color = group), lty = lty.ci) +
+          geom_step(aes(y = low, color = group), lty = lty.ci)
+      } else{pl +  geom_step(aes(y = up, lty = group), col = surv.col) +
+               geom_step(aes(y = low,lty = group), col = surv.col)}
+    } else {pl}
+ 
+ 
+    pl <- if(plot.cens == T & length(dat.cens) > 0){
+      pl + geom_point(data = dat.cens, aes(y = surv), shape = cens.shape,
+                      col = cens.col)
+    } else if (plot.cens == T & length(dat.cens) == 0){
+      stop ('There are no censored observations')
+    } else(pl)
+ 
+    pl <- if(back.white == T) {pl + theme_bw()
+    } else (pl)
+    pl
+  }
+  pl <- if(strata == 1) {ggsurv.s(s, CI , plot.cens, surv.col ,
+                                  cens.col, lty.est, lty.ci,
+                                  cens.shape, back.white, xlab,
+                                  ylab, main)
+  } else {ggsurv.m(s, CI, plot.cens, surv.col ,
+                   cens.col, lty.est, lty.ci,
+                   cens.shape, back.white, xlab,
+                   ylab, main)}
+  pl
+}
+
+
 ```

@@ -22,12 +22,24 @@ traits$"Duration"<-as.factor(traits$"Duration")
 
 splist<-read.csv("2013_species_presence_list_for_traits.csv")
 
-env<-read.csv("2013_environment_matrix_pared.csv")
-row.names(env)<-env$River #to turn the first column into the row names
-env<-env[,2:14] #to remove the duplicate first column now that the row names are labelled
+#env<-read.csv("2013_environment_matrix_pared.csv")
+#row.names(env)<-env$River #to turn the first column into the row names
+#env<-env[,2:14] #to remove the duplicate first column now that the row names are labelled
 
 #cut environmental variables down to most interesting
-env2<-env[,c(8,11,13)]
+#previous analysis (used in poster had rows 8, 11 and 13 - annual precipitation, annual mean temp, and drainage area.  switching this to the three that bioenv identified. ann mean tmp, %sand, and %wetland
+#env2<-env[,c(8,11,13)]
+
+env<-read.csv("2013_sites_allenvt_quant.csv", row.names=1)
+env5<-env[,c(19,22,23,24,40:54,70:73)]
+env5$developed<-rowSums(env5[,15:18])
+env5$forest<-rowSums(env5[,19:21])
+env5$cultivated<-rowSums(env5[,7:8])
+env5$wetlands<-rowSums(env5[,5:6])
+
+envbest3<-env5[,c(2,21,27)]
+env2<-envbest3
+
 
 ```
 
@@ -73,6 +85,9 @@ nrepet = 999
 fourth<-fourthcorner(env2, species, traits, modeltype=6, p.adjust.method.G="fdr", p.adjust.method.D="fdr", nrepet = nrepet) 
 plot(fourth, alpha = 0.05, stat = "D2")
 summary(fourth)
+print(fourth)
+fourth$tabD2 #gives two-tailed test, i think the others test greater or lesser (than what?)
+plot(fourth$tabD2) #gives the histograms for the stats
 ```
 
 p.adjust.methods

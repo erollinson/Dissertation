@@ -54,7 +54,7 @@ require(vegan)
 env5<-env[,c(19,22,23,24,40:54,70:73)]
 
 env5$developed<-rowSums(env5[,15:18])
-env5$forest<-rowSums(env5[,19:21])
+env5$forest<-rowSums(env5[,11:13])
 env5$cultivated<-rowSums(env5[,7:8])
 env5$wetlands<-rowSums(env5[,5:6])
 
@@ -63,7 +63,7 @@ prefenv<-env5[,c(1:4,20:22, 24:27)]
 require(vegan)
 prefcca<-cca(comm, prefenv)
 summary(prefcca)
-bioenv(comm,prefenv, upto=6)
+bioenv(comm,prefenv, upto=3, metric="mahalanobis") #mahlanobis scales to unit variance and forces orthogonal variables
 plot(prefcca)
 anova.cca(prefcca)
 
@@ -89,11 +89,25 @@ spatdist<-earth.dist(geo) #returns distances in kilometers
 summary(spatdist) #minimum distance 2 km, median 57, mean 68, maximum 245 km
 specdist<-vegdist(comm, method="bray")
 
+#breaks<-c(25,50,75,100,125,150,175,200) #it only calculates for the first 3 of these distance classes 
+
+#this looks for spatial autocorrelation in species comp
 spatcorr<-mantel.correlog(specdist, spatdist, nperm=999) #ah, you have to put species first and spatial second
 
 summary(spatcorr)
 spatcorr
 plot(spatcorr)
+
+require(ade4)
+mantel.rtest(specdist, spatdist, nrepet=999)
+
+
+#spatial autocorrelation in enviromental factors?
+envcorr<-mantel.correlog(envdist, spatdist, nperm=999)
+summary(envcorr)
+envcorr
+plot (envcorr)
+mantel.rtest(envdist, spatdist, nrepet=999)
 
 
 #partial Mantel test including enviro variables
