@@ -20,41 +20,125 @@ in coxph, can use cluster(x) to cluster by non-independence (here, family)
 https://rpubs.com/daspringate/survival
 ```{r}
 require(survival)
-surv<-read.csv("greenhouse_survivaltime.csv", check.names=FALSE, na.strings=c("", ".", "NA"))
+surv<-read.csv("greenhouse_survivaltime_deadprvutest.csv", check.names=FALSE, na.strings=c("", ".", "NA"))
 
 #rename control to acontrol so it is alphabetically first and the contrasts are against the control
 
 surv$Treatment<-as.character(surv$Treatment)
-surv$Treatment<-replace(surv$Treatment, surv$Treatment=="control", "acontrol")
+surv$Treatment<-replace(surv$Treatment,surv$Treatment=="control", "acontrol")
 surv$Treatment<-as.factor(surv$Treatment)
 
-#build the response variable, clusters by family (accounts for non-independence)
+#do the same for the species so upslope contrasts against riparian
 
-#cox proportional hazards model
+surv$Species<-as.character(surv$Species)
+surv$Species<-replace(surv$Species, surv$Species=="BiFr", "aBiFr")
+surv$Species<-replace(surv$Species, surv$Species=="PoPe", "aPoPe")
+surv$Species<-replace(surv$Species, surv$Species=="PrVu", "aPrVu")
+surv$Species<-as.factor(surv$Species)
+#build the response variable
+
+#make the survival object
 S<-Surv(time=surv$StartWeek, time2=surv$EndWeek, event=surv$Death)
-model<-coxph(S ~ Source + Treatment + Source:Treatment, data=surv)
-summary(model)
 
-#proportional hazards is OK if not clustered by family.
+#prop hazards model - used source - should go by species
+#model<-coxph(S ~ Source + Treatment + Source:Treatment, data=surv)
+#summary(model)
+
 
 #test the assumption of proportional hazards
 validate<-cox.zph(model, transform="km")
 validate
 plot(validate)
 
-#individual subsets violate the assumption but the global model does not
-#now what?
 
 #try stratifying?  this one actually makes it worse
-strmodel<-coxph(S~strata(Source) + Treatment + cluster(Family), data=surv)
-summary(strmodel)
-valstr<-cox.zph(strmodel, transform="km")
-valstr
+#strmodel<-coxph(S~strata(Source) + Treatment + cluster(Family), data=surv)
+#summary(strmodel)
+#valstr<-cox.zph(strmodel, transform="km")
+#valstr
 
-#kaplan-meier, but doesn't allow interactions
+#set coefficient options 
+options(contrasts=c(unordered="contr.treatment", ordered="contr.poly"))
 
-kmodel<-survfit(S ~ Source + Treatment, data=surv)
-summary(kmodel)
+#get species in the right order so the contrasts show the three upslope ones - now taken care of above with the alphabet hack
+surv$Species<-as.character(surv$Species)
+surv$Species<-factor(surv$Species,levels=c("aBiFr", "aPoPe", "aPrVu", "SoFl", "PoVi", "MaVu"))
+surv$Species<-as.factor(surv$Species)
+
+#try again with a model including species instead of source, so the contrasts are comparisons among species treatments
+spmodel<-coxph(S ~ Treatment + Family/Source + Family/Source:Treatment, data=surv, method="efron")
+summary(spmodel)
+
+#subset analysis within each family???
+
+# #subset to get the polygonaceae contrasts?
+# #polydata<-surv[surv$Family=="Polygonaceae",]
+# SP<-Surv(time=polydata$StartWeek, time2=polydata$EndWeek, event=polydata$Death)
+# polymodel<-coxph(SP ~ Source:Treatment, data=polydata)
+# summary(polymodel)
+# 
+# 
+# asterdata<-surv[surv$Family=="Asteraceae",]
+# SA<-Surv(time=asterdata$StartWeek, time2=asterdata$EndWeek, event=asterdata$Death)
+# astermodel<-coxph(SA ~ Source:Treatment, data=asterdata)
+# summary(astermodel)
+# 
+# lamdata<-surv[surv$Family=="Lamiaceae",]
+# SL<-Surv(time=lamdata$StartWeek, time2=lamdata$EndWeek, event=lamdata$Death)
+# lammodel<-coxph(SL ~ Source + Treatment + Source:Treatment, data=lamdata)
+# summary(lammodel)
+
+#test the assumption of proportional hazards
+validate<-cox.zph(model, transform="km")
+validate
+plot(validate)
+
+#Subset by Species
+#the file greenhouse_survivaltime_deavprvutest randomly "kills" one individual from any species x treatment group that has experienced no death by the end of the experiment, otherwise model converges to inf.
+
+#BiFr", "aPoPe", "aPrVu", "SoFl", "PoVi", "MaVu"
+bifr<-surv[surv$Species=="BiFr",]
+bf<-Surv(time=bifr$StartWeek, time2=bifr$EndWeek, event=bifr$Death)
+bfmodel<-coxph(bf~Treatment + strata(Block), data=bifr)
+summary(bfmodel)
+
+pope<-surv[surv$Species=="PoPe",]
+pp<-Surv(time=pope$StartWeek, time2=pope$EndWeek, event=pope$Death)
+ppmodel<-coxph(pp~Treatment+ strata(Block), data=pope)
+summary(ppmodel)
+
+prvu<-surv[surv$Species=="PrVu",]
+pv<-Surv(time=prvu$StartWeek, time2=prvu$EndWeek, event=prvu$Death)
+pvmodel<-coxph(pv~Treatment+ strata(Block), data=prvu)
+summary(pvmodel)
+
+sofl<-surv[surv$Species=="SoFl",]
+sf<-Surv(time=sofl$StartWeek, time2=sofl$EndWeek, event=sofl$Death)
+sfmodel<-coxph(sf~Treatment+ strata(Block), data=sofl)
+summary(sfmodel)
+
+povi<-surv[surv$Species=="PoVi",]
+pvi<-Surv(time=povi$StartWeek, time2=povi$EndWeek, event=povi$Death)
+pvimodel<-coxph(pvi~Treatment+ strata(Block), data=povi)
+summary(pvimodel)
+
+mavu<-surv[surv$Species=="MaVu",]
+mv<-Surv(time=mavu$StartWeek, time2=mavu$EndWeek, event=mavu$Death)
+mvmodel<-coxph(mv~Treatment+ strata(Block), data=mavu)
+summary(mvmodel)
+
+
+#validate these
+
+validate<-cox.zph(pvmodel, transform="km")
+validate
+plot(validate)
+
+
+#or rearrange the dataframe so i have columns for each "interaction" e.g. UpslopeLam GreenlineLam or UpslopeLamFlood 
+
+#this is giving suspiciously high p values (.99) for very very small hazard ratios.
+
 
 ```
 
@@ -122,41 +206,66 @@ end$Treatment<-as.character(end$Treatment)
 end$Treatment<-replace(end$Treatment, end$Treatment=="control", "acontrol")
 end$Treatment<-as.factor(end$Treatment)
 
-
+require(nlme)
 #lme requires removing all rows with NA
-model_lme<-lme(Height ~ Source * Treatment, random=~1|Block, data=end)
-summary(model_lme)
-anova(model_lme)
 
-model_leaf<-lme(Leaves ~ Source * Treatment, random = ~1|Block, data=end)
-summary(model_leaf)
+#I guess I need to subset by species again
+
+gbifr<-end[end$Species=="BiFr",]
+
+gpope<-end[end$Species=="PoPe",]
+
+gprvu<-end[end$Species=="PrVu",]
+
+gsofl<-end[end$Species=="SoFl",]
+
+gpovi<-end[end$Species=="PoVi",]
+
+gmavu<-end[end$Species=="MaVu",]
+
+#models by species (height)
+lmgbifr<-lme(Height ~ Treatment, random =~ 1|Block, data=gbifr)
+summary(lmgbifr)
+
+lmgpope<-lme(Height ~ Treatment, random =~ 1|Block, data=gpope)
+summary(lmgpope)
+
+lmgprvu<-lme(Height ~ Treatment, random =~ 1|Block, data=gprvu)
+summary(lmgprvu)
+
+lmgsofl<-lme(Height ~ Treatment, random =~ 1|Block, data=gsofl)
+summary(lmgsofl)
+
+lmgpovi<-lme(Height ~ Treatment, random =~ 1|Block, data=gpovi)
+summary(lmgpovi)
+
+lmgmavu<-lme(Height ~ Treatment, random =~ 1|Block, data=gmavu)
+summary(lmgmavu)
+
+
+
+#models by species (leaf) n.b. same model names as for height, rename if you need to run both or height will be overwritten
+lmgbifr<-lme(Leaves ~ Treatment, random =~ 1|Block, data=gbifr)
+summary(lmgbifr)
+
+lmgpope<-lme(Leaves ~ Treatment, random =~ 1|Block, data=gpope)
+summary(lmgpope)
+
+lmgprvu<-lme(Leaves ~ Treatment, random =~ 1|Block, data=gprvu)
+summary(lmgprvu)
+
+lmgsofl<-lme(Leaves ~ Treatment, random =~ 1|Block, data=gsofl)
+summary(lmgsofl)
+
+lmgpovi<-lme(Leaves ~ Treatment, random =~ 1|Block, data=gpovi)
+summary(lmgpovi)
+
+lmgmavu<-lme(Leaves ~ Treatment, random =~ 1|Block, data=gmavu)
+summary(lmgmavu)
 
 ```
 
 
-Survival analysis http://www.statmethods.net/stats/frequencies.html
-```{r}
-#g test on total mortality - in each treatment, for each species? 
-
-require(vcd)
-
-surv<-read.csv("greenhouse_survival.csv", check.names=FALSE)
-surv2<-surv[,c(1,3:5)]
-
-mat<-xtabs(Dead~Source+Treatment, surv2)
-assocstats(mat)
-
-require(ca)
-ca(mat)
-
-#lor<-loddsratio(array,1,log=FALSE)
-#summary(lor)
-
-#mantelhaen.test(array)
-
-
-
-```
 
 Figures for time series
 ```{r}
@@ -165,17 +274,17 @@ Figures for time series
 
 
 #Height
-tsheight<-summarySE(data,measurevar="Height", groupvars=c("Species", "Treatment", "Week"), na.rm=TRUE)
-tsheight$Species<-factor(tsheight$Species,levels=c("BiFr", "PoPe", "PrVu", "SoFl", "PoVi", "MaVu"))
+#tsheight<-summarySE(data,measurevar="Height", groupvars=c("Species", "Treatment", "Week"), na.rm=TRUE)
+#tsheight$Species<-factor(tsheight$Species,levels=c("BiFr", "PoPe", "PrVu", "SoFl", "PoVi", "MaVu"))
 
 #Leaves
-tsleaves<-summarySE(data,measurevar="Leaves", groupvars=c("Species", "Treatment", "Week"), na.rm=TRUE)
-tsleaves$Species<-factor(tsleaves$Species,levels=c("BiFr", "PoPe", "PrVu", "SoFl", "PoVi", "MaVu"))
+#tsleaves<-summarySE(data,measurevar="Leaves", groupvars=c("Species", "Treatment", "Week"), na.rm=TRUE)
+#tsleaves$Species<-factor(tsleaves$Species,levels=c("BiFr", "PoPe", "PrVu", "SoFl", "PoVi", "MaVu"))
 
 
 #FIGURES
 require(ggplot2)
-cbPalette2 <- c("#999999", "#E69F00", "#56B4E9", "#009E73")
+cbPalette2 <- c("#999999", "#56B4E9", "#E69F00", "#009E73")
 
 #Height
 tsheight<-within(tsheight, Treatment<-factor(Treatment, levels=c("control", "flood", "bury", "fertilizer")))
@@ -189,7 +298,20 @@ ggplot(data=tsleaves, aes(x=Week, y=Leaves, color=Treatment)) + facet_wrap(~Spec
 
 
 #Survivorship
-ggplot(data=tsleaves, aes(x=Week, y=N, color=Treatment)) + facet_wrap(~Species, nrow=2) + geom_line(stat="identity", size=0.75) + scale_x_discrete(breaks=c(0,1,2,3,4,5,6,7,8,9), labels=c("0","1","2","3","4","5","6","7","8","9")) + scale_color_manual(values=cbPalette2) +theme_bw() +  theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))+ scale_y_discrete(breaks=c(0,1,2,3,4,5,6,7,8,9,10,11,12), labels=c("0","1","2","3","4","5","6","7","8","9", "10", "11", "12"))
+
+alive<-ddply(data, c("Species", "Treatment", "Week"), summarise,
+             N=sum(!is.na(Height)),
+             mean=mean(Height, na.rm=TRUE),
+             sd=sd(Height, na.rm=TRUE), 
+             se = sd/sqrt(N))
+alive[is.na(alive)]<-0
+
+alive<-within(alive, Treatment<-factor(Treatment, levels=c("control", "flood", "bury", "fertilizer")))
+alive<-within(alive, Species<-factor(Species, levels=c("BiFr", "PoPe", "PrVu", "SoFl", "PoVi", "MaVu")))
+levels(alive$Species)<-c("Bidens frondosa", "Polygonum pennsylvanicum", "Prunella vulgaris", "Solidago flexicaulis", "Polygonum virginianum", "Marrubium vulgare")
+levels(alive$Treatment)<-c("control", "submerge", "bury", "nutrient")
+
+ggplot(data=alive, aes(x=Week, y=N, color=Treatment)) + facet_wrap(~Species, nrow=2) + geom_line(stat="identity", size=0.75) + scale_x_discrete(breaks=c(0,1,2,3,4,5,6,7,8,9), labels=c("0","1","2","3","4","5","6","7","8","9")) + scale_color_manual(values=cbPalette2) +theme_bw() +  theme(panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA))+ scale_y_discrete(breaks=c(0,1,2,3,4,5,6,7,8,9,10,11,12), labels=c("0","1","2","3","4","5","6","7","8","9", "10", "11", "12"))
 
 
 #worksbutismessy
