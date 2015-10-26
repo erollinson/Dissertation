@@ -1,0 +1,13 @@
+Species,Family,Habitat,Measurement,Treatment,burycount,burymean,burysd,ctrlcount,ctrlmean,ctrlsd,nutcount,nutmean,nutsd,subcount,submean,subsd
+BiFr,Asteraceae,riparian,height,bury,3,13.43333333,7.928640068,6,17.85,6.28673206,6,17.88333333,7.272528217,10,8.55,1.984103492
+MaVu,Lamiaceae,upland,height,bury,2,3.05,3.606244584,5,9.34,1.143678276,4,10.125,0.853912564,0,0,0
+PoPe,Polygonaceae,riparian,height,bury,2,22.2,11.03086579,1,18.8,0,1,30,0,4,13.55,3.731398308
+PoVi,Polygonaceae,upland,height,bury,3,5.666666667,1.563116545,1,8.5,0,7,14.71428571,7.540872755,11,9.7,2.99633109
+PrVu,Lamiaceae,riparian,height,bury,5,7.2,3.55879193,4,7.775,3.47023054,8,9.4375,4.090385067,12,9.15,1.27600228
+SoFl,Asteraceae,upland,height,bury,2,3.2,0.282842712,1,9.6,0,3,27.26666667,6.763381797,5,9.18,1.219426095
+BiFr,Asteraceae,riparian,leaves,bury,3,24,15.5241747,6,19.83333333,7.467708261,6,20.8,18.38042437,10,16.8,7.927448798
+MaVu,Lamiaceae,upland,leaves,bury,2,6,5.656854249,5,17.8,11.0770032,4,26.75,14.38459824,0,0,0
+PoPe,Polygonaceae,riparian,leaves,bury,2,19.5,7.778174593,1,4,0,1,25,0,4,7.333333333,2.081665999
+PoVi,Polygonaceae,upland,leaves,bury,3,6.666666667,3.785938897,1,5,0,7,11.14285714,1.463850109,11,5.454545455,2.067057637
+PrVu,Lamiaceae,riparian,leaves,bury,5,13,8.031189202,4,35,18.54723699,8,53.625,24.77866306,12,28.91666667,9.169696469
+SoFl,Asteraceae,upland,leaves,bury,2,6,0,1,12,0,3,18.33333333,5.507570547,5,6.8,1.095445115

@@ -1,0 +1,7 @@
+Species,Family,Habitat,Treatment,bury_loghz,bury_sehz,bury_varhz,bury_count,nut_loghz,nut_sehz,nut_varhz,nut_count,sub_loghz,sub_sehz,sub_varhz,sub_count
+BiFr,Asteraceae,riparian,bury,0.7072,0.5363,0.28761769,12,-0.0756,0.5957,0.35485849,12,-1.4184,0.8245,0.67980025,12
+MaVu,Lamiaceae,upland,bury,1.0421,0.5047,0.25472209,12,0.1356,0.5328,0.28387584,12,0.7171,0.4819,0.23222761,12
+PoPe,Polygonaceae,riparian,bury,0.2264,1.0859,1.17917881,4,0.985,1.1211,1.25686521,3,-1.6773,1.1833,1.40019889,5
+PoVi,Polygonaceae,upland,bury,-0.2977,0.4773,0.22781529,12,-1.2909,0.5522,0.30492484,12,-3.1051,1.0535,1.10986225,12
+PrVu,Lamiaceae,riparian,bury,-0.7176,0.5579,0.31125241,12,-1.3651,0.6778,0.45941284,12,-3.1331,1.1052,1.22146704,12
+SoFl,Asteraceae,upland,bury,-0.978,-0.9562,0.91431844,4,-0.8938,0.9479,0.89851441,5,-2.2466,1.2112,1.46700544,5

@@ -5,6 +5,8 @@ date: "Monday, August 03, 2015"
 output: html_document
 ---
 
+note bifr #22 was miscategorized as bury, is fert. 
+
 Read in the data and replace missing values with na
 ```{r}
 data<-read.csv("greenhouse_flood_exp1.csv", check.names=FALSE, na.strings=c("",".","NA"))
@@ -30,15 +32,15 @@ surv$Treatment<-as.factor(surv$Treatment)
 
 #do the same for the species so upslope contrasts against riparian
 
-surv$Species<-as.character(surv$Species)
-surv$Species<-replace(surv$Species, surv$Species=="BiFr", "aBiFr")
-surv$Species<-replace(surv$Species, surv$Species=="PoPe", "aPoPe")
-surv$Species<-replace(surv$Species, surv$Species=="PrVu", "aPrVu")
-surv$Species<-as.factor(surv$Species)
-#build the response variable
-
-#make the survival object
-S<-Surv(time=surv$StartWeek, time2=surv$EndWeek, event=surv$Death)
+# surv$Species<-as.character(surv$Species)
+# surv$Species<-replace(surv$Species, surv$Species=="BiFr", "aBiFr")
+# surv$Species<-replace(surv$Species, surv$Species=="PoPe", "aPoPe")
+# surv$Species<-replace(surv$Species, surv$Species=="PrVu", "aPrVu")
+# # surv$Species<-as.factor(surv$Species)
+# # #build the response variable
+# 
+# #make the survival object
+# S<-Surv(time=surv$StartWeek, time2=surv$EndWeek, event=surv$Death)
 
 #prop hazards model - used source - should go by species
 #model<-coxph(S ~ Source + Treatment + Source:Treatment, data=surv)
@@ -56,20 +58,20 @@ plot(validate)
 #summary(strmodel)
 #valstr<-cox.zph(strmodel, transform="km")
 #valstr
-
-#set coefficient options 
-options(contrasts=c(unordered="contr.treatment", ordered="contr.poly"))
-
-#get species in the right order so the contrasts show the three upslope ones - now taken care of above with the alphabet hack
-surv$Species<-as.character(surv$Species)
-surv$Species<-factor(surv$Species,levels=c("aBiFr", "aPoPe", "aPrVu", "SoFl", "PoVi", "MaVu"))
-surv$Species<-as.factor(surv$Species)
-
-#try again with a model including species instead of source, so the contrasts are comparisons among species treatments
-spmodel<-coxph(S ~ Treatment + Family/Source + Family/Source:Treatment, data=surv, method="efron")
-summary(spmodel)
-
-#subset analysis within each family???
+# 
+# #set coefficient options 
+# options(contrasts=c(unordered="contr.treatment", ordered="contr.poly"))
+# 
+# #get species in the right order so the contrasts show the three upslope ones - now taken care of above with the alphabet hack
+# surv$Species<-as.character(surv$Species)
+# surv$Species<-factor(surv$Species,levels=c("aBiFr", "aPoPe", "aPrVu", "SoFl", "PoVi", "MaVu"))
+# surv$Species<-as.factor(surv$Species)
+# 
+# # #try again with a model including species instead of source, so the contrasts are comparisons among species treatments
+# spmodel<-coxph(S ~ Treatment + Family/Source + Family/Source:Treatment, data=surv, method="efron")
+# summary(spmodel)
+# 
+# #subset analysis within each family???
 
 # #subset to get the polygonaceae contrasts?
 # #polydata<-surv[surv$Family=="Polygonaceae",]
@@ -87,13 +89,13 @@ summary(spmodel)
 # SL<-Surv(time=lamdata$StartWeek, time2=lamdata$EndWeek, event=lamdata$Death)
 # lammodel<-coxph(SL ~ Source + Treatment + Source:Treatment, data=lamdata)
 # summary(lammodel)
-
-#test the assumption of proportional hazards
-validate<-cox.zph(model, transform="km")
-validate
-plot(validate)
-
-#Subset by Species
+# 
+# #test the assumption of proportional hazards
+# validate<-cox.zph(model, transform="km")
+# validate
+# plot(validate)
+# 
+# #Subset by Species
 #the file greenhouse_survivaltime_deavprvutest randomly "kills" one individual from any species x treatment group that has experienced no death by the end of the experiment, otherwise model converges to inf.
 
 #BiFr", "aPoPe", "aPrVu", "SoFl", "PoVi", "MaVu"
@@ -130,7 +132,7 @@ summary(mvmodel)
 
 #validate these
 
-validate<-cox.zph(pvmodel, transform="km")
+validate<-cox.zph(bfmodel, transform="km")
 validate
 plot(validate)
 
@@ -139,6 +141,8 @@ plot(validate)
 
 #this is giving suspiciously high p values (.99) for very very small hazard ratios.
 
+#solve by modifying model to have one random "dead" individual at th end of the no-death groups
+
 
 ```
 
@@ -146,11 +150,11 @@ plot(validate)
 Plot survival functions (requires running the function at the bottom of this code for ggsurv)
 
 ```{r}
-require(ggplot2)
-
-#plots the four treatments
-plotmodel<-survfit(S ~ Treatment, data=surv)
-ggsurv(plotmodel)
+# require(ggplot2)
+# 
+# #plots the four treatments
+# plotmodel<-survfit(S ~ Treatment, data=surv)
+# ggsurv(plotmodel)
 
 
 ```
@@ -162,9 +166,9 @@ so i want time nested within each?
 can i treat deaths as censored wrt time?
 
 ```{r}
-require(lme4)
-rm<-lmer(Height ~ Week * Treatment * Source + (Week | Source:Individual) + (Week * Treatment || Source), data=data)
-summary(rm)
+# require(lme4)
+# rm<-lmer(Height ~ Week * Treatment * Source + (Week | Source:Individual) + (Week * Treatment || Source), data=data)
+# summary(rm)
 ```
 
 
@@ -242,7 +246,9 @@ summary(lmgpovi)
 lmgmavu<-lme(Height ~ Treatment, random =~ 1|Block, data=gmavu)
 summary(lmgmavu)
 
-
+#height models for overall effect
+null<-(lme(Height ~ 1, random = ~1|Block, data=gbifr))
+anova(null, lmgbifr)
 
 #models by species (leaf) n.b. same model names as for height, rename if you need to run both or height will be overwritten
 lmgbifr<-lme(Leaves ~ Treatment, random =~ 1|Block, data=gbifr)
@@ -265,6 +271,73 @@ summary(lmgmavu)
 
 ```
 
+"Meta-analysis" approach suggested by JG - calculate log response ratio for each treatment versus control, then compare riparian to upland species.  
+
+```{r}
+require(metafor)
+meta<-read.csv("gh_end_data_rs.csv", check.names=FALSE)
+
+
+#Height
+
+height<-subset(meta, Measurement=="height")
+
+##submerge
+
+hsub<-escalc(data=height, measure="ROM", m1i=submean, m2i=ctrlmean, sd1i=subsd, sd2i=ctrlsd, n1i=subcount, n2i=ctrlcount)
+model1<-rma(data=hsub, yi=yi, vi=vi, mods=~Habitat)
+summary(model1)
+
+##bury
+
+hbury<-escalc(data=height, measure="ROM", m1i=burymean, m2i=ctrlmean, sd1i=burysd, sd2i=ctrlsd, n1i=burycount, n2i=ctrlcount)
+model2<-rma(data=hbury, yi=yi, vi=vi, mods=~Habitat)
+summary(model2)
+
+##nutrients
+
+hnut<-escalc(data=height, measure="ROM", m1i=nutmean, m2i=ctrlmean, sd1i=nutsd, sd2i=ctrlsd, n1i=nutcount, n2i=ctrlcount)
+model3<-rma(data=hnut, yi=yi, vi=vi, mods=~Habitat)
+summary(model3)
+
+#Leaves
+leaves<-subset(meta, Measurement=="leaves")
+
+##submerge
+
+lsub<-escalc(data=leaves, measure="ROM", m1i=submean, m2i=ctrlmean, sd1i=subsd, sd2i=ctrlsd, n1i=subcount, n2i=ctrlcount)
+model4<-rma(data=lsub, yi=yi, vi=vi, mods=~Habitat)
+summary(model4)
+
+##bury
+
+lbury<-escalc(data=leaves, measure="ROM", m1i=burymean, m2i=ctrlmean, sd1i=burysd, sd2i=ctrlsd, n1i=burycount, n2i=ctrlcount)
+model5<-rma(data=lbury, yi=yi, vi=vi, mods=~Habitat)
+summary(model5)
+
+##nutrients
+
+lnut<-escalc(data=leaves, measure="ROM", m1i=nutmean, m2i=ctrlmean, sd1i=nutsd, sd2i=ctrlsd, n1i=nutcount, n2i=ctrlcount)
+model6<-rma(data=lnut, yi=yi, vi=vi, mods=~Habitat)
+summary(model6)
+```
+
+
+Survival "meta" hazard ratio analysis
+
+```{r}
+haz<-read.csv("gh_survdata_haz.csv", check.names=FALSE)
+require(metafor)
+#submerge
+model7<-rma(data=haz, yi=sub_loghz, vi=sub_varhz, mods=~Habitat)
+model7
+#bury
+model8<-rma(data=haz, yi=bury_loghz, vi=bury_varhz, mods=~Habitat)
+model8
+#nutrients
+model9<-rma(data=haz, yi=nut_loghz, vi=nut_varhz, mods=~Habitat)
+model9
+```
 
 
 Figures for time series
