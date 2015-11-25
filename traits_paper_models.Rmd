@@ -338,6 +338,15 @@ up<-intensivelist[c(3,4,7,8,11,12,15,16,19,20,23,24),]
 ------------------------------------------------------------------------------------
 *Native vs. introduced portions of the community*
 
+correlation among traits?
+```{r}
+require(Hmisc)
+traits<-read.csv("2013_TRY_traitsmatrix.csv", row.names=1)
+ttraits<-t(traits)
+corrs<-rcorr(ttraits)
+
+```
+
 ```{r}
 fulllist<-read.csv("2013_speciespresences_by_origin.csv", check.names=FALSE)
 
