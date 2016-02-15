@@ -355,6 +355,25 @@ display(cov2)
 anova(cov0, cov1, cov2, cov3, test="Chisq")
 summary(cov3)
 
+#with beta regression - does not work?
+require(betareg)
+#100% values have to be reset to 0.9999, it won't include 1
+
+data$HerbCov[data$HerbCov >= 1] <- .99999999
+data$NatHerbCov[data$NatHerbCov >= 1] <- .99999999
+data$InvHerbCov[data$InvHerbCov >= 1] <- .99999999
+
+cov0<-betareg(HerbCov ~ 1, data=data)
+cov1<-betareg(HerbCov ~ River, data=data)
+cov2<-betareg(HerbCov ~ River/Site, data=data)
+cov3<-betareg(HerbCov ~ River/Site/Bank, data=data) #doesn't seem to like the nesting structure
+summary(cov0)
+summary(cov1)
+summary(cov2)
+#anova(cov0, cov1, cov2, cov3, test="Chisq") the chi-squared model comparison method does not work for beta regression. how to compare models? 
+summary(cov3)
+
+
 #Percent native cover
 #-------------------------------------
 #ncov1<-glm(NatHerbCov ~ River + (River/Site) + (Site/Bank), family="quasibinomial", data=data)
@@ -402,6 +421,7 @@ display(icov1)
 display(icov2)
 anova(icov0, icov1, icov2, icov3, test="Chisq")
 summary(icov3)
+
 
 ```
 
@@ -572,5 +592,49 @@ m2 <- update(m1, . ~ . - prog)
 anova(m2, m1, test = "Chisq")
 ```
 
+Revisions - switch to multinomial distribution
 
+new package - nnet
+function multinom
+
+or package mlogit? 
+
+or glmnet
+
+braun blanquet cover classes
+category - % cover - midpoint
+T - <1 - none
+1 - 1-5%- 3% 
+2 - 6-15% - 10.5%
+3 - 16-25% - 20.5%
+4 - 26-50% - 38%
+5 - 51-75% - 63%
+6 - 76-95% - 85.5%
+7 - 96-100% - 98%
+
+Instead of summing the cover per plant, could invert the "bare" categories to use the cover per quadrat? loses those that are >100. 
+
+t 7
+1 6
+2 5
+3 4
+4 3 
+5 2
+6 1
+7 t
+
+
+POWER ANALYSIS
+```{r}
+
+require(pwr)
+
+#pwr.f2.test is for GLM. enter u (numerator df), v (demoninator df), f2 (effect size)
+
+#this tests model 2 versus model 3 (essentially, models with and without bank type)
+#code currently has effect size 0.3 (low to moderate) - generates poor power even for high effect size
+
+#would need 20 streams for adequate power and effect size 0.5
+pa<-pwr.f2.test(u=20, v=40, f2=0.5, sig.level=0.05)
+pa
 

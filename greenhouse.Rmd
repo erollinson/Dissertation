@@ -20,6 +20,8 @@ from coxph output, expcoef = Hazard Ratio - multiplicative effect of covariate o
 
 in coxph, can use cluster(x) to cluster by non-independence (here, family)
 https://rpubs.com/daspringate/survival
+
+For all blocked analyses, use column "Block" for the horizontal blocks (original) and "NewBlock" for the vertical blocks (new/revision) - yet to be reclassified for the survival analysis dataframe
 ```{r}
 require(survival)
 surv<-read.csv("greenhouse_survivaltime_deadprvutest.csv", check.names=FALSE, na.strings=c("", ".", "NA"))
@@ -130,6 +132,40 @@ mvmodel<-coxph(mv~Treatment+ strata(Block), data=mavu)
 summary(mvmodel)
 
 
+
+#removing all blocking from coxph
+bifr<-surv[surv$Species=="BiFr",]
+bf<-Surv(time=bifr$StartWeek, time2=bifr$EndWeek, event=bifr$Death)
+bfmodel<-coxph(bf~Treatment, data=bifr)
+summary(bfmodel)
+
+pope<-surv[surv$Species=="PoPe",]
+pp<-Surv(time=pope$StartWeek, time2=pope$EndWeek, event=pope$Death)
+ppmodel<-coxph(pp~Treatment, data=pope)
+summary(ppmodel)
+
+prvu<-surv[surv$Species=="PrVu",]
+pv<-Surv(time=prvu$StartWeek, time2=prvu$EndWeek, event=prvu$Death)
+pvmodel<-coxph(pv~Treatment, data=prvu)
+summary(pvmodel)
+
+sofl<-surv[surv$Species=="SoFl",]
+sf<-Surv(time=sofl$StartWeek, time2=sofl$EndWeek, event=sofl$Death)
+sfmodel<-coxph(sf~Treatment, data=sofl)
+summary(sfmodel)
+
+povi<-surv[surv$Species=="PoVi",]
+pvi<-Surv(time=povi$StartWeek, time2=povi$EndWeek, event=povi$Death)
+pvimodel<-coxph(pvi~Treatment, data=povi)
+summary(pvimodel)
+
+mavu<-surv[surv$Species=="MaVu",]
+mv<-Surv(time=mavu$StartWeek, time2=mavu$EndWeek, event=mavu$Death)
+mvmodel<-coxph(mv~Treatment, data=mavu)
+summary(mvmodel)
+
+#overall significance of models does not chance with or without blocking
+
 #validate these
 
 validate<-cox.zph(bfmodel, transform="km")
@@ -161,6 +197,8 @@ Plot survival functions (requires running the function at the bottom of this cod
 
 
 Growth analyses
+
+For all blocked analyses, use column "Block" for the horizontal blocks (original) and "NewBlock" for the vertical blocks (new/revision)
 
 so i want time nested within each?
 can i treat deaths as censored wrt time?
@@ -210,6 +248,18 @@ end$Treatment<-as.character(end$Treatment)
 end$Treatment<-replace(end$Treatment, end$Treatment=="control", "acontrol")
 end$Treatment<-as.factor(end$Treatment)
 
+#new models with JG
+
+#need glm for all fixed, lme for fixed and random factors
+test<-glm(Height ~ Source, data = end)
+summary(test)
+
+test2<-glm(Leaves ~ Treatment*Source, data=end)
+summary(test2)
+
+test3<-glm(Leaves ~ Species, data=end)
+summary(test3)
+
 require(nlme)
 #lme requires removing all rows with NA
 
@@ -228,27 +278,42 @@ gpovi<-end[end$Species=="PoVi",]
 gmavu<-end[end$Species=="MaVu",]
 
 #models by species (height)
-lmgbifr<-lme(Height ~ Treatment, random =~ 1|Block, data=gbifr)
+lmgbifr<-lme(Height ~ Treatment, random =~ 1|NewBlock, data=gbifr)
 summary(lmgbifr)
 
-lmgpope<-lme(Height ~ Treatment, random =~ 1|Block, data=gpope)
+lmgpope<-lme(Height ~ Treatment, random =~ 1|NewBlock, data=gpope)
 summary(lmgpope)
 
-lmgprvu<-lme(Height ~ Treatment, random =~ 1|Block, data=gprvu)
+lmgprvu<-lme(Height ~ Treatment, random =~ 1|NewBlock, data=gprvu)
 summary(lmgprvu)
 
-lmgsofl<-lme(Height ~ Treatment, random =~ 1|Block, data=gsofl)
+lmgsofl<-lme(Height ~ Treatment, random =~ 1|NewBlock, data=gsofl)
 summary(lmgsofl)
 
-lmgpovi<-lme(Height ~ Treatment, random =~ 1|Block, data=gpovi)
+lmgpovi<-lme(Height ~ Treatment, random =~ 1|NewBlock, data=gpovi)
 summary(lmgpovi)
 
-lmgmavu<-lme(Height ~ Treatment, random =~ 1|Block, data=gmavu)
+lmgmavu<-lme(Height ~ Treatment, random =~ 1|NewBlock, data=gmavu)
 summary(lmgmavu)
 
-#height models for overall effect
+#height models for overall effect, swap in each species
 null<-(lme(Height ~ 1, random = ~1|Block, data=gbifr))
 anova(null, lmgbifr)
+
+null<-(lme(Height ~ 1, random = ~1|Block, data=gpope))
+anova(null, lmgpope)
+
+null<-(lme(Height ~ 1, random = ~1|Block, data=gprvu))
+anova(null, lmgprvu)
+
+null<-(lme(Height ~ 1, random = ~1|Block, data=gsofl))
+anova(null, lmgsofl)
+
+null<-(lme(Height ~ 1, random = ~1|Block, data=gpovi))
+anova(null, lmgpovi)
+
+null<-(lme(Height ~ 1, random = ~1|Block, data=gmavu))
+anova(null, lmgmavu)
 
 #models by species (leaf) n.b. same model names as for height, rename if you need to run both or height will be overwritten
 lmgbifr<-lme(Leaves ~ Treatment, random =~ 1|Block, data=gbifr)
@@ -269,6 +334,92 @@ summary(lmgpovi)
 lmgmavu<-lme(Leaves ~ Treatment, random =~ 1|Block, data=gmavu)
 summary(lmgmavu)
 
+
+#test
+
+test<-lme(Leaves ~ Treatment, data=gmavu)
+
+
+#new approach that removes blocking
+require(lme4)
+
+lmgbifr<-glm(Height ~ Treatment, data=gbifr)
+summary(lmgbifr)
+
+lmgpope<-glm(Height ~ Treatment, data=gpope)
+summary(lmgpope)
+
+lmgprvu<-glm(Height ~ Treatment, data=gprvu)
+summary(lmgprvu)
+
+lmgsofl<-glm(Height ~ Treatment, data=gsofl)
+summary(lmgsofl)
+
+lmgpovi<-glm(Height ~ Treatment, data=gpovi)
+summary(lmgpovi)
+
+lmgmavu<-glm(Height ~ Treatment, data=gmavu)
+summary(lmgmavu)
+
+#fixed blocks
+
+require(lme4)
+
+lmgbifr<-glm(Height ~ Treatment + NewBlock, data=gbifr)
+summary(lmgbifr)
+
+lmgpope<-glm(Height ~ Treatment + NewBlock, data=gpope)
+summary(lmgpope)
+
+lmgprvu<-glm(Height ~ Treatment + NewBlock, data=gprvu)
+summary(lmgprvu)
+
+lmgsofl<-glm(Height ~ Treatment + NewBlock, data=gsofl)
+summary(lmgsofl)
+
+lmgpovi<-glm(Height ~ Treatment + NewBlock, data=gpovi)
+summary(lmgpovi)
+
+lmgmavu<-glm(Height ~ Treatment + NewBlock, data=gmavu)
+summary(lmgmavu)
+
+#height models for overall effect
+null<-(glm(Height ~ 1, data=gbifr))
+anova(null, lmgbifr)
+
+null<-(glm(Height ~ 1, data=gpope))
+anova(null, lmgpope)
+
+null<-(glm(Height ~ 1, data=gprvu))
+anova(null, lmgprvu)
+
+null<-(glm(Height ~ 1, data=gsofl))
+anova(null, lmgsofl)
+
+null<-(glm(Height ~ 1, data=gpovi))
+anova(null, lmgpovi)
+
+null<-(glm(Height ~ 1, data=gmavu))
+anova(null, lmgmavu)
+
+#models by species (leaf) n.b. same model names as for height, rename if you need to run both or height will be overwritten
+lmgbifr<-lme(Leaves ~ Treatment, random =~ 1|Block, data=gbifr)
+summary(lmgbifr)
+
+lmgpope<-lme(Leaves ~ Treatment, random =~ 1|Block, data=gpope)
+summary(lmgpope)
+
+lmgprvu<-lme(Leaves ~ Treatment, random =~ 1|Block, data=gprvu)
+summary(lmgprvu)
+
+lmgsofl<-lme(Leaves ~ Treatment, random =~ 1|Block, data=gsofl)
+summary(lmgsofl)
+
+lmgpovi<-lme(Leaves ~ Treatment, random =~ 1|Block, data=gpovi)
+summary(lmgpovi)
+
+lmgmavu<-lme(Leaves ~ Treatment, random =~ 1|Block, data=gmavu)
+summary(lmgmavu)
 ```
 
 "Meta-analysis" approach suggested by JG - calculate log response ratio for each treatment versus control, then compare riparian to upland species.  
@@ -604,3 +755,4 @@ ggsurv <- function(s, CI = 'def', plot.cens = T, surv.col = 'gg.def',
 
 
 ```
+
