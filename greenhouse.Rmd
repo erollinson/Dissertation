@@ -21,7 +21,7 @@ from coxph output, expcoef = Hazard Ratio - multiplicative effect of covariate o
 in coxph, can use cluster(x) to cluster by non-independence (here, family)
 https://rpubs.com/daspringate/survival
 
-For all blocked analyses, use column "Block" for the horizontal blocks (original) and "NewBlock" for the vertical blocks (new/revision) - yet to be reclassified for the survival analysis dataframe
+For all blocked analyses, use column "Block" for the horizontal blocks (original) and "NewBlock" for the vertical blocks (new/revision) - yet to be reclassified for the survival analysis dataframe. "Latin" to block by the individual latin squares. 
 ```{r}
 require(survival)
 surv<-read.csv("greenhouse_survivaltime_deadprvutest.csv", check.names=FALSE, na.strings=c("", ".", "NA"))
