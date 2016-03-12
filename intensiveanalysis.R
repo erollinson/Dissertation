@@ -168,11 +168,30 @@ shapiro.test(data$SQRTASINNatHerbCov)
 
 #analyze - working linear models  (note that the SS and MS are correct, but it does not default to using the correct denominator for the F test of a nested model - that is easily fixed by hand, but is an open problem with the code for now) These are the models that are used in the original draft of the manuscript
 
-richnessperm<-lm(CountSpPerM ~ (River/Site) + (Site/Bank), data)
+#using anova() lowercase is type I SS by default; using car package and Anova() capped can specify type III
+require(car)
+#need to respecify "site" so that Anova() can parse it: just have 1/2 instead of B1, B2. 
+
+#lm notation: a/b is equivalent to a + a:b and a + b %in% a.
+
+
+Site1<-c(1,1,2,2,1,1,2,2,1,1,2,2,1,1,2,2,1,1,2,2,1,1,2,2)
+data$Site1<-as.factor(Site1)
+
+richnessperm<-lm(CountSpPerM ~ (River/Site1) + (Site1/Bank), data)
+
+#test1<-lm(CountSpPerM~River + Bank, data)
+#anova(test1)
+#Anova(test1, type=2)
+#non-nested models provide same SS for I,II,III
+
 anova(richnessperm)
+Anova(richnessperm, type="III")
 
 indivsperm<-lm(CountIndPerM ~ (River/Site) + (Site/Bank), data)
 anova(indivsperm)
+      
+#Getting different SS estimates for Site versus Site1 - something to do with naming them all 1,2 versus unique site names in each river? it's NOT crossed
 
 shandiv<-lm(SQRTShanDiv ~ (River/Site) + (Site/Bank), data)
 anova(shandiv)
@@ -182,6 +201,7 @@ anova(ctinvperm)
 
 ctnatperm<-lm(CountNatSpPerM ~ (River/Site) + (Site/Bank), data)
 anova(ctnatperm)
+summary(ctnatperm)
 
 ctinvindperm<-lm(SQRTCountInvIndPerM ~ (River/Site) + (Site/Bank), data)
 anova(ctinvindperm)

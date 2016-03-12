@@ -219,6 +219,7 @@ summary (irich3)
 anova(irich0, irich1,irich2, irich3, test="Chisq")
 
 
+
 #testing LMER for Dana
 # irich2<-lmer(CountInvSp ~ (1|River) + (1|Site) + (Bank), REML=TRUE, data=data)
 # summary(irich2)
@@ -634,7 +635,24 @@ require(pwr)
 #this tests model 2 versus model 3 (essentially, models with and without bank type)
 #code currently has effect size 0.3 (low to moderate) - generates poor power even for high effect size
 
+#measure in question is native richness. for native species per meter, 
+#Multiple R-squared:  0.5131,	Adjusted R-squared:  0.06686  (from intensiveanalysis.R)
+f2<-(0.06686/(1-0.06686))
+f2
+#from http://www.statmethods.net/stats/power.html for linear models
+
 #would need 20 streams for adequate power and effect size 0.5
-pa<-pwr.f2.test(u=20, v=40, f2=0.5, sig.level=0.05)
+
+pa<-pwr.f2.test(u=20, v=40, f2=0.07, sig.level=0.05)
 pa
+
+#try with cohen's d, more straightforward than the f2
+#Greenline transects (n = 12) contained a mean of 2.8 (± 0.28 SE) species m−2, and upslope transects (n = 12) contained a mean 1.8 (± 0.25 SE) species m−2 
+
+var1<-var(data$CountSpPerM)
+var1
+d<-((2.8-1.8)/var1)
+d
+
+pwr.t2n.test(n1=20, n2=20, d=d, sig.level=0.05)
 
