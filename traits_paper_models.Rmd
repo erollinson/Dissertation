@@ -336,7 +336,7 @@ up<-intensivelist[c(3,4,7,8,11,12,15,16,19,20,23,24),]
 
 ```
 ------------------------------------------------------------------------------------
-*Native vs. introduced portions of the community*
+*Native vs. introduced portions of the community* (2013 data)
 
 correlation among traits?
 ```{r}
@@ -496,8 +496,11 @@ nat_sitebytrait<-FDnat$CWM
 write.table(inv_sitebytrait, "sitebytraitmatrix_inv2013.csv", sep=",", row.names=TRUE, col.names=TRUE)
 write.table(nat_sitebytrait, "sitebytraitmatrix_nat2013.csv", sep=",", row.names=TRUE, col.names=TRUE)
 
-#reimport the site by trait matrix that has been pruned to shared/preferred traits and lists communities separately as invasive and native portions of each site.
+```
+WORKING ANALYSIS START HERE
+reimport the site by trait matrix that has been pruned to shared/preferred traits and lists communities separately as invasive and native portions of each site.
 
+```{r}
 partcomm<-read.csv("2013_sitebytraitmatrix_partitionedbyorigin.csv")
 row.names(partcomm)<-partcomm$Comm
 partcomm<-partcomm[,3:23]
@@ -1182,7 +1185,6 @@ alltraits2<-rbind(tinvtraits2, tnattraits2)
 
 require(ggplot2)
 
-require(plyr)
 
 #barplots
 
@@ -2322,15 +2324,17 @@ ggplot(csla, aes(x=Origin, y=mean)) + geom_point(position=position_dodge(), stat
 
 names(alltraits2)[names(alltraits2)=="Leaf dry mass per plant dry mass (leaf weight ratio, LWR)"] <-"lwr" #ddply doesn't seem to like spaces in column names, or ""ing them
 
-clwr<-ddply(alltraits2, c("Origin"), summarise,
+lwr<-ddply(alltraits2, c("Origin"), summarise,
              N = sum(!is.na(lwr)),
              mean = mean(lwr, na.rm=TRUE),
              sd = sd(lwr, na.rm=TRUE),
-             se = sd/sqrt(N))
+             se = sd/sqrt(N),
+             logmean = log(mean,10),
+             logse = log(se,10))
 
 lwr$Origin<-factor(lwr$Origin, levels=c("N", "I"))
 
-ggplot(clwr, aes(x=Origin, y=mean)) + geom_point(position=position_dodge(), stat="identity", size=4) + geom_errorbar(aes(ymin=mean-se, ymax = mean+se), width=.2) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text=element_text(size=20))+ ylab("LWR")
+ggplot(lwr, aes(x=Origin, y=mean)) + geom_point(position=position_dodge(), stat="identity", size=4) + geom_errorbar(aes(ymin=mean-se, ymax = mean+se), width=.2) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text=element_text(size=20))+ ylab("LWR")
 
 #Stomata conductance
 
@@ -2411,12 +2415,14 @@ cseedno<-ddply(alltraits2, c("Origin"), summarise,
              N = sum(!is.na(seedno)),
              mean = mean(seedno, na.rm=TRUE),
              sd = sd(seedno, na.rm=TRUE),
-             se = sd/sqrt(N))
+             se = sd/sqrt(N),
+             logmean = log(mean,10),
+             logse = log(se,10))
 
 
 cseedno$Origin<-factor(cseedno$Origin, levels=c("N", "I")) #puts the natives on the lefthand side
 
-ggplot(cseedno, aes(x=Origin, y=log(mean,10))) + geom_point(position=position_dodge(), stat="identity", size=4) + geom_errorbar(aes(ymin=log(mean-se,10), ymax = log(mean+se,10), width=.2)) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text=element_text(size=20))+ ylab("log(Number of seeds per reproductive unit)")
+ggplot(cseedno, aes(x=Origin, y=log(mean,10))) + geom_point(position=position_dodge(), stat="identity", size=4) + geom_errorbar(aes(ymin=(logmean-logse), ymax = (logmean+logse), width=.2)) + theme_bw() + theme (panel.grid.major=element_line(color = NA), panel.grid.minor=element_line(color = NA), text=element_text(size=20))+ ylab("log(Number of seeds per reproductive unit)")
 
 
 #Seedprotein
