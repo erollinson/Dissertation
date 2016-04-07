@@ -100,35 +100,37 @@ plot(validate)
 # #Subset by Species
 #the file greenhouse_survivaltime_deavprvutest randomly "kills" one individual from any species x treatment group that has experienced no death by the end of the experiment, otherwise model converges to inf.
 
+#strata Block for original blocks; Latin for squares. Need to add NewBlock if i want to run the vertical ones.
+
 #BiFr", "aPoPe", "aPrVu", "SoFl", "PoVi", "MaVu"
 bifr<-surv[surv$Species=="BiFr",]
 bf<-Surv(time=bifr$StartWeek, time2=bifr$EndWeek, event=bifr$Death)
-bfmodel<-coxph(bf~Treatment + strata(Block), data=bifr)
+bfmodel<-coxph(bf~Treatment + strata(Latin), data=bifr)
 summary(bfmodel)
 
 pope<-surv[surv$Species=="PoPe",]
 pp<-Surv(time=pope$StartWeek, time2=pope$EndWeek, event=pope$Death)
-ppmodel<-coxph(pp~Treatment+ strata(Block), data=pope)
+ppmodel<-coxph(pp~Treatment+ strata(Latin), data=pope)
 summary(ppmodel)
 
 prvu<-surv[surv$Species=="PrVu",]
 pv<-Surv(time=prvu$StartWeek, time2=prvu$EndWeek, event=prvu$Death)
-pvmodel<-coxph(pv~Treatment+ strata(Block), data=prvu)
+pvmodel<-coxph(pv~Treatment+ strata(Latin), data=prvu)
 summary(pvmodel)
 
 sofl<-surv[surv$Species=="SoFl",]
 sf<-Surv(time=sofl$StartWeek, time2=sofl$EndWeek, event=sofl$Death)
-sfmodel<-coxph(sf~Treatment+ strata(Block), data=sofl)
+sfmodel<-coxph(sf~Treatment+ strata(Latin), data=sofl)
 summary(sfmodel)
 
 povi<-surv[surv$Species=="PoVi",]
 pvi<-Surv(time=povi$StartWeek, time2=povi$EndWeek, event=povi$Death)
-pvimodel<-coxph(pvi~Treatment+ strata(Block), data=povi)
+pvimodel<-coxph(pvi~Treatment+ strata(Latin), data=povi)
 summary(pvimodel)
 
 mavu<-surv[surv$Species=="MaVu",]
 mv<-Surv(time=mavu$StartWeek, time2=mavu$EndWeek, event=mavu$Death)
-mvmodel<-coxph(mv~Treatment+ strata(Block), data=mavu)
+mvmodel<-coxph(mv~Treatment+ strata(Latin), data=mavu)
 summary(mvmodel)
 
 
@@ -164,11 +166,29 @@ mv<-Surv(time=mavu$StartWeek, time2=mavu$EndWeek, event=mavu$Death)
 mvmodel<-coxph(mv~Treatment, data=mavu)
 summary(mvmodel)
 
-#overall significance of models does not chance with or without blocking
+#overall significance of models does not change with or without blocking
 
 #validate these
 
 validate<-cox.zph(bfmodel, transform="km")
+validate
+plot(validate)
+
+
+#overall effect of family on survival?
+
+#set this to get all effects for family - coefficients contrast against average
+options(contrasts=c(unordered="contr.sum", ordered="contr.poly"))
+
+#set this back for all other analyses - coefficients contrasted against some base (control)
+options(contrasts=c(unordered="contr.treatment", ordered="contr.poly"))
+
+test<-Surv(time=surv$StartWeek, time2=surv$EndWeek, event=surv$Death)
+familymodel<-coxph(test~ Family + strata(Block), data=surv)
+summary(familymodel)
+anova(familymodel)
+
+validate<-cox.zph(familymodel, transform="km")
 validate
 plot(validate)
 
@@ -198,7 +218,7 @@ Plot survival functions (requires running the function at the bottom of this cod
 
 Growth analyses
 
-For all blocked analyses, use column "Block" for the horizontal blocks (original) and "NewBlock" for the vertical blocks (new/revision)
+For all blocked analyses, use column "Block" for the horizontal blocks (original) and "NewBlock" for the vertical blocks (new/revision); "Latin" to do individual squares as blocks
 
 so i want time nested within each?
 can i treat deaths as censored wrt time?
@@ -297,41 +317,43 @@ lmgmavu<-lme(Height ~ Treatment, random =~ 1|NewBlock, data=gmavu)
 summary(lmgmavu)
 
 #height models for overall effect, swap in each species
-null<-(lme(Height ~ 1, random = ~1|Block, data=gbifr))
+
+
+null<-(lme(Height ~ 1, random = ~1|NewBlock, data=gbifr))
 anova(null, lmgbifr)
 
-null<-(lme(Height ~ 1, random = ~1|Block, data=gpope))
+null<-(lme(Height ~ 1, random = ~1|NewBlock, data=gpope))
 anova(null, lmgpope)
 
-null<-(lme(Height ~ 1, random = ~1|Block, data=gprvu))
+null<-(lme(Height ~ 1, random = ~1|NewBlock, data=gprvu))
 anova(null, lmgprvu)
 
-null<-(lme(Height ~ 1, random = ~1|Block, data=gsofl))
+null<-(lme(Height ~ 1, random = ~1|NewBlock, data=gsofl))
 anova(null, lmgsofl)
 
-null<-(lme(Height ~ 1, random = ~1|Block, data=gpovi))
+null<-(lme(Height ~ 1, random = ~1|NewBlock, data=gpovi))
 anova(null, lmgpovi)
 
-null<-(lme(Height ~ 1, random = ~1|Block, data=gmavu))
+null<-(lme(Height ~ 1, random = ~1|NewBlock, data=gmavu))
 anova(null, lmgmavu)
 
 #models by species (leaf) n.b. same model names as for height, rename if you need to run both or height will be overwritten
-lmgbifr<-lme(Leaves ~ Treatment, random =~ 1|Block, data=gbifr)
+lmgbifr<-lme(Leaves ~ Treatment, random =~ 1|NewBlock, data=gbifr)
 summary(lmgbifr)
 
-lmgpope<-lme(Leaves ~ Treatment, random =~ 1|Block, data=gpope)
+lmgpope<-lme(Leaves ~ Treatment, random =~ 1|NewBlock, data=gpope)
 summary(lmgpope)
 
-lmgprvu<-lme(Leaves ~ Treatment, random =~ 1|Block, data=gprvu)
+lmgprvu<-lme(Leaves ~ Treatment, random =~ 1|NewBlock, data=gprvu)
 summary(lmgprvu)
 
-lmgsofl<-lme(Leaves ~ Treatment, random =~ 1|Block, data=gsofl)
+lmgsofl<-lme(Leaves ~ Treatment, random =~ 1|NewBlock, data=gsofl)
 summary(lmgsofl)
 
-lmgpovi<-lme(Leaves ~ Treatment, random =~ 1|Block, data=gpovi)
+lmgpovi<-lme(Leaves ~ Treatment, random =~ 1|NewBlock, data=gpovi)
 summary(lmgpovi)
 
-lmgmavu<-lme(Leaves ~ Treatment, random =~ 1|Block, data=gmavu)
+lmgmavu<-lme(Leaves ~ Treatment, random =~ 1|NewBlock, data=gmavu)
 summary(lmgmavu)
 
 
@@ -420,6 +442,19 @@ summary(lmgpovi)
 
 lmgmavu<-lme(Leaves ~ Treatment, random =~ 1|Block, data=gmavu)
 summary(lmgmavu)
+
+
+
+#compare the families
+
+famleaf<-lme(Leaves ~ Family, random =~1|Block, data=end)
+summary(famleaf)
+Anova(famleaf, type=3)
+
+famheight<-lme(Height ~ Family, random=~ 1|Block, data=end)
+Anova(famheight, type=3)
+
+
 ```
 
 "Meta-analysis" approach suggested by JG - calculate log response ratio for each treatment versus control, then compare riparian to upland species.  

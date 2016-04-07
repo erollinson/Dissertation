@@ -497,7 +497,11 @@ write.table(inv_sitebytrait, "sitebytraitmatrix_inv2013.csv", sep=",", row.names
 write.table(nat_sitebytrait, "sitebytraitmatrix_nat2013.csv", sep=",", row.names=TRUE, col.names=TRUE)
 
 ```
+
+
+
 WORKING ANALYSIS START HERE
+
 reimport the site by trait matrix that has been pruned to shared/preferred traits and lists communities separately as invasive and native portions of each site.
 
 ```{r}
@@ -1072,7 +1076,8 @@ ordiplot(annord, type="n")
 atype=c(rep("Introduced", 9), rep("Native", 32))
 #ordihull(annord, groups=wtype, draw="polygon", col="grey90", label=F) #for tightest convex hull containing all points in the group
 ordiellipse(annord, groups=atype, draw="lines", kind="sd", col="black", label=T) #for ellipse representing SD of community
-points(annord, display="sites", col=c(rep("blue", 9), rep("red", 15)), pch= 19)
+points(annord, display="sites", col=c(rep("blue", 9), rep("red", 32)), pch= 19)
+#there was previously in error in the code designating the colors for these points - it didn;'t match the numbers for introduced and native comms - it was 9 and 15 instead of 9 and 32, so the (correct) ellipses did not match the colors
 
 #orditorp(annord, display="species", col="black", pch=8) #this will plot the traits ("species" in vegan package lingo which always means whatever your columns are)
 
