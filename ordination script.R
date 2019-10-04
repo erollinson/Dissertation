@@ -19,7 +19,8 @@ ord <- metaMDS(comm, distance = "bray", trymax=20 ,trace=1)
 library(vegan)
 library(scatterplot3d)
 library(rgl)
-ord3D <- metaMDS(comm, distance = "bray", k = 2, trymax=50 ,trace=1)
+library(vegan3d)
+ord3D <- metaMDS(comm[4:247], distance = "bray", k = 3, trymax=50 ,trace=1)
 newplot <- ordiplot3d(ord3D, display = "sites", choices = 1:3)
 
 text(newplot, "points", col="blue", pos=3)
@@ -27,6 +28,23 @@ text(newplot, "points", col="blue", pos=3)
 #using a different package to make a dynamic 3d plot
 ordirgl(ord3D, display = "sites", choices = 1:3, type="t")
 
+#different demo with iris data
+irisdat <- iris
+rownames(irisdat) <- iris$Species
+irisord <- metaMDS(irisdat[1:4], distance="bray", k = 3, trymax = 50, trace = 1)
+
+
+library(tidyverse)
+vals<-irisord$points
+vals<-data.frame(vals)
+plot3d(vals$MDS1, vals$MDS2, vals$MDS3, type="p", size=5, lit=TRUE, col=as.integer(irisdat$Species))
+
+library(plotly)
+p <- plot_ly(iris, x= ~Petal.Length, y= ~Petal.Width, z= ~Sepal.Length, color= ~Species) %>%
+  add_markers() %>%
+  layout(scene = list (xaxis = list(title='Petal Length'), yaxis = list(title = 'Petal Width'), zaxis=list(title = 'Sepal Length')))
+
+p
 
 #running an anosim
 require(vegan)
