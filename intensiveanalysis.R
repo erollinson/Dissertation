@@ -651,7 +651,7 @@ scale_y_continuous(limits=c(0,1), breaks=c(0,0.2,0.4,0.6,0.8,1), labels=c("0", "
 
 
 #by bank
-
+library(Rmisc)
 brich<-summarySE(data, measurevar="CountSp", groupvars=c("Bank"))
 bind<-summarySE(data, measurevar="CountIndPerM", groupvars=c("Bank"))
 bshan<-summarySE(data, measurevar="ShanDiv", groupvars=c("Bank"))
@@ -793,3 +793,15 @@ ggplot(orbcov, aes(x=Bank, y=Cover, group=Origin)) +
         legend.justification=c(1,0), legend.position=c(1,0)) +
   scale_y_continuous(limits=c(0,.6), breaks=c(0,.1,.2,.3,.4,.5,.6), labels=c("0", "10", "20", "30", "40", "50", "60"))
 
+
+
+
+#dot plots
+
+ggplot(data, aes(x=Bank, y=CountSp, color=River)) + 
+  geom_point(size=5) +
+  geom_line(aes(group=TransectPair)) +
+  theme_classic() + 
+  xlab("Bank") +
+  ylab("Species Richness") +
+  scale_y_continuous(limits=c(0,60), breaks=c(0, 10, 20, 30, 40, 50, 60), labels=c("0", "10", "20", "30", "40", "50", "60"))
